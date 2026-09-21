@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.B.M. Rashedul Islam | Advocate & Legal Specialist</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#0B132B',
+                            900: '#070B19',
+                            950: '#04060E',
+                        },
+                        gold: {
+                            400: '#F3C66A',
+                            500: '#D4AF37',
+                            600: '#AA8A22',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        cinzel: ['Cinzel', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF0CA 0%, #D4AF37 50%, #9A7B1C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-border-glow {
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-navy-950 text-slate-800 dark:text-slate-200 font-sans transition-colors duration-300 antialiased selection:bg-gold-500 selection:text-navy-950">
+
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-white/90 dark:bg-navy-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800/80 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo / Brand Name -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-lg bg-slate-900 dark:bg-navy-800 border border-gold-500/40 flex items-center justify-center text-gold-500 font-cinzel font-bold text-xl group-hover:border-gold-500 transition-all shadow-sm">
+                    RI
+                </div>
+                <div>
+                    <span class="block font-cinzel font-bold text-lg sm:text-xl text-slate-900 dark:text-white tracking-wider">A.B.M. RASHEDUL ISLAM</span>
+                    <span class="block text-xs text-gold-600 dark:text-gold-400 font-medium tracking-widest uppercase">Advocate & Legal Specialist</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+                <a href="#about" class="text-slate-600 dark:text-slate-300 hover:text-gold-500 dark:hover:text-gold-400 transition-colors">About & Bio</a>
+                <a href="#practice" class="text-slate-600 dark:text-slate-300 hover:text-gold-500 dark:hover:text-gold-400 transition-colors">Practice Areas</a>
+                <a href="#experience" class="text-slate-600 dark:text-slate-300 hover:text-gold-500 dark:hover:text-gold-400 transition-colors">Experience</a>
+                <a href="#credentials" class="text-slate-600 dark:text-slate-300 hover:text-gold-500 dark:hover:text-gold-400 transition-colors">Credentials</a>
+                <a href="#contact" class="text-slate-600 dark:text-slate-300 hover:text-gold-500 dark:hover:text-gold-400 transition-colors">Contact</a>
+            </nav>
+
+            <!-- Actions: Theme Toggle & CTA -->
+            <div class="flex items-center gap-4">
+                <!-- Theme Toggle Button -->
+                <button id="themeToggleBtn" aria-label="Toggle Theme" class="p-2.5 rounded-lg bg-slate-100 dark:bg-navy-800 text-slate-600 dark:text-gold-400 hover:bg-slate-200 dark:hover:bg-navy-800/80 transition-colors border border-slate-200 dark:border-slate-700/60">
+                    <i id="themeIcon" class="fas fa-moon text-lg"></i>
+                </button>
+
+                <!-- Desktop Consultation Button -->
+                <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-navy-950 font-semibold text-sm shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-gavel text-xs"></i>
+                    <span>Consult Now</span>
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" aria-label="Toggle Mobile Menu" class="md:hidden p-2 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-navy-800">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-navy-900 border-b border-slate-200 dark:border-slate-800 px-4 pt-2 pb-6 space-y-3">
+            <a href="#about" class="mobile-link block py-2 text-slate-700 dark:text-slate-200 hover:text-gold-500 font-medium border-b border-slate-100 dark:border-slate-800/50">About & Bio</a>
+            <a href="#practice" class="mobile-link block py-2 text-slate-700 dark:text-slate-200 hover:text-gold-500 font-medium border-b border-slate-100 dark:border-slate-800/50">Practice Areas</a>
+            <a href="#experience" class="mobile-link block py-2 text-slate-700 dark:text-slate-200 hover:text-gold-500 font-medium border-b border-slate-100 dark:border-slate-800/50">Experience</a>
+            <a href="#credentials" class="mobile-link block py-2 text-slate-700 dark:text-slate-200 hover:text-gold-500 font-medium border-b border-slate-100 dark:border-slate-800/50">Credentials</a>
+            <a href="#contact" class="mobile-link block py-2 text-slate-700 dark:text-slate-200 hover:text-gold-500 font-medium">Contact</a>
+        </div>
+    </header>
+
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section class="relative min-h-[90vh] flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-slate-100 via-slate-50 to-white dark:from-navy-950 dark:via-navy-900 dark:to-navy-950">
+            <!-- Background Decorative Grid Lines -->
+            <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:36px_36px] pointer-events-none"></div>
+            
+            <div class="max-w-5xl mx-auto text-center relative z-10">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-600 dark:text-gold-400 text-xs sm:text-sm font-semibold tracking-wide uppercase mb-6 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-gold-500 animate-pulse"></span>
+                    Advocate, Supreme Court of Bangladesh
+                </div>
+
+                <!-- Main Headline -->
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-cinzel font-bold text-slate-900 dark:text-white tracking-tight leading-tight mb-6">
+                    Precision in <span class="gold-gradient-text">Land & Corporate</span> Law
+                </h1>
+
+                <!-- Subtitle / Tagline -->
+                <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-300 font-serif max-w-3xl mx-auto italic mb-10 leading-relaxed">
+                    "Delivering rigorous legal vetting, seamless conveyancing, and strategic corporate risk management across Bangladesh's legal landscape."
+                </p>
+
+                <!-- Key Metrics / Quick Highlights -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mb-12">
+                    <div class="p-4 rounded-xl bg-white/60 dark:bg-navy-900/60 border border-slate-200 dark:border-slate-800 shadow-sm backdrop-blur-sm">
+                        <span class="block font-cinzel font-bold text-2xl text-gold-500">10+</span>
+                        <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Years Experience</span>
+                    </div>
+                    <div class="p-4 rounded-xl bg-white/60 dark:bg-navy-900/60 border border-slate-200 dark:border-slate-800 shadow-sm backdrop-blur-sm">
+                        <span class="block font-cinzel font-bold text-2xl text-gold-500">500+</span>
+                        <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Deeds & Vettings</span>
+                    </div>
+                    <div class="p-4 rounded-xl bg-white/60 dark:bg-navy-900/60 border border-slate-200 dark:border-slate-800 shadow-sm backdrop-blur-sm">
+                        <span class="block font-cinzel font-bold text-2xl text-gold-500">Dhaka</span>
+                        <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Primary Jurisdiction</span>
+                    </div>
+                    <div class="p-4 rounded-xl bg-white/60 dark:bg-navy-900/60 border border-slate-200 dark:border-slate-800 shadow-sm backdrop-blur-sm">
+                        <span class="block font-cinzel font-bold text-2xl text-gold-500">Corporate</span>
+                        <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">& Land Specialist</span>
+                    </div>
+                </div>
+
+                <!-- Call to Action Buttons -->
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-navy-950 font-bold text-base shadow-lg hover:shadow-gold-500/20 transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-3">
+                        <i class="fa-regular fa-paper-plane"></i>
+                        <span>Schedule Consultation</span>
+                    </a>
+                    <a href="#about" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-white dark:bg-navy-800 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-navy-700/80 font-semibold text-base transition-all flex items-center justify-center gap-2">
+                        <span>Read Professional Bio</span>
+                        <i class="fa-solid fa-arrow-down text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bio / About Section -->
+        <section id="about" class="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-navy-900 transition-colors">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Left Column: Portrait & Key Profile Card -->
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative mx-auto max-w-md lg:max-w-none">
+                            <!-- Background Glow Effect -->
+                            <div class="absolute -inset-1 bg-gradient-to-r from-gold-500 to-amber-600 rounded-2xl blur opacity-30"></div>
+                            
+                            <!-- Profile Container -->
+                            <div class="relative rounded-2xl bg-slate-100 dark:bg-navy-800 border border-slate-200 dark:border-slate-700 overflow-hidden p-6 sm:p-8">
+                                <div class="w-32 h-32 mx-auto rounded-full bg-navy-900 border-2 border-gold-500 flex items-center justify-center mb-6 text-gold-500 text-4xl shadow-inner">
+                                    <i class="fa-solid fa-user-tie"></i>
+                                </div>
+                                <h3 class="text-2xl font-cinzel font-bold text-slate-900 dark:text-white text-center">A.B.M. Rashedul Islam</h3>
+                                <p class="text-sm text-gold-600 dark:text-gold-400 font-semibold text-center mb-6">Advocate / Legal Specialist</p>
+
+                                <div class="space-y-4 border-t border-slate-200 dark:border-slate-700/80 pt-6 text-sm text-slate-600 dark:text-slate-300">
+                                    <div class="flex items-start gap-3">
+                                        <i class="fa-solid fa-building-columns text-gold-500 mt-1"></i>
+                                        <div>
+                                            <span class="font-semibold block text-slate-800 dark:text-slate-200">Supreme Court Bar Association</span>
+                                            <span class="text-xs">Enrolled Advocate</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <i class="fa-solid fa-location-dot text-gold-500 mt-1"></i>
+                                        <div>
+                                            <span class="font-semibold block text-slate-800 dark:text-slate-200">Chamber Location</span>
+                                            <span class="text-xs">Dhaka, Bangladesh</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <i class="fa-solid fa-briefcase text-gold-500 mt-1"></i>
+                                        <div>
+                                            <span class="font-semibold block text-slate-800 dark:text-slate-200">Specializations</span>
+                                            <span class="text-xs">Land Administration, Banking Mortgage Vetting, Corporate Conveyancing</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Professional Narrative -->
+                    <div class="lg:col-span-7">
+                        <div class="inline-flex items-center gap-2 text-gold-600 dark:text-gold-400 font-semibold text-sm uppercase tracking-wider mb-3">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                            <span>Professional Biography</span>
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-cinzel font-bold text-slate-900 dark:text-white mb-6">
+                            Bridging Complex Land Governance & Corporate Integrity
+                        </h2>
+
+                        <div class="space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed text-base">
+                            <p>
+                                <strong>A.B.M. Rashedul Islam</strong> is a seasoned Legal Specialist and practicing Advocate based in Dhaka, Bangladesh. With extensive experience across both litigation and corporate legal advisory, he offers tailored solutions for complex property acquisition, corporate restructuring, and banking documentation.
+                            </p>
+                            <p>
+                                His domain expertise centers deeply on <strong>Bangladesh Land Administration</strong>—a critical area requiring exhaustive scrutiny of land records (CS, SA, RS, BS, and City Surveys), Khatian verification, mutation history, and chain-title authenticity. He regularly acts on behalf of major financial institutions, real estate developers, and corporate entities to perform legal due diligence and mortgage vetting.
+                            </p>
+                            <p>
+                                In conveyancing practice, Advocate Rashedul Islam drafts and executes high-stakes <em>Saf-Kabla</em> (Outright Sale) deeds, Irrevocable General Power of Attorney, Joint Venture Real Estate Agreements, Lease Deeds, and Trust Instruments. His thorough approach minimizes title defects and safeguards clients against future litigation risks.
+                            </p>
+                        </div>
+
+                        <!-- Highlights Pills -->
+                        <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div class="flex items-center gap-3 p-3 rounded-lg bg-slate-50 dark:bg-navy-800/50">
+                                <i class="fa-solid fa-circle-check text-gold-500"></i>
+                                <span class="text-sm font-medium text-slate-800 dark:text-slate-200">Land Title Traceability Analysis</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 rounded-lg bg-slate-50 dark:bg-navy-800/50">
+                                <i class="fa-solid fa-circle-check text-gold-500"></i>
+                                <span class="text-sm font-medium text-slate-800 dark:text-slate-200">Banking & Finance Search Reports</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 rounded-lg bg-slate-50 dark:bg-navy-800/50">
+                                <i class="fa-solid fa-circle-check text-gold-500"></i>
+                                <span class="text-sm font-medium text-slate-800 dark:text-slate-200">Bespoke Contract Vetting</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 rounded-lg bg-slate-50 dark:bg-navy-800/50">
+                                <i class="fa-solid fa-circle-check text-gold-500"></i>
+                                <span class="text-sm font-medium text-slate-800 dark:text-slate-200">Civil & Land Dispute Resolution</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice Areas Section -->
+        <section id="practice" class="py-24 px-4 sm:px-6 lg:px-8 bg-slate-100 dark:bg-navy-950 transition-colors">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-gold-600 dark:text-gold-400 font-semibold text-sm uppercase tracking-wider block mb-2">Legal Services</span>
+                    <h2 class="text-3xl sm:text-4xl font-cinzel font-bold text-slate-900 dark:text-white mb-4">Core Practice Areas</h2>
+                    <p class="text-slate-600 dark:text-slate-400">Comprehensive legal expertise designed to provide clarity, protection, and strategic advantage for individuals and corporate enterprises.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Practice Card 1 -->
+                    <div class="group p-8 rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 hover:border-gold-500/50 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1">
+                        <div class="w-14 h-14 rounded-xl bg-gold-500/10 text-gold-500 flex items-center justify-center text-2xl mb-6 group-hover:bg-gold-500 group-hover:text-navy-950 transition-colors">
+                            <i class="fa-solid fa-house-chimney-window"></i>
+                        </div>
+                        <h3 class="text-xl font-cinzel font-bold text-slate-900 dark:text-white mb-3">Land & Property Law</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                            Expert handling of Bangladesh land administration laws, Khatian & Porcha verification, mutation clearance, land ceiling compliance, and resolution of title ambiguities.
+                        </p>
+                        <ul class="text-xs text-slate-500 dark:text-slate-400 space-y-2 border-t border-slate-100 dark:border-slate-800 pt-4">
+                            <li><i class="fa-solid fa-angle-right text-gold-500 mr-2"></i>CS, SA, RS, BS & City Survey Vetting</li>
+                            <li><i class="fa-solid fa-angle-right text-gold-500 mr-2"></i>Mutation & DCR Verification</li>
+                        </ul>
+                    </div>
+
+                    <!-- Practice Card 2 -->
+                    <div class="group p-8 rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 hover:border-gold-500/50 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1">
+                        <div class="w-14 h-14 rounded-xl bg-gold-500/10 text-gold-500 flex items-center justify-center text-2xl mb-6 group-hover:bg-gold-500 group-hover:text-navy-950 transition-colors">
+                            <i class="fa-solid fa-file-signature"></i>
+                        </div>
+                        <h3 class="text-xl font-cinzel font-bold text-slate-900 dark:text-white mb-3">Conveyancing & Legal Vetting</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                            Precision drafting and vetting of <em>Saf-Kabla</em> sales deeds, Power of Attorney, Joint Venture agreements, Heba deeds, and lease agreements.
+                        </p>
+                        <ul class="text-xs text-slate-500 dark:text-slate-400 space-y-2 border-t border-slate-100 dark:border-slate-800 pt-4">
+                            <li><i class="fa-solid fa-angle-right text-gold-500 mr-2"></i>Chain Title Search Reports</li>
+                            <li><i class="fa-solid fa-angle-right text-gold-500 mr-2"></i>Saf-Kabla & Power of Attorney Drafting</li>
+                        </ul>
+                    </div>
+
+                    <!-- Practice Card 3 -->
+                    <div class="group p-8 rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 hover:border-gold-500/50 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1">
+                        <div class="w-14 h-14 rounded-xl bg-gold-500/10 text-gold-500 flex items-center justify-center text-2xl mb-6 group-hover:bg-gold-500 group-hover:text-navy-950 transition-colors">
+                            <i class="fa-solid fa-building"></i>
+                        </div>
+                        <h3 class="text-xl font-cinzel font-bold text-slate-900 dark:text-white mb-3">Corporate & Banking Legal Docs</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                            Comprehensive legal opinions for banks and financial institutions, mortgage vetting, creation of charge documents, and commercial contract drafting.
+                        </p>
+                        <ul class="text-xs text-slate-500 dark:text-slate-400 space-y-2 border-t border-slate-100 dark:border-slate-800 pt-4">
+                            <li><i class="fa-solid fa-angle-right text-gold-500 mr-2"></i>Mortgage Vetting Reports</li>
+                            <li><i class="fa-solid fa-angle-right text-gold-500 mr-2"></i>Loan & Charge Document Vetting</li>
+                        </ul>
+                    </div>
+
+                    <!-- Practice Card 4 -->
+                    <div class="group p-8 rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 hover:border-gold-500/50 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1">
+                        <div class="w-14 h-14 rounded-xl bg-gold-500/10 text-gold-500 flex items-center justify-center text-2xl mb-6 group-hover:bg-gold-500 group-hover:text-navy-950 transition-colors">
+                            <i class="fa-solid fa-scale-unbalanced-flip"></i>
+                        </div>
+                        <h3 class="text-xl font-cinzel font-bold text-slate-900 dark:text-white mb-3">Civil & Property Litigation</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                            Representation in civil courts regarding land partition suits, injunctions, specific performance of contracts, and recovery of immovable property.
+                        </p>
+                        <ul class="text-xs text-slate-500 dark:text-slate-400 space-y-2 border-t border-slate-100 dark:border-slate-800 pt-4">
+                            <li><i class="fa-solid fa-angle-right text-gold-500 mr-2"></i>Title Suits & Injunction Matters</li>
+                            <li><i class="fa-solid fa-angle-right text-gold-500 mr-2"></i>Pre-emption & Partition Disputes</li>
+                        </ul>
+                    </div>
+
+                    <!-- Practice Card 5 -->
+                    <div class="group p-8 rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 hover:border-gold-500/50 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1">
+                        <div class="w-14 h-14 rounded-xl bg-gold-500/10 text-gold-500 flex items-center justify-center text-2xl mb-6 group-hover:bg-gold-500 group-hover:text-navy-950 transition-colors">
+                            <i class="fa-solid fa-handshake-angle"></i>
+                        </div>
+                        <h3 class="text-xl font-cinzel font-bold text-slate-900 dark:text-white mb-3">Alternative Dispute Resolution</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                            Out-of-court settlements, arbitration, and mediation for commercial contracts, partnership dissolution, and familial real estate distribution.
+                        </p>
+                        <ul class="text-xs text-slate-500 dark:text-slate-400 space-y-2 border-t border-slate-100 dark:border-slate-800 pt-4">
+                            <li><i class="fa-solid fa-angle-right text-gold-500 mr-2"></i>Arbitration & Mediation</li>
+                            <li><i class="fa-solid fa-angle-right text-gold-500 mr-2"></i>Amicable Settlement Drafting</li>
+                        </ul>
+                    </div>
+
+                    <!-- Practice Card 6 -->
+                    <div class="group p-8 rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 hover:border-gold-500/50 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1">
+                        <div class="w-14 h-14 rounded-xl bg-gold-500/10 text-gold-500 flex items-center justify-center text-2xl mb-6 group-hover:bg-gold-500 group-hover:text-navy-950 transition-colors">
+                            <i class="fa-solid fa-passport"></i>
+                        </div>
+                        <h3 class="text-xl font-cinzel font-bold text-slate-900 dark:text-white mb-3">NRB Real Estate Advisory</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                            Dedicated legal services for Non-Resident Bangladeshis (NRBs) purchasing property or managing ancestral land titles in Bangladesh remotely.
+                        </p>
+                        <ul class="text-xs text-slate-500 dark:text-slate-400 space-y-2 border-t border-slate-100 dark:border-slate-800 pt-4">
+                            <li><i class="fa-solid fa-angle-right text-gold-500 mr-2"></i>Remote Power of Attorney Management</li>
+                            <li><i class="fa-solid fa-angle-right text-gold-500 mr-2"></i>Inheritance & Mutation Guidance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience & Career Timeline Section -->
+        <section id="experience" class="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-navy-900 transition-colors">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-16">
+                    <span class="text-gold-600 dark:text-gold-400 font-semibold text-sm uppercase tracking-wider block mb-2">Track Record</span>
+                    <h2 class="text-3xl sm:text-4xl font-cinzel font-bold text-slate-900 dark:text-white">Career Highlights & Experience</h2>
+                </div>
+
+                <div class="relative border-l-2 border-slate-200 dark:border-slate-800 ml-4 sm:ml-32 space-y-12">
+                    
+                    <!-- Timeline Item 1 -->
+                    <div class="relative pl-8 sm:pl-10 group">
+                        <!-- Dot -->
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-gold-500 border-4 border-white dark:border-navy-900"></div>
+                        <!-- Date Tag for Desktop -->
+                        <div class="sm:absolute sm:-left-36 sm:top-1 text-xs sm:text-sm font-semibold text-gold-600 dark:text-gold-400 uppercase tracking-wider mb-2 sm:mb-0">
+                            2018 - Present
+                        </div>
+
+                        <div class="bg-slate-50 dark:bg-navy-800/60 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-700/60 shadow-sm">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-1">Senior Legal Associate / Independent Consultant</span>
+                            <h3 class="text-xl font-cinzel font-bold text-slate-900 dark:text-white mb-2">Supreme Court & Corporate Legal Advisory</h3>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
+                                Leading independent legal practice concentrating on corporate land acquisition, bank mortgage vetting, legal search reports, and civil court representation. Acted as panel legal advisor for top-tier financial entities and real estate developers in Dhaka.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded bg-slate-200 dark:bg-navy-700 text-slate-700 dark:text-slate-300 text-xs font-medium">Title Search Reports</span>
+                                <span class="px-2.5 py-1 rounded bg-slate-200 dark:bg-navy-700 text-slate-700 dark:text-slate-300 text-xs font-medium">Banking Vetting</span>
+                                <span class="px-2.5 py-1 rounded bg-slate-200 dark:bg-navy-700 text-slate-700 dark:text-slate-300 text-xs font-medium">Drafting Saf-Kabla</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 2 -->
+                    <div class="relative pl-8 sm:pl-10 group">
+                        <!-- Dot -->
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-400 dark:bg-slate-600 border-4 border-white dark:border-navy-900 group-hover:bg-gold-500 transition-colors"></div>
+                        <!-- Date Tag for Desktop -->
+                        <div class="sm:absolute sm:-left-36 sm:top-1 text-xs sm:text-sm font-semibold text-gold-600 dark:text-gold-400 uppercase tracking-wider mb-2 sm:mb-0">
+                            2015 - 2018
+                        </div>
+
+                        <div class="bg-slate-50 dark:bg-navy-800/60 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-700/60 shadow-sm">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-1">Associate Advocate</span>
+                            <h3 class="text-xl font-cinzel font-bold text-slate-900 dark:text-white mb-2">Reputed Dhaka Law Firm</h3>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
+                                Handled high-volume title verification for major commercial development projects. Drafted written statements, plaints, and legal opinions for civil court litigation and arbitration proceedings.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded bg-slate-200 dark:bg-navy-700 text-slate-700 dark:text-slate-300 text-xs font-medium">Civil Litigation</span>
+                                <span class="px-2.5 py-1 rounded bg-slate-200 dark:bg-navy-700 text-slate-700 dark:text-slate-300 text-xs font-medium">Khatian Verification</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 3 -->
+                    <div class="relative pl-8 sm:pl-10 group">
+                        <!-- Dot -->
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-400 dark:bg-slate-600 border-4 border-white dark:border-navy-900 group-hover:bg-gold-500 transition-colors"></div>
+                        <!-- Date Tag for Desktop -->
+                        <div class="sm:absolute sm:-left-36 sm:top-1 text-xs sm:text-sm font-semibold text-gold-600 dark:text-gold-400 uppercase tracking-wider mb-2 sm:mb-0">
+                            Early Career
+                        </div>
+
+                        <div class="bg-slate-50 dark:bg-navy-800/60 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-700/60 shadow-sm">
+                            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-1">Apprentice / Junior Advocate</span>
+                            <h3 class="text-xl font-cinzel font-bold text-slate-900 dark:text-white mb-2">Chamber Practice & Legal Apprenticeship</h3>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
+                                Specialized in Sub-Registry office procedures, land registry searches, mutation file handling at AC Land offices, and court case filing documentation.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Credentials & Memberships Section -->
+        <section id="credentials" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-100 dark:bg-navy-950 transition-colors">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-14">
+                    <span class="text-gold-600 dark:text-gold-400 font-semibold text-sm uppercase tracking-wider block mb-2">Qualifications</span>
+                    <h2 class="text-3xl sm:text-4xl font-cinzel font-bold text-slate-900 dark:text-white">Education & Enrolments</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Card 1 -->
+                    <div class="p-6 rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 text-center">
+                        <div class="w-12 h-12 mx-auto rounded-full bg-gold-500/10 text-gold-500 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="text-lg font-cinzel font-bold text-slate-900 dark:text-white mb-1">Bachelor of Laws (LL.B)</h3>
+                        <p class="text-sm font-semibold text-gold-600 dark:text-gold-400 mb-2">Honours in Law</p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Comprehensive grounding in Bangladesh Constitutional, Civil, Criminal, and Land Laws.</p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="p-6 rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 text-center">
+                        <div class="w-12 h-12 mx-auto rounded-full bg-gold-500/10 text-gold-500 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <h3 class="text-lg font-cinzel font-bold text-slate-900 dark:text-white mb-1">Supreme Court Enrolment</h3>
+                        <p class="text-sm font-semibold text-gold-600 dark:text-gold-400 mb-2">Advocate</p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Enrolled Advocate entitled to practice before the Hon'ble High Court Division of the Supreme Court of Bangladesh.</p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="p-6 rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 text-center">
+                        <div class="w-12 h-12 mx-auto rounded-full bg-gold-500/10 text-gold-500 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-landmark"></i>
+                        </div>
+                        <h3 class="text-lg font-cinzel font-bold text-slate-900 dark:text-white mb-1">Bar Associations</h3>
+                        <p class="text-sm font-semibold text-gold-600 dark:text-gold-400 mb-2">Member</p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Active member of Supreme Court Bar Association (SCBA) & Dhaka Bar Association.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-navy-900 transition-colors">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-gold-600 dark:text-gold-400 font-semibold text-sm uppercase tracking-wider block mb-2">Get In Touch</span>
+                    <h2 class="text-3xl sm:text-4xl font-cinzel font-bold text-slate-900 dark:text-white mb-4">Schedule a Consultation</h2>
+                    <p class="text-slate-600 dark:text-slate-400">Reach out for legal queries, conveyancing vetting, mortgage search reports, or court litigation advice.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    <!-- Contact Information Sidebar -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="p-8 rounded-2xl bg-slate-50 dark:bg-navy-800/80 border border-slate-200 dark:border-slate-700/80">
+                            <h3 class="text-xl font-cinzel font-bold text-slate-900 dark:text-white mb-6">Chamber Details</h3>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-lg bg-gold-500/10 text-gold-500 flex items-center justify-center text-lg flex-shrink-0">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-xs uppercase font-bold text-slate-400 block mb-1">Office Location</span>
+                                        <p class="text-sm text-slate-700 dark:text-slate-200 font-medium">Chamber # Supreme Court Bar Association Building, Dhaka, Bangladesh</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-lg bg-gold-500/10 text-gold-500 flex items-center justify-center text-lg flex-shrink-0">
+                                        <i class="fa-solid fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-xs uppercase font-bold text-slate-400 block mb-1">Email Address</span>
+                                        <a href="mailto:contact@abmrashedulislam.com" class="text-sm text-slate-700 dark:text-slate-200 font-medium hover:text-gold-500 transition-colors">contact@abmrashedulislam.com</a>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-lg bg-gold-500/10 text-gold-500 flex items-center justify-center text-lg flex-shrink-0">
+                                        <i class="fa-brands fa-whatsapp"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-xs uppercase font-bold text-slate-400 block mb-1">Phone & WhatsApp</span>
+                                        <a href="tel:+8801700000000" class="text-sm text-slate-700 dark:text-slate-200 font-medium hover:text-gold-500 transition-colors">+880 1700-000000</a>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-lg bg-gold-500/10 text-gold-500 flex items-center justify-center text-lg flex-shrink-0">
+                                        <i class="fa-regular fa-clock"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-xs uppercase font-bold text-slate-400 block mb-1">Consultation Hours</span>
+                                        <p class="text-sm text-slate-700 dark:text-slate-200 font-medium">Sat – Thu: 5:00 PM – 9:00 PM (By Appointment)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="lg:col-span-7">
+                        <form id="contactForm" class="p-8 rounded-2xl bg-slate-50 dark:bg-navy-800/80 border border-slate-200 dark:border-slate-700/80 space-y-6">
+                            <div id="formSuccessMessage" class="hidden p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-sm font-medium">
+                                <i class="fa-solid fa-circle-check mr-2"></i> Your message has been received! We will contact you shortly.
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="fullName" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">Full Name *</label>
+                                    <input type="text" id="fullName" required placeholder="e.g. Tanvir Hossain" class="w-full px-4 py-3 rounded-xl bg-white dark:bg-navy-900 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 focus:outline-none focus:border-gold-500 text-sm transition-colors">
+                                </div>
+                                <div>
+                                    <label for="emailAddr" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">Email Address *</label>
+                                    <input type="email" id="emailAddr" required placeholder="name@domain.com" class="w-full px-4 py-3 rounded-xl bg-white dark:bg-navy-900 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 focus:outline-none focus:border-gold-500 text-sm transition-colors">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="phoneNumber" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">Phone Number</label>
+                                    <input type="tel" id="phoneNumber" placeholder="+88017..." class="w-full px-4 py-3 rounded-xl bg-white dark:bg-navy-900 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 focus:outline-none focus:border-gold-500 text-sm transition-colors">
+                                </div>
+                                <div>
+                                    <label for="serviceCategory" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">Legal Matter</label>
+                                    <select id="serviceCategory" class="w-full px-4 py-3 rounded-xl bg-white dark:bg-navy-900 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 focus:outline-none focus:border-gold-500 text-sm transition-colors">
+                                        <option value="Land Title Vetting">Land Title & Khatian Vetting</option>
+                                        <option value="Conveyancing Deed">Deed Drafting (Saf-Kabla / POA)</option>
+                                        <option value="Corporate Mortgage">Corporate Mortgage & Search Report</option>
+                                        <option value="Civil Litigation">Civil & Property Dispute</option>
+                                        <option value="Other">Other Legal Inquiry</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="messageText" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">Message Detail *</label>
+                                <textarea id="messageText" rows="4" required placeholder="Briefly describe your land or legal query..." class="w-full px-4 py-3 rounded-xl bg-white dark:bg-navy-900 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 focus:outline-none focus:border-gold-500 text-sm transition-colors resize-none"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-navy-950 font-bold text-base shadow-md transition-all">
+                                Send Inquiry
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 dark:bg-navy-950 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+            <div class="flex items-center justify-center gap-2 font-cinzel text-lg text-white font-bold">
+                <span class="text-gold-500">A.B.M. Rashedul Islam</span> | Advocate
+            </div>
+            <p class="text-xs text-slate-500 max-w-xl mx-auto">
+                Disclaimer: The information on this portfolio website is for general informational purposes only and does not constitute formal legal advice. Submission of inquiries does not create an attorney-client relationship.
+            </p>
+            <p class="text-xs text-slate-600 pt-4">
+                &copy; <span id="currentYear"></span> A.B.M. Rashedul Islam. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Client-side JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set dynamic copyright year
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+            // Dark / Light Theme Toggle Logic
+            const themeToggleBtn = document.getElementById('themeToggleBtn');
+            const themeIcon = document.getElementById('themeIcon');
+            const htmlEl = document.documentElement;
+
+            themeToggleBtn.addEventListener('click', () => {
+                if (htmlEl.classList.contains('dark')) {
+                    htmlEl.classList.remove('dark');
+                    themeIcon.className = 'fas fa-sun text-amber-500';
+                } else {
+                    htmlEl.classList.add('dark');
+                    themeIcon.className = 'fas fa-moon text-gold-400';
+                }
+            });
+
+            // Mobile Menu Toggle Logic
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Contact Form Interactivity
+            const contactForm = document.getElementById('contactForm');
+            const formSuccessMessage = document.getElementById('formSuccessMessage');
+
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Show success state UI without actual submission backend
+                formSuccessMessage.classList.remove('hidden');
+                contactForm.reset();
+
+                setTimeout(() => {
+                    formSuccessMessage.classList.add('hidden');
+                }, 5000);
+            });
+        });
+    </script>
+</body>
+</html>

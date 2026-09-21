@@ -1,145 +1,613 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A.B.M. Rashedul Islam - Lawyer & Legal Consultant</title>
+  <title>A.B.M. Rashedul Islam | Lawyer & Legal Consultant</title>
+  
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Font Awesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Google Fonts: Cinzel for legal titles & Inter for body typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Custom Styling Tokens & Micro Animations -->
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600&display=swap');
-    .font-serif-title { font-family: 'Cinzel', serif; }
-    body { font-family: 'Inter', sans-serif; }
+    .font-serif-title {
+      font-family: 'Cinzel', serif;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #030712;
+      color: #f3f4f6;
+    }
+    
+    /* Gold & Amber Gradient Accents */
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gold-gradient-border {
+      border-image: linear-gradient(to bottom right, #f59e0b, #78350f) 1;
+    }
+
+    /* Glassmorphism Card Effect */
+    .glass-card {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(245, 158, 11, 0.18);
+    }
+    .glass-card:hover {
+      border-color: rgba(245, 158, 11, 0.45);
+      box-shadow: 0 10px 30px -10px rgba(245, 158, 11, 0.15);
+    }
+
+    /* Floating glowing backdrops */
+    .glow-aura {
+      box-shadow: 0 0 60px -10px rgba(245, 158, 11, 0.25);
+    }
+
+    /* Custom Scrollbar Styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #030712;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #d97706;
+    }
   </style>
 </head>
-<body class="bg-slate-900 text-slate-100 min-h-screen">
+<body class="selection:bg-amber-500 selection:text-slate-950 overflow-x-hidden">
 
-  <!-- Header -->
-  <header class="border-b border-amber-500/20 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
-      <div>
-        <h1 class="font-serif-title text-xl text-amber-400 font-bold tracking-wide">A.B.M. RASHEDUL ISLAM</h1>
-        <p class="text-xs text-slate-400">LAWYER & LEGAL CONSULTANT</p>
-      </div>
-      <nav class="flex gap-6 text-sm text-slate-300 font-medium">
-        <a href="#about" class="hover:text-amber-400 transition">About</a>
-        <a href="#chamber" class="hover:text-amber-400 transition">Chamber</a>
-        <a href="#expertise" class="hover:text-amber-400 transition">Expertise</a>
-        <a href="#contact" class="hover:text-amber-400 transition">Contact</a>
+  <!-- Header / Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-slate-950/85 backdrop-blur-md border-b border-amber-500/20 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
+      
+      <!-- Logo Branding -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-700 flex items-center justify-center text-slate-950 font-bold font-serif-title text-xl shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform">
+          R
+        </div>
+        <div>
+          <h1 class="font-serif-title text-lg sm:text-xl font-extrabold text-amber-400 tracking-wider">A.B.M. RASHEDUL ISLAM</h1>
+          <p class="text-[10px] text-slate-400 tracking-widest font-semibold uppercase">Lawyer & Legal Consultant</p>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#about" class="hover:text-amber-400 transition-colors py-1 border-b-2 border-transparent hover:border-amber-400">About</a>
+        <a href="#chamber" class="hover:text-amber-400 transition-colors py-1 border-b-2 border-transparent hover:border-amber-400">Chamber</a>
+        <a href="#expertise" class="hover:text-amber-400 transition-colors py-1 border-b-2 border-transparent hover:border-amber-400">Expertise</a>
+        <a href="#experience" class="hover:text-amber-400 transition-colors py-1 border-b-2 border-transparent hover:border-amber-400">Experience</a>
+        <a href="#contact" class="hover:text-amber-400 transition-colors py-1 border-b-2 border-transparent hover:border-amber-400">Contact</a>
       </nav>
+
+      <!-- Action Button -->
+      <div class="hidden sm:flex items-center gap-4">
+        <button onclick="toggleModal('consultationModal')" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold px-5 py-2.5 rounded-xl text-sm transition-all shadow-md shadow-amber-500/20 hover:scale-[1.02] flex items-center gap-2">
+          <i class="fa-solid fa-calendar-check text-xs"></i>
+          <span>Book Consultation</span>
+        </button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button onclick="toggleMobileNav()" class="md:hidden text-amber-400 p-2 text-xl focus:outline-none" aria-label="Toggle Navigation">
+        <i id="mobileMenuIcon" class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileMenu" class="hidden md:hidden bg-slate-900/95 border-b border-amber-500/20 px-4 py-6 space-y-4">
+      <a href="#about" onclick="toggleMobileNav()" class="block text-slate-200 hover:text-amber-400 font-medium py-2">About Advocate</a>
+      <a href="#chamber" onclick="toggleMobileNav()" class="block text-slate-200 hover:text-amber-400 font-medium py-2">Chamber Info</a>
+      <a href="#expertise" onclick="toggleMobileNav()" class="block text-slate-200 hover:text-amber-400 font-medium py-2">Practice Areas</a>
+      <a href="#experience" onclick="toggleMobileNav()" class="block text-slate-200 hover:text-amber-400 font-medium py-2">Credentials</a>
+      <a href="#contact" onclick="toggleMobileNav()" class="block text-slate-200 hover:text-amber-400 font-medium py-2">Contact</a>
+      <button onclick="toggleMobileNav(); toggleModal('consultationModal');" class="w-full bg-amber-500 text-slate-950 font-bold py-3 rounded-xl mt-4">
+        Book Consultation
+      </button>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section id="about" class="max-w-6xl mx-auto px-4 py-16 grid md:grid-cols-3 gap-12 items-center">
-    <div class="md:col-span-1 flex justify-center">
-      <div class="relative group">
-        <div class="absolute -inset-1 bg-gradient-to-r from-amber-500 to-amber-700 rounded-2xl blur opacity-30 group-hover:opacity-75 transition duration-500"></div>
-        <img id="heroPhoto" src="profile.jpg.png" alt="A.B.M. Rashedul Islam" class="relative w-64 h-64 md:w-72 md:h-72 object-cover rounded-2xl border-2 border-amber-500/40 shadow-2xl">
-      </div>
-    </div>
-    
-    <div class="md:col-span-2 space-y-6">
-      <div class="inline-block px-3 py-1 bg-amber-500/10 border border-amber-500/30 rounded-full text-amber-400 text-xs tracking-wider font-semibold">
-        CAPITAL LAW CHAMBER
-      </div>
-      <h2 class="text-4xl md:text-5xl font-serif-title font-bold text-white leading-tight">
-        A.B.M. Rashedul Islam
-      </h2>
-      <p class="text-amber-400 text-lg font-medium">Lawyer & Legal Consultant</p>
-      <p class="text-slate-300 leading-relaxed">
-        Providing comprehensive legal consultancy and drafting services in Bangladesh. Specializing in property documentation, title chain vetting, land administration, corporate mortgages, and power of attorney regulations.
-      </p>
-      
-      <div class="pt-4 flex flex-wrap gap-4 text-sm text-slate-300">
-        <div class="bg-slate-800/80 border border-slate-700/60 rounded-xl p-4 flex items-center gap-3">
-          <i class="fa-solid fa-clock text-amber-400 text-lg"></i>
-          <div>
-            <div class="text-xs text-slate-400">Consultancy Hours</div>
-            <div class="font-medium text-white">Sat – Thu: 9:00 AM – 8:00 PM</div>
+  <main>
+    <!-- Hero Section -->
+    <section id="about" class="relative py-16 lg:py-24 overflow-hidden">
+      <!-- Background Decorative Blur Circles -->
+      <div class="absolute top-1/4 left-10 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute bottom-10 right-10 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
+          <!-- Hero Text Column -->
+          <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+            
+            <!-- Category Tag -->
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold tracking-wider uppercase">
+              <i class="fa-solid fa-scale-balanced text-amber-400"></i>
+              <span>Bangladesh Legal Practitioner</span>
+            </div>
+
+            <!-- Name Title -->
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif-title font-extrabold text-white tracking-wide leading-tight">
+              A.B.M. RASHEDUL <span class="gold-gradient-text">ISLAM</span>
+            </h1>
+
+            <p class="text-amber-400 text-lg sm:text-xl font-medium tracking-wide">
+              Lawyer & Legal Consultant
+            </p>
+
+            <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              Providing comprehensive legal consultancy, documentation, and drafting services in Bangladesh. Specialized in corporate land acquisitions, property title vetting, deed drafting under court decree, corporate mortgages, and power of attorney regulations.
+            </p>
+
+            <!-- Quick Info Ribbon -->
+            <div class="pt-2 grid sm:grid-cols-2 gap-4 max-w-xl mx-auto lg:mx-0">
+              <div class="glass-card p-4 rounded-xl flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 flex-shrink-0">
+                  <i class="fa-solid fa-clock"></i>
+                </div>
+                <div class="text-left">
+                  <span class="text-[11px] text-slate-400 uppercase tracking-wider block">Chamber Hours</span>
+                  <span class="text-sm font-semibold text-white">Sat – Thu: 9 AM – 8 PM</span>
+                </div>
+              </div>
+
+              <div class="glass-card p-4 rounded-xl flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 flex-shrink-0">
+                  <i class="fa-solid fa-phone"></i>
+                </div>
+                <div class="text-left">
+                  <span class="text-[11px] text-slate-400 uppercase tracking-wider block">Direct Line</span>
+                  <a href="tel:0175571215" class="text-sm font-semibold text-white hover:text-amber-400 transition">0175571215</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="pt-4 flex flex-wrap justify-center lg:justify-start gap-4">
+              <button onclick="toggleModal('consultationModal')" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold px-7 py-3.5 rounded-xl text-sm transition-all shadow-lg shadow-amber-500/20 hover:scale-[1.02] flex items-center gap-3">
+                <i class="fa-solid fa-file-signature text-base"></i>
+                <span>Book Legal Consultation</span>
+              </button>
+              
+              <a href="#chamber" class="glass-card hover:bg-slate-800 text-slate-200 font-semibold px-6 py-3.5 rounded-xl text-sm transition flex items-center gap-2">
+                <i class="fa-solid fa-location-dot text-amber-400"></i>
+                <span>View Chamber Location</span>
+              </a>
+            </div>
+
           </div>
-        </div>
-        <div class="bg-slate-800/80 border border-slate-700/60 rounded-xl p-4 flex items-center gap-3">
-          <i class="fa-solid fa-phone text-amber-400 text-lg"></i>
-          <div>
-            <div class="text-xs text-slate-400">Direct Contact</div>
-            <a href="tel:0175571215" class="font-medium text-white hover:text-amber-400">0175571215</a>
+
+          <!-- Hero Image Portrait Column -->
+          <div class="lg:col-span-5 flex justify-center">
+            <div class="relative w-full max-w-sm">
+              
+              <!-- Outer Glow Layer -->
+              <div class="absolute -inset-1.5 bg-gradient-to-r from-amber-500 via-amber-600 to-amber-800 rounded-3xl blur-md opacity-40 group-hover:opacity-100 transition duration-1000"></div>
+              
+              <!-- Image Card Box -->
+              <div class="relative bg-slate-900 border border-amber-500/30 rounded-2xl p-4 overflow-hidden shadow-2xl">
+                
+                <!-- Main Image Element pointing strictly to profile.jpg.png -->
+                <div class="relative aspect-[4/5] rounded-xl overflow-hidden bg-slate-950 flex items-center justify-center border border-amber-500/20">
+                  <img 
+                    id="heroPhoto" 
+                    src="profile.jpg.png" 
+                    alt="A.B.M. Rashedul Islam" 
+                    class="w-full h-full object-cover object-top transition duration-700 hover:scale-105"
+                    onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex flex-col items-center justify-center text-center p-6 bg-slate-950 text-amber-400 h-full w-full\'><i class=\'fa-solid fa-user-shield text-6xl mb-4 text-amber-500/50\'></i><p class=\'font-serif-title font-bold text-lg text-white\'>A.B.M. RASHEDUL ISLAM</p><p class=\'text-xs text-slate-400 mt-1\'>Lawyer & Legal Consultant</p></div>';"
+                  >
+                  
+                  <!-- Bottom Overlay Card -->
+                  <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent p-4 text-center">
+                    <h3 class="font-serif-title text-base font-bold text-amber-400">A.B.M. Rashedul Islam</h3>
+                    <p class="text-[11px] text-slate-300">Capital Law Chamber • Gulshan-1, Dhaka</p>
+                  </div>
+                </div>
+
+                <!-- Footer Tag inside portrait card -->
+                <div class="mt-3 flex items-center justify-between text-xs text-slate-400 px-1">
+                  <span class="flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Available for Consultation
+                  </span>
+                  <span class="text-amber-400 font-semibold"><i class="fa-solid fa-award mr-1"></i>Dhaka, BD</span>
+                </div>
+
+              </div>
+            </div>
           </div>
+
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Chamber Details -->
-  <section id="chamber" class="bg-slate-950/60 border-y border-slate-800 py-16">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="text-center max-w-2xl mx-auto mb-12">
-        <h3 class="font-serif-title text-2xl text-amber-400 font-bold mb-2">CHAMBER LOCATION</h3>
-        <p class="text-slate-400 text-sm">Capital Law Chamber</p>
-      </div>
-
-      <div class="bg-slate-800/50 border border-slate-700/80 rounded-2xl p-8 max-w-3xl mx-auto flex flex-col md:flex-row items-center gap-6">
-        <div class="w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl flex-shrink-0">
-          <i class="fa-solid fa-building-columns"></i>
+    <!-- Chamber & Hours Section -->
+    <section id="chamber" class="py-20 bg-slate-950 relative border-y border-slate-800/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Section Header -->
+        <div class="text-center max-w-2xl mx-auto mb-16 space-y-2">
+          <div class="text-amber-400 text-xs font-bold tracking-widest uppercase">Chamber Information</div>
+          <h2 class="text-3xl sm:text-4xl font-serif-title font-extrabold text-white">CAPITAL LAW CHAMBER</h2>
+          <div class="w-16 h-1 bg-amber-500 mx-auto rounded-full mt-3"></div>
         </div>
-        <div class="space-y-2 text-center md:text-left">
-          <h4 class="text-xl font-bold text-white">Capital Law Chamber</h4>
-          <p class="text-slate-300 text-sm leading-relaxed">
-            House No.15, Room No.202 (First Floor), Road No.128,<br>
-            Gulshan-1, Dhaka-1212, Bangladesh
-          </p>
-          <p class="text-xs text-amber-400 pt-1"><i class="fa-regular fa-clock mr-1"></i> Saturday – Thursday: 9:00 AM – 8:00 PM</p>
+
+        <div class="grid lg:grid-cols-12 gap-8 items-stretch">
+          
+          <!-- Chamber Address Card -->
+          <div class="lg:col-span-7 glass-card rounded-2xl p-8 relative overflow-hidden flex flex-col justify-between">
+            <div class="space-y-6">
+              <div class="flex items-start gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl flex-shrink-0">
+                  <i class="fa-solid fa-building-columns"></i>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-serif-title font-bold text-white">Capital Law Chamber</h3>
+                  <p class="text-amber-400 text-sm font-medium">Head Office • Gulshan-1</p>
+                </div>
+              </div>
+
+              <div class="space-y-4 pt-2 text-slate-300">
+                <div class="flex items-start gap-3">
+                  <i class="fa-solid fa-location-dot text-amber-400 mt-1"></i>
+                  <div>
+                    <span class="block text-slate-400 text-xs font-medium uppercase">Full Address</span>
+                    <p class="text-base font-semibold text-white leading-relaxed">
+                      House No. 15, Room No. 202 (First Floor), Road No. 128,<br>
+                      Gulshan-1, Dhaka-1212, Bangladesh
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <i class="fa-solid fa-clock text-amber-400 mt-1"></i>
+                  <div>
+                    <span class="block text-slate-400 text-xs font-medium uppercase">Consultancy Schedule</span>
+                    <p class="text-base font-semibold text-white">
+                      Saturday – Thursday: <span class="text-amber-400">9:00 AM – 8:00 PM</span>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-3">
+                  <i class="fa-solid fa-phone text-amber-400 mt-1"></i>
+                  <div>
+                    <span class="block text-slate-400 text-xs font-medium uppercase">Appointment Booking</span>
+                    <p class="text-base font-semibold text-white">
+                      <a href="tel:0175571215" class="hover:text-amber-400 transition">0175571215</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-8 border-t border-slate-800 flex flex-wrap gap-4 items-center justify-between">
+              <span class="text-xs text-slate-400"><i class="fa-solid fa-circle-info text-amber-400 mr-1"></i> Prior appointment recommended for consultation.</span>
+              <a href="tel:0175571215" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-5 py-2.5 rounded-xl text-sm transition flex items-center gap-2">
+                <i class="fa-solid fa-phone"></i> Direct Call
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Interactive Map Placeholder / Highlights -->
+          <div class="lg:col-span-5 glass-card rounded-2xl p-8 flex flex-col justify-between space-y-6">
+            <div>
+              <h4 class="font-serif-title text-xl font-bold text-amber-400 mb-4">Key Area Highlights</h4>
+              <ul class="space-y-4 text-sm text-slate-300">
+                <li class="flex items-center gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+                  <i class="fa-solid fa-check text-emerald-400"></i>
+                  <span>Prime location in Gulshan-1 commercial hub</span>
+                </li>
+                <li class="flex items-center gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+                  <i class="fa-solid fa-check text-emerald-400"></i>
+                  <span>Dedicated corporate vetting room & meeting facility</span>
+                </li>
+                <li class="flex items-center gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+                  <i class="fa-solid fa-check text-emerald-400"></i>
+                  <span>Comprehensive land record archives access</span>
+                </li>
+                <li class="flex items-center gap-3 bg-slate-900/60 p-3 rounded-xl border border-slate-800">
+                  <i class="fa-solid fa-check text-emerald-400"></i>
+                  <span>Direct phone & WhatsApp consultation lines</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-gradient-to-r from-amber-500/10 to-amber-700/10 border border-amber-500/30 rounded-xl p-4 text-center">
+              <p class="text-xs text-amber-300 font-medium">Need immediate legal assistance?</p>
+              <button onclick="toggleModal('consultationModal')" class="mt-2 text-white font-bold text-sm hover:underline inline-flex items-center gap-1">
+                Schedule an Appointment <i class="fa-solid fa-arrow-right text-xs"></i>
+              </button>
+            </div>
+          </div>
+
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Practice Areas -->
-  <section id="expertise" class="max-w-6xl mx-auto px-4 py-16">
-    <div class="text-center max-w-2xl mx-auto mb-12">
-      <h3 class="font-serif-title text-2xl text-amber-400 font-bold mb-2">PRACTICE AREAS</h3>
-      <p class="text-slate-400 text-sm">Key areas of legal expertise & documentation services</p>
-    </div>
+    <!-- Practice Areas / Expertise Section -->
+    <section id="expertise" class="py-24 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-16 space-y-2">
+          <div class="text-amber-400 text-xs font-bold tracking-widest uppercase">Legal Specializations</div>
+          <h2 class="text-3xl sm:text-4xl font-serif-title font-extrabold text-white">PRACTICE AREAS</h2>
+          <p class="text-slate-400 text-sm">Specialized legal solutions tailored to Bangladesh land, corporate, and civil laws.</p>
+          <div class="w-16 h-1 bg-amber-500 mx-auto rounded-full mt-3"></div>
+        </div>
 
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="bg-slate-800/40 border border-slate-700/60 rounded-xl p-6 hover:border-amber-500/40 transition">
-        <i class="fa-solid fa-file-contract text-amber-400 text-2xl mb-4"></i>
-        <h4 class="font-bold text-white mb-2">Land Administration & Vetting</h4>
-        <p class="text-slate-400 text-sm">Title chain verification, legal opinion, mouza jurisdiction vetting, and Schedule A (Ka-Tafsil) gazette records verification.</p>
-      </div>
-      <div class="bg-slate-800/40 border border-slate-700/60 rounded-xl p-6 hover:border-amber-500/40 transition">
-        <i class="fa-solid fa-scale-balanced text-amber-400 text-2xl mb-4"></i>
-        <h4 class="font-bold text-white mb-2">Deeds & Property Transfer</h4>
-        <p class="text-slate-400 text-sm">Saf-Kabla Deeds execution under court decrees, formal Declaration of Gift deeds, and Power of Attorney regulations.</p>
-      </div>
-      <div class="bg-slate-800/40 border border-slate-700/60 rounded-xl p-6 hover:border-amber-500/40 transition">
-        <i class="fa-solid fa-building text-amber-400 text-2xl mb-4"></i>
-        <h4 class="font-bold text-white mb-2">Corporate Mortgage & Banking</h4>
-        <p class="text-slate-400 text-sm">Documentation for corporate mortgage applications, bank investments, and BEZA economic zone land legal requirements.</p>
-      </div>
-    </div>
-  </section>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Practice Card 1 -->
+          <div class="glass-card rounded-2xl p-6 transition duration-300 hover:-translate-y-1 flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-xl">
+                <i class="fa-solid fa-file-contract"></i>
+              </div>
+              <h3 class="font-serif-title font-bold text-lg text-white">Land Administration & Vetting</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Comprehensive title chain search, legal opinion, mouza jurisdiction vetting, and Schedule A (Ka-Tafsil) gazette records verification.
+              </p>
+            </div>
+            <div class="pt-6 text-xs text-amber-400 font-semibold flex items-center gap-1">
+              <span>Title Search & Opinion</span>
+              <i class="fa-solid fa-angle-right"></i>
+            </div>
+          </div>
 
-  <!-- Contact Section -->
-  <section id="contact" class="bg-slate-950/80 border-t border-slate-800 py-16">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      <h3 class="font-serif-title text-2xl text-amber-400 font-bold mb-4">GET IN TOUCH</h3>
-      <p class="text-slate-300 text-sm mb-8">For legal consultations or queries, feel free to contact or visit Capital Law Chamber.</p>
-      
-      <div class="flex flex-wrap justify-center gap-6">
-        <a href="tel:0175571215" class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-6 py-3 rounded-xl transition">
-          <i class="fa-solid fa-phone"></i> Call 0175571215
-        </a>
-      </div>
-    </div>
-  </section>
+          <!-- Practice Card 2 -->
+          <div class="glass-card rounded-2xl p-6 transition duration-300 hover:-translate-y-1 flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-xl">
+                <i class="fa-solid fa-scale-balanced"></i>
+              </div>
+              <h3 class="font-serif-title font-bold text-lg text-white">Deeds & Conveyancing</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Drafting Saf-Kabla Deeds under court decrees, Declaration of Gift deeds, lease agreements, and formal Power of Attorney regulations.
+              </p>
+            </div>
+            <div class="pt-6 text-xs text-amber-400 font-semibold flex items-center gap-1">
+              <span>Conveyancing Services</span>
+              <i class="fa-solid fa-angle-right"></i>
+            </div>
+          </div>
 
-  <footer class="text-center py-6 border-t border-slate-900 text-slate-500 text-xs">
-    © 2026 A.B.M. Rashedul Islam. All rights reserved.
+          <!-- Practice Card 3 -->
+          <div class="glass-card rounded-2xl p-6 transition duration-300 hover:-translate-y-1 flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-xl">
+                <i class="fa-solid fa-building-columns"></i>
+              </div>
+              <h3 class="font-serif-title font-bold text-lg text-white">Corporate Mortgage & Banking</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Legal documentation for corporate mortgage applications, banking investment vetting, and BEZA economic zone land compliance.
+              </p>
+            </div>
+            <div class="pt-6 text-xs text-amber-400 font-semibold flex items-center gap-1">
+              <span>Banking Compliance</span>
+              <i class="fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+
+          <!-- Practice Card 4 -->
+          <div class="glass-card rounded-2xl p-6 transition duration-300 hover:-translate-y-1 flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-xl">
+                <i class="fa-solid fa-gavel"></i>
+              </div>
+              <h3 class="font-serif-title font-bold text-lg text-white">Civil Litigation & Decrees</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Execution of civil court decrees, land possession dispute legal opinions, and representation in property partition suits.
+              </p>
+            </div>
+            <div class="pt-6 text-xs text-amber-400 font-semibold flex items-center gap-1">
+              <span>Litigation Support</span>
+              <i class="fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience & Credentials Section -->
+    <section id="experience" class="py-20 bg-slate-950 relative border-t border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid lg:grid-cols-12 gap-12 items-center">
+          
+          <div class="lg:col-span-5 space-y-6">
+            <div class="text-amber-400 text-xs font-bold tracking-widest uppercase">Professional Track Record</div>
+            <h2 class="text-3xl sm:text-4xl font-serif-title font-extrabold text-white">EXPERIENCE & CREDENTIALS</h2>
+            <p class="text-slate-300 leading-relaxed">
+              With significant experience across high-stakes corporate property acquisitions, bank mortgages, and civil documentation in Bangladesh, providing reliable legal security for individuals and institutions alike.
+            </p>
+            
+            <div class="p-6 glass-card rounded-2xl border-l-4 border-l-amber-500 space-y-2">
+              <h4 class="font-serif-title text-lg font-bold text-amber-400">Capital Law Chamber</h4>
+              <p class="text-xs text-slate-300">Leading legal consultancy firm in Gulshan-1, Dhaka offering legal opinion, drafting, and title vetting services.</p>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 space-y-6">
+            
+            <!-- Timeline Item 1 -->
+            <div class="glass-card rounded-2xl p-6 relative">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                <h3 class="font-serif-title text-lg font-bold text-white">Associate Advocate</h3>
+                <span class="px-3 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs rounded-full font-semibold">Haque & Associates</span>
+              </div>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Handled high-volume title vetting, legal opinion drafting for corporate clients, power of attorney executions, and land administration compliance across Dhaka & gazetted mouza jurisdictions.
+              </p>
+            </div>
+
+            <!-- Timeline Item 2 -->
+            <div class="glass-card rounded-2xl p-6 relative">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                <h3 class="font-serif-title text-lg font-bold text-white">Specialized Legal Vetting Consultant</h3>
+                <span class="px-3 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs rounded-full font-semibold">Corporate & Banking Practice</span>
+              </div>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Formulated comprehensive title chain reports for bank mortgage applications, BEZA economic zone land acquisitions, and deed execution under civil court decrees.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Call To Action Banner -->
+    <section id="contact" class="py-20 relative bg-gradient-to-b from-slate-950 to-slate-900 border-t border-slate-800">
+      <div class="max-w-5xl mx-auto px-4 text-center space-y-8">
+        <div class="inline-block px-4 py-1.5 bg-amber-500/10 border border-amber-500/30 rounded-full text-amber-400 text-xs font-semibold uppercase tracking-wider">
+          Direct Legal Consultation
+        </div>
+        
+        <h2 class="text-3xl sm:text-5xl font-serif-title font-extrabold text-white leading-tight">
+          Need Expert Legal Guidance or Title Vetting?
+        </h2>
+
+        <p class="text-slate-300 text-base max-w-2xl mx-auto">
+          Contact Capital Law Chamber today or visit during consultancy hours (Saturday – Thursday: 9:00 AM – 8:00 PM).
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-4 pt-4">
+          <a href="tel:0175571215" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-8 py-4 rounded-xl text-base transition-all shadow-lg shadow-amber-500/20 flex items-center gap-3">
+            <i class="fa-solid fa-phone text-lg"></i>
+            <span>Call 0175571215</span>
+          </a>
+
+          <button onclick="toggleModal('consultationModal')" class="glass-card hover:bg-slate-800 text-white font-bold px-8 py-4 rounded-xl text-base transition flex items-center gap-3">
+            <i class="fa-solid fa-calendar-check text-amber-400"></i>
+            <span>Request Appointment</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-950 py-8 border-t border-slate-900 text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div>
+        <p class="font-semibold text-slate-400">A.B.M. Rashedul Islam — Lawyer & Legal Consultant</p>
+        <p class="text-[11px] text-slate-500 mt-0.5">Capital Law Chamber, Gulshan-1, Dhaka-1212</p>
+      </div>
+      <p>© 2026 A.B.M. Rashedul Islam. All rights reserved.</p>
+    </div>
   </footer>
 
+  <!-- Consultation Modal -->
+  <div id="consultationModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-amber-500/30 rounded-2xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl space-y-6">
+      
+      <!-- Modal Header -->
+      <div class="flex justify-between items-start">
+        <div>
+          <h3 class="font-serif-title text-xl font-bold text-amber-400">Book Legal Consultation</h3>
+          <p class="text-xs text-slate-400">Capital Law Chamber • Gulshan-1, Dhaka</p>
+        </div>
+        <button onclick="toggleModal('consultationModal')" class="text-slate-400 hover:text-white p-1">
+          <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+      </div>
+
+      <!-- Booking Form -->
+      <form id="consultationForm" onsubmit="handleFormSubmit(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block text-slate-300 font-medium mb-1">Full Name</label>
+          <input type="text" required placeholder="Your full name" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-slate-100 focus:outline-none focus:border-amber-500">
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-medium mb-1">Phone Number</label>
+          <input type="tel" required placeholder="017XXXXXXXX" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-slate-100 focus:outline-none focus:border-amber-500">
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-medium mb-1">Service Required</label>
+          <select class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-slate-100 focus:outline-none focus:border-amber-500">
+            <option>Land Title Vetting & Legal Opinion</option>
+            <option>Deed Drafting (Saf-Kabla / Gift / Power of Attorney)</option>
+            <option>Corporate Mortgage & Bank Vetting</option>
+            <option>Civil Court Decree Execution</option>
+            <option>General Legal Consultation</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-medium mb-1">Preferred Date & Time</label>
+          <input type="datetime-local" required class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-slate-100 focus:outline-none focus:border-amber-500">
+        </div>
+
+        <button type="submit" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold py-3.5 rounded-xl text-sm transition shadow-md shadow-amber-500/20">
+          Confirm Booking Request
+        </button>
+      </form>
+
+      <!-- Confirmation Toast -->
+      <div id="bookingConfirmation" class="hidden text-center py-4 space-y-3">
+        <div class="w-12 h-12 bg-emerald-500/20 border border-emerald-500/40 rounded-full flex items-center justify-center text-emerald-400 text-xl mx-auto">
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <h4 class="font-serif-title font-bold text-white text-base">Booking Request Submitted!</h4>
+        <p class="text-xs text-slate-300">Thank you. Capital Law Chamber will reach out to confirm your consultation time.</p>
+        <button onclick="toggleModal('consultationModal')" class="mt-2 text-xs text-amber-400 font-semibold underline">Close window</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JavaScript Interactions -->
   <script>
-    localStorage.clear();
+    // Toggle Modal
+    function toggleModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.toggle('hidden');
+      }
+    }
+
+    // Toggle Mobile Navigation
+    function toggleMobileNav() {
+      const nav = document.getElementById('mobileMenu');
+      const icon = document.getElementById('mobileMenuIcon');
+      if (nav) {
+        nav.classList.toggle('hidden');
+        if (nav.classList.contains('hidden')) {
+          icon.className = 'fa-solid fa-bars';
+        } else {
+          icon.className = 'fa-solid fa-xmark';
+        }
+      }
+    }
+
+    // Handle Form Submission
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      document.getElementById('consultationForm').classList.add('hidden');
+      document.getElementById('bookingConfirmation').classList.remove('hidden');
+    }
   </script>
+
 </body>
 </html>

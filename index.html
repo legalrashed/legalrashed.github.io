@@ -76,7 +76,7 @@
                 <a href="#about" class="text-slate-300 hover:text-gold-400 transition-colors">About</a>
                 <a href="#practice" class="text-slate-300 hover:text-gold-400 transition-colors">Expertise</a>
                 <a href="#experience" class="text-slate-300 hover:text-gold-400 transition-colors">Experience</a>
-                <a href="#contact" class="text-slate-300 hover:text-gold-400 transition-colors">Contact</a>
+                <a href="#contact" class="text-slate-300 hover:text-gold-400 transition-colors">Chamber & Hours</a>
                 <button onclick="toggleEditorModal()" class="flex items-center gap-2 bg-gold-500/15 hover:bg-gold-500/25 text-gold-400 border border-gold-500/40 px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all">
                     <i class="fa-solid fa-sliders"></i> Edit Info & Photo
                 </button>
@@ -93,7 +93,7 @@
             <a href="#about" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-gold-400 border-b border-navy-800">About</a>
             <a href="#practice" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-gold-400 border-b border-navy-800">Expertise</a>
             <a href="#experience" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-gold-400 border-b border-navy-800">Experience</a>
-            <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-gold-400 border-b border-navy-800">Contact</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-gold-400 border-b border-navy-800">Chamber & Hours</a>
             <button onclick="toggleMobileMenu(); toggleEditorModal()" class="w-full mt-2 flex items-center justify-center gap-2 bg-gold-500/20 text-gold-400 border border-gold-500/40 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider">
                 <i class="fa-solid fa-sliders"></i> Edit Info & Photo
             </button>
@@ -102,13 +102,13 @@
 
     <!-- HERO SECTION -->
     <section id="about" class="relative pt-32 pb-16 md:pt-40 md:pb-24 bg-navy-900 text-slate-100 overflow-hidden border-b border-navy-800">
-        <!-- Subtle Background Glows -->
+        <!-- Background Glow -->
         <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gold-500/5 rounded-full blur-3xl pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid md:grid-cols-12 gap-12 items-center">
                 
-                <!-- Left Text Column -->
+                <!-- Left Column Text -->
                 <div class="md:col-span-7 space-y-6 text-center md:text-left">
                     <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-semibold tracking-wider uppercase">
                         <i class="fa-solid fa-scale-balanced"></i>
@@ -124,24 +124,28 @@
                     </p>
 
                     <p id="heroBio" class="text-slate-300 text-base leading-relaxed max-w-2xl">
-                        Focused on providing expert legal advice in Bangladesh corporate, property, land administration, document vetting, corporate mortgages, and power of attorney execution.
+                        Providing comprehensive, high-calibre legal services in Bangladesh corporate law, property title search, land administration, document vetting, corporate mortgage structuring, and power of attorney execution.
                     </p>
 
                     <!-- Chamber Quick Glance Card -->
                     <div class="p-5 rounded-2xl bg-navy-950/80 border border-slate-700/60 text-left space-y-2 shadow-inner">
                         <div class="flex items-center gap-2 text-xs text-gold-400 font-semibold tracking-wider uppercase">
-                            <i class="fa-solid fa-building-columns"></i> Chamber Address
+                            <i class="fa-solid fa-building-columns"></i> Chamber & Hours Quick View
                         </div>
                         <div id="heroChamberName" class="text-white font-bold text-lg font-serif">Capital Law Chamber</div>
                         <div id="heroChamberAddress" class="text-slate-300 text-xs sm:text-sm leading-relaxed">
                             House No.15, Room No.202 (First Floor), Road No.128, Gulshan-1, Dhaka-1212
+                        </div>
+                        <div class="pt-2 flex flex-wrap items-center gap-4 text-xs text-gold-400">
+                            <span><i class="fa-solid fa-clock mr-1"></i> <strong id="heroHoursQuick">Saturday–Thursday: 9:00 AM – 8:00 PM</strong></span>
+                            <span><i class="fa-solid fa-phone mr-1"></i> <strong id="heroPhoneQuick">0175571215</strong></span>
                         </div>
                     </div>
 
                     <!-- Action Buttons -->
                     <div class="pt-2 flex flex-wrap gap-4 justify-center md:justify-start">
                         <a href="#contact" class="bg-gradient-to-r from-gold-500 to-gold-600 text-navy-950 font-bold px-6 py-3.5 rounded-xl hover:brightness-110 transition shadow-lg text-sm flex items-center gap-2">
-                            <i class="fa-solid fa-calendar-check"></i> Schedule Consultation
+                            <i class="fa-solid fa-calendar-check"></i> Book Legal Consultation
                         </a>
                         <a href="#practice" class="bg-navy-800 border border-slate-700 text-slate-200 font-medium px-6 py-3.5 rounded-xl hover:border-gold-500/50 hover:text-gold-400 transition text-sm">
                             Explore Expertise
@@ -149,14 +153,13 @@
                     </div>
                 </div>
 
-                <!-- Right Profile Photo Column -->
+                <!-- Right Column Profile Photo -->
                 <div class="md:col-span-5 flex justify-center">
                     <div class="relative group w-full max-w-xs sm:max-w-sm">
                         <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-gold-500/40 via-amber-600/30 to-gold-500/40 blur opacity-75 group-hover:opacity-100 transition duration-500"></div>
                         <div class="relative rounded-2xl overflow-hidden bg-navy-950 border-2 border-gold-500/30 shadow-2xl">
-                            <!-- Display Photo loaded from uploaded file or base64 -->
                             <img id="displayPhoto" 
-                                 src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=800" 
+                                 src="Gemini_Generated_Image_6qb4mb6qb4mb6qb4.png" 
                                  alt="A.B.M. Rashedul Islam" 
                                  class="w-full h-[420px] object-cover object-top transition duration-500 group-hover:scale-105"
                                  onerror="this.src='https://placehold.co/600x800/0f172a/c5922e?text=A.B.M.+Rashedul+Islam';">
@@ -166,7 +169,7 @@
                                     <p id="photoOverlayChamber" class="text-xs text-gold-400 font-semibold uppercase">Capital Law Chamber</p>
                                     <p class="text-white text-xs">Gulshan-1, Dhaka-1212</p>
                                 </div>
-                                <button onclick="toggleEditorModal()" class="bg-navy-900/90 text-slate-200 hover:text-gold-400 p-2.5 rounded-xl border border-slate-700 text-xs backdrop-blur transition" title="Change Photo">
+                                <button onclick="toggleEditorModal()" class="bg-navy-900/90 text-slate-200 hover:text-gold-400 p-2.5 rounded-xl border border-slate-700 text-xs backdrop-blur transition" title="Edit Info or Upload Photo">
                                     <i class="fa-solid fa-camera"></i>
                                 </button>
                             </div>
@@ -183,74 +186,74 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <h2 class="text-xs font-semibold text-gold-600 uppercase tracking-widest mb-2">Legal Specializations</h2>
-                <h3 class="font-serif text-3xl sm:text-4xl font-bold text-navy-900">Practice Areas</h3>
+                <h3 class="font-serif text-3xl sm:text-4xl font-bold text-navy-900">Practice Areas & Expertise</h3>
                 <div class="w-16 h-1 bg-gold-500 mx-auto mt-4 rounded-full"></div>
             </div>
 
             <div id="practiceGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Card 1 -->
+                <!-- Practice 1 -->
                 <div class="p-6 rounded-2xl bg-white border border-cream-300 shadow-sm hover:shadow-md hover:border-gold-500/50 transition duration-300">
                     <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-600 text-xl mb-4">
                         <i class="fa-solid fa-map-location-dot"></i>
                     </div>
                     <h4 class="font-serif text-lg font-bold text-navy-900 mb-2">Land Administration & Vetting</h4>
                     <p class="text-slate-600 text-sm leading-relaxed">
-                        Comprehensive verification of CS, SA, RS, and BS Khatian records, land mutation processes, revenue tribunal matters, and title clearance certificates.
+                        Thorough examination of CS, SA, RS, and BS Khatians, mutation order sheets, land tax receipts (Khajna), and revenue clearance certificates in Dhaka & all Mouza jurisdictions.
                     </p>
                 </div>
 
-                <!-- Card 2 -->
+                <!-- Practice 2 -->
                 <div class="p-6 rounded-2xl bg-white border border-cream-300 shadow-sm hover:shadow-md hover:border-gold-500/50 transition duration-300">
                     <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-600 text-xl mb-4">
                         <i class="fa-solid fa-file-contract"></i>
                     </div>
-                    <h4 class="font-serif text-lg font-bold text-navy-900 mb-2">Property Law & Saf-Kabla Deeds</h4>
+                    <h4 class="font-serif text-lg font-bold text-navy-900 mb-2">Saf-Kabla Deeds & Title Transfer</h4>
                     <p class="text-slate-600 text-sm leading-relaxed">
-                        Expert drafting and registration support for Saf-Kabla sale deeds, gift deeds, exchange instruments, partition deeds, and developer agreements.
+                        Precision drafting and registration support for Saf-Kabla sale deeds, gift deeds, partition deeds, exchange instruments, and developer land-share agreements.
                     </p>
                 </div>
 
-                <!-- Card 3 -->
+                <!-- Practice 3 -->
                 <div class="p-6 rounded-2xl bg-white border border-cream-300 shadow-sm hover:shadow-md hover:border-gold-500/50 transition duration-300">
                     <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-600 text-xl mb-4">
                         <i class="fa-solid fa-vault"></i>
                     </div>
                     <h4 class="font-serif text-lg font-bold text-navy-900 mb-2">Corporate Mortgage & Banking</h4>
                     <p class="text-slate-600 text-sm leading-relaxed">
-                        Legal structuring of equitable and registered mortgages, legal opinion reports for commercial credit, standard bank loan security documentation.
+                        Legal vetting for institutional credit security, legal opinion reports for leading commercial banks (including Pubali Bank PLC), corporate mortgages, and BEZA economic zone compliance.
                     </p>
                 </div>
 
-                <!-- Card 4 -->
+                <!-- Practice 4 -->
                 <div class="p-6 rounded-2xl bg-white border border-cream-300 shadow-sm hover:shadow-md hover:border-gold-500/50 transition duration-300">
                     <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-600 text-xl mb-4">
                         <i class="fa-solid fa-signature"></i>
                     </div>
-                    <h4 class="font-serif text-lg font-bold text-navy-900 mb-2">Power of Attorney & Title Search</h4>
+                    <h4 class="font-serif text-lg font-bold text-navy-900 mb-2">Power of Attorney & Execution</h4>
                     <p class="text-slate-600 text-sm leading-relaxed">
-                        Drafting and legal execution of General & Irrevocable Power of Attorney, including Non-Resident Bangladeshi (NRB) power of attorney authentication.
+                        Drafting and legal execution of General & Irrevocable Power of Attorney deeds, including authentication for Non-Resident Bangladeshis (NRB) via high commissions.
                     </p>
                 </div>
 
-                <!-- Card 5 -->
+                <!-- Practice 5 -->
                 <div class="p-6 rounded-2xl bg-white border border-cream-300 shadow-sm hover:shadow-md hover:border-gold-500/50 transition duration-300">
                     <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-600 text-xl mb-4">
                         <i class="fa-solid fa-gavel"></i>
                     </div>
-                    <h4 class="font-serif text-lg font-bold text-navy-900 mb-2">General Legal Advisory & Drafting</h4>
+                    <h4 class="font-serif text-lg font-bold text-navy-900 mb-2">Civil Court Decrees & Disputes</h4>
                     <p class="text-slate-600 text-sm leading-relaxed">
-                        Strategic corporate advisory, contract vetting, non-disclosure agreements, joint venture agreements, and civil dispute guidance in Bangladesh.
+                        Comprehensive legal assessment of civil court decrees, suits for specific performance of contracts, injunction petitions, and land possession litigation guidance.
                     </p>
                 </div>
 
-                <!-- Card 6 -->
+                <!-- Practice 6 -->
                 <div class="p-6 rounded-2xl bg-white border border-cream-300 shadow-sm hover:shadow-md hover:border-gold-500/50 transition duration-300">
                     <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-600 text-xl mb-4">
                         <i class="fa-solid fa-building-user"></i>
                     </div>
-                    <h4 class="font-serif text-lg font-bold text-navy-900 mb-2">Real Estate & Construction</h4>
+                    <h4 class="font-serif text-lg font-bold text-navy-900 mb-2">General Corporate & Civil Advisory</h4>
                     <p class="text-slate-600 text-sm leading-relaxed">
-                        Legal compliance for land development, RAJUK clearance assistance, landowner-developer disputes, and tenancy agreements.
+                        Strategic legal advisory for corporations and private individuals, legal notices, commercial contracts vetting, joint venture agreements, and RAJUK compliance.
                     </p>
                 </div>
             </div>
@@ -267,20 +270,20 @@
             </div>
 
             <div class="max-w-4xl mx-auto space-y-8">
-                <!-- Timeline Item 1 -->
+                <!-- Timeline 1 -->
                 <div class="relative pl-8 border-l-2 border-gold-500/40 space-y-2">
                     <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gold-500 border-4 border-cream-100"></div>
                     <div class="flex flex-wrap justify-between items-center text-sm">
-                        <span class="font-serif font-bold text-lg text-navy-900">Legal Consultant & Associate</span>
+                        <span class="font-serif font-bold text-lg text-navy-900">Head Advocate & Legal Consultant</span>
                         <span class="text-xs px-3 py-1 rounded-full bg-gold-500/10 text-gold-700 font-semibold">Present</span>
                     </div>
                     <p class="text-gold-600 font-medium text-sm">Capital Law Chamber — Gulshan-1, Dhaka</p>
                     <p class="text-slate-600 text-sm leading-relaxed">
-                        Heading property document vetting, land mutation verification, drafting corporate mortgages, and conducting legal title searches for major corporate clients and individual land buyers.
+                        Leading corporate legal advisory, land record vetting, title clearance certifications, commercial mortgage documentation, and civil litigation strategies for key corporate and individual clients across Bangladesh.
                     </p>
                 </div>
 
-                <!-- Timeline Item 2 -->
+                <!-- Timeline 2 -->
                 <div class="relative pl-8 border-l-2 border-gold-500/40 space-y-2">
                     <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-navy-800 border-4 border-cream-100"></div>
                     <div class="flex flex-wrap justify-between items-center text-sm">
@@ -289,7 +292,7 @@
                     </div>
                     <p class="text-gold-600 font-medium text-sm">Haque & Associates — Legal Advisory Division</p>
                     <p class="text-slate-600 text-sm leading-relaxed">
-                        Specialized in legal drafting, legal opinions for banking security, power of attorney execution, land record investigations, and corporate compliance services.
+                        Specialized in legal opinions for banking credit security, title search investigations, Power of Attorney verification, and legal drafting for commercial land acquisitions.
                     </p>
                 </div>
             </div>
@@ -301,7 +304,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <h2 class="text-xs font-semibold text-gold-400 uppercase tracking-widest mb-2">Get in Touch</h2>
-                <h3 class="font-serif text-3xl sm:text-4xl font-bold text-white">Chamber & Consultation</h3>
+                <h3 class="font-serif text-3xl sm:text-4xl font-bold text-white">Chamber Details & Hours</h3>
                 <div class="w-16 h-1 bg-gold-500 mx-auto mt-4 rounded-full"></div>
             </div>
 
@@ -321,7 +324,7 @@
                                 </div>
                                 <div>
                                     <strong class="block text-slate-200 mb-1">Chamber Address</strong>
-                                    <p id="contactAddress" class="text-slate-400 leading-relaxed">
+                                    <p id="contactAddress" class="text-slate-300 leading-relaxed">
                                         House No.15, Room No.202 (First Floor), Road No.128, Gulshan-1, Dhaka-1212
                                     </p>
                                 </div>
@@ -332,8 +335,8 @@
                                     <i class="fa-solid fa-phone"></i>
                                 </div>
                                 <div>
-                                    <strong class="block text-slate-200 mb-1">Phone Number</strong>
-                                    <p id="contactPhone" class="text-slate-400">+880 1700-000000</p>
+                                    <strong class="block text-slate-200 mb-1">Contact Number</strong>
+                                    <p id="contactPhone" class="text-gold-400 font-bold text-base">0175571215</p>
                                 </div>
                             </div>
 
@@ -343,7 +346,7 @@
                                 </div>
                                 <div>
                                     <strong class="block text-slate-200 mb-1">Email Address</strong>
-                                    <p id="contactEmail" class="text-slate-400">rashedul.lawyer@example.com</p>
+                                    <p id="contactEmail" class="text-slate-300">rashedlegalhq@gmail.com</p>
                                 </div>
                             </div>
 
@@ -352,9 +355,9 @@
                                     <i class="fa-solid fa-clock"></i>
                                 </div>
                                 <div>
-                                    <strong class="block text-slate-200 mb-1">Consultation Hours</strong>
-                                    <p class="text-slate-400">Sunday – Thursday: 4:00 PM – 8:00 PM</p>
-                                    <p class="text-xs text-slate-500 mt-1">(Prior appointment recommended)</p>
+                                    <strong class="block text-slate-200 mb-1">Consultancy Hours</strong>
+                                    <p id="contactHours" class="text-gold-400 font-semibold">Saturday–Thursday: 9:00 AM – 8:00 PM</p>
+                                    <p class="text-xs text-slate-400 mt-1">(Friday Closed • Prior appointment recommended)</p>
                                 </div>
                             </div>
                         </div>
@@ -363,8 +366,8 @@
 
                 <!-- Appointment Form Column -->
                 <div class="lg:col-span-7 bg-navy-950 border border-slate-800 p-6 sm:p-8 rounded-2xl">
-                    <h4 class="font-serif text-xl font-bold text-white mb-2">Send Legal Consultation Request</h4>
-                    <p class="text-slate-400 text-xs mb-6">Fill in details below to schedule a meeting or request document vetting services.</p>
+                    <h4 class="font-serif text-xl font-bold text-white mb-2">Request Legal Consultation</h4>
+                    <p class="text-slate-400 text-xs mb-6">Send an inquiry directly to schedule a chamber meeting or request document vetting services.</p>
 
                     <form onsubmit="handleFormSubmit(event)" class="space-y-4">
                         <div class="grid sm:grid-cols-2 gap-4">
@@ -373,30 +376,31 @@
                                 <input type="text" required placeholder="e.g., Md. Rahim Ahmed" class="w-full bg-navy-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-500">
                             </div>
                             <div>
-                                <label class="block text-xs uppercase font-medium text-slate-400 mb-1.5">Phone Number *</label>
-                                <input type="tel" required placeholder="+880 1..." class="w-full bg-navy-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-500">
+                                <label class="block text-xs uppercase font-medium text-slate-400 mb-1.5">Contact Number *</label>
+                                <input type="tel" required placeholder="017..." class="w-full bg-navy-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-500">
                             </div>
                         </div>
 
                         <div>
-                            <label class="block text-xs uppercase font-medium text-slate-400 mb-1.5">Service Requested</label>
+                            <label class="block text-xs uppercase font-medium text-slate-400 mb-1.5">Service Needed</label>
                             <select class="w-full bg-navy-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-500">
                                 <option>Document Vetting & Legal Opinion</option>
                                 <option>Land Administration & Khatian Verification</option>
-                                <option>Saf-Kabla Deed & Title Deed Review</option>
-                                <option>Corporate Mortgage Structuring</option>
+                                <option>Saf-Kabla Deed & Title Review</option>
+                                <option>Corporate Mortgage & Banking Security</option>
                                 <option>Power of Attorney Execution</option>
+                                <option>Civil Court Decree & Injunction Case</option>
                                 <option>General Legal Advisory</option>
                             </select>
                         </div>
 
                         <div>
-                            <label class="block text-xs uppercase font-medium text-slate-400 mb-1.5">Brief Details *</label>
-                            <textarea rows="4" required placeholder="Describe your legal inquiry or property document details..." class="w-full bg-navy-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-500"></textarea>
+                            <label class="block text-xs uppercase font-medium text-slate-400 mb-1.5">Details / Inquiry *</label>
+                            <textarea rows="4" required placeholder="Briefly describe your land, property, or legal inquiry..." class="w-full bg-navy-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-500"></textarea>
                         </div>
 
-                        <button type="submit" class="w-full bg-gradient-to-r from-gold-500 to-gold-600 text-navy-950 font-bold py-3.5 rounded-xl hover:brightness-110 transition duration-300 shadow-md">
-                            Submit Consultation Request
+                        <button type="submit" class="w-full bg-gradient-to-r from-gold-500 to-gold-600 text-navy-950 font-bold py-3.5 rounded-xl hover:brightness-110 transition duration-300 shadow-md flex items-center justify-center gap-2">
+                            <i class="fa-paper-plane fa-solid"></i> Submit Consultation Request
                         </button>
                     </form>
                 </div>
@@ -406,22 +410,22 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="mt-auto bg-navy-950 border-t border-slate-800 py-8 text-center text-slate-500 text-xs">
+    <footer class="mt-auto bg-navy-950 border-t border-slate-800 py-8 text-center text-slate-400 text-xs">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-2">
             <p>&copy; <span id="yearSpan">2026</span> <span id="footerName">A.B.M. Rashedul Islam</span>. All rights reserved.</p>
-            <p id="footerChamber" class="text-slate-600">Lawyer & Legal Consultant | Capital Law Chamber | Gulshan-1, Dhaka-1212</p>
+            <p id="footerChamber" class="text-slate-500">Lawyer & Legal Consultant | Capital Law Chamber | Gulshan-1, Dhaka-1212 | Mobile: 0175571215</p>
         </div>
     </footer>
 
     <!-- EDIT INFO & PHOTO MODAL -->
-    <div id="editorModal" class="fixed inset-0 z-50 bg-navy-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div id="editorModal" class="fixed inset-0 z-50 bg-navy-950/85 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-navy-900 border border-slate-700 w-full max-w-2xl rounded-2xl shadow-2xl p-6 sm:p-8 my-8 relative text-slate-100">
             <button onclick="toggleEditorModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
 
-            <h3 class="font-serif text-2xl font-bold text-white mb-1">Edit Info & Photo</h3>
-            <p class="text-xs text-slate-400 mb-6">Update profile picture, chamber address, contact info, and bio. Changes save to browser storage.</p>
+            <h3 class="font-serif text-2xl font-bold text-white mb-1">Edit Profile Info & Photo</h3>
+            <p class="text-xs text-slate-400 mb-6">Modify details below. Click save to store locally, or export the full updated index.html for GitHub!</p>
 
             <form onsubmit="saveProfileData(event)" class="space-y-4">
                 <!-- Photo Upload Box -->
@@ -429,11 +433,11 @@
                     <label class="block text-xs font-semibold text-gold-400 uppercase">Profile Photo Option</label>
                     <div class="grid sm:grid-cols-2 gap-4">
                         <div>
-                            <span class="block text-xs text-slate-400 mb-1">Upload Local Image File</span>
+                            <span class="block text-xs text-slate-400 mb-1">Upload File from Device</span>
                             <input type="file" accept="image/*" onchange="handleFileUpload(event)" class="text-xs text-slate-400 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:bg-gold-500/20 file:text-gold-400 hover:file:bg-gold-500/30">
                         </div>
                         <div>
-                            <span class="block text-xs text-slate-400 mb-1">Or Image Web URL</span>
+                            <span class="block text-xs text-slate-400 mb-1">Or Direct Web Image URL</span>
                             <input type="url" id="inputPhotoUrl" placeholder="https://..." class="w-full bg-navy-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white">
                         </div>
                     </div>
@@ -456,7 +460,7 @@
                         <input type="text" id="inputChamber" class="w-full bg-navy-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
                     </div>
                     <div>
-                        <label class="block text-xs text-slate-400 mb-1">Phone Number</label>
+                        <label class="block text-xs text-slate-400 mb-1">Contact Number</label>
                         <input type="text" id="inputPhone" class="w-full bg-navy-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
                     </div>
                 </div>
@@ -467,27 +471,32 @@
                         <input type="email" id="inputEmail" class="w-full bg-navy-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
                     </div>
                     <div>
-                        <label class="block text-xs text-slate-400 mb-1">Chamber Address</label>
-                        <input type="text" id="inputAddress" class="w-full bg-navy-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
+                        <label class="block text-xs text-slate-400 mb-1">Consultancy Hours</label>
+                        <input type="text" id="inputHours" class="w-full bg-navy-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
                     </div>
                 </div>
 
                 <div>
-                    <label class="block text-xs text-slate-400 mb-1">Biography / Summary</label>
+                    <label class="block text-xs text-slate-400 mb-1">Chamber Address</label>
+                    <input type="text" id="inputAddress" class="w-full bg-navy-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
+                </div>
+
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">Biography / Legal Summary</label>
                     <textarea id="inputBio" rows="3" class="w-full bg-navy-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white"></textarea>
                 </div>
 
-                <!-- Custom Feedback Message -->
-                <div id="modalAlert" class="hidden p-3 rounded-xl bg-gold-500/20 border border-gold-500/40 text-gold-400 text-xs">
-                    Changes updated successfully!
+                <!-- Custom Alert Box -->
+                <div id="modalAlert" class="hidden p-3 rounded-xl bg-gold-500/20 border border-gold-500/40 text-gold-400 text-xs flex items-center gap-2">
+                    <i class="fa-solid fa-circle-check"></i> Changes saved successfully!
                 </div>
 
                 <div class="pt-4 flex flex-wrap gap-3 justify-end border-t border-slate-800">
-                    <button type="button" onclick="exportHTMLFile()" class="mr-auto bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs px-4 py-2.5 rounded-xl border border-slate-700 flex items-center gap-2">
+                    <button type="button" onclick="exportHTMLFile()" class="mr-auto bg-gradient-to-r from-gold-500 to-gold-600 hover:brightness-110 text-navy-950 font-bold text-xs px-4 py-2.5 rounded-xl flex items-center gap-2 transition shadow">
                         <i class="fa-solid fa-download"></i> Export HTML File for GitHub
                     </button>
                     <button type="button" onclick="toggleEditorModal()" class="bg-navy-950 text-slate-400 hover:text-white text-xs px-4 py-2.5 rounded-xl">Cancel</button>
-                    <button type="submit" class="bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold text-xs px-6 py-2.5 rounded-xl">Save Changes</button>
+                    <button type="submit" class="bg-navy-800 hover:bg-navy-700 text-gold-400 border border-gold-500/40 text-xs font-semibold px-5 py-2.5 rounded-xl">Save Changes</button>
                 </div>
             </form>
         </div>
@@ -495,20 +504,21 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Global State Object embedded with user-provided photo image
+        // Default Global State Object with exact specified details
         var portfolioData = {
             name: "A.B.M. Rashedul Islam",
             title: "Lawyer & Legal Consultant",
             badge: "Bangladesh Legal Practitioner",
             chamber: "Capital Law Chamber",
             address: "House No.15, Room No.202 (First Floor), Road No.128, Gulshan-1, Dhaka-1212",
-            phone: "+880 1700-000000",
-            email: "rashedul.lawyer@example.com",
-            bio: "Focused on providing expert legal advice in Bangladesh corporate, property, land administration, document vetting, corporate mortgages, and power of attorney execution.",
+            phone: "0175571215",
+            email: "rashedlegalhq@gmail.com",
+            hours: "Saturday–Thursday: 9:00 AM – 8:00 PM",
+            bio: "Providing comprehensive, high-calibre legal services in Bangladesh corporate law, property title search, land administration, document vetting, corporate mortgage structuring, and power of attorney execution.",
             photo: "Gemini_Generated_Image_6qb4mb6qb4mb6qb4.png"
         };
 
-        // Helper function for safely setting text
+        // Helper function for safely updating text content
         function safeSetText(id, text) {
             var el = document.getElementById(id);
             if (el) el.textContent = text;
@@ -539,20 +549,23 @@
             safeSetText('heroBio', portfolioData.bio);
             safeSetText('heroChamberName', portfolioData.chamber);
             safeSetText('heroChamberAddress', portfolioData.address);
+            safeSetText('heroHoursQuick', portfolioData.hours);
+            safeSetText('heroPhoneQuick', portfolioData.phone);
             safeSetText('cardChamberTitle', portfolioData.chamber);
             safeSetText('contactAddress', portfolioData.address);
             safeSetText('contactPhone', portfolioData.phone);
             safeSetText('contactEmail', portfolioData.email);
+            safeSetText('contactHours', portfolioData.hours);
             safeSetText('photoOverlayChamber', portfolioData.chamber);
             safeSetText('footerName', portfolioData.name);
-            safeSetText('footerChamber', portfolioData.title + ' | ' + portfolioData.chamber + ' | Gulshan-1, Dhaka-1212');
+            safeSetText('footerChamber', portfolioData.title + ' | ' + portfolioData.chamber + ' | Gulshan-1, Dhaka-1212 | Mobile: ' + portfolioData.phone);
 
             var photoEl = document.getElementById('displayPhoto');
             if (photoEl && portfolioData.photo) {
                 photoEl.src = portfolioData.photo;
             }
 
-            // Populate Modal Inputs safely
+            // Populate Modal Inputs
             var inputName = document.getElementById('inputName');
             if (inputName) inputName.value = portfolioData.name;
             
@@ -567,6 +580,9 @@
             
             var inputEmail = document.getElementById('inputEmail');
             if (inputEmail) inputEmail.value = portfolioData.email;
+
+            var inputHours = document.getElementById('inputHours');
+            if (inputHours) inputHours.value = portfolioData.hours;
             
             var inputAddress = document.getElementById('inputAddress');
             if (inputAddress) inputAddress.value = portfolioData.address;
@@ -592,7 +608,7 @@
             if (menu) menu.classList.toggle('hidden');
         }
 
-        // Handle File Upload & Convert to Base64
+        // Handle Image File Upload & Convert to Base64
         function handleFileUpload(event) {
             var file = event.target.files[0];
             if (file) {
@@ -623,6 +639,9 @@
             var valEmail = document.getElementById('inputEmail').value;
             if (valEmail) portfolioData.email = valEmail;
 
+            var valHours = document.getElementById('inputHours').value;
+            if (valHours) portfolioData.hours = valHours;
+
             var valAddress = document.getElementById('inputAddress').value;
             if (valAddress) portfolioData.address = valAddress;
 
@@ -643,22 +662,22 @@
                 setTimeout(function() {
                     alertBox.classList.add('hidden');
                     toggleEditorModal();
-                }, 1200);
+                }, 1000);
             } else {
                 toggleEditorModal();
             }
         }
 
-        // Handle Form Submit
+        // Handle Consultation Form Submit
         function handleFormSubmit(event) {
             event.preventDefault();
-            alert('Thank you! Your consultation request has been submitted to Capital Law Chamber.');
+            alert('Thank you! Your legal consultation request has been received by Capital Law Chamber.');
             event.target.reset();
         }
 
-        // Export standalone index.html file with embedded changes
+        // Export standalone index.html file with all updated state
         function exportHTMLFile() {
-            var pageContent = document.documentElement.outerHTML;
+            var pageContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
             var blob = new Blob([pageContent], { type: 'text/html' });
             var url = URL.createObjectURL(blob);
             var a = document.createElement('a');

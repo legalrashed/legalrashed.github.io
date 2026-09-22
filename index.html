@@ -88,39 +88,40 @@
             background-image: linear-gradient(white, white), linear-gradient(135deg, #0A2540 0%, #0F5257 50%, #1B4D3E 100%);
             background-origin: border-box;
             background-clip: padding-box, border-box;
-        }
+      <!-- Navigation Row directly underneath with Dark Blue & Dark Green Mixed Border -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-2 mb-2 relative z-10">
+  <!-- Changed bg-white to bg-azureBlue for high-contrast Azure Blue background -->
+  <nav class="dark-blue-green-border rounded-2xl shadow-xl p-2.5 sm:p-3 bg-azureBlue flex items-center justify-between flex-wrap gap-2">
+    
+    <!-- Brand Badge: Text-only displaying A B M RASHEDUL ISLAM (No logo icon) -->
+    <div class="flex items-center gap-2 pl-2">
+      <span class="font-bookAntiqua font-bold text-white text-base">
+        A B M RASHEDUL ISLAM
+      </span>
+    </div>
 
-        .photo-glow {
-            box-shadow: 0 0 30px rgba(10, 37, 64, 0.3);
-        }
-    </style>
-</head>
-<body class="bg-softWhite font-calibri text-darkText antialiased selection:bg-azureBlue selection:text-white flex flex-col min-h-screen">
+    <!-- Desktop Nav Links (Text color changed to white for contrast on Azure Blue) -->
+    <div class="hidden md:flex items-center space-x-1 lg:space-x-4 font-calibri text-base font-bold">
+      <a href="#home" class="px-3 py-1.5 rounded-lg text-white hover:bg-white/20 transition">Home</a>
+      <a href="#about" class="px-3 py-1.5 rounded-lg text-white hover:bg-white/20 transition">About Myself</a>
+      <a href="#services" class="px-3 py-1.5 rounded-lg text-white hover:bg-white/20 transition">Practice Areas</a>
+      <a href="#experience" class="px-3 py-1.5 rounded-lg text-white hover:bg-white/20 transition">Experience</a>
+      <a href="#booking" class="px-3 py-1.5 rounded-lg text-white hover:bg-white/20 transition">Schedule Consultation</a>
+      <a href="#contact" class="px-3 py-1.5 rounded-lg text-white hover:bg-white/20 transition">Contact</a>
+    </div>
 
-    <header class="relative w-full z-40">
-        <!-- Top Banner: CAPITAL LAW CHAMBER on Azure Blue Background in Algerian Font -->
-        <div class="bg-azureBlue py-4 sm:py-6 px-4 text-center shadow-md">
-            <h1 class="font-algerian text-2xl sm:text-4xl md:text-5xl font-bold text-white tracking-widest drop-shadow-sm">
-                CAPITAL LAW CHAMBER
-            </h1>
-        </div>
-
-        <!-- Navigation Row directly underneath with Dark Blue & Dark Green Mixed Border -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-2 mb-2 relative z-10">
-            <nav class="dark-blue-green-border rounded-2xl shadow-xl p-2.5 sm:p-3 bg-white flex items-center justify-between flex-wrap gap-2">
-                
-                <!-- Brand Badge -->
-                <div class="flex items-center gap-2 pl-2">
-                    <div class="w-8 h-8 rounded-full bg-navyBlue text-white flex items-center justify-center font-bookAntiqua font-bold text-sm">
-                        RI
-                    </div>
-                    <span class="font-bookAntiqua font-bold text-navyBlue text-base hidden sm:inline-block">
-                        RASHEDUL ISLAM
-                    </span>
-                </div>
-
-                <!-- Desktop Nav Links -->
-                <div class="hidden md:flex items-center space-x-1 lg:space-x-4 font-calibri text-base font-bold">
+    <!-- Action Button -->
+    <div class="flex items-center gap-2">
+      <a href="https://wa.me/8801755712215" target="_blank" class="bg-navyBlue hover:bg-deepGreen text-white font-calibri font-bold text-xs sm:text-sm px-4 py-2 rounded-xl transition shadow-sm flex items-center gap-1.5">
+        <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i> WhatsApp
+      </a>
+      <!-- Mobile Nav Toggle -->
+      <button id="mobileMenuBtn" aria-label="Toggle Navigation Menu" class="md:hidden text-white p-2 focus:outline-none">
+        <i class="fas fa-bars text-xl"></i>
+      </button>
+    </div>
+  </nav>
+</div>
                     <a href="#home" class="px-3 py-1.5 rounded-lg text-navyBlue hover:bg-virginBlue transition">Home</a>
                     <a href="#about" class="px-3 py-1.5 rounded-lg text-navyBlue hover:bg-virginBlue transition">About Myself</a>
                     <a href="#services" class="px-3 py-1.5 rounded-lg text-navyBlue hover:bg-virginBlue transition">Practice Areas</a>

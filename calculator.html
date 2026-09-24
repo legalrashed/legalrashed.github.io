@@ -23,22 +23,34 @@
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col font-sans">
 
     <!-- Header / Branding Navigation Bar -->
-    <header class="bg-navyBlue text-white shadow-lg py-5 px-4 mb-8 border-b-4 border-emerald-600">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-4">
-                <img src="profile.jpg.png" alt="A B M Rashedul Islam" class="w-14 h-14 rounded-full object-cover border-2 border-emerald-400 shadow-md">
-                <div>
-                    <h1 class="text-xl font-bold tracking-wide">CAPITAL LAW CHAMBER</h1>
-                    <p class="text-emerald-400 text-xs font-semibold">Adv. A B M Rashedul Islam | Associate Lawyer</p>
-                </div>
-            </div>
-            <div class="flex items-center gap-3">
-                <a href="index.html" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow flex items-center gap-2">
-                    <i class="fa-solid fa-house"></i> Back to Main Website
-                </a>
+    <!-- Top Header Bar (Entire bar works as a link to Main Website) -->
+<header class="bg-[#0A2540] border-b-2 border-[#30D5C8]">
+    <a href="index.html" class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between hover:bg-white/5 transition group cursor-pointer block">
+        <!-- Logo & Branding Info -->
+        <div class="flex items-center gap-3">
+            <img 
+                src="profile.jpg.png" 
+                alt="Profile" 
+                class="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm"
+                onerror="this.onerror=null; this.src='https://placehold.co/100x100/0A2540/FFFFFF?text=ABM';"
+            />
+            <div>
+                <h1 class="font-algerian text-lg sm:text-xl font-bold text-white tracking-wide group-hover:text-emerald-400 transition">
+                    CAPITAL LAW CHAMBER
+                </h1>
+                <p class="font-garamond text-xs sm:text-sm text-gray-300">
+                    Adv. A B M Rashedul Islam | Associate Lawyer
+                </p>
             </div>
         </div>
-    </header>
+
+        <!-- Optional subtle indicator arrow (or leave clean) -->
+        <div class="text-gray-400 group-hover:text-white transition text-sm font-calibri flex items-center gap-1">
+            <span class="hidden sm:inline">Main Page</span>
+            <i class="fa-solid fa-arrow-right"></i>
+        </div>
+    </a>
+</header>
 
     <main class="max-w-6xl mx-auto px-4 flex-grow w-full space-y-8 mb-12">
 

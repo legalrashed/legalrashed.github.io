@@ -1,220 +1,251 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Land Hissa Calculator | Capital Law Chamber</title>
+    <title>Bangladeshi Land Hissa Calculator | Capital Law Chamber</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        navyBlue: '#0f172a',
-                        deepGreen: '#047857',
-                        virginBlue: '#f0f9ff'
+                        azureBlue: '#007FFF',
+                        navyBlue: '#0A2540',
+                        deepGreen: '#0F5257',
+                        virginBlue: '#E6F2FF',
+                        softBlue: '#F0F8FF',
+                        turquoiseGreen: '#30D5C8',
+                        mintGreen: '#A2E8DD',
+                        darkText: '#1E293B',
+                        subtleGray: '#475569',
+                        softWhite: '#FAFAFA',
+                    },
+                    fontFamily: {
+                        algerian: ['Algerian', 'Impact', 'Georgia', 'serif'],
+                        bookAntiqua: ['"Book Antiqua"', 'Palatino', 'Georgia', 'serif'],
+                        garamond: ['Garamond', 'Georgia', 'serif'],
+                        calibri: ['Calibri', 'Candara', 'Segoe UI', 'sans-serif']
                     }
                 }
             }
         }
     </script>
+    <style>
+        * { font-style: normal !important; }
+        .turquoise-mint-gradient {
+            background: linear-gradient(180deg, #30D5C8 0%, #6EE7B7 45%, #A2E8DD 80%, #E6F2FF 100%);
+        }
+    </style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col font-sans">
+<body class="bg-softWhite font-calibri text-darkText antialiased flex flex-col min-h-screen">
 
-    <!-- Header / Branding Navigation Bar -->
-    <!-- Top Header Bar (Entire bar works as a link to Main Website) -->
-<!-- Top Header Bar (Entire bar works as a link to Main Website) -->
-<header class="bg-[#0A2540] border-b-2 border-[#30D5C8]">
-    <a href="index.html" class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between hover:bg-white/5 transition group cursor-pointer block">
-        <!-- Logo & Branding Info -->
-        <div class="flex items-center gap-3">
-            <img 
-                src="profile.jpg.png" 
-                alt="Profile" 
-                class="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm"
-                onerror="this.onerror=null; this.src='https://placehold.co/100x100/0A2540/FFFFFF?text=ABM';"
-            />
-            <div>
-                <h1 class="font-algerian text-lg sm:text-xl font-bold text-white tracking-wide group-hover:text-emerald-400 transition">
-                    CAPITAL LAW CHAMBER
-                </h1>
-                <p class="font-garamond text-xs sm:text-sm text-gray-300">
-                    Adv. A B M Rashedul Islam | Associate Lawyer
-                </p>
-            </div>
-        </div>
-    </a>
-</header>
-
-    <main class="max-w-6xl mx-auto px-4 flex-grow w-full space-y-8 mb-12">
-
-        <!-- Calculator Title Header -->
-        <div class="text-center py-2 border-b border-slate-200">
-            <h2 class="text-2xl sm:text-3xl font-bold text-slate-800 flex items-center justify-center gap-3">
-                <i class="fa-solid fa-scale-balanced text-emerald-600"></i>
-                Bangladeshi Land Hissa Calculator (আনা-গণ্ডা হিসাব)
-            </h2>
-            <p class="text-slate-500 text-sm mt-1">16 Ana Fractional Share Allocation & Area Unit Converter</p>
-        </div>
-
-        <!-- Input & Converter Card -->
-        <div class="bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden">
-            <div class="bg-slate-100 px-6 py-4 border-b border-slate-200 flex justify-between items-center">
-                <h3 class="font-bold text-slate-700 text-base flex items-center gap-2">
-                    <i class="fa-solid fa-calculator text-emerald-600"></i> 16 Ana Share Input (আনা, গণ্ডা, কড়া, ক্রান্তি, তিল)
-                </h3>
-                <span class="text-xs bg-emerald-100 text-emerald-800 font-semibold px-2.5 py-1 rounded-full">Base: 16 Ana = 1 Full Share</span>
-            </div>
-            
-            <div class="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
+    <!-- Top Header Bar (Full bar acts as back-to-main link) -->
+    <header class="bg-navyBlue border-b-2 border-turquoiseGreen">
+        <a href="index.html" class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between hover:bg-white/5 transition group cursor-pointer block">
+            <div class="flex items-center gap-3">
+                <img 
+                    src="profile.jpg.png" 
+                    alt="Profile" 
+                    class="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm"
+                    onerror="this.onerror=null; this.src='https://placehold.co/100x100/0A2540/FFFFFF?text=ABM';"
+                />
                 <div>
-                    <label class="block text-sm font-medium text-slate-600 mb-1">Ana (আনা)</label>
-                    <input type="number" id="inputAna" min="0" max="16" value="0" class="w-full border border-slate-300 rounded-lg p-2.5 text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                    <span class="text-xs text-slate-400 mt-1 block">Max 16</span>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-slate-600 mb-1">Gonda (গণ্ডা)</label>
-                    <input type="number" id="inputGonda" min="0" max="19" value="0" class="w-full border border-slate-300 rounded-lg p-2.5 text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                    <span class="text-xs text-slate-400 mt-1 block">Max 19 (1 Ana = 20 G)</span>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-slate-600 mb-1">Kora (কড়া)</label>
-                    <input type="number" id="inputKora" min="0" max="3" value="0" class="w-full border border-slate-300 rounded-lg p-2.5 text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                    <span class="text-xs text-slate-400 mt-1 block">Max 3 (1 G = 4 Kora)</span>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-slate-600 mb-1">Kranti (ক্রান্তি)</label>
-                    <input type="number" id="inputKranti" min="0" max="2" value="0" class="w-full border border-slate-300 rounded-lg p-2.5 text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                    <span class="text-xs text-slate-400 mt-1 block">Max 2 (1 K = 3 Kr)</span>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-slate-600 mb-1">Teel (তিল)</label>
-                    <input type="number" id="inputTeel" min="0" max="19" value="0" class="w-full border border-slate-300 rounded-lg p-2.5 text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                    <span class="text-xs text-slate-400 mt-1 block">Max 19 (1 Kr = 20 T)</span>
-                </div>
-            </div>
-
-            <div class="px-6 pb-6 border-t border-slate-100 pt-4 bg-slate-50 flex flex-wrap gap-4 items-center justify-between">
-                <div class="flex flex-wrap items-center gap-3">
-                    <label class="text-sm font-medium text-slate-700">Total Land Area:</label>
-                    <input type="number" id="totalLandArea" value="100" step="any" class="w-32 border border-slate-300 rounded-lg p-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                    <select id="totalLandUnit" class="border border-slate-300 rounded-lg p-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                        <option value="shatangsho">Shatangsho / Decimal (শতাংশ)</option>
-                        <option value="katha">Katha (কাঠা)</option>
-                        <option value="bigha">Bigha (বিঘা)</option>
-                        <option value="sqft">Square Feet (বর্গফুট)</option>
-                    </select>
-                </div>
-                <button onclick="calculateHissa()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-2.5 rounded-lg transition shadow flex items-center gap-2">
-                    <i class="fa-solid fa-calculator"></i> Calculate Share
-                </button>
-            </div>
-        </div>
-
-        <!-- Calculated Share Output Details -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-navyBlue text-white p-6 rounded-xl shadow-md flex flex-col justify-between border-l-4 border-emerald-500">
-                <div>
-                    <h3 class="text-emerald-400 text-xs font-bold uppercase tracking-wider">Fractional Share (হিস্যা)</h3>
-                    <div id="outFraction" class="text-3xl font-extrabold mt-2 text-white">0.000000</div>
-                    <p class="text-slate-300 text-xs mt-1">Out of 1.000000 (Full 16 Ana)</p>
-                </div>
-                <div class="mt-6 pt-4 border-t border-slate-700 text-xs text-slate-300">
-                    Total in Base Unit (Teel): <span id="outTotalTeel" class="font-bold text-emerald-400">0</span> / 76,800
-                </div>
-            </div>
-
-            <div class="bg-white p-6 rounded-xl shadow-md border border-slate-200 md:col-span-2">
-                <h3 class="text-slate-700 font-bold text-base mb-4 flex items-center gap-2">
-                    <i class="fa-solid fa-chart-pie text-emerald-600"></i> Calculated Share of Specified Land Area
-                </h3>
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
-                        <span class="text-xs text-slate-500 block">Shatangsho (Decimal)</span>
-                        <span id="resDecimal" class="text-xl font-bold text-emerald-700">0.00</span>
-                    </div>
-                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
-                        <span class="text-xs text-slate-500 block">Katha (কাঠা)</span>
-                        <span id="resKatha" class="text-xl font-bold text-slate-800">0.00</span>
-                    </div>
-                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
-                        <span class="text-xs text-slate-500 block">Bigha (বিঘা)</span>
-                        <span id="resBigha" class="text-xl font-bold text-slate-800">0.00</span>
-                    </div>
-                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
-                        <span class="text-xs text-slate-500 block">Square Feet</span>
-                        <span id="resSqft" class="text-xl font-bold text-slate-800">0.00</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Profile & Firm Bio Section -->
-        <div class="bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden p-6 md:p-8">
-            <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
-                <img src="profile.jpg.png" alt="A B M Rashedul Islam" class="w-32 h-32 rounded-full object-cover border-4 border-slate-100 shadow-lg flex-shrink-0">
-                <div class="space-y-3 text-center md:text-left">
-                    <div>
-                        <h3 class="text-2xl font-bold text-navyBlue">A B M RASHEDUL ISLAM</h3>
-                        <p class="text-emerald-700 font-semibold text-sm">Associate Lawyer | Capital Law Chamber</p>
-                    </div>
-                    <p class="text-slate-600 text-sm leading-relaxed">
-                        Providing dedicated legal research, document vetting, corporate advisory, and case preparation at Capital Law Chamber, Gulshan-1, Dhaka.
+                    <h1 class="font-algerian text-lg sm:text-xl font-bold text-white tracking-wide group-hover:text-emerald-400 transition">
+                        CAPITAL LAW CHAMBER
+                    </h1>
+                    <p class="font-garamond text-xs sm:text-sm text-gray-300">
+                        Adv. A B M Rashedul Islam | Associate Lawyer
                     </p>
-                    <div class="pt-2 flex flex-wrap justify-center md:justify-start gap-4 text-xs font-medium text-slate-500">
-                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-emerald-600"></i> Gulshan-1, Dhaka</span>
-                        <span class="flex items-center gap-1.5"><i class="fa-solid fa-gavel text-emerald-600"></i> Capital Law Chamber</span>
+                </div>
+            </div>
+        </a>
+    </header>
+
+    <main class="turquoise-mint-gradient flex-grow py-10 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto space-y-8">
+            
+            <!-- Page Title -->
+            <div class="text-center">
+                <h2 class="font-bookAntiqua text-3xl sm:text-4xl font-bold text-navyBlue flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-scale-balanced text-deepGreen"></i>
+                    Bangladeshi Land Hissa Calculator (আনা-গণ্ডা হিসাব)
+                </h2>
+            </div>
+
+            <!-- Input Form Card -->
+            <div class="bg-white/95 backdrop-blur-md rounded-2xl shadow-xl p-6 border border-white/80 space-y-6">
+                
+                <!-- Dropdown Menus for Ana, Gonda, Kora, Kranti, Teel -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+                    <div>
+                        <label class="block font-bold text-navyBlue text-sm mb-1.5">Ana (আনা)</label>
+                        <select id="anaSelect" class="w-full p-2.5 bg-softWhite border-2 border-gray-200 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <!-- Options 0 to 16 generated by JS -->
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block font-bold text-navyBlue text-sm mb-1.5">Gonda (গণ্ডা)</label>
+                        <select id="gondaSelect" class="w-full p-2.5 bg-softWhite border-2 border-gray-200 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <!-- Options 0 to 19 generated by JS -->
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block font-bold text-navyBlue text-sm mb-1.5">Kora (কড়া)</label>
+                        <select id="koraSelect" class="w-full p-2.5 bg-softWhite border-2 border-gray-200 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <!-- Options 0 to 3 generated by JS -->
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block font-bold text-navyBlue text-sm mb-1.5">Kranti (ক্রান্তি)</label>
+                        <select id="krantiSelect" class="w-full p-2.5 bg-softWhite border-2 border-gray-200 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <!-- Options 0 to 2 generated by JS -->
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block font-bold text-navyBlue text-sm mb-1.5">Teel (তিল)</label>
+                        <select id="teelSelect" class="w-full p-2.5 bg-softWhite border-2 border-gray-200 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <!-- Options 0 to 19 generated by JS -->
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Total Land Area Input & Unit Selector -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end pt-2 border-t border-gray-100">
+                    <div class="md:col-span-1">
+                        <label class="block font-bold text-navyBlue text-sm mb-1.5">Total Land Area</label>
+                        <input type="number" id="totalArea" value="100" min="0" step="any" class="w-full p-2.5 bg-softWhite border-2 border-gray-200 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                    </div>
+
+                    <div class="md:col-span-1">
+                        <label class="block font-bold text-navyBlue text-sm mb-1.5">Area Unit</label>
+                        <select id="unitSelect" class="w-full p-2.5 bg-softWhite border-2 border-gray-200 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <option value="Shatangsho">Shatangsho / Decimal (শতাংশ)</option>
+                            <option value="Katha">Katha (কাঠা)</option>
+                            <option value="Bigha">Bigha (বিঘা)</option>
+                            <option value="SqFt">Square Feet (বর্গফুট)</option>
+                        </select>
+                    </div>
+
+                    <!-- Single Calculation Trigger Button -->
+                    <div class="md:col-span-1">
+                        <button type="button" id="calcBtn" onclick="calculateShare()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-4 rounded-xl shadow-md transition flex items-center justify-center gap-2 text-base">
+                            <i class="fa-solid fa-calculator"></i> Calculate Share
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Results Display Section -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Fractional Share Card -->
+                <div class="bg-navyBlue text-white p-6 rounded-2xl shadow-xl flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">FRACTIONAL SHARE (হিস্যা)</span>
+                        <div id="fractionDisplay" class="text-3xl font-bold mt-2 font-mono text-white">0.000000</div>
+                        <p class="text-xs text-gray-300 mt-1">Out of 1.000000 (Full 16 Ana)</p>
+                    </div>
+                </div>
+
+                <!-- Calculated Area Results Grid -->
+                <div class="md:col-span-2 bg-white/95 backdrop-blur-md p-6 rounded-2xl shadow-xl border border-white/80">
+                    <h3 class="font-bookAntiqua text-lg font-bold text-navyBlue mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-chart-pie text-azureBlue"></i> Calculated Share of Specified Land Area
+                    </h3>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                        <div class="bg-softBlue p-3 rounded-xl border border-azureBlue/20">
+                            <span class="block text-xs font-bold text-subtleGray">Shatangsho (Decimal)</span>
+                            <span id="resShatangsho" class="text-xl font-bold text-navyBlue">0.00</span>
+                        </div>
+
+                        <div class="bg-softBlue p-3 rounded-xl border border-azureBlue/20">
+                            <span class="block text-xs font-bold text-subtleGray">Katha (কাঠা)</span>
+                            <span id="resKatha" class="text-xl font-bold text-navyBlue">0.00</span>
+                        </div>
+
+                        <div class="bg-softBlue p-3 rounded-xl border border-azureBlue/20">
+                            <span class="block text-xs font-bold text-subtleGray">Bigha (বিঘা)</span>
+                            <span id="resBigha" class="text-xl font-bold text-navyBlue">0.00</span>
+                        </div>
+
+                        <div class="bg-softBlue p-3 rounded-xl border border-azureBlue/20">
+                            <span class="block text-xs font-bold text-subtleGray">Square Feet</span>
+                            <span id="resSqFt" class="text-xl font-bold text-navyBlue">0.00</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
+        </div>
     </main>
 
-    <footer class="bg-navyBlue text-slate-400 py-6 text-center text-sm mt-auto border-t border-slate-800">
-        <p>&copy; Capital Law Chamber — Developed for legalrashed.github.io</p>
-    </footer>
-
     <script>
-        function calculateHissa() {
-            const ana = parseFloat(document.getElementById('inputAna').value) || 0;
-            const gonda = parseFloat(document.getElementById('inputGonda').value) || 0;
-            const kora = parseFloat(document.getElementById('inputKora').value) || 0;
-            const kranti = parseFloat(document.getElementById('inputKranti').value) || 0;
-            const teel = parseFloat(document.getElementById('inputTeel').value) || 0;
-
-            const totalTeel = (ana * 4800) + (gonda * 240) + (kora * 60) + (kranti * 20) + teel;
-            const fraction = totalTeel / 76800;
-
-            document.getElementById('outFraction').innerText = fraction.toFixed(6);
-            document.getElementById('outTotalTeel').innerText = totalTeel.toLocaleString();
-
-            const landVal = parseFloat(document.getElementById('totalLandArea').value) || 0;
-            const landUnit = document.getElementById('totalLandUnit').value;
-
-            let landInDecimal = 0;
-            if (landUnit === 'shatangsho') landInDecimal = landVal;
-            else if (landUnit === 'katha') landInDecimal = landVal * 1.65;
-            else if (landUnit === 'bigha') landInDecimal = landVal * 33;
-            else if (landUnit === 'sqft') landInDecimal = landVal / 435.6;
-
-            const calculatedDecimal = landInDecimal * fraction;
-            const calculatedKatha = calculatedDecimal / 1.65;
-            const calculatedBigha = calculatedDecimal / 33;
-            const calculatedSqft = calculatedDecimal * 435.6;
-
-            document.getElementById('resDecimal').innerText = calculatedDecimal.toFixed(2);
-            document.getElementById('resKatha').innerText = calculatedKatha.toFixed(2);
-            document.getElementById('resBigha').innerText = calculatedBigha.toFixed(2);
-            document.getElementById('resSqft').innerText = calculatedSqft.toFixed(2);
+        // Populate dropdown options programmatically
+        function populateDropdown(id, max) {
+            const select = document.getElementById(id);
+            select.innerHTML = '';
+            for (let i = 0; i <= max; i++) {
+                const opt = document.createElement('option');
+                opt.value = i;
+                opt.textContent = i;
+                select.appendChild(opt);
+            }
         }
 
-        document.querySelectorAll('input').forEach(input => {
-            input.addEventListener('input', calculateHissa);
-        });
-        document.getElementById('totalLandUnit').addEventListener('change', calculateHissa);
-        calculateHissa();
+        populateDropdown('anaSelect', 16);
+        populateDropdown('gondaSelect', 19);
+        populateDropdown('koraSelect', 3);
+        populateDropdown('krantiSelect', 2);
+        populateDropdown('teelSelect', 19);
+
+        // Core Calculation Function (Runs ONLY on button click)
+        function calculateShare() {
+            const ana = parseInt(document.getElementById('anaSelect').value) || 0;
+            const gonda = parseInt(document.getElementById('gondaSelect').value) || 0;
+            const kora = parseInt(document.getElementById('koraSelect').value) || 0;
+            const kranti = parseInt(document.getElementById('krantiSelect').value) || 0;
+            const teel = parseInt(document.getElementById('teelSelect').value) || 0;
+
+            const totalAreaInput = parseFloat(document.getElementById('totalArea').value) || 0;
+            const selectedUnit = document.getElementById('unitSelect').value;
+
+            // Total Teel in 16 Ana = 76,800 Teel
+            const totalTeelInput = (ana * 4800) + (gonda * 240) + (kora * 60) + (kranti * 20) + teel;
+            const TOTAL_TEEL_IN_16_ANA = 76800;
+
+            // Fractional Share (0.0 to 1.0)
+            const fractionalShare = totalTeelInput / TOTAL_TEEL_IN_16_ANA;
+            document.getElementById('fractionDisplay').textContent = fractionalShare.toFixed(6);
+
+            // Convert input total area to base Shatangsho (Decimal)
+            let areaInShatangsho = 0;
+            if (selectedUnit === 'Shatangsho') {
+                areaInShatangsho = totalAreaInput;
+            } else if (selectedUnit === 'Katha') {
+                areaInShatangsho = totalAreaInput * 1.65;
+            } else if (selectedUnit === 'Bigha') {
+                areaInShatangsho = totalAreaInput * 33;
+            } else if (selectedUnit === 'SqFt') {
+                areaInShatangsho = totalAreaInput / 435.6;
+            }
+
+            // Share of land area in Shatangsho
+            const calculatedShatangsho = areaInShatangsho * fractionalShare;
+
+            // Output conversions
+            document.getElementById('resShatangsho').textContent = calculatedShatangsho.toFixed(2);
+            document.getElementById('resKatha').textContent = (calculatedShatangsho / 1.65).toFixed(2);
+            document.getElementById('resBigha').textContent = (calculatedShatangsho / 33).toFixed(2);
+            document.getElementById('resSqFt').textContent = (calculatedShatangsho * 435.6).toFixed(2);
+        }
     </script>
 </body>
 </html>

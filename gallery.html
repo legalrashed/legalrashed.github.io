@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Photo Gallery | Capital Law Chamber</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        azureBlue: '#007FFF',
+                        navyBlue: '#0A2540',
+                        deepGreen: '#0F5257',
+                        virginBlue: '#E6F2FF',
+                        softBlue: '#F0F8FF',
+                        turquoiseGreen: '#30D5C8',
+                        mintGreen: '#A2E8DD',
+                        darkText: '#1E293B',
+                        subtleGray: '#475569',
+                        softWhite: '#FAFAFA',
+                    },
+                    fontFamily: {
+                        algerian: ['Algerian', 'Impact', 'Georgia', 'serif'],
+                        bookAntiqua: ['"Book Antiqua"', 'Palatino', 'Georgia', 'serif'],
+                        garamond: ['Garamond', 'Georgia', 'serif'],
+                        calibri: ['Calibri', 'Candara', 'Segoe UI', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { font-style: normal !important; }
+        .turquoise-mint-gradient {
+            background: linear-gradient(180deg, #30D5C8 0%, #6EE7B7 45%, #A2E8DD 80%, #E6F2FF 100%);
+        }
+        .dark-blue-green-border {
+            border: 3px solid transparent;
+            background-image: linear-gradient(white, white), linear-gradient(135deg, #0A2540 0%, #0F5257 50%, #1B4D3E 100%);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+        }
+    </style>
+</head>
+<body class="bg-softWhite font-calibri text-darkText antialiased flex flex-col min-h-screen">
+
+    <!-- Top Header & Navigation -->
+    <header class="relative w-full z-40">
+        <div class="bg-azureBlue py-4 sm:py-6 px-4 text-center shadow-md">
+            <h1 class="font-algerian text-2xl sm:text-4xl md:text-5xl font-bold text-white tracking-widest drop-shadow-sm">
+                CAPITAL LAW CHAMBER
+            </h1>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-2 mb-2 relative z-10">
+            <nav class="w-full max-w-7xl mx-auto dark-blue-green-border rounded-2xl shadow-xl p-3 sm:p-4 bg-white flex items-center justify-between gap-3">
+                
+                <div class="flex items-center gap-2 pl-2">
+                    <div class="w-8 h-8 rounded-full bg-navyBlue text-white flex items-center justify-center font-bookAntiqua font-bold text-sm">
+                        ABM
+                    </div>
+                    <span class="font-bookAntiqua font-bold text-navyBlue text-base hidden sm:inline-block">
+                        RASHEDUL ISLAM
+                    </span>
+                </div>
+
+                <button id="mobileMenuBtn" aria-label="Toggle navigation" class="md:hidden text-navyBlue text-2xl focus:outline-none p-1">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div class="hidden md:flex items-center space-x-1 lg:space-x-4 font-calibri text-base font-bold">
+                    <a href="index.html#home" class="px-3 py-1.5 rounded-lg text-navyBlue hover:bg-virginBlue transition">Home</a>
+                    <a href="index.html#about" class="px-3 py-1.5 rounded-lg text-navyBlue hover:bg-virginBlue transition">About Myself</a>
+                    <a href="index.html#services" class="px-3 py-1.5 rounded-lg text-navyBlue hover:bg-virginBlue transition">Practice Areas</a>
+                    <a href="gallery.html" class="px-3 py-1.5 rounded-lg bg-navyBlue text-white transition">Gallery</a>
+                    <a href="calculator.html" class="px-3 py-1.5 rounded-lg text-navyBlue hover:bg-virginBlue transition">Land Calculator</a>
+                    <a href="index.html#contact" class="px-3 py-1.5 rounded-lg text-navyBlue hover:bg-virginBlue transition">Contact</a>
+                </div>
+            </nav>
+
+            <div id="mobileMenu" class="hidden md:hidden bg-white text-navyBlue rounded-xl p-4 shadow-xl border border-navyBlue/20 mt-2 space-y-2 font-calibri font-bold">
+                <a href="index.html#home" class="block py-2 px-3 hover:bg-virginBlue rounded-lg">Home</a>
+                <a href="index.html#about" class="block py-2 px-3 hover:bg-virginBlue rounded-lg">About Myself</a>
+                <a href="index.html#services" class="block py-2 px-3 hover:bg-virginBlue rounded-lg">Practice Areas</a>
+                <a href="gallery.html" class="block py-2 px-3 bg-navyBlue text-white rounded-lg">Gallery</a>
+                <a href="calculator.html" class="block py-2 px-3 hover:bg-virginBlue rounded-lg">Land Calculator</a>
+                <a href="index.html#contact" class="block py-2 px-3 hover:bg-virginBlue rounded-lg">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="turquoise-mint-gradient flex-grow py-10 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto space-y-12">
+            
+            <div class="text-center">
+                <h2 class="font-bookAntiqua text-3xl sm:text-4xl font-bold text-navyBlue mb-2">
+                    CAREER PHOTO GALLERY
+                </h2>
+                <p class="font-garamond text-xl text-navyBlue font-semibold">
+                    Highlights, Chamber Activities & Professional Engagements
+                </p>
+                <div class="w-24 h-1 bg-navyBlue mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <!-- Top Section: Interactive Image Slideshow -->
+            <div class="relative w-full max-w-4xl mx-auto h-64 sm:h-96 rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-navyBlue">
+                
+                <div id="slide1" class="slide-item absolute inset-0 opacity-100 transition-opacity duration-700 ease-in-out">
+                    <img src="https://placehold.co/1200x600/0A2540/FFFFFF?text=Chamber+Practice+%26+Advisory" class="w-full h-full object-cover" alt="Slide 1">
+                    <div class="absolute bottom-0 inset-x-0 p-4 sm:p-6 bg-gradient-to-t from-navyBlue/90 to-transparent text-white">
+                        <h3 class="font-bookAntiqua text-lg sm:text-2xl font-bold">Chamber Practice & Legal Vetting</h3>
+                        <p class="font-calibri text-xs sm:text-sm text-gray-200">Gulshan-1, Dhaka Chamber Engagements</p>
+                    </div>
+                </div>
+
+                <div id="slide2" class="slide-item absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out">
+                    <img src="https://placehold.co/1200x600/0F5257/FFFFFF?text=Court+Litigation+%26+Research" class="w-full h-full object-cover" alt="Slide 2">
+                    <div class="absolute bottom-0 inset-x-0 p-4 sm:p-6 bg-gradient-to-t from-navyBlue/90 to-transparent text-white">
+                        <h3 class="font-bookAntiqua text-lg sm:text-2xl font-bold">Court Litigation & Research</h3>
+                        <p class="font-calibri text-xs sm:text-sm text-gray-200">Legal Document Preparation & Client Advisory</p>
+                    </div>
+                </div>
+
+                <div id="slide3" class="slide-item absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out">
+                    <img src="https://placehold.co/1200x600/007FFF/FFFFFF?text=Conferences+%26+Academic+Events" class="w-full h-full object-cover" alt="Slide 3">
+                    <div class="absolute bottom-0 inset-x-0 p-4 sm:p-6 bg-gradient-to-t from-navyBlue/90 to-transparent text-white">
+                        <h3 class="font-bookAntiqua text-lg sm:text-2xl font-bold">Conferences & Academic Seminars</h3>
+                        <p class="font-calibri text-xs sm:text-sm text-gray-200">Legal Workshops & Professional Conventions</p>
+                    </div>
+                </div>
+
+                <!-- Slide Navigation Arrows -->
+                <button onclick="prevSlide()" class="absolute left-4 top-1/2 -translate-y-1/2 bg-navyBlue/60 hover:bg-navyBlue text-white p-3 rounded-full transition focus:outline-none">
+                    <i class="fa-solid fa-chevron-left text-lg"></i>
+                </button>
+                <button onclick="nextSlide()" class="absolute right-4 top-1/2 -translate-y-1/2 bg-navyBlue/60 hover:bg-navyBlue text-white p-3 rounded-full transition focus:outline-none">
+                    <i class="fa-solid fa-chevron-right text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Category Folder Selection Tabs -->
+            <div class="space-y-6">
+                <div class="flex flex-wrap justify-center gap-3">
+                    <button onclick="filterCategory('all')" class="cat-btn bg-navyBlue text-white font-bold px-5 py-2.5 rounded-xl shadow-md transition">
+                        <i class="fa-solid fa-folder-open mr-2"></i> All Photos
+                    </button>
+                    <button onclick="filterCategory('chamber')" class="cat-btn bg-white hover:bg-virginBlue text-navyBlue font-bold px-5 py-2.5 rounded-xl shadow-md transition border border-gray-200">
+                        <i class="fa-solid fa-folder mr-2 text-azureBlue"></i> Chamber Practice
+                    </button>
+                    <button onclick="filterCategory('litigation')" class="cat-btn bg-white hover:bg-virginBlue text-navyBlue font-bold px-5 py-2.5 rounded-xl shadow-md transition border border-gray-200">
+                        <i class="fa-solid fa-folder mr-2 text-deepGreen"></i> Litigation & Court
+                    </button>
+                    <button onclick="filterCategory('events')" class="cat-btn bg-white hover:bg-virginBlue text-navyBlue font-bold px-5 py-2.5 rounded-xl shadow-md transition border border-gray-200">
+                        <i class="fa-solid fa-folder mr-2 text-emerald-600"></i> Seminars & Events
+                    </button>
+                </div>
+
+                <!-- Categorized Photo Folder Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    
+                    <!-- Photo Box 1 -->
+                    <div class="gallery-item chamber bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition">
+                        <img src="https://placehold.co/600x400/0A2540/FFFFFF?text=Chamber+1" alt="Chamber Photo 1" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <span class="text-xs font-bold text-azureBlue uppercase">Chamber Practice</span>
+                            <h4 class="font-bookAntiqua text-lg font-bold text-navyBlue mt-1">Legal Vetting Session</h4>
+                        </div>
+                    </div>
+
+                    <!-- Photo Box 2 -->
+                    <div class="gallery-item litigation bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition">
+                        <img src="https://placehold.co/600x400/0F5257/FFFFFF?text=Litigation+1" alt="Litigation Photo 1" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <span class="text-xs font-bold text-deepGreen uppercase">Litigation & Court</span>
+                            <h4 class="font-bookAntiqua text-lg font-bold text-navyBlue mt-1">Court Case Preparation</h4>
+                        </div>
+                    </div>
+
+                    <!-- Photo Box 3 -->
+                    <div class="gallery-item events bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition">
+                        <img src="https://placehold.co/600x400/007FFF/FFFFFF?text=Event+1" alt="Event Photo 1" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <span class="text-xs font-bold text-emerald-600 uppercase">Seminars & Events</span>
+                            <h4 class="font-bookAntiqua text-lg font-bold text-navyBlue mt-1">Law Conference 2025</h4>
+                        </div>
+                    </div>
+
+                    <!-- Photo Box 4 -->
+                    <div class="gallery-item chamber bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition">
+                        <img src="https://placehold.co/600x400/0A2540/FFFFFF?text=Chamber+2" alt="Chamber Photo 2" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <span class="text-xs font-bold text-azureBlue uppercase">Chamber Practice</span>
+                            <h4 class="font-bookAntiqua text-lg font-bold text-navyBlue mt-1">Client Advisory Discussion</h4>
+                        </div>
+                    </div>
+
+                    <!-- Photo Box 5 -->
+                    <div class="gallery-item litigation bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition">
+                        <img src="https://placehold.co/600x400/0F5257/FFFFFF?text=Litigation+2" alt="Litigation Photo 2" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <span class="text-xs font-bold text-deepGreen uppercase">Litigation & Court</span>
+                            <h4 class="font-bookAntiqua text-lg font-bold text-navyBlue mt-1">Case Dossier Review</h4>
+                        </div>
+                    </div>
+
+                    <!-- Photo Box 6 -->
+                    <div class="gallery-item events bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition">
+                        <img src="https://placehold.co/600x400/007FFF/FFFFFF?text=Event+2" alt="Event Photo 2" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <span class="text-xs font-bold text-emerald-600 uppercase">Seminars & Events</span>
+                            <h4 class="font-bookAntiqua text-lg font-bold text-navyBlue mt-1">Academic Workshop</h4>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-navyBlue text-white py-8 text-center text-xs font-calibri">
+        <p>&copy; <span id="currentYear"></span> A B M Rashedul Islam. Associate Lawyer, Capital Law Chamber. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Mobile menu toggle
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Slideshow Logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide-item');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.opacity = i === index ? '1' : '0';
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        setInterval(nextSlide, 4000); // Auto slide every 4 seconds
+
+        // Folder Filtering Logic
+        function filterCategory(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -24,7 +24,7 @@
                         softGreen: '#FEF2F2',    /* Very Soft Red Highlight */
                         darkText: '#1E293B',     /* Slate Dark Text */
                         subtleGray: '#475569',   /* Muted Text Gray */
-                        softWhite: '#FAFAFA',    /* Clean Off-White Background */
+                        softWhite: '#F3F4F6',    /* Matched Full Gray Background */
                     },
                     fontFamily: {
                         algerian: ['Algerian', 'Impact', 'Copperplate Gothic Bold', 'Georgia', 'serif'],
@@ -59,16 +59,6 @@
             border-radius: 4px;
         }
 
-        /* Gradient Section 1: Red to Light Gray Gradient matching Chamber Card */
-        .turquoise-mint-gradient {
-            background: linear-gradient(180deg, #F9FAFB 0%, #F3F4F6 45%, #E5E7EB 80%, #FAFAFA 100%);
-        }
-
-        /* Gradient Section 2: Light Gray to Pure White Gradient */
-        .blue-white-gradient {
-            background: linear-gradient(180deg, #FAFAFA 0%, #F3F4F6 30%, #F9FAFB 70%, #FFFFFF 100%);
-        }
-
         /* Glassmorphism Cards */
         .glass-card-light {
             background: rgba(255, 255, 255, 0.95);
@@ -93,9 +83,14 @@
         .photo-glow {
             box-shadow: 0 0 30px rgba(200, 16, 46, 0.25);
         }
+
+        /* Bottom Section Gradient: Transitions from Card Gray down to Deep Black */
+        .bottom-gradient-to-black {
+            background: linear-gradient(180deg, #F3F4F6 0%, #1E232A 60%, #0B0F17 85%, #000000 100%);
+        }
     </style>
 </head>
-<body class="bg-softWhite font-calibri text-darkText antialiased selection:bg-azureBlue selection:text-white flex flex-col min-h-screen">
+<body class="bg-[#F3F4F6] font-calibri text-darkText antialiased selection:bg-azureBlue selection:text-white flex flex-col min-h-screen">
 
     <header class="relative w-full z-40">
         <!-- Top Banner: CAPITAL LAW CHAMBER on Signature Red Background in Algerian Font -->
@@ -152,7 +147,7 @@
         </div>
     </header>
 
-    <main class="turquoise-mint-gradient flex-grow">
+    <main class="bg-[#F3F4F6] flex-grow">
         
         <!-- Hero Section: Centered Profile & Identity -->
         <section id="home" class="py-12 sm:py-16 px-4">
@@ -339,7 +334,8 @@
 
     </main>
 
-    <div class="blue-white-gradient">
+    <!-- Bottom Wrapper: Smooth Gradient Transition into Pure Black at the end of the page -->
+    <div class="bottom-gradient-to-black">
         
         <!-- Experience & Key Highlights Section -->
         <section id="experience" class="py-16 px-4 sm:px-6 lg:px-8">
@@ -407,7 +403,7 @@
                                     <span class="w-7 h-7 rounded-full bg-azureBlue text-white text-sm flex items-center justify-center font-calibri">1</span>
                                     Select Practice Area / Legal Service
                                 </label>
-                                <select id="serviceSelect" required class="w-full font-calibri p-3.5 border-2 border-gray-200 rounded-xl focus:border-azureBlue bg-softWhite outline-none transition text-base">
+                                <select id="serviceSelect" required class="w-full font-calibri p-3.5 border-2 border-gray-200 rounded-xl focus:border-azureBlue bg-[#F3F4F6] outline-none transition text-base">
                                     <option value="" disabled selected>Choose a legal service...</option>
                                     <option value="Legal Drafting">Legal Drafting Consultation</option>
                                     <option value="Document Vetting">Document Vetting & Legal Audit</option>
@@ -423,7 +419,7 @@
                                         <span class="w-7 h-7 rounded-full bg-azureBlue text-white text-sm flex items-center justify-center font-calibri">2</span>
                                         Select Appointment Date
                                     </label>
-                                    <input type="date" id="bookingDate" required class="w-full font-calibri p-3.5 border-2 border-gray-200 rounded-xl focus:border-azureBlue bg-softWhite outline-none transition text-base">
+                                    <input type="date" id="bookingDate" required class="w-full font-calibri p-3.5 border-2 border-gray-200 rounded-xl focus:border-azureBlue bg-[#F3F4F6] outline-none transition text-base">
                                 </div>
 
                                 <div>
@@ -483,7 +479,8 @@
             </div>
         </section>
 
-        <footer id="contact" class="bg-navyBlue text-white pt-16 pb-12 border-t-4 border-azureBlue">
+        <!-- Footer transitioning smoothly into solid Black -->
+        <footer id="contact" class="bg-transparent text-white pt-16 pb-12 border-t-4 border-azureBlue">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
                     

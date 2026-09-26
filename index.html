@@ -48,32 +48,38 @@
             font-style: normal !important;
         }
 
+        /* Continuous Full Page Gradient: Dark Cloud Gray (Top) to Dark Bloody Red (Bottom) */
+        body {
+            background: linear-gradient(180deg, #1C2026 0%, #2B303A 20%, #20242B 45%, #3B0D11 75%, #4A0000 90%, #2B0000 100%) !important;
+            background-attachment: fixed;
+        }
+
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #f3f4f6;
+            background: #1C2026;
         }
         ::-webkit-scrollbar-thumb {
             background: #C8102E;
             border-radius: 4px;
         }
 
-        /* Glassmorphism Cards */
+        /* Glassmorphism Cards configured for dark gradient background */
         .glass-card-light {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(229, 231, 235, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .glass-card-blue {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(200, 16, 46, 0.2);
+            border: 1px solid rgba(200, 16, 46, 0.3);
         }
 
-        /* Red and Dark Charcoal Mixed Border for Nav Buttons */
+        /* Red and Dark Charcoal Mixed Border for Nav Bar */
         .dark-blue-green-border {
             border: 3px solid transparent;
             background-image: linear-gradient(white, white), linear-gradient(135deg, #C8102E 0%, #1E232A 50%, #8B0000 100%);
@@ -82,28 +88,23 @@
         }
 
         .photo-glow {
-            box-shadow: 0 0 30px rgba(200, 16, 46, 0.25);
-        }
-
-        /* Gradient Style: Dark Gray (#1E232A) down to Bloody Red (#660000 -> #3B0000) */
-        .darkgray-to-bloodyred-gradient {
-            background: linear-gradient(180deg, #1E232A 0%, #2A1215 35%, #50070B 70%, #660000 100%);
+            box-shadow: 0 0 35px rgba(200, 16, 46, 0.4);
         }
     </style>
 </head>
-<body class="bg-[#F3F4F6] font-calibri text-darkText antialiased selection:bg-azureBlue selection:text-white flex flex-col min-h-screen">
+<body class="font-calibri text-white antialiased selection:bg-azureBlue selection:text-white flex flex-col min-h-screen">
 
     <header class="relative w-full z-40">
-        <!-- Top Banner: CAPITAL LAW CHAMBER on Signature Red Background in Algerian Font -->
-        <div class="bg-azureBlue py-4 sm:py-6 px-4 text-center shadow-md">
+        <!-- Top Banner: CAPITAL LAW CHAMBER on Signature Red Background -->
+        <div class="bg-azureBlue py-4 sm:py-6 px-4 text-center shadow-lg">
             <h1 class="font-algerian text-2xl sm:text-4xl md:text-5xl font-bold text-white tracking-widest drop-shadow-sm">
                 CAPITAL LAW CHAMBER
             </h1>
         </div>
 
-        <!-- Navigation Row directly underneath with Dark Charcoal & Red Mixed Border -->
+        <!-- Navigation Row directly underneath -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-2 mb-2 relative z-10">
-            <nav class="w-full max-w-7xl mx-auto dark-blue-green-border rounded-2xl shadow-xl p-3 sm:p-4 bg-white flex items-center justify-between gap-3">
+            <nav class="w-full max-w-7xl mx-auto dark-blue-green-border rounded-2xl shadow-xl p-3 sm:p-4 bg-white flex items-center justify-between gap-3 text-darkText">
                 
                 <!-- Brand Badge -->
                 <div class="flex items-center gap-2 pl-2">
@@ -148,13 +149,13 @@
         </div>
     </header>
 
-    <main class="bg-[#F3F4F6] flex-grow">
+    <main class="flex-grow">
         
-        <!-- Hero Section: Centered Profile & Identity -->
+        <!-- Hero Section -->
         <section id="home" class="py-12 sm:py-16 px-4">
             <div class="max-w-4xl mx-auto text-center flex flex-col items-center">
                 
-                <!-- Centered Photo Frame -->
+                <!-- Centered Profile Photo Frame -->
                 <div class="relative mb-6">
                     <div class="w-48 h-48 sm:w-56 sm:h-56 md:w-60 md:h-60 rounded-full p-2 bg-gradient-to-tr from-navyBlue via-azureBlue to-deepGreen photo-glow transition duration-300">
                         <img 
@@ -171,24 +172,24 @@
                     </div>
                 </div>
 
-                <!-- Lawyer Name in Book Antiqua -->
-                <h1 class="font-bookAntiqua text-3xl sm:text-4xl md:text-5xl font-bold text-navyBlue mb-2 tracking-wide">
+                <!-- Lawyer Name -->
+                <h1 class="font-bookAntiqua text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2 tracking-wide drop-shadow">
                     A B M RASHEDUL ISLAM
                 </h1>
 
-                <!-- Position in Garamond -->
-                <h2 class="font-garamond text-xl sm:text-2xl md:text-3xl font-bold text-azureBlue mb-4">
+                <!-- Position -->
+                <h2 class="font-garamond text-xl sm:text-2xl md:text-3xl font-bold text-red-400 mb-4">
                     Associate Lawyer
                 </h2>
 
                 <!-- Subtitle Card -->
-                <div class="glass-card-light rounded-2xl p-4 sm:p-6 max-w-2xl mb-8 shadow-sm">
-                    <p class="font-garamond text-lg sm:text-xl text-darkText leading-relaxed">
+                <div class="glass-card-light rounded-2xl p-4 sm:p-6 max-w-2xl mb-8 shadow-md text-darkText">
+                    <p class="font-garamond text-lg sm:text-xl leading-relaxed font-semibold">
                         Providing dedicated legal research, document vetting, corporate advisory, and case preparation at Capital Law Chamber, Gulshan-1, Dhaka.
                     </p>
                 </div>
 
-                <!-- Contact Callout Buttons in Calibri -->
+                <!-- Contact Callout Buttons -->
                 <div class="flex flex-wrap gap-4 justify-center font-calibri">
                     <a href="https://wa.me/8801755712215" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-7 py-3 rounded-xl shadow-md hover:shadow-lg transition flex items-center gap-2 text-base">
                         <i class="fa-brands fa-whatsapp text-lg"></i> Direct WhatsApp
@@ -207,18 +208,18 @@
         <section id="about" class="py-14 px-4 sm:px-6 lg:px-8">
             <div class="max-w-5xl mx-auto">
                 <div class="text-center mb-10">
-                    <h2 class="font-bookAntiqua text-3xl sm:text-4xl font-bold text-navyBlue mb-2">
+                    <h2 class="font-bookAntiqua text-3xl sm:text-4xl font-bold text-white mb-2">
                         ABOUT MYSELF & PROFESSIONAL PRACTICE
                     </h2>
-                    <p class="font-garamond text-xl text-azureBlue font-semibold">
+                    <p class="font-garamond text-xl text-red-300 font-semibold">
                         Capital Law Chamber • Gulshan-1, Dhaka-1212
                     </p>
                     <div class="w-24 h-1 bg-azureBlue mx-auto mt-3 rounded-full"></div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-darkText">
                     <!-- About Card 1 -->
-                    <div class="glass-card-light rounded-2xl p-6 shadow-sm hover:shadow-md transition border-t-4 border-azureBlue">
+                    <div class="glass-card-light rounded-2xl p-6 shadow-md hover:shadow-lg transition border-t-4 border-azureBlue">
                         <div class="w-12 h-12 rounded-xl bg-azureBlue text-white flex items-center justify-center text-xl mb-4">
                             <i class="fa-solid fa-scale-balanced"></i>
                         </div>
@@ -229,7 +230,7 @@
                     </div>
 
                     <!-- About Card 2 -->
-                    <div class="glass-card-light rounded-2xl p-6 shadow-sm hover:shadow-md transition border-t-4 border-navyBlue">
+                    <div class="glass-card-light rounded-2xl p-6 shadow-md hover:shadow-lg transition border-t-4 border-navyBlue">
                         <div class="w-12 h-12 rounded-xl bg-navyBlue text-white flex items-center justify-center text-xl mb-4">
                             <i class="fa-solid fa-file-contract"></i>
                         </div>
@@ -240,7 +241,7 @@
                     </div>
 
                     <!-- About Card 3 -->
-                    <div class="glass-card-light rounded-2xl p-6 shadow-sm hover:shadow-md transition border-t-4 border-deepGreen">
+                    <div class="glass-card-light rounded-2xl p-6 shadow-md hover:shadow-lg transition border-t-4 border-deepGreen">
                         <div class="w-12 h-12 rounded-xl bg-deepGreen text-white flex items-center justify-center text-xl mb-4">
                             <i class="fa-solid fa-handshake"></i>
                         </div>
@@ -253,19 +254,20 @@
             </div>
         </section>
 
+        <!-- Services Section -->
         <section id="services" class="py-16 px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto">
                 <div class="text-center mb-12">
-                    <h2 class="font-bookAntiqua text-3xl sm:text-4xl font-bold text-navyBlue mb-2">
+                    <h2 class="font-bookAntiqua text-3xl sm:text-4xl font-bold text-white mb-2">
                         LEGAL SERVICES & PRACTICE AREAS
                     </h2>
-                    <p class="font-garamond text-xl text-azureBlue font-semibold">
+                    <p class="font-garamond text-xl text-red-300 font-semibold">
                         Core advisory services provided at Capital Law Chamber
                     </p>
                     <div class="w-24 h-1 bg-azureBlue mx-auto mt-3 rounded-full"></div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-darkText">
                     <!-- Practice Card 1 -->
                     <div class="glass-card-light rounded-2xl p-6 shadow-md hover:shadow-xl transition flex flex-col justify-between group">
                         <div>
@@ -333,25 +335,20 @@
             </div>
         </section>
 
-    </main>
-
-    <!-- Bottom Section Gradient: Dark Gray-to-Bloody Red Gradient starting at Experience Section down to Footer -->
-    <div class="darkgray-to-bloodyred-gradient text-white">
-        
-        <!-- Experience & Key Highlights Section -->
+        <!-- Experience Section -->
         <section id="experience" class="py-16 px-4 sm:px-6 lg:px-8">
             <div class="max-w-5xl mx-auto">
                 <div class="text-center mb-10">
                     <h2 class="font-bookAntiqua text-3xl sm:text-4xl font-bold text-white mb-2">
                         CHAMBER EXPERIENCE & HIGHLIGHTS
                     </h2>
-                    <p class="font-garamond text-xl text-gray-200">
+                    <p class="font-garamond text-xl text-red-200">
                         Key associate responsibilities at Capital Law Chamber
                     </p>
                 </div>
 
                 <div class="space-y-4">
-                    <div class="glass-card-blue p-6 rounded-2xl shadow-sm border-l-8 border-azureBlue flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div class="glass-card-blue p-6 rounded-2xl shadow-sm border-l-8 border-azureBlue flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-darkText">
                         <div>
                             <span class="font-calibri text-xs font-bold text-azureBlue uppercase tracking-wider">Property & Real Estate</span>
                             <h4 class="font-bookAntiqua text-lg font-bold text-navyBlue mt-1">Land Search & Title Vetting Reports</h4>
@@ -360,7 +357,7 @@
                         <span class="font-calibri text-xs bg-azureBlue text-white font-bold px-3 py-1.5 rounded-full whitespace-nowrap">Capital Law Chamber</span>
                     </div>
 
-                    <div class="glass-card-blue p-6 rounded-2xl shadow-sm border-l-8 border-navyBlue flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div class="glass-card-blue p-6 rounded-2xl shadow-sm border-l-8 border-navyBlue flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-darkText">
                         <div>
                             <span class="font-calibri text-xs font-bold text-navyBlue uppercase tracking-wider">Corporate Drafting</span>
                             <h4 class="font-bookAntiqua text-lg font-bold text-navyBlue mt-1">Commercial Contracts & MOUs</h4>
@@ -369,7 +366,7 @@
                         <span class="font-calibri text-xs bg-navyBlue text-white font-bold px-3 py-1.5 rounded-full whitespace-nowrap">Gulshan-1 Chamber</span>
                     </div>
 
-                    <div class="glass-card-blue p-6 rounded-2xl shadow-sm border-l-8 border-deepGreen flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div class="glass-card-blue p-6 rounded-2xl shadow-sm border-l-8 border-deepGreen flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-darkText">
                         <div>
                             <span class="font-calibri text-xs font-bold text-deepGreen uppercase tracking-wider">Litigation Support</span>
                             <h4 class="font-bookAntiqua text-lg font-bold text-navyBlue mt-1">Case Briefs & Legal Opinions</h4>
@@ -381,17 +378,17 @@
             </div>
         </section>
 
-        <!-- Reservation & Schedule Panel Section -->
+        <!-- Reservation Panel Section -->
         <section id="booking" class="py-16 px-4 sm:px-6 lg:px-8">
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-10">
                     <h2 class="font-bookAntiqua text-3xl sm:text-4xl font-bold text-white mb-2 drop-shadow-sm">
                         RESERVATION & SCHEDULE PANEL
                     </h2>
-                    <p class="font-garamond text-xl text-gray-200">
+                    <p class="font-garamond text-xl text-red-100">
                         Schedule a direct consultation with A B M Rashedul Islam
                     </p>
-                    <div class="w-24 h-1 bg-white mx-auto mt-3 rounded-full"></div>
+                    <div class="w-24 h-1 bg-azureBlue mx-auto mt-3 rounded-full"></div>
                 </div>
 
                 <div class="bg-white rounded-3xl shadow-2xl border-2 border-azureBlue/30 overflow-hidden text-darkText">
@@ -480,99 +477,99 @@
             </div>
         </section>
 
-        <!-- Footer sitting in deep Bloody Red at the base -->
-        <footer id="contact" class="bg-transparent text-white pt-16 pb-12 border-t-4 border-azureBlue">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-                    
-                    <!-- Footer Col 1: Identity & Facebook Profile -->
-                    <div>
-                        <h3 class="font-algerian text-xl text-white mb-2">
-                            CAPITAL LAW CHAMBER
-                        </h3>
-                        <p class="font-bookAntiqua text-lg font-bold text-white mb-1">
-                            A B M RASHEDUL ISLAM
-                        </p>
-                        <p class="font-garamond text-base text-gray-200 mb-4">
-                            Associate Lawyer
-                        </p>
-                        <div class="flex space-x-3">
-                            <!-- Official Facebook Blue Icon Container -->
-                            <a href="https://www.facebook.com/rd.L.islam" target="_blank" aria-label="Facebook Profile" class="w-10 h-10 rounded-full bg-fbBlue text-white flex items-center justify-center hover:opacity-90 transition shadow-sm">
-                                <i class="fa-brands fa-facebook-f text-lg"></i>
-                            </a>
-                            <a href="https://wa.me/8801755712215" target="_blank" aria-label="WhatsApp" class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center hover:bg-emerald-500 transition shadow-sm">
-                                <i class="fa-brands fa-whatsapp text-lg"></i>
-                            </a>
-                            <a href="mailto:rashed.legalhq@gmail.com" aria-label="Email" class="w-10 h-10 rounded-full bg-white text-navyBlue flex items-center justify-center hover:bg-azureBlue hover:text-white transition shadow-sm">
-                                <i class="fa-regular fa-envelope text-lg"></i>
-                            </a>
-                        </div>
-                    </div>
+    </main>
 
-                    <!-- Footer Col 2: Chamber Address -->
-                    <div>
-                        <h4 class="font-bookAntiqua text-lg font-bold text-white mb-4">Chamber Location</h4>
-                        <div class="font-calibri text-sm text-gray-200 space-y-2 leading-relaxed">
-                            <p class="font-bold text-white">Capital Law Chamber</p>
-                            <p class="flex items-start gap-2">
-                                <i class="fa-solid fa-location-dot text-white mt-1"></i>
-                                <span>House No.15, Road No.128,<br>Gulshan-1, Dhaka-1212,<br>Bangladesh</span>
-                            </p>
-                        </div>
+    <!-- Footer at the bloody red end of the full page gradient -->
+    <footer id="contact" class="bg-transparent text-white pt-16 pb-12 border-t border-red-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                
+                <!-- Footer Col 1: Identity & Facebook Profile -->
+                <div>
+                    <h3 class="font-algerian text-xl text-white mb-2">
+                        CAPITAL LAW CHAMBER
+                    </h3>
+                    <p class="font-bookAntiqua text-lg font-bold text-white mb-1">
+                        A B M RASHEDUL ISLAM
+                    </p>
+                    <p class="font-garamond text-base text-gray-200 mb-4">
+                        Associate Lawyer
+                    </p>
+                    <div class="flex space-x-3">
+                        <!-- Official Facebook Blue Icon Container -->
+                        <a href="https://www.facebook.com/rd.L.islam" target="_blank" aria-label="Facebook Profile" class="w-10 h-10 rounded-full bg-fbBlue text-white flex items-center justify-center hover:opacity-90 transition shadow-sm">
+                            <i class="fa-brands fa-facebook-f text-lg"></i>
+                        </a>
+                        <a href="https://wa.me/8801755712215" target="_blank" aria-label="WhatsApp" class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center hover:bg-emerald-500 transition shadow-sm">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                        </a>
+                        <a href="mailto:rashed.legalhq@gmail.com" aria-label="Email" class="w-10 h-10 rounded-full bg-white text-navyBlue flex items-center justify-center hover:bg-azureBlue hover:text-white transition shadow-sm">
+                            <i class="fa-regular fa-envelope text-lg"></i>
+                        </a>
                     </div>
-
-                    <!-- Footer Col 3: Direct Contact Information -->
-                    <div>
-                        <h4 class="font-bookAntiqua text-lg font-bold text-white mb-4">Direct Contact</h4>
-                        <ul class="font-calibri text-sm text-gray-200 space-y-3">
-                            <li class="flex items-center gap-2">
-                                <i class="fa-solid fa-phone text-emerald-300"></i>
-                                <a href="tel:01755712215" class="hover:underline transition font-bold">01755712215</a>
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <i class="fa-brands fa-whatsapp text-emerald-300"></i>
-                                <a href="https://wa.me/8801755712215" target="_blank" class="hover:underline transition font-bold">01755712215 (WhatsApp)</a>
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <i class="fa-regular fa-envelope text-white"></i>
-                                <a href="mailto:rashed.legalhq@gmail.com" class="hover:underline transition">rashed.legalhq@gmail.com</a>
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <!-- Facebook Link with FB Blue Icon -->
-                                <i class="fa-brands fa-facebook text-fbBlue text-base"></i>
-                                <a href="https://www.facebook.com/rd.L.islam" target="_blank" class="hover:text-fbBlue transition truncate font-bold text-white">facebook.com/rd.L.islam</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Footer Col 4: Consultation Hours -->
-                    <div>
-                        <h4 class="font-bookAntiqua text-lg font-bold text-white mb-4">Chamber Hours</h4>
-                        <ul class="font-calibri text-sm text-gray-200 space-y-2">
-                            <li class="flex justify-between border-b border-red-900/60 pb-1">
-                                <span>Sat - Thu:</span>
-                                <span class="font-bold text-white">10:00 AM - 08:00 PM</span>
-                            </li>
-                            <li class="flex justify-between text-gray-300">
-                                <span>Friday:</span>
-                                <span>Closed / By Appt.</span>
-                            </li>
-                        </ul>
-                    </div>
-
                 </div>
 
-                <!-- Copyright Bar -->
-                <div class="border-t border-red-900/60 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-300 font-calibri">
-                    <p>&copy; <span id="currentYear"></span> A B M Rashedul Islam. Associate Lawyer, Capital Law Chamber. All Rights Reserved.</p>
-                    <p class="mt-2 md:mt-0 text-gray-300">Gulshan-1, Dhaka-1212, Bangladesh</p>
+                <!-- Footer Col 2: Chamber Address -->
+                <div>
+                    <h4 class="font-bookAntiqua text-lg font-bold text-white mb-4">Chamber Location</h4>
+                    <div class="font-calibri text-sm text-gray-200 space-y-2 leading-relaxed">
+                        <p class="font-bold text-white">Capital Law Chamber</p>
+                        <p class="flex items-start gap-2">
+                            <i class="fa-solid fa-location-dot text-white mt-1"></i>
+                            <span>House No.15, Road No.128,<br>Gulshan-1, Dhaka-1212,<br>Bangladesh</span>
+                        </p>
+                    </div>
                 </div>
+
+                <!-- Footer Col 3: Direct Contact Information -->
+                <div>
+                    <h4 class="font-bookAntiqua text-lg font-bold text-white mb-4">Direct Contact</h4>
+                    <ul class="font-calibri text-sm text-gray-200 space-y-3">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-phone text-emerald-300"></i>
+                            <a href="tel:01755712215" class="hover:underline transition font-bold">01755712215</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-300"></i>
+                            <a href="https://wa.me/8801755712215" target="_blank" class="hover:underline transition font-bold">01755712215 (WhatsApp)</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-regular fa-envelope text-white"></i>
+                            <a href="mailto:rashed.legalhq@gmail.com" class="hover:underline transition">rashed.legalhq@gmail.com</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-brands fa-facebook text-fbBlue text-base"></i>
+                            <a href="https://www.facebook.com/rd.L.islam" target="_blank" class="hover:text-fbBlue transition truncate font-bold text-white">facebook.com/rd.L.islam</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Footer Col 4: Consultation Hours -->
+                <div>
+                    <h4 class="font-bookAntiqua text-lg font-bold text-white mb-4">Chamber Hours</h4>
+                    <ul class="font-calibri text-sm text-gray-200 space-y-2">
+                        <li class="flex justify-between border-b border-red-900/60 pb-1">
+                            <span>Sat - Thu:</span>
+                            <span class="font-bold text-white">10:00 AM - 08:00 PM</span>
+                        </li>
+                        <li class="flex justify-between text-gray-300">
+                            <span>Friday:</span>
+                            <span>Closed / By Appt.</span>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
-        </footer>
 
-    </div>
+            <!-- Copyright Bar -->
+            <div class="border-t border-red-900/60 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-300 font-calibri">
+                <p>&copy; <span id="currentYear"></span> A B M Rashedul Islam. Associate Lawyer, Capital Law Chamber. All Rights Reserved.</p>
+                <p class="mt-2 md:mt-0 text-gray-300">Gulshan-1, Dhaka-1212, Bangladesh</p>
+            </div>
+        </div>
+    </footer>
 
+    <!-- Booking Modal -->
     <div id="bookingModal" class="fixed inset-0 bg-navyBlue/70 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
         <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 text-center shadow-2xl border-2 border-azureBlue text-darkText">
             <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">

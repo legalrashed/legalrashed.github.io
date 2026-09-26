@@ -1,294 +1,473 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muslim Succession Calculator - Bangladesh Law</title>
+    <title>Muslim Succession Calculator | A B M Rashedul Islam</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        azureBlue: '#C8102E',    /* Signature Capital Law Chamber Red */
+                        navyBlue: '#1E232A',     /* Dark Charcoal Accent */
+                        deepGreen: '#8B0000',    /* Dark Crimson Red */
+                        darkText: '#1E293B',     /* Slate Dark Text */
+                        subtleGray: '#475569',   /* Muted Text Gray */
+                        fbBlue: '#1877F2',       /* Official Facebook Blue */
+                    },
+                    fontFamily: {
+                        algerian: ['Algerian', 'Impact', 'Copperplate Gothic Bold', 'Georgia', 'serif'],
+                        bookAntiqua: ['"Book Antiqua"', 'Palatino', 'Georgia', 'serif'],
+                        garamond: ['Garamond', 'Georgia', 'serif'],
+                        calibri: ['Calibri', 'Candara', 'Segoe UI', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --bg-color: #0d1117;
-            --card-bg: #161b22;
-            --border-color: #30363d;
-            --text-color: #c9d1d9;
-            --heading-color: #58a6ff;
-            --accent-color: #238636;
-            --accent-hover: #2ea043;
-            --input-bg: #0d1117;
-        }
+        .font-algerian { font-family: Algerian, Impact, 'Copperplate Gothic Bold', Georgia, serif; font-style: normal !important; }
+        .font-bookAntiqua { font-family: 'Book Antiqua', Palatino, 'Palatino Linotype', Georgia, serif; font-style: normal !important; }
+        .font-garamond { font-family: Garamond, Georgia, serif; font-style: normal !important; }
+        .font-calibri { font-family: Calibri, Candara, 'Segoe UI', sans-serif; font-style: normal !important; }
 
+        * { font-style: normal !important; }
+
+        /* Main Webpage Background Gradient */
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
+            background: linear-gradient(180deg, #1C2026 0%, #2B303A 20%, #20242B 45%, #3B0D11 75%, #4A0000 90%, #2B0000 100%) !important;
+            background-attachment: fixed;
         }
 
-        .calculator-container {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 24px;
-            max-width: 650px;
-            width: 100%;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1C2026; }
+        ::-webkit-scrollbar-thumb { background: #C8102E; border-radius: 4px; }
+
+        .glass-card-light {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        h2 {
-            color: var(--heading-color);
-            margin-top: 0;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
-        }
-
-        .form-group {
-            margin-bottom: 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        label {
-            font-size: 0.95rem;
-        }
-
-        input[type="number"], select {
-            background-color: var(--input-bg);
-            color: var(--text-color);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 8px 12px;
-            width: 120px;
-            text-align: right;
-        }
-
-        input[type="number"]:focus, select:focus {
-            outline: none;
-            border-color: var(--heading-color);
-        }
-
-        button {
-            width: 100%;
-            background-color: var(--accent-color);
-            color: #ffffff;
-            border: none;
-            border-radius: 6px;
-            padding: 12px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background-color 0.2s;
-        }
-
-        button:hover {
-            background-color: var(--accent-hover);
-        }
-
-        .results {
-            margin-top: 24px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 16px;
-            display: none;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 12px;
-        }
-
-        th, td {
-            text-align: left;
-            padding: 10px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        th {
-            color: var(--heading-color);
-        }
-
-        .note {
-            font-size: 0.85rem;
-            color: #8b949e;
-            margin-top: 12px;
-        }
+        .photo-glow { box-shadow: 0 0 25px rgba(200, 16, 46, 0.4); }
     </style>
 </head>
-<body>
+<body class="font-calibri text-white antialiased selection:bg-azureBlue selection:text-white flex flex-col min-h-screen">
 
-<div class="calculator-container">
-    <h2>Muslim Succession Calculator (Bangladesh Law)</h2>
-    <p style="font-size: 0.9rem; color: #8b949e;">Calculates legal shares under Sunni (Hanafi) Law & Muslim Family Laws Ordinance, 1961.</p>
+    <!-- Top Profile Section linking back to index.html -->
+    <header class="py-8 px-4 text-center">
+        <a href="index.html" class="inline-flex flex-col items-center group transition transform hover:scale-105">
+            <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1.5 bg-gradient-to-tr from-navyBlue via-azureBlue to-deepGreen photo-glow mb-3">
+                <img 
+                    src="profile.jpg.png" 
+                    alt="A B M Rashedul Islam" 
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x400/C8102E/FFFFFF?text=A+B+M+Rashedul+Islam';"
+                    class="w-full h-full object-cover rounded-full border-2 border-white shadow-md"
+                />
+            </div>
+            <h1 class="font-bookAntiqua text-2xl sm:text-3xl font-bold text-white tracking-wide group-hover:text-red-300 transition">
+                A B M RASHEDUL ISLAM
+            </h1>
+            <p class="font-garamond text-lg text-red-400 font-semibold">Associate Lawyer • Capital Law Chamber</p>
+        </a>
+    </header>
 
-    <div class="form-group">
-        <label for="estate">Total Estate (Amount / Acre / Dec):</label>
-        <input type="number" id="estate" value="100" min="0" step="any">
-    </div>
+    <main class="flex-grow max-w-4xl w-full mx-auto px-4 pb-16">
+        <div class="glass-card-light rounded-3xl p-6 sm:p-10 shadow-2xl text-darkText border-2 border-azureBlue/30">
+            <div class="text-center mb-8 border-b border-gray-200 pb-6">
+                <h2 class="font-bookAntiqua text-2xl sm:text-3xl font-bold text-navyBlue">
+                    Muslim Succession & Inheritance Calculator
+                </h2>
+                <p class="font-garamond text-base sm:text-lg text-subtleGray mt-1">
+                    According to Hanafi Muslim Personal Law & Section 4 of Muslim Family Laws Ordinance, 1961
+                </p>
+            </div>
 
-    <div class="form-group">
-        <label for="deceasedGender">Deceased Gender:</label>
-        <select id="deceasedGender" onchange="toggleSpouseOption()">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-        </select>
-    </div>
+            <form id="calculatorForm" onsubmit="event.preventDefault(); calculateInheritance();" class="space-y-6">
+                <!-- Estate Value and Unit Section -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-gray-50 p-4 rounded-2xl border border-gray-200">
+                    <div class="sm:col-span-2">
+                        <label class="block font-bold text-navyBlue text-sm mb-1">Total Estate Quantity / Value</label>
+                        <input type="number" id="estateVal" value="100" min="0" step="any" required class="w-full p-3 border border-gray-300 rounded-xl focus:border-azureBlue outline-none bg-white font-bold">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-navyBlue text-sm mb-1">Measurement Unit</label>
+                        <select id="estateUnit" class="w-full p-3 border border-gray-300 rounded-xl focus:border-azureBlue outline-none bg-white font-bold">
+                            <option value="Decimal / Shatangsho">Decimal / Shatangsho</option>
+                            <option value="Katha">Katha</option>
+                            <option value="Bigha">Bigha</option>
+                            <option value="Acre">Acre</option>
+                            <option value="Square Feet">Square Feet</option>
+                            <option value="Square Links">Square Links</option>
+                            <option value="BDT / Currency">BDT / Currency</option>
+                        </select>
+                    </div>
+                </div>
 
-    <div class="form-group" id="husbandGroup" style="display: none;">
-        <label for="husband">Husband Alive?</label>
-        <select id="husband">
-            <option value="0">No</option>
-            <option value="1">Yes</option>
-        </select>
-    </div>
+                <!-- Deceased Info -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block font-bold text-navyBlue text-sm mb-1">Deceased Gender</label>
+                        <select id="deceasedGender" onchange="toggleSpouse()" class="w-full p-3 border border-gray-300 rounded-xl focus:border-azureBlue outline-none bg-white">
+                            <option value="male">Male (Husband / Father)</option>
+                            <option value="female">Female (Wife / Mother)</option>
+                        </select>
+                    </div>
+                    <div id="wifeBox">
+                        <label class="block font-bold text-navyBlue text-sm mb-1">Surviving Wives (0 - 4)</label>
+                        <input type="number" id="wives" value="0" min="0" max="4" class="w-full p-3 border border-gray-300 rounded-xl focus:border-azureBlue outline-none bg-white">
+                    </div>
+                    <div id="husbandBox" class="hidden">
+                        <label class="block font-bold text-navyBlue text-sm mb-1">Surviving Husband</label>
+                        <select id="husband" class="w-full p-3 border border-gray-300 rounded-xl focus:border-azureBlue outline-none bg-white">
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                </div>
 
-    <div class="form-group" id="wifeGroup">
-        <label for="wives">Wives Alive:</label>
-        <input type="number" id="wives" value="0" min="0" max="4">
-    </div>
+                <!-- Comprehensive Primary & Secondary Heirs -->
+                <div class="space-y-4 pt-2">
+                    <h3 class="font-bookAntiqua font-bold text-lg text-azureBlue border-b pb-1">Surviving Family Members & Legal Heirs</h3>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Sons</label>
+                            <input type="number" id="sons" value="0" min="0" class="w-full p-2.5 border border-gray-300 rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Daughters</label>
+                            <input type="number" id="daughters" value="0" min="0" class="w-full p-2.5 border border-gray-300 rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Pre-deceased Son's Sons</label>
+                            <input type="number" id="gsonSons" value="0" min="0" class="w-full p-2.5 border border-gray-300 rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Pre-deceased Son's Daughters</label>
+                            <input type="number" id="gsonDaughters" value="0" min="0" class="w-full p-2.5 border border-gray-300 rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Father</label>
+                            <select id="father" class="w-full p-2.5 border border-gray-300 rounded-lg"><option value="0">No</option><option value="1">Yes</option></select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Mother</label>
+                            <select id="mother" class="w-full p-2.5 border border-gray-300 rounded-lg"><option value="0">No</option><option value="1">Yes</option></select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Paternal Grandfather</label>
+                            <select id="pGrandfather" class="w-full p-2.5 border border-gray-300 rounded-lg"><option value="0">No</option><option value="1">Yes</option></select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Paternal Grandmother</label>
+                            <select id="pGrandmother" class="w-full p-2.5 border border-gray-300 rounded-lg"><option value="0">No</option><option value="1">Yes</option></select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Maternal Grandmother</label>
+                            <select id="mGrandmother" class="w-full p-2.5 border border-gray-300 rounded-lg"><option value="0">No</option><option value="1">Yes</option></select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Full Brothers</label>
+                            <input type="number" id="fullBrothers" value="0" min="0" class="w-full p-2.5 border border-gray-300 rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Full Sisters</label>
+                            <input type="number" id="fullSisters" value="0" min="0" class="w-full p-2.5 border border-gray-300 rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Consanguine Brothers (Half-Paternal)</label>
+                            <input type="number" id="cBrothers" value="0" min="0" class="w-full p-2.5 border border-gray-300 rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Consanguine Sisters (Half-Paternal)</label>
+                            <input type="number" id="cSisters" value="0" min="0" class="w-full p-2.5 border border-gray-300 rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Uterine Siblings (Half-Maternal)</label>
+                            <input type="number" id="uSiblings" value="0" min="0" class="w-full p-2.5 border border-gray-300 rounded-lg">
+                        </div>
+                    </div>
+                </div>
 
-    <div class="form-group">
-        <label for="sons">Sons Alive:</label>
-        <input type="number" id="sons" value="0" min="0">
-    </div>
+                <button type="submit" class="w-full bg-azureBlue hover:bg-deepGreen text-white font-calibri font-bold text-lg py-4 rounded-xl shadow-lg transition duration-300 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-calculator"></i> Calculate Distribution
+                </button>
+            </form>
 
-    <div class="form-group">
-        <label for="daughters">Daughters Alive:</label>
-        <input type="number" id="daughters" value="0" min="0">
-    </div>
+            <!-- Results Section (Hidden until calculation) -->
+            <div id="resultsWrapper" class="hidden mt-10 pt-6 border-t-2 border-azureBlue/30">
+                <h3 class="font-bookAntiqua text-2xl font-bold text-navyBlue mb-4 text-center">
+                    Legal Succession Distribution Breakdown
+                </h3>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse border border-gray-200 text-sm sm:text-base">
+                        <thead>
+                            <tr class="bg-navyBlue text-white font-bookAntiqua">
+                                <th class="p-3 text-left">Legal Heir / Category</th>
+                                <th class="p-3 text-center">Share Percentage</th>
+                                <th class="p-3 text-right">Calculated Share (<span id="unitLabel"></span>)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultsTableBody" class="divide-y divide-gray-200"></tbody>
+                    </table>
+                </div>
 
-    <div class="form-group">
-        <label for="father">Father Alive?</label>
-        <select id="father">
-            <option value="0">No</option>
-            <option value="1">Yes</option>
-        </select>
-    </div>
+                <div class="mt-6 p-4 bg-gray-100 rounded-xl border-l-4 border-azureBlue text-xs sm:text-sm text-subtleGray space-y-1">
+                    <p class="font-bold text-navyBlue">Legal Notes & Framework Applied:</p>
+                    <p>• Governed under Hanafi Principles of Sunni Inheritance and statutory amendments under Section 4 of MFLO, 1961.</p>
+                    <p>• Pre-deceased children's offspring inherit the share their parent would have received under Section 4 MFLO 1961.</p>
+                </div>
+            </div>
+        </div>
+    </main>
 
-    <div class="form-group">
-        <label for="mother">Mother Alive?</label>
-        <select id="mother">
-            <option value="0">No</option>
-            <option value="1">Yes</option>
-        </select>
-    </div>
+    <!-- Exact Footer from Main Webpage -->
+    <footer id="contact" class="bg-transparent text-white pt-16 pb-12 border-t border-red-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                
+                <!-- Footer Col 1 -->
+                <div>
+                    <h3 class="font-algerian text-xl text-white mb-2">CAPITAL LAW CHAMBER</h3>
+                    <p class="font-bookAntiqua text-lg font-bold text-white mb-1">A B M RASHEDUL ISLAM</p>
+                    <p class="font-garamond text-base text-gray-200 mb-4">Associate Lawyer</p>
+                    <div class="flex space-x-3">
+                        <a href="https://www.facebook.com/rd.L.islam" target="_blank" aria-label="Facebook Profile" class="w-10 h-10 rounded-full bg-fbBlue text-white flex items-center justify-center hover:opacity-90 transition shadow-sm">
+                            <i class="fa-brands fa-facebook-f text-lg"></i>
+                        </a>
+                        <a href="https://wa.me/8801755712215" target="_blank" aria-label="WhatsApp" class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center hover:bg-emerald-500 transition shadow-sm">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                        </a>
+                        <a href="mailto:rashed.legalhq@gmail.com" aria-label="Email" class="w-10 h-10 rounded-full bg-white text-navyBlue flex items-center justify-center hover:bg-azureBlue hover:text-white transition shadow-sm">
+                            <i class="fa-regular fa-envelope text-lg"></i>
+                        </a>
+                    </div>
+                </div>
 
-    <button onclick="calculateInheritance()">Calculate Distribution</button>
+                <!-- Footer Col 2 -->
+                <div>
+                    <h4 class="font-bookAntiqua text-lg font-bold text-white mb-4">Chamber Location</h4>
+                    <div class="font-calibri text-sm text-gray-200 space-y-2 leading-relaxed">
+                        <p class="font-bold text-white">Capital Law Chamber</p>
+                        <p class="flex items-start gap-2">
+                            <i class="fa-solid fa-location-dot text-white mt-1"></i>
+                            <span>House No.15, Road No.128,<br>Gulshan-1, Dhaka-1212,<br>Bangladesh</span>
+                        </p>
+                    </div>
+                </div>
 
-    <div class="results" id="resultsBlock">
-        <h3>Distribution Breakdown</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Heir</th>
-                    <th>Share Fraction</th>
-                    <th>Calculated Amount</th>
-                </tr>
-            </thead>
-            <tbody id="resultsTableBody"></tbody>
-        </table>
-        <p class="note" id="lawNote"></p>
-    </div>
-</div>
+                <!-- Footer Col 3 -->
+                <div>
+                    <h4 class="font-bookAntiqua text-lg font-bold text-white mb-4">Direct Contact</h4>
+                    <ul class="font-calibri text-sm text-gray-200 space-y-3">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-phone text-emerald-300"></i>
+                            <a href="tel:01755712215" class="hover:underline transition font-bold">01755712215</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-300"></i>
+                            <a href="https://wa.me/8801755712215" target="_blank" class="hover:underline transition font-bold">01755712215 (WhatsApp)</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-regular fa-envelope text-white"></i>
+                            <a href="mailto:rashed.legalhq@gmail.com" class="hover:underline transition">rashed.legalhq@gmail.com</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-brands fa-facebook text-fbBlue text-base"></i>
+                            <a href="https://www.facebook.com/rd.L.islam" target="_blank" class="hover:text-fbBlue transition truncate font-bold text-white">facebook.com/rd.L.islam</a>
+                        </li>
+                    </ul>
+                </div>
 
-<script>
-    function toggleSpouseOption() {
-        const gender = document.getElementById('deceasedGender').value;
-        if (gender === 'male') {
-            document.getElementById('wifeGroup').style.display = 'flex';
-            document.getElementById('husbandGroup').style.display = 'none';
-            document.getElementById('husband').value = '0';
-        } else {
-            document.getElementById('wifeGroup').style.display = 'none';
-            document.getElementById('husbandGroup').style.display = 'flex';
-            document.getElementById('wives').value = '0';
+                <!-- Footer Col 4 -->
+                <div>
+                    <h4 class="font-bookAntiqua text-lg font-bold text-white mb-4">Chamber Hours</h4>
+                    <ul class="font-calibri text-sm text-gray-200 space-y-2">
+                        <li class="flex justify-between border-b border-red-900/60 pb-1">
+                            <span>Sat - Thu:</span>
+                            <span class="font-bold text-white">10:00 AM - 08:00 PM</span>
+                        </li>
+                        <li class="flex justify-between text-gray-300">
+                            <span>Friday:</span>
+                            <span>Closed / By Appt.</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Copyright Bar -->
+            <div class="border-t border-red-900/60 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-300 font-calibri">
+                <p>&copy; <span id="currentYear"></span> A B M Rashedul Islam. Associate Lawyer, Capital Law Chamber. All Rights Reserved.</p>
+                <p class="mt-2 md:mt-0 text-gray-300">Gulshan-1, Dhaka-1212, Bangladesh</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        function toggleSpouse() {
+            const gender = document.getElementById('deceasedGender').value;
+            if (gender === 'male') {
+                document.getElementById('wifeBox').classList.remove('hidden');
+                document.getElementById('husbandBox').classList.add('hidden');
+                document.getElementById('husband').value = '0';
+            } else {
+                document.getElementById('wifeBox').classList.add('hidden');
+                document.getElementById('husbandBox').classList.remove('hidden');
+                document.getElementById('wives').value = '0';
+            }
         }
-    }
 
-    function calculateInheritance() {
-        const estate = parseFloat(document.getElementById('estate').value) || 0;
-        const gender = document.getElementById('deceasedGender').value;
-        const husband = parseInt(document.getElementById('husband').value) || 0;
-        const wives = parseInt(document.getElementById('wives').value) || 0;
-        const sons = parseInt(document.getElementById('sons').value) || 0;
-        const daughters = parseInt(document.getElementById('daughters').value) || 0;
-        const father = parseInt(document.getElementById('father').value) || 0;
-        const mother = parseInt(document.getElementById('mother').value) || 0;
+        function calculateInheritance() {
+            const estate = parseFloat(document.getElementById('estateVal').value) || 0;
+            const unit = document.getElementById('estateUnit').value;
+            const gender = document.getElementById('deceasedGender').value;
 
-        const hasChildren = (sons + daughters) > 0;
+            const husband = parseInt(document.getElementById('husband').value) || 0;
+            const wives = parseInt(document.getElementById('wives').value) || 0;
 
-        let shares = {};
-        let totalFixedShare = 0;
+            const sons = parseInt(document.getElementById('sons').value) || 0;
+            const daughters = parseInt(document.getElementById('daughters').value) || 0;
 
-        // 1. Fixed Sharers Allocation
-        if (gender === 'female' && husband === 1) {
-            shares['Husband'] = hasChildren ? (1 / 4) : (1 / 2);
-            totalFixedShare += shares['Husband'];
-        }
+            // Section 4 MFLO (Grandchildren through pre-deceased children)
+            const gsonSons = parseInt(document.getElementById('gsonSons').value) || 0;
+            const gsonDaughters = parseInt(document.getElementById('gsonDaughters').value) || 0;
 
-        if (gender === 'male' && wives > 0) {
-            let totalWifeShare = hasChildren ? (1 / 8) : (1 / 4);
-            shares[`Wife (${wives})`] = totalWifeShare;
-            totalFixedShare += totalWifeShare;
-        }
+            const father = parseInt(document.getElementById('father').value) || 0;
+            const mother = parseInt(document.getElementById('mother').value) || 0;
 
-        if (father === 1) {
-            shares['Father'] = 1 / 6;
-            totalFixedShare += shares['Father'];
-        }
+            const pGrandfather = parseInt(document.getElementById('pGrandfather').value) || 0;
+            const pGrandmother = parseInt(document.getElementById('pGrandmother').value) || 0;
+            const mGrandmother = parseInt(document.getElementById('mGrandmother').value) || 0;
 
-        if (mother === 1) {
-            shares['Mother'] = hasChildren ? (1 / 6) : (1 / 3);
-            totalFixedShare += shares['Mother'];
-        }
+            const fullBrothers = parseInt(document.getElementById('fullBrothers').value) || 0;
+            const fullSisters = parseInt(document.getElementById('fullSisters').value) || 0;
+            const cBrothers = parseInt(document.getElementById('cBrothers').value) || 0;
+            const cSisters = parseInt(document.getElementById('cSisters').value) || 0;
+            const uSiblings = parseInt(document.getElementById('uSiblings').value) || 0;
 
-        // Fixed share for Daughters if no Sons exist
-        if (sons === 0 && daughters > 0) {
-            let totalDaughterShare = (daughters === 1) ? (1 / 2) : (2 / 3);
-            shares[`Daughter(s) (${daughters})`] = totalDaughterShare;
-            totalFixedShare += totalDaughterShare;
-        }
+            let shares = {};
+            let totalFixed = 0;
 
-        // 2. Residuary Allocation (Sons & Daughters together or Sons alone)
-        let remainder = Math.max(0, 1 - totalFixedShare);
+            const directChildren = sons + daughters;
+            const orphanedBranch = gsonSons + gsonDaughters;
+            const hasIssue = (directChildren + orphanedBranch) > 0;
 
-        if (sons > 0) {
-            let units = (sons * 2) + daughters;
-            if (units > 0) {
+            // 1. Spouses
+            if (gender === 'female' && husband === 1) {
+                shares['Husband'] = hasIssue ? (1 / 4) : (1 / 2);
+                totalFixed += shares['Husband'];
+            }
+            if (gender === 'male' && wives > 0) {
+                let wShare = hasIssue ? (1 / 8) : (1 / 4);
+                shares[`Wife (${wives})`] = wShare;
+                totalFixed += wShare;
+            }
+
+            // 2. Parents
+            if (father === 1) {
+                shares['Father'] = 1 / 6;
+                totalFixed += shares['Father'];
+            }
+            if (mother === 1) {
+                const totalSiblings = fullBrothers + fullSisters + cBrothers + cSisters + uSiblings;
+                shares['Mother'] = (hasIssue || totalSiblings >= 2) ? (1 / 6) : (1 / 3);
+                totalFixed += shares['Mother'];
+            }
+
+            // 3. Grandparents (Excluded if primary father/mother are alive)
+            if (pGrandfather === 1 && father === 0) {
+                shares['Paternal Grandfather'] = 1 / 6;
+                totalFixed += shares['Paternal Grandfather'];
+            }
+            if (pGrandmother === 1 && mother === 0 && father === 0) {
+                shares['Paternal Grandmother'] = 1 / 6;
+                totalFixed += shares['Paternal Grandmother'];
+            }
+            if (mGrandmother === 1 && mother === 0) {
+                shares['Maternal Grandmother'] = 1 / 6;
+                totalFixed += shares['Maternal Grandmother'];
+            }
+
+            // 4. Daughters alone (Without Sons)
+            if (sons === 0 && daughters > 0) {
+                let dShare = (daughters === 1) ? (1 / 2) : (2 / 3);
+                shares[`Daughter(s) (${daughters})`] = dShare;
+                totalFixed += dShare;
+            }
+
+            // 5. Section 4 MFLO Pre-deceased Son's Children
+            let Sec4Share = 0;
+            if (orphanedBranch > 0) {
+                // Theoretical share if pre-deceased son was alive
+                let simulatedUnits = (sons + 1) * 2 + daughters;
+                let remForSec4 = Math.max(0, 1 - totalFixed);
+                Sec4Share = (remForSec4 / simulatedUnits) * 2;
+                shares[`Pre-deceased Son's Lineage (${orphanedBranch}) [Sec 4 MFLO]`] = Sec4Share;
+                totalFixed += Sec4Share;
+            }
+
+            // 6. Residuary Distribution to Direct Sons & Daughters
+            let remainder = Math.max(0, 1 - totalFixed);
+
+            if (sons > 0) {
+                let units = (sons * 2) + daughters;
                 let perUnit = remainder / units;
                 shares[`Son(s) (${sons})`] = perUnit * 2 * sons;
                 if (daughters > 0) {
                     shares[`Daughter(s) (${daughters})`] = perUnit * daughters;
                 }
+            } else if (father === 1 && directChildren === 0) {
+                // Father inherits remainder as Asaba if no male children
+                shares['Father'] = (shares['Father'] || 0) + remainder;
+            } else if (fullBrothers > 0 && directChildren === 0 && father === 0) {
+                // Full Brothers & Sisters inherit remainder if no children or father
+                let units = (fullBrothers * 2) + fullSisters;
+                let perUnit = remainder / units;
+                shares[`Full Brother(s) (${fullBrothers})`] = perUnit * 2 * fullBrothers;
+                if (fullSisters > 0) {
+                    shares[`Full Sister(s) (${fullSisters})`] = perUnit * fullSisters;
+                }
+            } else if (cBrothers > 0 && directChildren === 0 && father === 0 && fullBrothers === 0) {
+                let units = (cBrothers * 2) + cSisters;
+                let perUnit = remainder / units;
+                shares[`Consanguine Brother(s) (${cBrothers})`] = perUnit * 2 * cBrothers;
+                if (cSisters > 0) {
+                    shares[`Consanguine Sister(s) (${cSisters})`] = perUnit * cSisters;
+                }
             }
-        } else if (father === 1 && sons === 0 && daughters === 0) {
-            // Father takes remainder as residuary if no children
-            shares['Father'] = (shares['Father'] || 0) + remainder;
+
+            // Render Output
+            const tbody = document.getElementById('resultsTableBody');
+            tbody.innerHTML = '';
+
+            for (let heir in shares) {
+                let shareVal = shares[heir];
+                if (shareVal > 0) {
+                    let calcAmt = (shareVal * estate).toFixed(4);
+                    let percent = (shareVal * 100).toFixed(2) + '%';
+
+                    let row = `<tr class="hover:bg-red-50/50 transition">
+                        <td class="p-3 font-bold text-navyBlue">${heir}</td>
+                        <td class="p-3 text-center font-semibold text-azureBlue">${percent}</td>
+                        <td class="p-3 text-right font-bold text-navyBlue">${calcAmt} ${unit}</td>
+                    </tr>`;
+                    tbody.innerHTML += row;
+                }
+            }
+
+            document.getElementById('unitLabel').textContent = unit;
+            document.getElementById('resultsWrapper').classList.remove('hidden');
+            document.getElementById('resultsWrapper').scrollIntoView({ behavior: 'smooth' });
         }
-
-        // Render Results
-        const tbody = document.getElementById('resultsTableBody');
-        tbody.innerHTML = '';
-
-        for (let heir in shares) {
-            let shareVal = shares[heir];
-            let amount = (shareVal * estate).toFixed(2);
-            let fractionDisplay = (shareVal * 100).toFixed(2) + '%';
-
-            let row = `<tr>
-                <td>${heir}</td>
-                <td>${fractionDisplay}</td>
-                <td>${amount}</td>
-            </tr>`;
-            tbody.innerHTML += row;
-        }
-
-        document.getElementById('lawNote').innerText = "Calculated in accordance with Hanafi Muslim Personal Law and Section 4 of the Muslim Family Laws Ordinance, 1961.";
-        document.getElementById('resultsBlock').style.display = 'block';
-    }
-</script>
-
+    </script>
 </body>
 </html>

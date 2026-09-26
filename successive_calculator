@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muslim Succession Calculator - Bangladesh Law</title>
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+            --text-color: #c9d1d9;
+            --heading-color: #58a6ff;
+            --accent-color: #238636;
+            --accent-hover: #2ea043;
+            --input-bg: #0d1117;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .calculator-container {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            max-width: 650px;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            color: var(--heading-color);
+            margin-top: 0;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        label {
+            font-size: 0.95rem;
+        }
+
+        input[type="number"], select {
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 8px 12px;
+            width: 120px;
+            text-align: right;
+        }
+
+        input[type="number"]:focus, select:focus {
+            outline: none;
+            border-color: var(--heading-color);
+        }
+
+        button {
+            width: 100%;
+            background-color: var(--accent-color);
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .results {
+            margin-top: 24px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 16px;
+            display: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            color: var(--heading-color);
+        }
+
+        .note {
+            font-size: 0.85rem;
+            color: #8b949e;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator-container">
+    <h2>Muslim Succession Calculator (Bangladesh Law)</h2>
+    <p style="font-size: 0.9rem; color: #8b949e;">Calculates legal shares under Sunni (Hanafi) Law & Muslim Family Laws Ordinance, 1961.</p>
+
+    <div class="form-group">
+        <label for="estate">Total Estate (Amount / Acre / Dec):</label>
+        <input type="number" id="estate" value="100" min="0" step="any">
+    </div>
+
+    <div class="form-group">
+        <label for="deceasedGender">Deceased Gender:</label>
+        <select id="deceasedGender" onchange="toggleSpouseOption()">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+    </div>
+
+    <div class="form-group" id="husbandGroup" style="display: none;">
+        <label for="husband">Husband Alive?</label>
+        <select id="husband">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+
+    <div class="form-group" id="wifeGroup">
+        <label for="wives">Wives Alive:</label>
+        <input type="number" id="wives" value="0" min="0" max="4">
+    </div>
+
+    <div class="form-group">
+        <label for="sons">Sons Alive:</label>
+        <input type="number" id="sons" value="0" min="0">
+    </div>
+
+    <div class="form-group">
+        <label for="daughters">Daughters Alive:</label>
+        <input type="number" id="daughters" value="0" min="0">
+    </div>
+
+    <div class="form-group">
+        <label for="father">Father Alive?</label>
+        <select id="father">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="mother">Mother Alive?</label>
+        <select id="mother">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+
+    <button onclick="calculateInheritance()">Calculate Distribution</button>
+
+    <div class="results" id="resultsBlock">
+        <h3>Distribution Breakdown</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Heir</th>
+                    <th>Share Fraction</th>
+                    <th>Calculated Amount</th>
+                </tr>
+            </thead>
+            <tbody id="resultsTableBody"></tbody>
+        </table>
+        <p class="note" id="lawNote"></p>
+    </div>
+</div>
+
+<script>
+    function toggleSpouseOption() {
+        const gender = document.getElementById('deceasedGender').value;
+        if (gender === 'male') {
+            document.getElementById('wifeGroup').style.display = 'flex';
+            document.getElementById('husbandGroup').style.display = 'none';
+            document.getElementById('husband').value = '0';
+        } else {
+            document.getElementById('wifeGroup').style.display = 'none';
+            document.getElementById('husbandGroup').style.display = 'flex';
+            document.getElementById('wives').value = '0';
+        }
+    }
+
+    function calculateInheritance() {
+        const estate = parseFloat(document.getElementById('estate').value) || 0;
+        const gender = document.getElementById('deceasedGender').value;
+        const husband = parseInt(document.getElementById('husband').value) || 0;
+        const wives = parseInt(document.getElementById('wives').value) || 0;
+        const sons = parseInt(document.getElementById('sons').value) || 0;
+        const daughters = parseInt(document.getElementById('daughters').value) || 0;
+        const father = parseInt(document.getElementById('father').value) || 0;
+        const mother = parseInt(document.getElementById('mother').value) || 0;
+
+        const hasChildren = (sons + daughters) > 0;
+
+        let shares = {};
+        let totalFixedShare = 0;
+
+        // 1. Fixed Sharers Allocation
+        if (gender === 'female' && husband === 1) {
+            shares['Husband'] = hasChildren ? (1 / 4) : (1 / 2);
+            totalFixedShare += shares['Husband'];
+        }
+
+        if (gender === 'male' && wives > 0) {
+            let totalWifeShare = hasChildren ? (1 / 8) : (1 / 4);
+            shares[`Wife (${wives})`] = totalWifeShare;
+            totalFixedShare += totalWifeShare;
+        }
+
+        if (father === 1) {
+            shares['Father'] = 1 / 6;
+            totalFixedShare += shares['Father'];
+        }
+
+        if (mother === 1) {
+            shares['Mother'] = hasChildren ? (1 / 6) : (1 / 3);
+            totalFixedShare += shares['Mother'];
+        }
+
+        // Fixed share for Daughters if no Sons exist
+        if (sons === 0 && daughters > 0) {
+            let totalDaughterShare = (daughters === 1) ? (1 / 2) : (2 / 3);
+            shares[`Daughter(s) (${daughters})`] = totalDaughterShare;
+            totalFixedShare += totalDaughterShare;
+        }
+
+        // 2. Residuary Allocation (Sons & Daughters together or Sons alone)
+        let remainder = Math.max(0, 1 - totalFixedShare);
+
+        if (sons > 0) {
+            let units = (sons * 2) + daughters;
+            if (units > 0) {
+                let perUnit = remainder / units;
+                shares[`Son(s) (${sons})`] = perUnit * 2 * sons;
+                if (daughters > 0) {
+                    shares[`Daughter(s) (${daughters})`] = perUnit * daughters;
+                }
+            }
+        } else if (father === 1 && sons === 0 && daughters === 0) {
+            // Father takes remainder as residuary if no children
+            shares['Father'] = (shares['Father'] || 0) + remainder;
+        }
+
+        // Render Results
+        const tbody = document.getElementById('resultsTableBody');
+        tbody.innerHTML = '';
+
+        for (let heir in shares) {
+            let shareVal = shares[heir];
+            let amount = (shareVal * estate).toFixed(2);
+            let fractionDisplay = (shareVal * 100).toFixed(2) + '%';
+
+            let row = `<tr>
+                <td>${heir}</td>
+                <td>${fractionDisplay}</td>
+                <td>${amount}</td>
+            </tr>`;
+            tbody.innerHTML += row;
+        }
+
+        document.getElementById('lawNote').innerText = "Calculated in accordance with Hanafi Muslim Personal Law and Section 4 of the Muslim Family Laws Ordinance, 1961.";
+        document.getElementById('resultsBlock').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>

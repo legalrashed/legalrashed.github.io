@@ -84,9 +84,9 @@
             box-shadow: 0 0 30px rgba(200, 16, 46, 0.25);
         }
 
-        /* Bottom Section Gradient: Transitions from Card Gray down to Deep Black */
-        .bottom-gradient-to-black {
-            background: linear-gradient(180deg, #F3F4F6 0%, #1E232A 60%, #0B0F17 85%, #000000 100%);
+        /* Gradient Style: Directly from Full Gray (#F3F4F6) to Solid Black (#000000) */
+        .gray-to-black-gradient {
+            background: linear-gradient(180deg, #F3F4F6 0%, #B0B7C0 25%, #4A525D 50%, #1E232A 75%, #000000 100%);
         }
     </style>
 </head>
@@ -175,7 +175,7 @@
                     A B M RASHEDUL ISLAM
                 </h1>
 
-                <!-- Position in Garamond (Explicitly Associate Lawyer - NO Advocate) -->
+                <!-- Position in Garamond -->
                 <h2 class="font-garamond text-xl sm:text-2xl md:text-3xl font-bold text-azureBlue mb-4">
                     Associate Lawyer
                 </h2>
@@ -334,8 +334,8 @@
 
     </main>
 
-    <!-- Bottom Wrapper: Smooth Gradient Transition into Pure Black at the end of the page -->
-    <div class="bottom-gradient-to-black">
+    <!-- Bottom Section Gradient: Gray-to-Black Gradient starting at Experience Section down to Footer -->
+    <div class="gray-to-black-gradient">
         
         <!-- Experience & Key Highlights Section -->
         <section id="experience" class="py-16 px-4 sm:px-6 lg:px-8">
@@ -384,16 +384,16 @@
         <section id="booking" class="py-16 px-4 sm:px-6 lg:px-8">
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-10">
-                    <h2 class="font-bookAntiqua text-3xl sm:text-4xl font-bold text-navyBlue mb-2">
+                    <h2 class="font-bookAntiqua text-3xl sm:text-4xl font-bold text-white mb-2 drop-shadow-sm">
                         RESERVATION & SCHEDULE PANEL
                     </h2>
-                    <p class="font-garamond text-xl text-subtleGray">
+                    <p class="font-garamond text-xl text-gray-200">
                         Schedule a direct consultation with A B M Rashedul Islam
                     </p>
                     <div class="w-24 h-1 bg-azureBlue mx-auto mt-3 rounded-full"></div>
                 </div>
 
-                <div class="bg-white rounded-3xl shadow-xl border-2 border-azureBlue/30 overflow-hidden">
+                <div class="bg-white rounded-3xl shadow-2xl border-2 border-azureBlue/30 overflow-hidden">
                     <div class="p-6 sm:p-10">
                         <form id="bookingForm" onsubmit="handleBookingSubmit(event)" class="space-y-6">
                             
@@ -479,14 +479,13 @@
             </div>
         </section>
 
-        <!-- Footer transitioning smoothly into solid Black -->
+        <!-- Footer sitting in pure Black at the base -->
         <footer id="contact" class="bg-transparent text-white pt-16 pb-12 border-t-4 border-azureBlue">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
                     
                     <!-- Footer Col 1: Identity & Facebook Profile -->
                     <div>
-                        <!-- Capital Law Chamber in Algerian font strictly -->
                         <h3 class="font-algerian text-xl text-azureBlue mb-2">
                             CAPITAL LAW CHAMBER
                         </h3>

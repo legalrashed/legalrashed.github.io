@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bangladeshi Land Hissa Calculator | A B M Rashedul Islam</title>
+    <title>Bangladeshi Land & Unit Calculator | A B M Rashedul Islam</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -76,57 +76,58 @@
         </a>
     </header>
 
-    <main class="flex-grow max-w-5xl w-full mx-auto px-4 pb-16">
+    <main class="flex-grow max-w-5xl w-full mx-auto px-4 pb-16 space-y-12">
+        
+        <!-- ================= PART 1: LAND HISSA CALCULATOR ================= -->
         <div class="glass-card-light rounded-3xl p-6 sm:p-10 shadow-2xl text-darkText border-2 border-azureBlue/30 space-y-8">
             
-            <!-- Page Title -->
+            <!-- Section Title -->
             <div class="text-center border-b border-gray-200 pb-6">
                 <h2 class="font-bookAntiqua text-2xl sm:text-3xl font-bold text-navyBlue flex items-center justify-center gap-3">
                     <i class="fa-solid fa-scale-balanced text-azureBlue"></i>
-                    Bangladeshi Land Hissa Calculator (আনা-গণ্ডা হিসাব)
+                    Part 1: Land Hissa Calculator (আনা-গণ্ডা হিসাব)
                 </h2>
                 <p class="font-garamond text-base sm:text-lg text-subtleGray mt-1">
-                    Dynamic 16-Ana Land Share & Record Area Conversion Utility
+                    Calculate 16-Ana Record Fractional Shares and Land Partition Areas
                 </p>
             </div>
 
-            <!-- Input Form Card -->
+            <!-- Input Form -->
             <div class="space-y-6">
-                
                 <!-- Dropdown Menus for Ana, Gonda, Kora, Kranti, Teel -->
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
                     <div>
                         <label class="block font-bold text-navyBlue text-sm mb-1.5">Ana (আনা)</label>
-                        <select id="anaSelect" onchange="calculateShare()" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
-                            <!-- Options 0 to 16 -->
+                        <select id="anaSelect" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <!-- Populated 0-16 -->
                         </select>
                     </div>
 
                     <div>
                         <label class="block font-bold text-navyBlue text-sm mb-1.5">Gonda (গণ্ডা)</label>
-                        <select id="gondaSelect" onchange="calculateShare()" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
-                            <!-- Options 0 to 19 -->
+                        <select id="gondaSelect" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <!-- Populated 0-19 -->
                         </select>
                     </div>
 
                     <div>
                         <label class="block font-bold text-navyBlue text-sm mb-1.5">Kora (কড়া)</label>
-                        <select id="koraSelect" onchange="calculateShare()" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
-                            <!-- Options 0 to 3 -->
+                        <select id="koraSelect" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <!-- Populated 0-3 -->
                         </select>
                     </div>
 
                     <div>
                         <label class="block font-bold text-navyBlue text-sm mb-1.5">Kranti (ক্রান্তি)</label>
-                        <select id="krantiSelect" onchange="calculateShare()" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
-                            <!-- Options 0 to 2 -->
+                        <select id="krantiSelect" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <!-- Populated 0-2 -->
                         </select>
                     </div>
 
                     <div>
                         <label class="block font-bold text-navyBlue text-sm mb-1.5">Teel (তিল)</label>
-                        <select id="teelSelect" onchange="calculateShare()" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
-                            <!-- Options 0 to 19 -->
+                        <select id="teelSelect" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <!-- Populated 0-19 -->
                         </select>
                     </div>
                 </div>
@@ -134,13 +135,13 @@
                 <!-- Total Land Area Input & Unit Selector -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end pt-4 border-t border-gray-200">
                     <div class="md:col-span-1">
-                        <label class="block font-bold text-navyBlue text-sm mb-1.5">Total Land Area</label>
-                        <input type="number" id="totalArea" value="100" min="0" step="any" oninput="calculateShare()" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                        <label class="block font-bold text-navyBlue text-sm mb-1.5">Total Record Land Area</label>
+                        <input type="number" id="hissaTotalArea" value="100" min="0" step="any" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
                     </div>
 
                     <div class="md:col-span-1">
-                        <label class="block font-bold text-navyBlue text-sm mb-1.5">Area Unit</label>
-                        <select id="unitSelect" onchange="calculateShare()" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                        <label class="block font-bold text-navyBlue text-sm mb-1.5">Input Unit</label>
+                        <select id="hissaUnitSelect" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
                             <option value="Shatangsho">Shatangsho / Decimal (শতাংশ)</option>
                             <option value="Katha">Katha (কাঠা)</option>
                             <option value="Bigha">Bigha (বিঘা)</option>
@@ -148,58 +149,165 @@
                         </select>
                     </div>
 
-                    <!-- Calculation Button -->
+                    <!-- Button Trigger -->
                     <div class="md:col-span-1">
-                        <button type="button" id="calcBtn" onclick="calculateShare()" class="w-full bg-azureBlue hover:bg-deepGreen text-white font-bold py-3 px-4 rounded-xl shadow-lg transition duration-300 flex items-center justify-center gap-2 text-base">
-                            <i class="fa-solid fa-calculator"></i> Calculate Share
+                        <button type="button" onclick="calculateHissaShare()" class="w-full bg-azureBlue hover:bg-deepGreen text-white font-bold py-3 px-4 rounded-xl shadow-lg transition duration-300 flex items-center justify-center gap-2 text-base">
+                            <i class="fa-solid fa-calculator"></i> Calculate Hissa Share
                         </button>
                     </div>
                 </div>
-
             </div>
 
-            <!-- Dynamic Results Display Section -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Fractional Share Card -->
-                <div class="bg-navyBlue text-white p-6 rounded-2xl shadow-xl flex flex-col justify-between border-l-4 border-azureBlue">
-                    <div>
-                        <span class="text-xs font-bold text-red-400 uppercase tracking-wider">FRACTIONAL SHARE (হিস্যা)</span>
-                        <div id="fractionDisplay" class="text-3xl font-bold mt-2 font-mono text-white">0.000000</div>
-                        <p class="text-xs text-gray-300 mt-1">Out of 1.000000 (Full 16 Ana)</p>
+            <!-- Hissa Results (Revealed on button click) -->
+            <div id="hissaResultsWrapper" class="hidden pt-6 border-t border-gray-200">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Fractional Share Display -->
+                    <div class="bg-navyBlue text-white p-6 rounded-2xl shadow-xl flex flex-col justify-between border-l-4 border-azureBlue">
+                        <div>
+                            <span class="text-xs font-bold text-red-400 uppercase tracking-wider">FRACTIONAL SHARE (হিস্যা)</span>
+                            <div id="fractionDisplay" class="text-3xl font-bold mt-2 font-mono text-white">0.000000</div>
+                            <p class="text-xs text-gray-300 mt-1">Out of 1.000000 (Full 16 Ana)</p>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Calculated Area Results Grid -->
-                <div class="md:col-span-2 bg-gray-50 p-6 rounded-2xl shadow-md border border-gray-200">
-                    <h3 class="font-bookAntiqua text-lg font-bold text-navyBlue mb-4 flex items-center gap-2">
-                        <i class="fa-solid fa-chart-pie text-azureBlue"></i> Calculated Share of Specified Land Area
-                    </h3>
+                    <!-- Area Distribution Cards -->
+                    <div class="md:col-span-2 bg-gray-50 p-6 rounded-2xl shadow-md border border-gray-200">
+                        <h3 class="font-bookAntiqua text-lg font-bold text-navyBlue mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-chart-pie text-azureBlue"></i> Calculated Share Area
+                        </h3>
 
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                        <div class="bg-white p-3.5 rounded-xl border border-gray-200 shadow-sm">
-                            <span class="block text-xs font-bold text-subtleGray">Shatangsho (Decimal)</span>
-                            <span id="resShatangsho" class="text-xl font-bold text-navyBlue">0.00</span>
-                        </div>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                            <div class="bg-white p-3.5 rounded-xl border border-gray-200 shadow-sm">
+                                <span class="block text-xs font-bold text-subtleGray">Shatangsho (Decimal)</span>
+                                <span id="resShatangsho" class="text-xl font-bold text-navyBlue">0.00</span>
+                            </div>
 
-                        <div class="bg-white p-3.5 rounded-xl border border-gray-200 shadow-sm">
-                            <span class="block text-xs font-bold text-subtleGray">Katha (কাঠা)</span>
-                            <span id="resKatha" class="text-xl font-bold text-navyBlue">0.00</span>
-                        </div>
+                            <div class="bg-white p-3.5 rounded-xl border border-gray-200 shadow-sm">
+                                <span class="block text-xs font-bold text-subtleGray">Katha (কাঠা)</span>
+                                <span id="resKatha" class="text-xl font-bold text-navyBlue">0.00</span>
+                            </div>
 
-                        <div class="bg-white p-3.5 rounded-xl border border-gray-200 shadow-sm">
-                            <span class="block text-xs font-bold text-subtleGray">Bigha (বিঘা)</span>
-                            <span id="resBigha" class="text-xl font-bold text-navyBlue">0.00</span>
-                        </div>
+                            <div class="bg-white p-3.5 rounded-xl border border-gray-200 shadow-sm">
+                                <span class="block text-xs font-bold text-subtleGray">Bigha (বিঘা)</span>
+                                <span id="resBigha" class="text-xl font-bold text-navyBlue">0.00</span>
+                            </div>
 
-                        <div class="bg-white p-3.5 rounded-xl border border-gray-200 shadow-sm">
-                            <span class="block text-xs font-bold text-subtleGray">Square Feet</span>
-                            <span id="resSqFt" class="text-xl font-bold text-navyBlue">0.00</span>
+                            <div class="bg-white p-3.5 rounded-xl border border-gray-200 shadow-sm">
+                                <span class="block text-xs font-bold text-subtleGray">Square Feet</span>
+                                <span id="resSqFt" class="text-xl font-bold text-navyBlue">0.00</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
         </div>
+
+        <!-- ================= PART 2: BANGLADESHI LAND UNIT CONVERTER ================= -->
+        <div class="glass-card-light rounded-3xl p-6 sm:p-10 shadow-2xl text-darkText border-2 border-azureBlue/30 space-y-8">
+            
+            <!-- Section Title -->
+            <div class="text-center border-b border-gray-200 pb-6">
+                <h2 class="font-bookAntiqua text-2xl sm:text-3xl font-bold text-navyBlue flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-vector-square text-azureBlue"></i>
+                    Part 2: Bangladeshi Land Measurement Converter (ভূমি রূপান্তরক)
+                </h2>
+                <p class="font-garamond text-base sm:text-lg text-subtleGray mt-1">
+                    Convert any land quantity across standard legal & survey units in Bangladesh
+                </p>
+            </div>
+
+            <!-- Conversion Inputs -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end bg-gray-50 p-6 rounded-2xl border border-gray-200">
+                <div>
+                    <label class="block font-bold text-navyBlue text-sm mb-1.5">Quantity to Convert</label>
+                    <input type="number" id="convertQty" value="1" min="0" step="any" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                </div>
+
+                <div>
+                    <label class="block font-bold text-navyBlue text-sm mb-1.5">Source Unit (থেকে)</label>
+                    <select id="fromUnit" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                        <option value="Shatangsho">Decimal / Shatangsho (শতাংশ / ডেসিমেল)</option>
+                        <option value="Katha">Katha (কাঠা)</option>
+                        <option value="Bigha">Bigha (বিঘা)</option>
+                        <option value="Chattak">Chattak (ছটাক)</option>
+                        <option value="SqFt">Square Feet (বর্গফুট)</option>
+                        <option value="SqYards">Square Yards / Gaz (বর্গগজ / স্কয়ার ইয়ার্ড)</option>
+                        <option value="SqMeters">Square Meters (বর্গমিটার)</option>
+                        <option value="Acre">Acre (একর)</option>
+                        <option value="SqLinks">Square Links (কড়ি / লিংক)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <button type="button" onclick="convertLandUnits()" class="w-full bg-azureBlue hover:bg-deepGreen text-white font-bold py-3 px-4 rounded-xl shadow-lg transition duration-300 flex items-center justify-center gap-2 text-base">
+                        <i class="fa-solid fa-right-left"></i> Convert Land Unit
+                    </button>
+                </div>
+            </div>
+
+            <!-- Unit Conversion Results Matrix (Revealed on button click) -->
+            <div id="convertResultsWrapper" class="hidden pt-4 border-t border-gray-200">
+                <h3 class="font-bookAntiqua text-xl font-bold text-navyBlue mb-4 text-center">
+                    Equivalent Area Across All Standard Units
+                </h3>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-4">
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-azureBlue shadow-md">
+                        <span class="block text-xs font-bold text-subtleGray uppercase">Decimal / Shatangsho</span>
+                        <span id="cDecimal" class="text-xl font-bold text-navyBlue">0.00</span>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-azureBlue shadow-md">
+                        <span class="block text-xs font-bold text-subtleGray uppercase">Katha (কাঠা)</span>
+                        <span id="cKatha" class="text-xl font-bold text-navyBlue">0.00</span>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-azureBlue shadow-md">
+                        <span class="block text-xs font-bold text-subtleGray uppercase">Bigha (বিঘা)</span>
+                        <span id="cBigha" class="text-xl font-bold text-navyBlue">0.00</span>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-navyBlue shadow-md">
+                        <span class="block text-xs font-bold text-subtleGray uppercase">Chattak (ছটাক)</span>
+                        <span id="cChattak" class="text-xl font-bold text-navyBlue">0.00</span>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-navyBlue shadow-md">
+                        <span class="block text-xs font-bold text-subtleGray uppercase">Square Feet (বর্গফুট)</span>
+                        <span id="cSqFt" class="text-xl font-bold text-navyBlue">0.00</span>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-navyBlue shadow-md">
+                        <span class="block text-xs font-bold text-subtleGray uppercase">Square Yards / Gaz (বর্গগজ)</span>
+                        <span id="cSqYards" class="text-xl font-bold text-navyBlue">0.00</span>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-deepGreen shadow-md">
+                        <span class="block text-xs font-bold text-subtleGray uppercase">Square Meters (বর্গমিটার)</span>
+                        <span id="cSqMeters" class="text-xl font-bold text-navyBlue">0.00</span>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-deepGreen shadow-md">
+                        <span class="block text-xs font-bold text-subtleGray uppercase">Acre (একর)</span>
+                        <span id="cAcre" class="text-xl font-bold text-navyBlue">0.00</span>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-deepGreen shadow-md">
+                        <span class="block text-xs font-bold text-subtleGray uppercase">Square Links (লিংক)</span>
+                        <span id="cSqLinks" class="text-xl font-bold text-navyBlue">0.00</span>
+                    </div>
+                </div>
+
+                <div class="mt-6 p-4 bg-gray-100 rounded-xl border-l-4 border-azureBlue text-xs text-subtleGray space-y-1">
+                    <p class="font-bold text-navyBlue">Bangladeshi Standard Survey Conversion Ratios Applied:</p>
+                    <p>• 1 Shatangsho (Decimal) = 435.6 Sq. Ft. = 48.4 Sq. Yards = 40.4686 Sq. Meters = 1,000 Sq. Links = 0.01 Acre.</p>
+                    <p>• 1 Katha = 1.65 Shatangsho = 720 Sq. Ft. = 16 Chattak | 1 Bigha = 20 Katha = 33 Shatangsho = 14,400 Sq. Ft.</p>
+                </div>
+            </div>
+
+        </div>
+
     </main>
 
     <!-- Main Webpage Footer -->
@@ -306,26 +414,24 @@
         populateDropdown('krantiSelect', 2);
         populateDropdown('teelSelect', 19);
 
-        // Core Calculation Function (Runs live dynamically & on button click)
-        function calculateShare() {
+        // PART 1: LAND HISSA CALCULATION (Executes ONLY when button clicked)
+        function calculateHissaShare() {
             const ana = parseInt(document.getElementById('anaSelect').value) || 0;
             const gonda = parseInt(document.getElementById('gondaSelect').value) || 0;
             const kora = parseInt(document.getElementById('koraSelect').value) || 0;
             const kranti = parseInt(document.getElementById('krantiSelect').value) || 0;
             const teel = parseInt(document.getElementById('teelSelect').value) || 0;
 
-            const totalAreaInput = parseFloat(document.getElementById('totalArea').value) || 0;
-            const selectedUnit = document.getElementById('unitSelect').value;
+            const totalAreaInput = parseFloat(document.getElementById('hissaTotalArea').value) || 0;
+            const selectedUnit = document.getElementById('hissaUnitSelect').value;
 
-            // Total Teel in 16 Ana = 76,800 Teel
+            // 16 Ana = 76,800 Teel
             const totalTeelInput = (ana * 4800) + (gonda * 240) + (kora * 60) + (kranti * 20) + teel;
-            const TOTAL_TEEL_IN_16_ANA = 76800;
+            const TOTAL_TEEL = 76800;
 
-            // Fractional Share (0.0 to 1.0)
-            const fractionalShare = totalTeelInput / TOTAL_TEEL_IN_16_ANA;
+            const fractionalShare = totalTeelInput / TOTAL_TEEL;
             document.getElementById('fractionDisplay').textContent = fractionalShare.toFixed(6);
 
-            // Convert input total area to base Shatangsho (Decimal)
             let areaInShatangsho = 0;
             if (selectedUnit === 'Shatangsho') {
                 areaInShatangsho = totalAreaInput;
@@ -337,18 +443,57 @@
                 areaInShatangsho = totalAreaInput / 435.6;
             }
 
-            // Share of land area in Shatangsho
             const calculatedShatangsho = areaInShatangsho * fractionalShare;
 
-            // Output conversions
-            document.getElementById('resShatangsho').textContent = calculatedShatangsho.toFixed(2);
-            document.getElementById('resKatha').textContent = (calculatedShatangsho / 1.65).toFixed(2);
-            document.getElementById('resBigha').textContent = (calculatedShatangsho / 33).toFixed(2);
+            document.getElementById('resShatangsho').textContent = calculatedShatangsho.toFixed(4);
+            document.getElementById('resKatha').textContent = (calculatedShatangsho / 1.65).toFixed(4);
+            document.getElementById('resBigha').textContent = (calculatedShatangsho / 33).toFixed(4);
             document.getElementById('resSqFt').textContent = (calculatedShatangsho * 435.6).toFixed(2);
+
+            document.getElementById('hissaResultsWrapper').classList.remove('hidden');
         }
 
-        // Run initial calculation on page load
-        calculateShare();
+        // PART 2: UNIT CONVERSION (Executes ONLY when button clicked)
+        function convertLandUnits() {
+            const qty = parseFloat(document.getElementById('convertQty').value) || 0;
+            const unit = document.getElementById('fromUnit').value;
+
+            // Standardize all inputs to base Shatangsho (Decimal)
+            let baseShatangsho = 0;
+
+            if (unit === 'Shatangsho') {
+                baseShatangsho = qty;
+            } else if (unit === 'Katha') {
+                baseShatangsho = qty * 1.65;
+            } else if (unit === 'Bigha') {
+                baseShatangsho = qty * 33;
+            } else if (unit === 'Chattak') {
+                baseShatangsho = (qty / 16) * 1.65;
+            } else if (unit === 'SqFt') {
+                baseShatangsho = qty / 435.6;
+            } else if (unit === 'SqYards') {
+                baseShatangsho = qty / 48.4;
+            } else if (unit === 'SqMeters') {
+                baseShatangsho = qty / 40.4686;
+            } else if (unit === 'Acre') {
+                baseShatangsho = qty * 100;
+            } else if (unit === 'SqLinks') {
+                baseShatangsho = qty / 1000;
+            }
+
+            // Calculate equivalents
+            document.getElementById('cDecimal').textContent = baseShatangsho.toFixed(4);
+            document.getElementById('cKatha').textContent = (baseShatangsho / 1.65).toFixed(4);
+            document.getElementById('cBigha').textContent = (baseShatangsho / 33).toFixed(4);
+            document.getElementById('cChattak').textContent = ((baseShatangsho / 1.65) * 16).toFixed(4);
+            document.getElementById('cSqFt').textContent = (baseShatangsho * 435.6).toFixed(2);
+            document.getElementById('cSqYards').textContent = (baseShatangsho * 48.4).toFixed(2);
+            document.getElementById('cSqMeters').textContent = (baseShatangsho * 40.4686).toFixed(2);
+            document.getElementById('cAcre').textContent = (baseShatangsho / 100).toFixed(4);
+            document.getElementById('cSqLinks').textContent = (baseShatangsho * 1000).toFixed(2);
+
+            document.getElementById('convertResultsWrapper').classList.remove('hidden');
+        }
     </script>
 </body>
 </html>

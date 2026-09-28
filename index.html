@@ -12,10 +12,17 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Firebase JS SDK Integration -->
+    <!-- Firebase JS SDK Integration with Firestore Transactions -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
+        import { 
+            getFirestore, 
+            doc, 
+            runTransaction, 
+            collection, 
+            getDocs 
+        } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyDdMJAQBOu0l5juW5ZV8q6qgY3uZ1mRQ38",
@@ -27,9 +34,76 @@
             measurementId: "G-WKWJGKd743"
         };
 
-        // Initialize Firebase & Analytics globally
+        // Initialize Firebase, Analytics, and Firestore
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
+        const db = getFirestore(app);
+
+        /**
+         * Prevents duplicate bookings using Firestore Transactions.
+         * Creates a unique document ID based on date and time slot.
+         */
+        window.bookAppointment = async function(date, timeSlot, userDetails) {
+            // Create a unique document key for the slot (e.g. "2026-10-15_14-00")
+            const formattedTime = timeSlot.replace(':', '-');
+            const bookingId = `${date}_${formattedTime}`;
+            const bookingRef = doc(db, "bookings", bookingId);
+
+            try {
+                await runTransaction(db, async (transaction) => {
+                    const bookingDoc = await transaction.get(bookingRef);
+
+                    // If slot document exists, reject booking
+                    if (bookingDoc.exists()) {
+                        throw new Error("SLOT_TAKEN");
+                    }
+
+                    // Write booking transactionally
+                    transaction.set(bookingRef, {
+                        name: userDetails.name,
+                        email: userDetails.email,
+                        phone: userDetails.phone,
+                        service: userDetails.service || "General Consultation",
+                        date: date,
+                        timeSlot: timeSlot,
+                        createdAt: new Date().toISOString()
+                    });
+                });
+
+                return { success: true };
+            } catch (error) {
+                if (error.message === "SLOT_TAKEN" || error.code === "permission-denied") {
+                    return { 
+                        success: false, 
+                        message: "This slot is already booked! Please select a different time or date." 
+                    };
+                }
+                return { 
+                    success: false, 
+                    message: "Booking failed. Please check your connection and try again." 
+                };
+            }
+        };
+
+        /**
+         * Retrieves existing booked slots for a given date to disable them in UI dropdowns/options.
+         */
+        window.getBookedSlotsForDate = async function(selectedDate) {
+            try {
+                const querySnapshot = await getDocs(collection(db, "bookings"));
+                const bookedSlots = [];
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    if (data.date === selectedDate) {
+                        bookedSlots.push(data.timeSlot);
+                    }
+                });
+                return bookedSlots;
+            } catch (err) {
+                console.error("Error fetching booked slots:", err);
+                return [];
+            }
+        };
     </script>
 
     <script>

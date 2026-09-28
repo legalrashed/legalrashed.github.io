@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bangladeshi Land Hissa Calculator | Capital Law Chamber</title>
+    <title>Bangladeshi Land Hissa Calculator | A B M Rashedul Islam</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -12,19 +12,15 @@
             theme: {
                 extend: {
                     colors: {
-                        azureBlue: '#007FFF',
-                        navyBlue: '#0A2540',
-                        deepGreen: '#0F5257',
-                        virginBlue: '#E6F2FF',
-                        softBlue: '#F0F8FF',
-                        turquoiseGreen: '#30D5C8',
-                        mintGreen: '#A2E8DD',
-                        darkText: '#1E293B',
-                        subtleGray: '#475569',
-                        softWhite: '#FAFAFA',
+                        azureBlue: '#C8102E',    /* Signature Capital Law Chamber Red */
+                        navyBlue: '#1E232A',     /* Dark Charcoal Accent */
+                        deepGreen: '#8B0000',    /* Dark Crimson Red */
+                        darkText: '#1E293B',     /* Slate Dark Text */
+                        subtleGray: '#475569',   /* Muted Text Gray */
+                        fbBlue: '#1877F2',       /* Official Facebook Blue */
                     },
                     fontFamily: {
-                        algerian: ['Algerian', 'Impact', 'Georgia', 'serif'],
+                        algerian: ['Algerian', 'Impact', 'Copperplate Gothic Bold', 'Georgia', 'serif'],
                         bookAntiqua: ['"Book Antiqua"', 'Palatino', 'Georgia', 'serif'],
                         garamond: ['Garamond', 'Georgia', 'serif'],
                         calibri: ['Calibri', 'Candara', 'Segoe UI', 'sans-serif']
@@ -34,98 +30,117 @@
         }
     </script>
     <style>
+        .font-algerian { font-family: Algerian, Impact, 'Copperplate Gothic Bold', Georgia, serif; font-style: normal !important; }
+        .font-bookAntiqua { font-family: 'Book Antiqua', Palatino, 'Palatino Linotype', Georgia, serif; font-style: normal !important; }
+        .font-garamond { font-family: Garamond, Georgia, serif; font-style: normal !important; }
+        .font-calibri { font-family: Calibri, Candara, 'Segoe UI', sans-serif; font-style: normal !important; }
+
         * { font-style: normal !important; }
-        .turquoise-mint-gradient {
-            background: linear-gradient(180deg, #30D5C8 0%, #6EE7B7 45%, #A2E8DD 80%, #E6F2FF 100%);
+
+        /* Main Webpage Continuous Gradient Background */
+        body {
+            background: linear-gradient(180deg, #1C2026 0%, #2B303A 20%, #20242B 45%, #3B0D11 75%, #4A0000 90%, #2B0000 100%) !important;
+            background-attachment: fixed;
         }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1C2026; }
+        ::-webkit-scrollbar-thumb { background: #C8102E; border-radius: 4px; }
+
+        .glass-card-light {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .photo-glow { box-shadow: 0 0 25px rgba(200, 16, 46, 0.4); }
     </style>
 </head>
-<body class="bg-softWhite font-calibri text-darkText antialiased flex flex-col min-h-screen">
+<body class="font-calibri text-white antialiased selection:bg-azureBlue selection:text-white flex flex-col min-h-screen">
 
-    <!-- Top Header Bar (Full bar acts as back-to-main link) -->
-    <header class="bg-navyBlue border-b-2 border-turquoiseGreen">
-        <a href="index.html" class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between hover:bg-white/5 transition group cursor-pointer block">
-            <div class="flex items-center gap-3">
+    <!-- Top Profile Section linking back to index.html -->
+    <header class="py-8 px-4 text-center">
+        <a href="index.html" class="inline-flex flex-col items-center group transition transform hover:scale-105">
+            <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1.5 bg-gradient-to-tr from-navyBlue via-azureBlue to-deepGreen photo-glow mb-3">
                 <img 
                     src="profile.jpg.png" 
-                    alt="Profile" 
-                    class="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm"
-                    onerror="this.onerror=null; this.src='https://placehold.co/100x100/0A2540/FFFFFF?text=ABM';"
+                    alt="A B M Rashedul Islam" 
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x400/C8102E/FFFFFF?text=A+B+M+Rashedul+Islam';"
+                    class="w-full h-full object-cover rounded-full border-2 border-white shadow-md"
                 />
-                <div>
-                    <h1 class="font-algerian text-lg sm:text-xl font-bold text-white tracking-wide group-hover:text-emerald-400 transition">
-                        CAPITAL LAW CHAMBER
-                    </h1>
-                    <p class="font-garamond text-xs sm:text-sm text-gray-300">
-                        A B M Rashedul Islam | Associate Lawyer
-                    </p>
-                </div>
             </div>
+            <h1 class="font-bookAntiqua text-2xl sm:text-3xl font-bold text-white tracking-wide group-hover:text-red-300 transition">
+                A B M RASHEDUL ISLAM
+            </h1>
+            <p class="font-garamond text-lg text-red-400 font-semibold">Associate Lawyer • Capital Law Chamber</p>
         </a>
     </header>
 
-    <main class="turquoise-mint-gradient flex-grow py-10 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-5xl mx-auto space-y-8">
+    <main class="flex-grow max-w-5xl w-full mx-auto px-4 pb-16">
+        <div class="glass-card-light rounded-3xl p-6 sm:p-10 shadow-2xl text-darkText border-2 border-azureBlue/30 space-y-8">
             
             <!-- Page Title -->
-            <div class="text-center">
-                <h2 class="font-bookAntiqua text-3xl sm:text-4xl font-bold text-navyBlue flex items-center justify-center gap-3">
-                    <i class="fa-solid fa-scale-balanced text-deepGreen"></i>
+            <div class="text-center border-b border-gray-200 pb-6">
+                <h2 class="font-bookAntiqua text-2xl sm:text-3xl font-bold text-navyBlue flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-scale-balanced text-azureBlue"></i>
                     Bangladeshi Land Hissa Calculator (আনা-গণ্ডা হিসাব)
                 </h2>
+                <p class="font-garamond text-base sm:text-lg text-subtleGray mt-1">
+                    Dynamic 16-Ana Land Share & Record Area Conversion Utility
+                </p>
             </div>
 
             <!-- Input Form Card -->
-            <div class="bg-white/95 backdrop-blur-md rounded-2xl shadow-xl p-6 border border-white/80 space-y-6">
+            <div class="space-y-6">
                 
                 <!-- Dropdown Menus for Ana, Gonda, Kora, Kranti, Teel -->
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
                     <div>
                         <label class="block font-bold text-navyBlue text-sm mb-1.5">Ana (আনা)</label>
-                        <select id="anaSelect" class="w-full p-2.5 bg-softWhite border-2 border-gray-200 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
-                            <!-- Options 0 to 16 generated by JS -->
+                        <select id="anaSelect" onchange="calculateShare()" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <!-- Options 0 to 16 -->
                         </select>
                     </div>
 
                     <div>
                         <label class="block font-bold text-navyBlue text-sm mb-1.5">Gonda (গণ্ডা)</label>
-                        <select id="gondaSelect" class="w-full p-2.5 bg-softWhite border-2 border-gray-200 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
-                            <!-- Options 0 to 19 generated by JS -->
+                        <select id="gondaSelect" onchange="calculateShare()" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <!-- Options 0 to 19 -->
                         </select>
                     </div>
 
                     <div>
                         <label class="block font-bold text-navyBlue text-sm mb-1.5">Kora (কড়া)</label>
-                        <select id="koraSelect" class="w-full p-2.5 bg-softWhite border-2 border-gray-200 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
-                            <!-- Options 0 to 3 generated by JS -->
+                        <select id="koraSelect" onchange="calculateShare()" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <!-- Options 0 to 3 -->
                         </select>
                     </div>
 
                     <div>
                         <label class="block font-bold text-navyBlue text-sm mb-1.5">Kranti (ক্রান্তি)</label>
-                        <select id="krantiSelect" class="w-full p-2.5 bg-softWhite border-2 border-gray-200 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
-                            <!-- Options 0 to 2 generated by JS -->
+                        <select id="krantiSelect" onchange="calculateShare()" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <!-- Options 0 to 2 -->
                         </select>
                     </div>
 
                     <div>
                         <label class="block font-bold text-navyBlue text-sm mb-1.5">Teel (তিল)</label>
-                        <select id="teelSelect" class="w-full p-2.5 bg-softWhite border-2 border-gray-200 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
-                            <!-- Options 0 to 19 generated by JS -->
+                        <select id="teelSelect" onchange="calculateShare()" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <!-- Options 0 to 19 -->
                         </select>
                     </div>
                 </div>
 
                 <!-- Total Land Area Input & Unit Selector -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end pt-2 border-t border-gray-100">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end pt-4 border-t border-gray-200">
                     <div class="md:col-span-1">
                         <label class="block font-bold text-navyBlue text-sm mb-1.5">Total Land Area</label>
-                        <input type="number" id="totalArea" value="100" min="0" step="any" class="w-full p-2.5 bg-softWhite border-2 border-gray-200 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                        <input type="number" id="totalArea" value="100" min="0" step="any" oninput="calculateShare()" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
                     </div>
 
                     <div class="md:col-span-1">
                         <label class="block font-bold text-navyBlue text-sm mb-1.5">Area Unit</label>
-                        <select id="unitSelect" class="w-full p-2.5 bg-softWhite border-2 border-gray-200 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                        <select id="unitSelect" onchange="calculateShare()" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
                             <option value="Shatangsho">Shatangsho / Decimal (শতাংশ)</option>
                             <option value="Katha">Katha (কাঠা)</option>
                             <option value="Bigha">Bigha (বিঘা)</option>
@@ -133,9 +148,9 @@
                         </select>
                     </div>
 
-                    <!-- Single Calculation Trigger Button -->
+                    <!-- Calculation Button -->
                     <div class="md:col-span-1">
-                        <button type="button" id="calcBtn" onclick="calculateShare()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-4 rounded-xl shadow-md transition flex items-center justify-center gap-2 text-base">
+                        <button type="button" id="calcBtn" onclick="calculateShare()" class="w-full bg-azureBlue hover:bg-deepGreen text-white font-bold py-3 px-4 rounded-xl shadow-lg transition duration-300 flex items-center justify-center gap-2 text-base">
                             <i class="fa-solid fa-calculator"></i> Calculate Share
                         </button>
                     </div>
@@ -143,40 +158,40 @@
 
             </div>
 
-            <!-- Results Display Section -->
+            <!-- Dynamic Results Display Section -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Fractional Share Card -->
-                <div class="bg-navyBlue text-white p-6 rounded-2xl shadow-xl flex flex-col justify-between">
+                <div class="bg-navyBlue text-white p-6 rounded-2xl shadow-xl flex flex-col justify-between border-l-4 border-azureBlue">
                     <div>
-                        <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">FRACTIONAL SHARE (হিস্যা)</span>
+                        <span class="text-xs font-bold text-red-400 uppercase tracking-wider">FRACTIONAL SHARE (হিস্যা)</span>
                         <div id="fractionDisplay" class="text-3xl font-bold mt-2 font-mono text-white">0.000000</div>
                         <p class="text-xs text-gray-300 mt-1">Out of 1.000000 (Full 16 Ana)</p>
                     </div>
                 </div>
 
                 <!-- Calculated Area Results Grid -->
-                <div class="md:col-span-2 bg-white/95 backdrop-blur-md p-6 rounded-2xl shadow-xl border border-white/80">
+                <div class="md:col-span-2 bg-gray-50 p-6 rounded-2xl shadow-md border border-gray-200">
                     <h3 class="font-bookAntiqua text-lg font-bold text-navyBlue mb-4 flex items-center gap-2">
                         <i class="fa-solid fa-chart-pie text-azureBlue"></i> Calculated Share of Specified Land Area
                     </h3>
 
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                        <div class="bg-softBlue p-3 rounded-xl border border-azureBlue/20">
+                        <div class="bg-white p-3.5 rounded-xl border border-gray-200 shadow-sm">
                             <span class="block text-xs font-bold text-subtleGray">Shatangsho (Decimal)</span>
                             <span id="resShatangsho" class="text-xl font-bold text-navyBlue">0.00</span>
                         </div>
 
-                        <div class="bg-softBlue p-3 rounded-xl border border-azureBlue/20">
+                        <div class="bg-white p-3.5 rounded-xl border border-gray-200 shadow-sm">
                             <span class="block text-xs font-bold text-subtleGray">Katha (কাঠা)</span>
                             <span id="resKatha" class="text-xl font-bold text-navyBlue">0.00</span>
                         </div>
 
-                        <div class="bg-softBlue p-3 rounded-xl border border-azureBlue/20">
+                        <div class="bg-white p-3.5 rounded-xl border border-gray-200 shadow-sm">
                             <span class="block text-xs font-bold text-subtleGray">Bigha (বিঘা)</span>
                             <span id="resBigha" class="text-xl font-bold text-navyBlue">0.00</span>
                         </div>
 
-                        <div class="bg-softBlue p-3 rounded-xl border border-azureBlue/20">
+                        <div class="bg-white p-3.5 rounded-xl border border-gray-200 shadow-sm">
                             <span class="block text-xs font-bold text-subtleGray">Square Feet</span>
                             <span id="resSqFt" class="text-xl font-bold text-navyBlue">0.00</span>
                         </div>
@@ -187,7 +202,92 @@
         </div>
     </main>
 
+    <!-- Main Webpage Footer -->
+    <footer id="contact" class="bg-transparent text-white pt-16 pb-12 border-t border-red-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                
+                <!-- Footer Col 1 -->
+                <div>
+                    <h3 class="font-algerian text-xl text-white mb-2">CAPITAL LAW CHAMBER</h3>
+                    <p class="font-bookAntiqua text-lg font-bold text-white mb-1">A B M RASHEDUL ISLAM</p>
+                    <p class="font-garamond text-base text-gray-200 mb-4">Associate Lawyer</p>
+                    <div class="flex space-x-3">
+                        <a href="https://www.facebook.com/rd.L.islam" target="_blank" aria-label="Facebook Profile" class="w-10 h-10 rounded-full bg-fbBlue text-white flex items-center justify-center hover:opacity-90 transition shadow-sm">
+                            <i class="fa-brands fa-facebook-f text-lg"></i>
+                        </a>
+                        <a href="https://wa.me/8801755712215" target="_blank" aria-label="WhatsApp" class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center hover:bg-emerald-500 transition shadow-sm">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                        </a>
+                        <a href="mailto:rashed.legalhq@gmail.com" aria-label="Email" class="w-10 h-10 rounded-full bg-white text-navyBlue flex items-center justify-center hover:bg-azureBlue hover:text-white transition shadow-sm">
+                            <i class="fa-regular fa-envelope text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Footer Col 2 -->
+                <div>
+                    <h4 class="font-bookAntiqua text-lg font-bold text-white mb-4">Chamber Location</h4>
+                    <div class="font-calibri text-sm text-gray-200 space-y-2 leading-relaxed">
+                        <p class="font-bold text-white">Capital Law Chamber</p>
+                        <p class="flex items-start gap-2">
+                            <i class="fa-solid fa-location-dot text-white mt-1"></i>
+                            <span>House No.15, Road No.128,<br>Gulshan-1, Dhaka-1212,<br>Bangladesh</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Footer Col 3 -->
+                <div>
+                    <h4 class="font-bookAntiqua text-lg font-bold text-white mb-4">Direct Contact</h4>
+                    <ul class="font-calibri text-sm text-gray-200 space-y-3">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-phone text-emerald-300"></i>
+                            <a href="tel:01755712215" class="hover:underline transition font-bold">01755712215</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-300"></i>
+                            <a href="https://wa.me/8801755712215" target="_blank" class="hover:underline transition font-bold">01755712215 (WhatsApp)</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-regular fa-envelope text-white"></i>
+                            <a href="mailto:rashed.legalhq@gmail.com" class="hover:underline transition">rashed.legalhq@gmail.com</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-brands fa-facebook text-fbBlue text-base"></i>
+                            <a href="https://www.facebook.com/rd.L.islam" target="_blank" class="hover:text-fbBlue transition truncate font-bold text-white">facebook.com/rd.L.islam</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Footer Col 4 -->
+                <div>
+                    <h4 class="font-bookAntiqua text-lg font-bold text-white mb-4">Chamber Hours</h4>
+                    <ul class="font-calibri text-sm text-gray-200 space-y-2">
+                        <li class="flex justify-between border-b border-red-900/60 pb-1">
+                            <span>Sat - Thu:</span>
+                            <span class="font-bold text-white">10:00 AM - 08:00 PM</span>
+                        </li>
+                        <li class="flex justify-between text-gray-300">
+                            <span>Friday:</span>
+                            <span>Closed / By Appt.</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Copyright Bar -->
+            <div class="border-t border-red-900/60 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-300 font-calibri">
+                <p>&copy; <span id="currentYear"></span> A B M Rashedul Islam. Associate Lawyer, Capital Law Chamber. All Rights Reserved.</p>
+                <p class="mt-2 md:mt-0 text-gray-300">Gulshan-1, Dhaka-1212, Bangladesh</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
         // Populate dropdown options programmatically
         function populateDropdown(id, max) {
             const select = document.getElementById(id);
@@ -206,7 +306,7 @@
         populateDropdown('krantiSelect', 2);
         populateDropdown('teelSelect', 19);
 
-        // Core Calculation Function (Runs ONLY on button click)
+        // Core Calculation Function (Runs live dynamically & on button click)
         function calculateShare() {
             const ana = parseInt(document.getElementById('anaSelect').value) || 0;
             const gonda = parseInt(document.getElementById('gondaSelect').value) || 0;
@@ -246,6 +346,9 @@
             document.getElementById('resBigha').textContent = (calculatedShatangsho / 33).toFixed(2);
             document.getElementById('resSqFt').textContent = (calculatedShatangsho * 435.6).toFixed(2);
         }
+
+        // Run initial calculation on page load
+        calculateShare();
     </script>
 </body>
 </html>

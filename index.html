@@ -49,29 +49,18 @@
         .font-calibri { font-family: Calibri, Candara, 'Segoe UI', sans-serif; font-style: normal !important; }
 
         /* Universal strict non-italic policy */
-        * {
-            font-style: normal !important;
-        }
+        * { font-style: normal !important; }
 
-        /* Continuous Full Page Gradient: Dark Cloud Gray (Top) to Dark Bloody Red (Bottom) */
+        /* Continuous Full Page Gradient */
         body {
             background: linear-gradient(180deg, #1C2026 0%, #2B303A 20%, #20242B 45%, #3B0D11 75%, #4A0000 90%, #2B0000 100%) !important;
             background-attachment: fixed;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1C2026;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #C8102E;
-            border-radius: 4px;
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1C2026; }
+        ::-webkit-scrollbar-thumb { background: #C8102E; border-radius: 4px; }
 
-        /* Glassmorphism Cards configured for dark gradient background */
         .glass-card-light {
             background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(12px);
@@ -84,7 +73,6 @@
             border: 1px solid rgba(200, 16, 46, 0.3);
         }
 
-        /* Red and Dark Charcoal Mixed Border for Nav Bar */
         .dark-blue-green-border {
             border: 3px solid transparent;
             background-image: linear-gradient(white, white), linear-gradient(135deg, #C8102E 0%, #1E232A 50%, #8B0000 100%);
@@ -92,26 +80,20 @@
             background-clip: padding-box, border-box;
         }
 
-        .photo-glow {
-            box-shadow: 0 0 35px rgba(200, 16, 46, 0.4);
-        }
+        .photo-glow { box-shadow: 0 0 35px rgba(200, 16, 46, 0.4); }
     </style>
 </head>
 <body class="font-calibri text-white antialiased selection:bg-azureBlue selection:text-white flex flex-col min-h-screen">
 
     <header class="relative w-full z-40">
-        <!-- Top Banner: CAPITAL LAW CHAMBER on Signature Red Background -->
         <div class="bg-azureBlue py-4 sm:py-6 px-4 text-center shadow-lg">
             <h1 class="font-algerian text-2xl sm:text-4xl md:text-5xl font-bold text-white tracking-widest drop-shadow-sm">
                 CAPITAL LAW CHAMBER
             </h1>
         </div>
 
-        <!-- Navigation Row directly underneath -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-2 mb-2 relative z-10">
             <nav class="w-full max-w-7xl mx-auto dark-blue-green-border rounded-2xl shadow-xl p-3 sm:p-4 bg-white flex items-center justify-between gap-3 text-darkText">
-                
-                <!-- Brand Badge -->
                 <div class="flex items-center gap-2 pl-2">
                     <div class="w-8 h-8 rounded-full bg-azureBlue text-white flex items-center justify-center font-bookAntiqua font-bold text-sm">
                         ABM
@@ -121,34 +103,30 @@
                     </span>
                 </div>
 
-                <!-- Mobile Hamburger Toggle Button -->
                 <button id="mobileMenuBtn" aria-label="Toggle navigation" class="md:hidden text-navyBlue text-2xl focus:outline-none p-1">
                     <i class="fa-solid fa-bars"></i>
                 </button>
 
-                <!-- Desktop Nav Links -->
                 <div class="hidden md:flex items-center space-x-1 lg:space-x-3 font-calibri text-base font-bold">
                     <a href="#home" class="px-2.5 py-1.5 rounded-lg text-navyBlue hover:bg-virginBlue transition">Home</a>
                     <a href="gallery.html" class="px-2.5 py-1.5 rounded-lg text-navyBlue hover:bg-virginBlue transition">Gallery</a>
                     <a href="#about" class="px-2.5 py-1.5 rounded-lg text-navyBlue hover:bg-virginBlue transition">About</a>
                     <a href="#services" class="px-2.5 py-1.5 rounded-lg text-navyBlue hover:bg-virginBlue transition">Practice Areas</a>
                     <a href="#experience" class="px-2.5 py-1.5 rounded-lg text-navyBlue hover:bg-virginBlue transition">Experience</a>
-                    <a href="#booking" class="px-2.5 py-1.5 rounded-lg text-navyBlue hover:bg-virginBlue transition">Appointment</a>
+                    <a href="booking.html" class="px-2.5 py-1.5 rounded-lg bg-azureBlue text-white transition">Appointment</a>
                     <a href="#contact" class="px-2.5 py-1.5 rounded-lg text-navyBlue hover:bg-virginBlue transition">Contact</a>
                     <a href="calculator.html" class="px-2.5 py-1.5 rounded-lg text-navyBlue hover:bg-virginBlue transition">Land Calculator</a>
                     <a href="succession_calculator.html" class="px-2.5 py-1.5 rounded-lg text-navyBlue hover:bg-virginBlue transition">Succession Calculator</a>
                 </div>
-
             </nav>
 
-            <!-- Mobile Dropdown Menu -->
             <div id="mobileMenu" class="hidden md:hidden bg-white text-navyBlue rounded-xl p-4 shadow-xl border border-navyBlue/20 mt-2 space-y-2 font-calibri font-bold">
                 <a href="#home" class="block py-2 px-3 hover:bg-virginBlue rounded-lg">Home</a>
                 <a href="gallery.html" class="block py-2 px-3 hover:bg-virginBlue rounded-lg">Gallery</a>
                 <a href="#about" class="block py-2 px-3 hover:bg-virginBlue rounded-lg">About</a>
                 <a href="#services" class="block py-2 px-3 hover:bg-virginBlue rounded-lg">Practice Areas</a>
                 <a href="#experience" class="block py-2 px-3 hover:bg-virginBlue rounded-lg">Experience</a>
-                <a href="#booking" class="block py-2 px-3 hover:bg-virginBlue rounded-lg">Appointment</a>
+                <a href="booking.html" class="block py-2 px-3 bg-azureBlue text-white rounded-lg">Appointment</a>
                 <a href="#contact" class="block py-2 px-3 hover:bg-virginBlue rounded-lg">Contact</a>
                 <a href="calculator.html" class="block py-2 px-3 hover:bg-virginBlue rounded-lg">Land Calculator</a>
                 <a href="succession_calculator.html" class="block py-2 px-3 hover:bg-virginBlue rounded-lg">Succession Calculator</a>
@@ -157,12 +135,9 @@
     </header>
 
     <main class="flex-grow">
-        
         <!-- Hero Section -->
         <section id="home" class="py-12 sm:py-16 px-4">
             <div class="max-w-4xl mx-auto text-center flex flex-col items-center">
-                
-                <!-- Centered Profile Photo Frame -->
                 <div class="relative mb-6">
                     <div class="w-48 h-48 sm:w-56 sm:h-56 md:w-60 md:h-60 rounded-full p-2 bg-gradient-to-tr from-navyBlue via-azureBlue to-deepGreen photo-glow transition duration-300">
                         <img 
@@ -173,35 +148,30 @@
                             class="w-full h-full object-cover rounded-full border-4 border-white shadow-inner"
                         />
                     </div>
-                    <!-- Status Badge -->
                     <div class="absolute bottom-2 right-2 bg-white text-navyBlue text-xs font-calibri font-bold px-3 py-1.5 rounded-full border border-navyBlue/20 shadow-md flex items-center gap-1.5">
                         <span class="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse"></span> Capital Law Chamber
                     </div>
                 </div>
 
-                <!-- Lawyer Name -->
                 <h1 class="font-bookAntiqua text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2 tracking-wide drop-shadow">
                     A B M RASHEDUL ISLAM
                 </h1>
 
-                <!-- Position -->
                 <h2 class="font-garamond text-xl sm:text-2xl md:text-3xl font-bold text-red-400 mb-4">
                     Associate Lawyer
                 </h2>
 
-                <!-- Subtitle Card -->
                 <div class="glass-card-light rounded-2xl p-4 sm:p-6 max-w-2xl mb-8 shadow-md text-darkText">
                     <p class="font-garamond text-lg sm:text-xl leading-relaxed font-semibold">
                         Providing dedicated legal research, document vetting, corporate advisory, and case preparation at Capital Law Chamber, Gulshan-1, Dhaka.
                     </p>
                 </div>
 
-                <!-- Contact Callout Buttons -->
                 <div class="flex flex-wrap gap-4 justify-center font-calibri">
                     <a href="https://wa.me/8801755712215" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-7 py-3 rounded-xl shadow-md hover:shadow-lg transition flex items-center gap-2 text-base">
                         <i class="fa-brands fa-whatsapp text-lg"></i> Direct WhatsApp
                     </a>
-                    <a href="#booking" class="bg-azureBlue hover:bg-deepGreen text-white font-bold px-7 py-3 rounded-xl shadow-md hover:shadow-lg transition flex items-center gap-2 text-base">
+                    <a href="booking.html" class="bg-azureBlue hover:bg-deepGreen text-white font-bold px-7 py-3 rounded-xl shadow-md hover:shadow-lg transition flex items-center gap-2 text-base">
                         <i class="fa-regular fa-calendar-check"></i> Book Consultation
                     </a>
                     <a href="mailto:rashed.legalhq@gmail.com" class="bg-white hover:bg-virginBlue text-navyBlue font-bold border-2 border-azureBlue/30 px-7 py-3 rounded-xl shadow-sm transition flex items-center gap-2 text-base">
@@ -225,7 +195,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-darkText">
-                    <!-- About Card 1 -->
                     <div class="glass-card-light rounded-2xl p-6 shadow-md hover:shadow-lg transition border-t-4 border-azureBlue">
                         <div class="w-12 h-12 rounded-xl bg-azureBlue text-white flex items-center justify-center text-xl mb-4">
                             <i class="fa-solid fa-scale-balanced"></i>
@@ -236,7 +205,6 @@
                         </p>
                     </div>
 
-                    <!-- About Card 2 -->
                     <div class="glass-card-light rounded-2xl p-6 shadow-md hover:shadow-lg transition border-t-4 border-navyBlue">
                         <div class="w-12 h-12 rounded-xl bg-navyBlue text-white flex items-center justify-center text-xl mb-4">
                             <i class="fa-solid fa-file-contract"></i>
@@ -247,7 +215,6 @@
                         </p>
                     </div>
 
-                    <!-- About Card 3 -->
                     <div class="glass-card-light rounded-2xl p-6 shadow-md hover:shadow-lg transition border-t-4 border-deepGreen">
                         <div class="w-12 h-12 rounded-xl bg-deepGreen text-white flex items-center justify-center text-xl mb-4">
                             <i class="fa-solid fa-handshake"></i>
@@ -275,7 +242,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-darkText">
-                    <!-- Practice Card 1 -->
                     <div class="glass-card-light rounded-2xl p-6 shadow-md hover:shadow-xl transition flex flex-col justify-between group">
                         <div>
                             <div class="w-12 h-12 rounded-xl bg-azureBlue text-white flex items-center justify-center text-xl mb-4 group-hover:bg-deepGreen transition">
@@ -286,12 +252,11 @@
                                 Drafting partnership deeds, commercial contracts, legal notices, NDAs, and corporate resolutions.
                             </p>
                         </div>
-                        <a href="#booking" onclick="selectService('Legal Drafting')" class="font-calibri text-sm font-bold text-azureBlue hover:text-navyBlue inline-flex items-center gap-1.5 pt-3 border-t border-gray-200">
+                        <a href="booking.html?service=Drafting" class="font-calibri text-sm font-bold text-azureBlue hover:text-navyBlue inline-flex items-center gap-1.5 pt-3 border-t border-gray-200">
                             Book Slot <i class="fa-solid fa-chevron-right text-xs"></i>
                         </a>
                     </div>
 
-                    <!-- Practice Card 2 -->
                     <div class="glass-card-light rounded-2xl p-6 shadow-md hover:shadow-xl transition flex flex-col justify-between group">
                         <div>
                             <div class="w-12 h-12 rounded-xl bg-navyBlue text-white flex items-center justify-center text-xl mb-4 group-hover:bg-azureBlue transition">
@@ -302,12 +267,11 @@
                                 Thorough legal audit and review of agreements to eliminate risks and ensure legal enforceability.
                             </p>
                         </div>
-                        <a href="#booking" onclick="selectService('Document Vetting')" class="font-calibri text-sm font-bold text-azureBlue hover:text-navyBlue inline-flex items-center gap-1.5 pt-3 border-t border-gray-200">
+                        <a href="booking.html?service=Vetting" class="font-calibri text-sm font-bold text-azureBlue hover:text-navyBlue inline-flex items-center gap-1.5 pt-3 border-t border-gray-200">
                             Book Slot <i class="fa-solid fa-chevron-right text-xs"></i>
                         </a>
                     </div>
 
-                    <!-- Practice Card 3 -->
                     <div class="glass-card-light rounded-2xl p-6 shadow-md hover:shadow-xl transition flex flex-col justify-between group">
                         <div>
                             <div class="w-12 h-12 rounded-xl bg-deepGreen text-white flex items-center justify-center text-xl mb-4 group-hover:bg-azureBlue transition">
@@ -318,12 +282,11 @@
                                 Land title verification, mutation document review, deed registration, and real estate litigation support.
                             </p>
                         </div>
-                        <a href="#booking" onclick="selectService('Land & Property Law')" class="font-calibri text-sm font-bold text-azureBlue hover:text-navyBlue inline-flex items-center gap-1.5 pt-3 border-t border-gray-200">
+                        <a href="booking.html?service=Land" class="font-calibri text-sm font-bold text-azureBlue hover:text-navyBlue inline-flex items-center gap-1.5 pt-3 border-t border-gray-200">
                             Book Slot <i class="fa-solid fa-chevron-right text-xs"></i>
                         </a>
                     </div>
 
-                    <!-- Practice Card 4 -->
                     <div class="glass-card-light rounded-2xl p-6 shadow-md hover:shadow-xl transition flex flex-col justify-between group">
                         <div>
                             <div class="w-12 h-12 rounded-xl bg-azureBlue text-white flex items-center justify-center text-xl mb-4 group-hover:bg-navyBlue transition">
@@ -334,7 +297,7 @@
                                 Business formation, statutory compliance, trade license processing, and general corporate legal advice.
                             </p>
                         </div>
-                        <a href="#booking" onclick="selectService('Corporate Advisory')" class="font-calibri text-sm font-bold text-azureBlue hover:text-navyBlue inline-flex items-center gap-1.5 pt-3 border-t border-gray-200">
+                        <a href="booking.html?service=Corporate" class="font-calibri text-sm font-bold text-azureBlue hover:text-navyBlue inline-flex items-center gap-1.5 pt-3 border-t border-gray-200">
                             Book Slot <i class="fa-solid fa-chevron-right text-xs"></i>
                         </a>
                     </div>
@@ -385,125 +348,16 @@
             </div>
         </section>
 
-        <!-- Reservation Panel Section -->
-        <section id="booking" class="py-16 px-4 sm:px-6 lg:px-8">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-10">
-                    <h2 class="font-bookAntiqua text-3xl sm:text-4xl font-bold text-white mb-2 drop-shadow-sm">
-                        RESERVATION & SCHEDULE PANEL
-                    </h2>
-                    <p class="font-garamond text-xl text-red-100">
-                        Schedule a direct consultation with A B M Rashedul Islam
-                    </p>
-                    <div class="w-24 h-1 bg-azureBlue mx-auto mt-3 rounded-full"></div>
-                </div>
-
-                <div class="bg-white rounded-3xl shadow-2xl border-2 border-azureBlue/30 overflow-hidden text-darkText">
-                    <div class="p-6 sm:p-10">
-                        <form id="bookingForm" onsubmit="handleBookingSubmit(event)" class="space-y-6">
-                            
-                            <!-- Step 1: Select Service -->
-                            <div>
-                                <label class="block font-bookAntiqua text-lg font-bold text-navyBlue mb-2 flex items-center gap-2">
-                                    <span class="w-7 h-7 rounded-full bg-azureBlue text-white text-sm flex items-center justify-center font-calibri">1</span>
-                                    Select Practice Area / Legal Service
-                                </label>
-                                <select id="serviceSelect" required class="w-full font-calibri p-3.5 border-2 border-gray-200 rounded-xl focus:border-azureBlue bg-[#F3F4F6] outline-none transition text-base">
-                                    <option value="" disabled selected>Choose a legal service...</option>
-                                    <option value="Legal Drafting">Legal Drafting Consultation</option>
-                                    <option value="Document Vetting">Document Vetting & Legal Audit</option>
-                                    <option value="Land & Property Law">Land & Property Law Advisory</option>
-                                    <option value="Corporate Advisory">Corporate & Business Legal Advisory</option>
-                                </select>
-                            </div>
-
-                            <!-- Step 2: Date & Available Time Slot -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label class="block font-bookAntiqua text-lg font-bold text-navyBlue mb-2 flex items-center gap-2">
-                                        <span class="w-7 h-7 rounded-full bg-azureBlue text-white text-sm flex items-center justify-center font-calibri">2</span>
-                                        Select Appointment Date
-                                    </label>
-                                    <input type="date" id="bookingDate" required class="w-full font-calibri p-3.5 border-2 border-gray-200 rounded-xl focus:border-azureBlue bg-[#F3F4F6] outline-none transition text-base">
-                                </div>
-
-                                <div>
-                                    <label class="block font-bookAntiqua text-lg font-bold text-navyBlue mb-2 flex items-center gap-2">
-                                        <span class="w-7 h-7 rounded-full bg-azureBlue text-white text-sm flex items-center justify-center font-calibri">3</span>
-                                        Available Time Slot
-                                    </label>
-                                    <div id="timeSlotsContainer" class="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                                        <button type="button" onclick="selectTimeSlot(this)" class="time-slot p-2.5 text-xs sm:text-sm font-bold rounded-lg border-2 border-gray-200 text-navyBlue hover:border-azureBlue hover:bg-virginBlue transition text-center">10:00 AM</button>
-                                        <button type="button" onclick="selectTimeSlot(this)" class="time-slot p-2.5 text-xs sm:text-sm font-bold rounded-lg border-2 border-gray-200 text-navyBlue hover:border-azureBlue hover:bg-virginBlue transition text-center">11:30 AM</button>
-                                        <button type="button" onclick="selectTimeSlot(this)" class="time-slot p-2.5 text-xs sm:text-sm font-bold rounded-lg border-2 border-gray-200 text-navyBlue hover:border-azureBlue hover:bg-virginBlue transition text-center">02:30 PM</button>
-                                        <button type="button" onclick="selectTimeSlot(this)" class="time-slot p-2.5 text-xs sm:text-sm font-bold rounded-lg border-2 border-gray-200 text-navyBlue hover:border-azureBlue hover:bg-virginBlue transition text-center">04:00 PM</button>
-                                        <button type="button" onclick="selectTimeSlot(this)" class="time-slot p-2.5 text-xs sm:text-sm font-bold rounded-lg border-2 border-gray-200 text-navyBlue hover:border-azureBlue hover:bg-virginBlue transition text-center">05:30 PM</button>
-                                        <button type="button" onclick="selectTimeSlot(this)" class="time-slot p-2.5 text-xs sm:text-sm font-bold rounded-lg border-2 border-gray-200 text-navyBlue hover:border-azureBlue hover:bg-virginBlue transition text-center">07:00 PM</button>
-                                    </div>
-                                    <input type="hidden" id="selectedTime" required>
-                                    <p id="timeSlotError" class="hidden text-red-500 font-bold text-xs mt-2">Please tap one of the time slots above.</p>
-                                </div>
-                            </div>
-
-                            <!-- Step 3: Client Details -->
-                            <div class="border-t border-gray-100 pt-6">
-                                <label class="block font-bookAntiqua text-lg font-bold text-navyBlue mb-4 flex items-center gap-2">
-                                    <span class="w-7 h-7 rounded-full bg-azureBlue text-white text-sm flex items-center justify-center font-calibri">4</span>
-                                    Your Information
-                                </label>
-
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Full Name</label>
-                                        <input type="text" id="clientName" required placeholder="Enter your name" class="w-full font-calibri p-3 border-2 border-gray-200 rounded-lg focus:border-azureBlue outline-none">
-                                    </div>
-                                    <div>
-                                        <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Email Address</label>
-                                        <input type="email" id="clientEmail" required placeholder="your.email@example.com" class="w-full font-calibri p-3 border-2 border-gray-200 rounded-lg focus:border-azureBlue outline-none">
-                                    </div>
-                                    <div class="md:col-span-2">
-                                        <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Contact / WhatsApp Number</label>
-                                        <input type="tel" id="clientPhone" required placeholder="017xxxxxxxx" class="w-full font-calibri p-3 border-2 border-gray-200 rounded-lg focus:border-azureBlue outline-none">
-                                    </div>
-                                    <div class="md:col-span-2">
-                                        <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Brief Description of Legal Matter (Optional)</label>
-                                        <textarea id="clientNotes" rows="3" placeholder="Provide a brief summary of your legal inquiry..." class="w-full font-calibri p-3 border-2 border-gray-200 rounded-lg focus:border-azureBlue outline-none"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Submit Button -->
-                            <div>
-                                <button type="submit" class="w-full bg-azureBlue hover:bg-deepGreen text-white font-calibri font-bold text-lg py-4 rounded-xl shadow-lg transition duration-300 flex items-center justify-center gap-2">
-                                    <i class="fa-regular fa-paper-plane"></i> Confirm Consultation Request
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-
     </main>
 
-    <!-- Footer at the bloody red end of the full page gradient -->
     <footer id="contact" class="bg-transparent text-white pt-16 pb-12 border-t border-red-900/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-                
-                <!-- Footer Col 1: Identity & Facebook Profile -->
                 <div>
-                    <h3 class="font-algerian text-xl text-white mb-2">
-                        CAPITAL LAW CHAMBER
-                    </h3>
-                    <p class="font-bookAntiqua text-lg font-bold text-white mb-1">
-                        A B M RASHEDUL ISLAM
-                    </p>
-                    <p class="font-garamond text-base text-gray-200 mb-4">
-                        Associate Lawyer
-                    </p>
+                    <h3 class="font-algerian text-xl text-white mb-2">CAPITAL LAW CHAMBER</h3>
+                    <p class="font-bookAntiqua text-lg font-bold text-white mb-1">A B M RASHEDUL ISLAM</p>
+                    <p class="font-garamond text-base text-gray-200 mb-4">Associate Lawyer</p>
                     <div class="flex space-x-3">
-                        <!-- Official Facebook Blue Icon Container -->
                         <a href="https://www.facebook.com/rd.L.islam" target="_blank" aria-label="Facebook Profile" class="w-10 h-10 rounded-full bg-fbBlue text-white flex items-center justify-center hover:opacity-90 transition shadow-sm">
                             <i class="fa-brands fa-facebook-f text-lg"></i>
                         </a>
@@ -516,7 +370,6 @@
                     </div>
                 </div>
 
-                <!-- Footer Col 2: Chamber Address -->
                 <div>
                     <h4 class="font-bookAntiqua text-lg font-bold text-white mb-4">Chamber Location</h4>
                     <div class="font-calibri text-sm text-gray-200 space-y-2 leading-relaxed">
@@ -528,7 +381,6 @@
                     </div>
                 </div>
 
-                <!-- Footer Col 3: Direct Contact Information -->
                 <div>
                     <h4 class="font-bookAntiqua text-lg font-bold text-white mb-4">Direct Contact</h4>
                     <ul class="font-calibri text-sm text-gray-200 space-y-3">
@@ -544,14 +396,9 @@
                             <i class="fa-regular fa-envelope text-white"></i>
                             <a href="mailto:rashed.legalhq@gmail.com" class="hover:underline transition">rashed.legalhq@gmail.com</a>
                         </li>
-                        <li class="flex items-center gap-2">
-                            <i class="fa-brands fa-facebook text-fbBlue text-base"></i>
-                            <a href="https://www.facebook.com/rd.L.islam" target="_blank" class="hover:text-fbBlue transition truncate font-bold text-white">facebook.com/rd.L.islam</a>
-                        </li>
                     </ul>
                 </div>
 
-                <!-- Footer Col 4: Consultation Hours -->
                 <div>
                     <h4 class="font-bookAntiqua text-lg font-bold text-white mb-4">Chamber Hours</h4>
                     <ul class="font-calibri text-sm text-gray-200 space-y-2">
@@ -565,10 +412,8 @@
                         </li>
                     </ul>
                 </div>
-
             </div>
 
-            <!-- Copyright Bar -->
             <div class="border-t border-red-900/60 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-300 font-calibri">
                 <p>&copy; <span id="currentYear"></span> A B M Rashedul Islam. Associate Lawyer, Capital Law Chamber. All Rights Reserved.</p>
                 <p class="mt-2 md:mt-0 text-gray-300">Gulshan-1, Dhaka-1212, Bangladesh</p>
@@ -576,101 +421,11 @@
         </div>
     </footer>
 
-    <!-- Booking Modal -->
-    <div id="bookingModal" class="fixed inset-0 bg-navyBlue/70 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
-        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 text-center shadow-2xl border-2 border-azureBlue text-darkText">
-            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
-                <i class="fa-solid fa-circle-check"></i>
-            </div>
-            <h3 class="font-bookAntiqua text-2xl font-bold text-navyBlue mb-2">Reservation Request Received</h3>
-            <p class="font-calibri text-darkText text-sm mb-6 leading-relaxed">
-                Thank you, <span id="modalClientName" class="font-bold text-navyBlue"></span>! Your request for <span id="modalService" class="font-bold text-navyBlue"></span> on <span id="modalDate" class="font-bold text-navyBlue"></span> at <span id="modalTime" class="font-bold text-navyBlue"></span> has been submitted to A B M Rashedul Islam at Capital Law Chamber. We will reach out to you directly to confirm.
-            </p>
-            <button onclick="closeModal()" class="w-full bg-azureBlue hover:bg-deepGreen text-white font-calibri font-bold py-3.5 rounded-xl transition">
-                Close Confirmation
-            </button>
-        </div>
-    </div>
-
     <script>
         document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        // Min date picker set to today
-        const todayStr = new Date().toISOString().split('T')[0];
-        document.getElementById('bookingDate').min = todayStr;
-
-        // Mobile Menu toggle
         const mobileBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
-
-        mobileBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-
-        // Time slot selector logic
-        let selectedSlotButton = null;
-
-        function selectTimeSlot(button) {
-            if (selectedSlotButton) {
-                selectedSlotButton.classList.remove('bg-azureBlue', 'text-white', 'border-azureBlue');
-                selectedSlotButton.classList.add('border-gray-200', 'text-navyBlue');
-            }
-
-            button.classList.remove('border-gray-200', 'text-navyBlue');
-            button.classList.add('bg-azureBlue', 'text-white', 'border-azureBlue');
-
-            selectedSlotButton = button;
-            document.getElementById('selectedTime').value = button.innerText;
-            document.getElementById('timeSlotError').classList.add('hidden');
-        }
-
-        // Service programmatically selected from Practice Area card
-        function selectService(serviceName) {
-            const selectEl = document.getElementById('serviceSelect');
-            selectEl.value = serviceName;
-        }
-
-        // Booking form submission handler
-        function handleBookingSubmit(event) {
-            event.preventDefault();
-
-            const timeValue = document.getElementById('selectedTime').value;
-            const timeSlotError = document.getElementById('timeSlotError');
-
-            if (!timeValue) {
-                timeSlotError.classList.remove('hidden');
-                return;
-            }
-
-            const name = document.getElementById('clientName').value;
-            const service = document.getElementById('serviceSelect').value;
-            const date = document.getElementById('bookingDate').value;
-
-            document.getElementById('modalClientName').textContent = name;
-            document.getElementById('modalService').textContent = service;
-            document.getElementById('modalDate').textContent = date;
-            document.getElementById('modalTime').textContent = timeValue;
-
-            document.getElementById('bookingModal').classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('bookingModal').classList.add('hidden');
-            document.getElementById('bookingForm').reset();
-            
-            if (selectedSlotButton) {
-                selectedSlotButton.classList.remove('bg-azureBlue', 'text-white', 'border-azureBlue');
-                selectedSlotButton.classList.add('border-gray-200', 'text-navyBlue');
-                selectedSlotButton = null;
-            }
-            document.getElementById('selectedTime').value = '';
-        }
+        mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
     </script>
 </body>
 </html>

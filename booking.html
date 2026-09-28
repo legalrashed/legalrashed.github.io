@@ -99,16 +99,15 @@
                 max-width: 100% !important;
                 margin: 0 !important;
                 box-shadow: none !important;
-                border: 2px solid #C8102E !important;
+                border: 2px solid #1E232A !important;
                 border-radius: 12px !important;
+                background: transparent !important;
                 page-break-inside: avoid !important;
             }
 
             .token-header {
                 padding: 12px 16px !important;
-                background-color: #C8102E !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
+                background: transparent !important;
             }
 
             .token-body {
@@ -118,6 +117,7 @@
             .token-box {
                 padding: 8px 12px !important;
                 margin-top: 8px !important;
+                background: transparent !important;
             }
 
             .grid-compact {
@@ -282,79 +282,79 @@
             </div>
 
             <!-- Dynamic Appointment Token Output Card -->
-            <div id="tokenDisplay" class="hidden bg-white rounded-3xl shadow-2xl border-4 border-azureBlue overflow-hidden text-darkText my-4">
+            <div id="tokenDisplay" class="hidden bg-white rounded-3xl shadow-2xl border-4 border-black overflow-hidden text-black my-4">
                 
                 <!-- Token Header -->
-                <div class="token-header bg-azureBlue text-white p-4 sm:p-6 text-center relative border-b-4 border-navyBlue">
-                    <div class="font-algerian text-lg sm:text-2xl tracking-widest mb-1">CAPITAL LAW CHAMBER</div>
-                    <p class="font-bookAntiqua text-xs sm:text-sm font-bold text-red-100">Official Consultation Appointment Token</p>
-                    <div class="token-box mt-3 bg-white/10 backdrop-blur-md rounded-xl p-2 sm:p-3 inline-block border border-white/20">
-                        <span class="block text-[10px] sm:text-xs text-red-200 font-bold uppercase tracking-wider">Unique Token Number</span>
-                        <span id="tokenNumber" class="font-mono text-xl sm:text-2xl font-extrabold tracking-wider text-yellow-300">CLC-0000-00000</span>
+                <div class="token-header p-4 sm:p-6 text-center relative border-b-2 border-black">
+                    <div class="font-algerian text-xl sm:text-3xl tracking-widest mb-1 text-black font-bold">CAPITAL LAW CHAMBER</div>
+                    <p class="font-bookAntiqua text-xs sm:text-sm font-bold text-red-700">Official Consultation Appointment Token</p>
+                    <div class="token-box mt-3 rounded-xl p-2 sm:p-3 inline-block border-2 border-red-700">
+                        <span class="block text-[10px] sm:text-xs text-black font-bold uppercase tracking-wider">Unique Token Number</span>
+                        <span id="tokenNumber" class="font-mono text-xl sm:text-3xl font-extrabold tracking-wider text-red-700">CLC-0000-00000</span>
                     </div>
                 </div>
 
                 <!-- Token Body Details -->
                 <div class="token-body p-4 sm:p-6 space-y-4 text-print-base">
-                    <div class="bg-red-50 p-3 rounded-xl border border-red-200 flex items-center justify-between text-print-sm">
+                    <div class="p-3 rounded-xl border border-black flex items-center justify-between text-print-sm">
                         <div>
-                            <span class="block text-[10px] sm:text-xs font-bold text-red-800 uppercase">Status</span>
-                            <span class="font-bold text-emerald-700 text-xs sm:text-sm flex items-center gap-1.5">
-                                <i class="fa-solid fa-circle-check"></i> Confirmed & Issued
+                            <span class="block text-[10px] sm:text-xs font-bold text-red-700 uppercase">Status</span>
+                            <span class="font-bold text-black text-xs sm:text-sm flex items-center gap-1.5">
+                                <i class="fa-solid fa-circle-check text-red-700"></i> Confirmed & Issued
                             </span>
                         </div>
                         <div class="text-right">
-                            <span class="block text-[10px] sm:text-xs font-bold text-red-800 uppercase">Issued Date</span>
-                            <span id="issueTimestamp" class="font-bold text-navyBlue text-xs">--</span>
+                            <span class="block text-[10px] sm:text-xs font-bold text-red-700 uppercase">Issued Date</span>
+                            <span id="issueTimestamp" class="font-bold text-black text-xs">--</span>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-2 gap-3 border-b border-gray-200 pb-4 grid-compact">
+                    <div class="grid grid-cols-2 gap-3 border-b border-black pb-4 grid-compact">
                         <div>
-                            <span class="block text-[10px] sm:text-xs font-bold text-subtleGray uppercase">Client Name</span>
-                            <span id="tokenClientName" class="font-bookAntiqua font-bold text-sm sm:text-base text-navyBlue">--</span>
+                            <span class="block text-[10px] sm:text-xs font-bold text-black uppercase">Client Name</span>
+                            <span id="tokenClientName" class="font-bookAntiqua font-bold text-sm sm:text-base text-black">--</span>
                         </div>
                         <div>
-                            <span class="block text-[10px] sm:text-xs font-bold text-subtleGray uppercase">Contact Phone</span>
-                            <span id="tokenClientPhone" class="font-calibri font-bold text-xs sm:text-sm text-navyBlue">--</span>
+                            <span class="block text-[10px] sm:text-xs font-bold text-black uppercase">Contact Phone</span>
+                            <span id="tokenClientPhone" class="font-calibri font-bold text-xs sm:text-sm text-black">--</span>
                         </div>
                         <div>
-                            <span class="block text-[10px] sm:text-xs font-bold text-subtleGray uppercase">Email Address</span>
-                            <span id="tokenClientEmail" class="font-calibri font-bold text-xs sm:text-sm text-navyBlue">--</span>
+                            <span class="block text-[10px] sm:text-xs font-bold text-black uppercase">Email Address</span>
+                            <span id="tokenClientEmail" class="font-calibri font-bold text-xs sm:text-sm text-black">--</span>
                         </div>
                         <div>
-                            <span class="block text-[10px] sm:text-xs font-bold text-subtleGray uppercase">Practice Area</span>
-                            <span id="tokenService" class="font-calibri font-bold text-xs sm:text-sm text-azureBlue">--</span>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-3 bg-gray-50 p-3 rounded-xl border border-gray-200 grid-compact">
-                        <div>
-                            <span class="block text-[10px] sm:text-xs font-bold text-subtleGray uppercase"><i class="fa-regular fa-calendar-check text-azureBlue"></i> Appointment Date</span>
-                            <span id="tokenDate" class="font-bookAntiqua font-bold text-sm sm:text-base text-navyBlue">--</span>
-                        </div>
-                        <div>
-                            <span class="block text-[10px] sm:text-xs font-bold text-subtleGray uppercase"><i class="fa-regular fa-clock text-azureBlue"></i> Scheduled Time Slot</span>
-                            <span id="tokenTime" class="font-bookAntiqua font-bold text-sm sm:text-base text-navyBlue">--</span>
+                            <span class="block text-[10px] sm:text-xs font-bold text-black uppercase">Practice Area</span>
+                            <span id="tokenService" class="font-calibri font-bold text-xs sm:text-sm text-red-700">--</span>
                         </div>
                     </div>
 
-                    <div class="border-t border-gray-200 pt-3 text-[11px] sm:text-xs text-subtleGray leading-relaxed">
-                        <p class="font-bold text-navyBlue mb-0.5"><i class="fa-solid fa-location-dot text-azureBlue"></i> Location & Official Details:</p>
+                    <div class="grid grid-cols-2 gap-3 p-3 rounded-xl border border-black grid-compact">
+                        <div>
+                            <span class="block text-[10px] sm:text-xs font-bold text-black uppercase"><i class="fa-regular fa-calendar-check text-red-700"></i> Appointment Date</span>
+                            <span id="tokenDate" class="font-bookAntiqua font-bold text-sm sm:text-base text-black">--</span>
+                        </div>
+                        <div>
+                            <span class="block text-[10px] sm:text-xs font-bold text-black uppercase"><i class="fa-regular fa-clock text-red-700"></i> Scheduled Time Slot</span>
+                            <span id="tokenTime" class="font-bookAntiqua font-bold text-sm sm:text-base text-black">--</span>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-black pt-3 text-[11px] sm:text-xs text-black leading-relaxed">
+                        <p class="font-bold text-black mb-0.5"><i class="fa-solid fa-location-dot text-red-700"></i> Location & Official Details:</p>
                         <p><strong>A B M RASHEDUL ISLAM</strong> • Associate Lawyer</p>
                         <p>Capital Law Chamber, House No.15, Road No.128, Gulshan-1, Dhaka-1212, Bangladesh</p>
-                        <p class="mt-1 font-semibold text-red-800">* Please present this token upon arrival or mention the token number during WhatsApp communication.</p>
+                        <p class="mt-1 font-bold text-red-700">* Please present this token before the Front Desk Representative upon arrival at the Chamber.</p>
                     </div>
 
                     <!-- Token Action Buttons -->
                     <div class="flex flex-wrap gap-3 pt-2 no-print">
-                        <button onclick="window.print()" class="flex-1 bg-navyBlue hover:bg-black text-white font-bold py-3 px-4 rounded-xl transition flex items-center justify-center gap-2">
+                        <button onclick="window.print()" class="flex-1 bg-black hover:bg-gray-800 text-white font-bold py-3 px-4 rounded-xl transition flex items-center justify-center gap-2">
                             <i class="fa-solid fa-print"></i> Print / Save Token
                         </button>
                         <a id="whatsappTokenBtn" href="#" target="_blank" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl transition flex items-center justify-center gap-2">
                             <i class="fa-brands fa-whatsapp text-lg"></i> Send Token via WhatsApp
                         </a>
-                        <button onclick="resetBookingForm()" class="w-full sm:w-auto bg-gray-200 hover:bg-gray-300 text-navyBlue font-bold py-3 px-4 rounded-xl transition">
+                        <button onclick="resetBookingForm()" class="w-full sm:w-auto bg-gray-200 hover:bg-gray-300 text-black font-bold py-3 px-4 rounded-xl transition">
                             Book Another
                         </button>
                     </div>

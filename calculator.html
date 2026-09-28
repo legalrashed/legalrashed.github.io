@@ -76,16 +76,34 @@
         </a>
     </header>
 
-    <main class="flex-grow max-w-5xl w-full mx-auto px-4 pb-16 space-y-12">
+    <main class="flex-grow max-w-5xl w-full mx-auto px-4 pb-16 space-y-8">
         
+        <!-- Two-Option Selection Switcher -->
+        <div class="glass-card-light rounded-3xl p-6 shadow-2xl text-darkText border-2 border-azureBlue/30">
+            <h2 class="font-bookAntiqua text-center text-xl sm:text-2xl font-bold text-navyBlue mb-4">
+                Select Land Calculation Utility
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <button type="button" id="tabHissaBtn" onclick="switchCalculator('hissa')" class="p-4 rounded-2xl font-bold text-base sm:text-lg transition flex items-center justify-center gap-3 bg-azureBlue text-white shadow-lg">
+                    <i class="fa-solid fa-scale-balanced text-xl"></i>
+                    <span>1. Land Hissa Calculator<br><span class="text-xs font-normal opacity-90">(আনা-গণ্ডা হিসাব)</span></span>
+                </button>
+
+                <button type="button" id="tabConverterBtn" onclick="switchCalculator('converter')" class="p-4 rounded-2xl font-bold text-base sm:text-lg transition flex items-center justify-center gap-3 bg-gray-100 text-navyBlue hover:bg-gray-200">
+                    <i class="fa-solid fa-vector-square text-xl"></i>
+                    <span>2. Land Unit Converter<br><span class="text-xs font-normal opacity-75">(ভূমি রূপান্তরক)</span></span>
+                </button>
+            </div>
+        </div>
+
         <!-- ================= PART 1: LAND HISSA CALCULATOR ================= -->
-        <div class="glass-card-light rounded-3xl p-6 sm:p-10 shadow-2xl text-darkText border-2 border-azureBlue/30 space-y-8">
+        <div id="hissaSection" class="glass-card-light rounded-3xl p-6 sm:p-10 shadow-2xl text-darkText border-2 border-azureBlue/30 space-y-8">
             
             <!-- Section Title -->
             <div class="text-center border-b border-gray-200 pb-6">
                 <h2 class="font-bookAntiqua text-2xl sm:text-3xl font-bold text-navyBlue flex items-center justify-center gap-3">
                     <i class="fa-solid fa-scale-balanced text-azureBlue"></i>
-                    Part 1: Land Hissa Calculator (আনা-গণ্ডা হিসাব)
+                    Land Hissa Calculator (আনা-গণ্ডা হিসাব)
                 </h2>
                 <p class="font-garamond text-base sm:text-lg text-subtleGray mt-1">
                     Calculate 16-Ana Record Fractional Shares and Land Partition Areas
@@ -158,7 +176,7 @@
                 </div>
             </div>
 
-            <!-- Hissa Results (Revealed on button click) -->
+            <!-- Hissa Results (Revealed ONLY on button click) -->
             <div id="hissaResultsWrapper" class="hidden pt-6 border-t border-gray-200">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- Fractional Share Display -->
@@ -204,13 +222,13 @@
         </div>
 
         <!-- ================= PART 2: BANGLADESHI LAND UNIT CONVERTER ================= -->
-        <div class="glass-card-light rounded-3xl p-6 sm:p-10 shadow-2xl text-darkText border-2 border-azureBlue/30 space-y-8">
+        <div id="converterSection" class="hidden glass-card-light rounded-3xl p-6 sm:p-10 shadow-2xl text-darkText border-2 border-azureBlue/30 space-y-8">
             
             <!-- Section Title -->
             <div class="text-center border-b border-gray-200 pb-6">
                 <h2 class="font-bookAntiqua text-2xl sm:text-3xl font-bold text-navyBlue flex items-center justify-center gap-3">
                     <i class="fa-solid fa-vector-square text-azureBlue"></i>
-                    Part 2: Bangladeshi Land Measurement Converter (ভূমি রূপান্তরক)
+                    Bangladeshi Land Measurement Converter (ভূমি রূপান্তরক)
                 </h2>
                 <p class="font-garamond text-base sm:text-lg text-subtleGray mt-1">
                     Convert any land quantity across standard legal & survey units in Bangladesh
@@ -246,7 +264,7 @@
                 </div>
             </div>
 
-            <!-- Unit Conversion Results Matrix (Revealed on button click) -->
+            <!-- Unit Conversion Results Matrix (Revealed ONLY on button click) -->
             <div id="convertResultsWrapper" class="hidden pt-4 border-t border-gray-200">
                 <h3 class="font-bookAntiqua text-xl font-bold text-navyBlue mb-4 text-center">
                     Equivalent Area Across All Standard Units
@@ -414,6 +432,28 @@
         populateDropdown('krantiSelect', 2);
         populateDropdown('teelSelect', 19);
 
+        // Switcher between Hissa and Converter
+        function switchCalculator(target) {
+            const hissaSec = document.getElementById('hissaSection');
+            const converterSec = document.getElementById('converterSection');
+            const hissaBtn = document.getElementById('tabHissaBtn');
+            const converterBtn = document.getElementById('tabConverterBtn');
+
+            if (target === 'hissa') {
+                hissaSec.classList.remove('hidden');
+                converterSec.classList.add('hidden');
+
+                hissaBtn.className = "p-4 rounded-2xl font-bold text-base sm:text-lg transition flex items-center justify-center gap-3 bg-azureBlue text-white shadow-lg";
+                converterBtn.className = "p-4 rounded-2xl font-bold text-base sm:text-lg transition flex items-center justify-center gap-3 bg-gray-100 text-navyBlue hover:bg-gray-200";
+            } else {
+                hissaSec.classList.add('hidden');
+                converterSec.classList.remove('hidden');
+
+                converterBtn.className = "p-4 rounded-2xl font-bold text-base sm:text-lg transition flex items-center justify-center gap-3 bg-azureBlue text-white shadow-lg";
+                hissaBtn.className = "p-4 rounded-2xl font-bold text-base sm:text-lg transition flex items-center justify-center gap-3 bg-gray-100 text-navyBlue hover:bg-gray-200";
+            }
+        }
+
         // PART 1: LAND HISSA CALCULATION (Executes ONLY when button clicked)
         function calculateHissaShare() {
             const ana = parseInt(document.getElementById('anaSelect').value) || 0;
@@ -451,6 +491,7 @@
             document.getElementById('resSqFt').textContent = (calculatedShatangsho * 435.6).toFixed(2);
 
             document.getElementById('hissaResultsWrapper').classList.remove('hidden');
+            document.getElementById('hissaResultsWrapper').scrollIntoView({ behavior: 'smooth' });
         }
 
         // PART 2: UNIT CONVERSION (Executes ONLY when button clicked)
@@ -458,7 +499,6 @@
             const qty = parseFloat(document.getElementById('convertQty').value) || 0;
             const unit = document.getElementById('fromUnit').value;
 
-            // Standardize all inputs to base Shatangsho (Decimal)
             let baseShatangsho = 0;
 
             if (unit === 'Shatangsho') {
@@ -481,7 +521,6 @@
                 baseShatangsho = qty / 1000;
             }
 
-            // Calculate equivalents
             document.getElementById('cDecimal').textContent = baseShatangsho.toFixed(4);
             document.getElementById('cKatha').textContent = (baseShatangsho / 1.65).toFixed(4);
             document.getElementById('cBigha').textContent = (baseShatangsho / 33).toFixed(4);
@@ -493,6 +532,7 @@
             document.getElementById('cSqLinks').textContent = (baseShatangsho * 1000).toFixed(2);
 
             document.getElementById('convertResultsWrapper').classList.remove('hidden');
+            document.getElementById('convertResultsWrapper').scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 </body>

@@ -12,6 +12,26 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Firebase JS SDK Integration -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDdMJAQBOu0l5juW5ZV8q6qgY3uZ1mRQ38",
+            authDomain: "my-portfolio-5a45e.firebaseapp.com",
+            projectId: "my-portfolio-5a45e",
+            storageBucket: "my-portfolio-5a45e.firebasestorage.app",
+            messagingSenderId: "406719907956",
+            appId: "1:406719907956:web:c68febbc4f0aebc145a921",
+            measurementId: "G-WKWJGKd743"
+        };
+
+        // Initialize Firebase & Analytics globally
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    </script>
+
     <script>
         tailwind.config = {
             theme: {

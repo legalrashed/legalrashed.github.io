@@ -390,26 +390,47 @@
         </div>
     </footer>
 
-    <script>
+    <!-- Firebase SDK Modules -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import { 
+            getFirestore, 
+            doc, 
+            runTransaction, 
+            onSnapshot, 
+            collection 
+        } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+        // Firebase Configuration for project my-portfolio-5a45e
+        const firebaseConfig = {
+            projectId: "my-portfolio-5a45e"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Active list of booked slots loaded from Firestore
+        let bookedSlotsList = [];
+
+        // Set current year in footer & set min selectable date to today
         document.getElementById('currentYear').textContent = new Date().getFullYear();
         document.getElementById('bookingDate').min = new Date().toISOString().split('T')[0];
 
-        // Retrieve existing bookings from LocalStorage
-        function getBookedSlots() {
-            return JSON.parse(localStorage.getItem('clc_booked_slots') || '[]');
-        }
+        // Real-time listener for bookings across all users
+        onSnapshot(collection(db, "bookings"), (snapshot) => {
+            bookedSlotsList = [];
+            snapshot.forEach((doc) => {
+                const data = doc.data();
+                if (data.date && data.time) {
+                    bookedSlotsList.push({ date: data.date, time: data.time });
+                }
+            });
+            updateTimeSlotAvailability();
+        });
 
-        // Save new slot into LocalStorage
-        function saveBookedSlot(date, time) {
-            const booked = getBookedSlots();
-            booked.push({ date, time });
-            localStorage.setItem('clc_booked_slots', JSON.stringify(booked));
-        }
-
-        // Check availability and update slot UI showing full time AND "Booked" status tag
-        function updateTimeSlotAvailability() {
+        // Update UI slot availability for selected date
+        window.updateTimeSlotAvailability = function() {
             const selectedDate = document.getElementById('bookingDate').value;
-            const bookedSlots = getBookedSlots();
             const slotButtons = document.querySelectorAll('.time-slot');
 
             deselectTimeSlot();
@@ -418,7 +439,7 @@
                 const slotTime = btn.getAttribute('data-slot');
                 const tag = btn.querySelector('.status-tag');
                 const timeSpan = btn.querySelector('.slot-time');
-                const isBooked = bookedSlots.some(b => b.date === selectedDate && b.time === slotTime);
+                const isBooked = bookedSlotsList.some(b => b.date === selectedDate && b.time === slotTime);
 
                 if (isBooked) {
                     btn.disabled = true;
@@ -429,7 +450,7 @@
                         timeSpan.classList.remove('text-navyBlue');
                     }
                     if (tag) tag.classList.remove('hidden');
-                    btn.title = `The ${slotTime} slot is booked for this date. Please select another date for this time.`;
+                    btn.title = `The ${slotTime} slot is already booked for this date.`;
                 } else {
                     btn.disabled = false;
                     btn.classList.remove('bg-red-50', 'border-red-200', 'cursor-not-allowed', 'bg-azureBlue', 'border-azureBlue');
@@ -442,29 +463,12 @@
                     btn.title = "";
                 }
             });
-        }
+        };
 
-        // Read query parameter for pre-selecting practice area
-        const urlParams = new URLSearchParams(window.location.search);
-        const serviceParam = urlParams.get('service');
-        if (serviceParam) {
-            const selectEl = document.getElementById('serviceSelect');
-            for (let option of selectEl.options) {
-                if (option.value.toLowerCase().includes(serviceParam.toLowerCase())) {
-                    option.selected = true;
-                    break;
-                }
-            }
-        }
-
-        // Mobile menu toggle
-        const mobileBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-
-        // Time slot selector
+        // Time slot selection handling
         let selectedSlotButton = null;
-        function selectTimeSlot(button) {
+
+        window.selectTimeSlot = function(button) {
             if (button.disabled) return;
 
             deselectTimeSlot();
@@ -481,7 +485,7 @@
             selectedSlotButton = button;
             document.getElementById('selectedTime').value = button.getAttribute('data-slot');
             document.getElementById('timeSlotError').classList.add('hidden');
-        }
+        };
 
         function deselectTimeSlot() {
             if (selectedSlotButton) {
@@ -499,8 +503,8 @@
             document.getElementById('selectedTime').value = '';
         }
 
-        // Generate Unique Token & Save Booking
-        function generateAppointmentToken(e) {
+        // Save appointment to Firestore via transaction
+        window.generateAppointmentToken = async function(e) {
             e.preventDefault();
 
             const date = document.getElementById('bookingDate').value;
@@ -516,59 +520,100 @@
                 return;
             }
 
-            // Prevent double booking verification check
-            const bookedSlots = getBookedSlots();
-            const isAlreadyBooked = bookedSlots.some(b => b.date === date && b.time === timeValue);
-            if (isAlreadyBooked) {
-                alert("This time slot is already booked for this date. Please choose another date or time slot.");
-                updateTimeSlotAvailability();
-                return;
-            }
-
             const name = document.getElementById('clientName').value;
             const email = document.getElementById('clientEmail').value;
             const phone = document.getElementById('clientPhone').value;
             const service = document.getElementById('serviceSelect').value;
+            const notes = document.getElementById('clientNotes').value || "";
 
-            // Store booking to block double bookings for the same date/time
-            saveBookedSlot(date, timeValue);
+            // Create unique document ID for slot: e.g. "2026-09-28_10-00-AM---11-00-AM"
+            const bookingDocId = `${date}_${timeValue.replace(/[^a-zA-Z0-9]/g, '-')}`;
+            const bookingRef = doc(db, "bookings", bookingDocId);
 
-            // Generate unique Token ID format: CLC-YYYY-XXXXX
+            // Unique Token ID format: CLC-YYYY-XXXXX
             const year = new Date().getFullYear();
             const randomId = Math.floor(10000 + Math.random() * 90000);
             const tokenNum = `CLC-${year}-${randomId}`;
 
-            // Format date string
-            const dateObj = new Date(date);
-            const formattedDate = dateObj.toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
+            try {
+                // Enforce lock transaction to prevent duplicate slots
+                await runTransaction(db, async (transaction) => {
+                    const sfDoc = await transaction.get(bookingRef);
+                    if (sfDoc.exists()) {
+                        throw new Error("SLOT_OCCUPIED");
+                    }
 
-            // Populate Token fields
-            document.getElementById('tokenNumber').innerText = tokenNum;
-            document.getElementById('tokenClientName').innerText = name;
-            document.getElementById('tokenClientPhone').innerText = phone;
-            document.getElementById('tokenClientEmail').innerText = email;
-            document.getElementById('tokenService').innerText = service;
-            document.getElementById('tokenDate').innerText = formattedDate;
-            document.getElementById('tokenTime').innerText = timeValue;
-            document.getElementById('issueTimestamp').innerText = new Date().toLocaleString();
+                    transaction.set(bookingRef, {
+                        tokenNum: tokenNum,
+                        name: name,
+                        email: email,
+                        phone: phone,
+                        service: service,
+                        date: date,
+                        time: timeValue,
+                        notes: notes,
+                        createdAt: new Date().toISOString()
+                    });
+                });
 
-            // Set WhatsApp link with prefilled token content
-            const waMsg = encodeURIComponent(`Hello A B M Rashedul Islam,\n\nI have submitted an appointment booking.\nToken ID: ${tokenNum}\nName: ${name}\nService: ${service}\nDate: ${formattedDate}\nTime: ${timeValue}`);
-            document.getElementById('whatsappTokenBtn').href = `https://wa.me/8801755712215?text=${waMsg}`;
+                // Format date string for token view
+                const dateObj = new Date(date);
+                const formattedDate = dateObj.toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
 
-            // Hide form and display token
-            document.getElementById('bookingFormCard').classList.add('hidden');
-            document.getElementById('tokenDisplay').classList.remove('hidden');
-            window.scrollTo({ top: 150, behavior: 'smooth' });
-        }
+                // Populate token fields
+                document.getElementById('tokenNumber').innerText = tokenNum;
+                document.getElementById('tokenClientName').innerText = name;
+                document.getElementById('tokenClientPhone').innerText = phone;
+                document.getElementById('tokenClientEmail').innerText = email;
+                document.getElementById('tokenService').innerText = service;
+                document.getElementById('tokenDate').innerText = formattedDate;
+                document.getElementById('tokenTime').innerText = timeValue;
+                document.getElementById('issueTimestamp').innerText = new Date().toLocaleString();
 
-        function resetBookingForm() {
+                // Set WhatsApp token sharing link
+                const waMsg = encodeURIComponent(`Hello A B M Rashedul Islam,\n\nI have submitted an appointment booking.\nToken ID: ${tokenNum}\nName: ${name}\nService: ${service}\nDate: ${formattedDate}\nTime: ${timeValue}`);
+                document.getElementById('whatsappTokenBtn').href = `https://wa.me/8801755712215?text=${waMsg}`;
+
+                // Display token view
+                document.getElementById('bookingFormCard').classList.add('hidden');
+                document.getElementById('tokenDisplay').classList.remove('hidden');
+                window.scrollTo({ top: 150, behavior: 'smooth' });
+
+            } catch (error) {
+                if (error.message === "SLOT_OCCUPIED") {
+                    alert("This slot was just booked by another user! Please select a different time or date.");
+                } else {
+                    console.error("Booking Error:", error);
+                    alert("Could not complete booking. Please try again.");
+                }
+            }
+        };
+
+        window.resetBookingForm = function() {
             document.getElementById('bookingForm').reset();
             document.getElementById('tokenDisplay').classList.add('hidden');
             document.getElementById('bookingFormCard').classList.remove('hidden');
             deselectTimeSlot();
             updateTimeSlotAvailability();
+        };
+
+        // URL parameter pre-selection
+        const urlParams = new URLSearchParams(window.location.search);
+        const serviceParam = urlParams.get('service');
+        if (serviceParam) {
+            const selectEl = document.getElementById('serviceSelect');
+            for (let option of selectEl.options) {
+                if (option.value.toLowerCase().includes(serviceParam.toLowerCase())) {
+                    option.selected = true;
+                    break;
+                }
+            }
         }
+
+        // Mobile menu toggle logic
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
     </script>
 </body>
 </html>

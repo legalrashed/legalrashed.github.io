@@ -122,7 +122,7 @@
                     <div>
                         <label class="block font-bold text-navyBlue text-sm mb-1.5">Ana (আনা)</label>
                         <select id="anaSelect" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
-                            <!-- Populated 0-16 -->
+                            <!-- Populated 0-16 with signs -->
                         </select>
                     </div>
 
@@ -136,14 +136,14 @@
                     <div>
                         <label class="block font-bold text-navyBlue text-sm mb-1.5">Kora (কড়া)</label>
                         <select id="koraSelect" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
-                            <!-- Populated 0-3 -->
+                            <!-- Populated 0-3 with signs -->
                         </select>
                     </div>
 
                     <div>
                         <label class="block font-bold text-navyBlue text-sm mb-1.5">Kranti (ক্রান্তি)</label>
                         <select id="krantiSelect" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
-                            <!-- Populated 0-2 -->
+                            <!-- Populated 0-2 with signs -->
                         </select>
                     </div>
 
@@ -419,7 +419,43 @@
     <script>
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // Populate dropdown options programmatically
+        // Traditional Bangla symbols for Ana (0 to 16)
+        const anaSigns = [
+            '0',
+            '1 (৴)',
+            '2 (৵)',
+            '3 (৶)',
+            '4 (১/ )',
+            '5 (১/৴)',
+            '6 (১/৵)',
+            '7 (১/৶)',
+            '8 (২/ )',
+            '9 (২/৴)',
+            '10 (২/৵)',
+            '11 (২/৶)',
+            '12 (৩/ )',
+            '13 (৩/৴)',
+            '14 (৩/৵)',
+            '15 (৩/৶)',
+            '16 (১৬)'
+        ];
+
+        // Traditional Bangla symbols for Kora (0 to 3)
+        const koraSigns = [
+            '0',
+            '1 (৸)',
+            '2 (৸৸)',
+            '3 (৸৸৸)'
+        ];
+
+        // Traditional Bangla symbols for Kranti (0 to 2)
+        const krantiSigns = [
+            '0',
+            '1 (৹)',
+            '2 (৹৹)'
+        ];
+
+        // Populate standard numeric dropdowns (Gonda, Teel)
         function populateDropdown(id, max) {
             const select = document.getElementById(id);
             select.innerHTML = '';
@@ -431,10 +467,22 @@
             }
         }
 
-        populateDropdown('anaSelect', 16);
+        // Populate dropdowns with custom signs (Ana, Kora, Kranti)
+        function populateWithSigns(id, signArray) {
+            const select = document.getElementById(id);
+            select.innerHTML = '';
+            signArray.forEach((text, val) => {
+                const opt = document.createElement('option');
+                opt.value = val;
+                opt.textContent = text;
+                select.appendChild(opt);
+            });
+        }
+
+        populateWithSigns('anaSelect', anaSigns);
         populateDropdown('gondaSelect', 19);
-        populateDropdown('koraSelect', 3);
-        populateDropdown('krantiSelect', 2);
+        populateWithSigns('koraSelect', koraSigns);
+        populateWithSigns('krantiSelect', krantiSigns);
         populateDropdown('teelSelect', 19);
 
         // Switcher between Hissa and Converter

@@ -68,6 +68,29 @@
             background-clip: padding-box, border-box;
         }
 
+        /* Continuous Scrolling Announcement Bar */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            width: 100%;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 25s linear infinite;
+        }
+
+        .marquee-container:hover .marquee-content {
+            animation-play-state: paused;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
         /* Strict Single A4 Print Setup */
         @page {
             size: A4 portrait;
@@ -84,7 +107,7 @@
                 overflow: hidden !important;
             }
 
-            header, footer, #bookingFormCard, .portal-header, .no-print {
+            header, footer, #bookingFormCard, .portal-header, .announcement-bar, .no-print {
                 display: none !important;
             }
 
@@ -186,6 +209,32 @@
 
     <main class="flex-grow py-8 px-4 sm:px-6 lg:px-8">
         <div class="max-w-4xl mx-auto">
+
+            <!-- Scrolling Announcement Bar -->
+            <div class="announcement-bar bg-navyBlue border-2 border-azureBlue rounded-2xl shadow-xl py-3 px-4 mb-6 text-sm font-bookAntiqua font-bold tracking-wide">
+                <div class="marquee-container">
+                    <div class="marquee-content flex items-center gap-8 text-white">
+                        <span class="inline-flex items-center gap-2">
+                            <i class="fa-solid fa-bullhorn text-[#FFD700] text-base"></i>
+                            <span>CHAMBER NOTICE:</span>
+                        </span>
+                        <span class="inline-flex items-center gap-2">
+                            <i class="fa-solid fa-[#FFD700] fa-calendar-xmark text-[#FFD700]"></i>
+                            <span>FRIDAY SCHEDULE: <strong class="text-[#FFD700] bg-red-950 px-2.5 py-0.5 rounded-md border border-amber-500/40">OFFICE CLOSED (WEEKLY HOLIDAY)</strong> — NO APPOINTMENT SLOTS AVAILABLE</span>
+                        </span>
+                        <span class="text-azureBlue font-black">•</span>
+                        <span class="inline-flex items-center gap-2">
+                            <i class="fa-solid fa-clock text-[#FF4D4D]"></i>
+                            <span>SATURDAY SCHEDULE: <strong class="text-[#FF4D4D] bg-red-950 px-2.5 py-0.5 rounded-md border border-red-500/40">HALF-DAY OFFICE HOURS (10:00 AM – 03:00 PM)</strong> — SLOTS AFTER 3:00 PM ARE CLOSED</span>
+                        </span>
+                        <span class="text-azureBlue font-black">•</span>
+                        <span class="inline-flex items-center gap-2">
+                            <i class="fa-solid fa-calendar-check text-emerald-400"></i>
+                            <span>SUNDAY TO THURSDAY: <strong class="text-emerald-400 bg-emerald-950 px-2.5 py-0.5 rounded-md border border-emerald-500/40">FULL DAY REGULAR HOURS (10:00 AM – 06:00 PM)</strong></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
             
             <div class="text-center mb-8 portal-header">
                 <h2 class="font-bookAntiqua text-3xl sm:text-4xl font-bold text-white mb-2 drop-shadow-sm">

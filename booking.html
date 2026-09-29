@@ -225,6 +225,9 @@
                                     Select Preferred Date
                                 </label>
                                 <input type="date" id="bookingDate" required onchange="updateTimeSlotAvailability()" class="w-full font-calibri p-3.5 border-2 border-gray-200 rounded-xl focus:border-azureBlue bg-[#F3F4F6] outline-none transition text-base">
+                                <p class="text-xs text-subtleGray mt-1.5 font-bold">
+                                    * Sat: 10 AM – 3 PM (Half Day) | Sun–Thu: 10 AM – 6 PM | Fri: Holiday
+                                </p>
                             </div>
 
                             <div>
@@ -245,20 +248,21 @@
                                         <span class="slot-time">02:00 PM - 03:00 PM</span>
                                         <span class="status-tag hidden text-xs font-extrabold text-red-700 bg-red-100 px-2 py-0.5 rounded-md border border-red-300">Booked</span>
                                     </button>
-                                    <button type="button" onclick="selectTimeSlot(this)" data-slot="03:00 PM - 04:00 PM" class="time-slot p-3 text-xs sm:text-sm font-bold rounded-xl border-2 border-gray-200 text-navyBlue hover:border-azureBlue hover:bg-virginBlue transition flex items-center justify-between">
+                                    <button type="button" onclick="selectTimeSlot(this)" data-slot="03:00 PM - 04:00 PM" data-after-three="true" class="time-slot p-3 text-xs sm:text-sm font-bold rounded-xl border-2 border-gray-200 text-navyBlue hover:border-azureBlue hover:bg-virginBlue transition flex items-center justify-between">
                                         <span class="slot-time">03:00 PM - 04:00 PM</span>
                                         <span class="status-tag hidden text-xs font-extrabold text-red-700 bg-red-100 px-2 py-0.5 rounded-md border border-red-300">Booked</span>
                                     </button>
-                                    <button type="button" onclick="selectTimeSlot(this)" data-slot="04:00 PM - 05:00 PM" class="time-slot p-3 text-xs sm:text-sm font-bold rounded-xl border-2 border-gray-200 text-navyBlue hover:border-azureBlue hover:bg-virginBlue transition flex items-center justify-between">
+                                    <button type="button" onclick="selectTimeSlot(this)" data-slot="04:00 PM - 05:00 PM" data-after-three="true" class="time-slot p-3 text-xs sm:text-sm font-bold rounded-xl border-2 border-gray-200 text-navyBlue hover:border-azureBlue hover:bg-virginBlue transition flex items-center justify-between">
                                         <span class="slot-time">04:00 PM - 05:00 PM</span>
                                         <span class="status-tag hidden text-xs font-extrabold text-red-700 bg-red-100 px-2 py-0.5 rounded-md border border-red-300">Booked</span>
                                     </button>
-                                    <button type="button" onclick="selectTimeSlot(this)" data-slot="05:00 PM - 06:00 PM" class="time-slot p-3 text-xs sm:text-sm font-bold rounded-xl border-2 border-gray-200 text-navyBlue hover:border-azureBlue hover:bg-virginBlue transition flex items-center justify-between">
+                                    <button type="button" onclick="selectTimeSlot(this)" data-slot="05:00 PM - 06:00 PM" data-after-three="true" class="time-slot p-3 text-xs sm:text-sm font-bold rounded-xl border-2 border-gray-200 text-navyBlue hover:border-azureBlue hover:bg-virginBlue transition flex items-center justify-between">
                                         <span class="slot-time">05:00 PM - 06:00 PM</span>
                                         <span class="status-tag hidden text-xs font-extrabold text-red-700 bg-red-100 px-2 py-0.5 rounded-md border border-red-300">Booked</span>
                                     </button>
                                 </div>
                                 <input type="hidden" id="selectedTime" required>
+                                <p id="timeSlotNotice" class="hidden font-bold text-xs mt-2 text-red-600"></p>
                                 <p id="timeSlotError" class="hidden text-red-600 font-bold text-xs mt-2">Please select an available appointment time slot.</p>
                             </div>
                         </div>
@@ -428,23 +432,67 @@
             updateTimeSlotAvailability();
         });
 
-        // Update UI slot availability for selected date
+        // Update UI slot availability for selected date based on day rules
         window.updateTimeSlotAvailability = function() {
-            const selectedDate = document.getElementById('bookingDate').value;
+            const selectedDateVal = document.getElementById('bookingDate').value;
             const slotButtons = document.querySelectorAll('.time-slot');
+            const noticeEl = document.getElementById('timeSlotNotice');
 
             deselectTimeSlot();
+            noticeEl.classList.add('hidden');
+            noticeEl.innerText = "";
+
+            if (!selectedDateVal) return;
+
+            const selectedDate = new Date(selectedDateVal);
+            const dayOfWeek = selectedDate.getUTCDay(); // 0 = Sunday, 5 = Friday, 6 = Saturday
+
+            // Handle Friday Holiday
+            if (dayOfWeek === 5) {
+                noticeEl.innerText = "Friday is a weekly holiday. No appointment slots are available.";
+                noticeEl.classList.remove('hidden');
+
+                slotButtons.forEach(btn => {
+                    btn.disabled = true;
+                    btn.classList.add('bg-gray-100', 'border-gray-200', 'cursor-not-allowed');
+                    btn.classList.remove('hover:border-azureBlue', 'hover:bg-virginBlue', 'bg-azureBlue');
+                    const timeSpan = btn.querySelector('.slot-time');
+                    if (timeSpan) timeSpan.classList.add('text-gray-400');
+                    const tag = btn.querySelector('.status-tag');
+                    if (tag) tag.classList.add('hidden');
+                });
+                return;
+            }
+
+            // Handle Saturday Half-Day (Close after 3 PM)
+            const isSaturday = (dayOfWeek === 6);
+            if (isSaturday) {
+                noticeEl.innerText = "Note: Saturday office hours are half-day (up to 3:00 PM).";
+                noticeEl.classList.remove('hidden');
+            }
 
             slotButtons.forEach(btn => {
                 const slotTime = btn.getAttribute('data-slot');
+                const isAfterThree = btn.hasAttribute('data-after-three');
                 const tag = btn.querySelector('.status-tag');
                 const timeSpan = btn.querySelector('.slot-time');
-                const isBooked = bookedSlotsList.some(b => b.date === selectedDate && b.time === slotTime);
+                const isBooked = bookedSlotsList.some(b => b.date === selectedDateVal && b.time === slotTime);
 
-                if (isBooked) {
+                // Disable after 3 PM slots on Saturday
+                if (isSaturday && isAfterThree) {
+                    btn.disabled = true;
+                    btn.classList.add('bg-gray-100', 'border-gray-200', 'cursor-not-allowed');
+                    btn.classList.remove('hover:border-azureBlue', 'hover:bg-virginBlue', 'bg-azureBlue', 'bg-red-50', 'border-red-200');
+                    if (timeSpan) {
+                        timeSpan.classList.add('text-gray-400');
+                        timeSpan.classList.remove('text-navyBlue');
+                    }
+                    if (tag) tag.classList.add('hidden');
+                    btn.title = "Office closes at 3:00 PM on Saturdays.";
+                } else if (isBooked) {
                     btn.disabled = true;
                     btn.classList.add('bg-red-50', 'border-red-200', 'cursor-not-allowed');
-                    btn.classList.remove('hover:border-azureBlue', 'hover:bg-virginBlue', 'border-gray-200');
+                    btn.classList.remove('hover:border-azureBlue', 'hover:bg-virginBlue', 'border-gray-200', 'bg-gray-100');
                     if (timeSpan) {
                         timeSpan.classList.add('text-gray-400');
                         timeSpan.classList.remove('text-navyBlue');
@@ -453,7 +501,7 @@
                     btn.title = `The ${slotTime} slot is already booked for this date.`;
                 } else {
                     btn.disabled = false;
-                    btn.classList.remove('bg-red-50', 'border-red-200', 'cursor-not-allowed', 'bg-azureBlue', 'border-azureBlue');
+                    btn.classList.remove('bg-red-50', 'border-red-200', 'bg-gray-100', 'cursor-not-allowed', 'bg-azureBlue', 'border-azureBlue');
                     btn.classList.add('border-gray-200', 'hover:border-azureBlue', 'hover:bg-virginBlue');
                     if (timeSpan) {
                         timeSpan.classList.remove('text-gray-400', 'text-white');

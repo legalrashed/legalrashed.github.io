@@ -49,9 +49,9 @@
         ::-webkit-scrollbar-thumb { background: #C8102E; border-radius: 4px; }
 
         .glass-card-light {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.96);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(200, 16, 46, 0.2);
         }
 
         .photo-glow { box-shadow: 0 0 25px rgba(200, 16, 46, 0.4); }
@@ -79,7 +79,7 @@
 
     <main class="flex-grow max-w-4xl w-full mx-auto px-4 pb-16">
         <div class="glass-card-light rounded-3xl p-6 sm:p-10 shadow-2xl text-darkText border-2 border-azureBlue/30">
-            <div class="text-center mb-8 border-b border-gray-200 pb-6">
+            <div class="text-center mb-8 border-b border-red-100 pb-6">
                 <h2 class="font-bookAntiqua text-2xl sm:text-3xl font-bold text-navyBlue">
                     Bangladeshi Succession & Inheritance Calculator
                 </h2>
@@ -91,9 +91,11 @@
             <form id="calculatorForm" onsubmit="event.preventDefault(); processCalculation();" class="space-y-6">
                 
                 <!-- Religion & Legal System Selection -->
-                <div class="bg-red-50/60 p-4 rounded-2xl border-2 border-azureBlue/30">
-                    <label class="block font-bookAntiqua font-bold text-navyBlue text-base mb-1">Select Applicable Succession Law System</label>
-                    <select id="religionSystem" onchange="handleReligionChange()" class="w-full p-3.5 border border-gray-300 rounded-xl focus:border-azureBlue outline-none bg-white font-bold text-navyBlue text-base">
+                <div class="bg-gradient-to-r from-red-50 to-orange-50 p-4 rounded-2xl border-2 border-azureBlue/30 shadow-sm">
+                    <label class="block font-bookAntiqua font-bold text-navyBlue text-base mb-1.5 flex items-center gap-2">
+                        <i class="fa-solid fa-scale-balanced text-azureBlue"></i> Select Applicable Succession Law System
+                    </label>
+                    <select id="religionSystem" onchange="handleReligionChange()" class="w-full p-3.5 border-2 border-red-200 rounded-xl focus:border-azureBlue outline-none bg-white font-bold text-navyBlue text-base shadow-inner">
                         <option value="muslim">Muslim Personal Law (Hanafi Sharia & MFLO 1961)</option>
                         <option value="hindu">Hindu Law (Dayabhaga School - Bangladesh)</option>
                         <option value="christian">Christian Law (Succession Act, 1925)</option>
@@ -102,14 +104,18 @@
                 </div>
 
                 <!-- Estate Quantity and Measurement Unit -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-gray-50 p-4 rounded-2xl border border-gray-200">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-200 shadow-sm">
                     <div class="sm:col-span-2">
-                        <label class="block font-bold text-navyBlue text-sm mb-1">Total Estate Quantity / Value</label>
-                        <input type="number" id="estateVal" value="100" min="0" step="any" required class="w-full p-3 border border-gray-300 rounded-xl focus:border-azureBlue outline-none bg-white font-bold">
+                        <label class="block font-bold text-navyBlue text-sm mb-1 flex items-center gap-1.5">
+                            <i class="fa-solid fa-coins text-amber-600"></i> Total Estate Quantity / Value
+                        </label>
+                        <input type="number" id="estateVal" value="100" min="0" step="any" required class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-azureBlue/20 focus:border-azureBlue outline-none bg-white font-bold text-navyBlue">
                     </div>
                     <div>
-                        <label class="block font-bold text-navyBlue text-sm mb-1">Measurement Unit</label>
-                        <select id="estateUnit" class="w-full p-3 border border-gray-300 rounded-xl focus:border-azureBlue outline-none bg-white font-bold">
+                        <label class="block font-bold text-navyBlue text-sm mb-1 flex items-center gap-1.5">
+                            <i class="fa-solid fa-ruler-combined text-indigo-600"></i> Unit
+                        </label>
+                        <select id="estateUnit" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-azureBlue/20 focus:border-azureBlue outline-none bg-white font-bold text-navyBlue">
                             <option value="Decimal / Shatangsho">Decimal / Shatangsho</option>
                             <option value="Katha">Katha</option>
                             <option value="Bigha">Bigha</option>
@@ -122,21 +128,21 @@
                 </div>
 
                 <!-- Deceased Gender and Spouse Status -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-blue-50/50 p-4 rounded-2xl border border-blue-100 shadow-sm">
                     <div>
                         <label class="block font-bold text-navyBlue text-sm mb-1">Deceased Gender</label>
-                        <select id="deceasedGender" onchange="toggleSpouseUI()" class="w-full p-3 border border-gray-300 rounded-xl focus:border-azureBlue outline-none bg-white">
+                        <select id="deceasedGender" onchange="toggleSpouseUI()" class="w-full p-3 border border-blue-200 rounded-xl focus:border-azureBlue outline-none bg-white font-semibold text-navyBlue">
                             <option value="male">Male (Husband / Father)</option>
                             <option value="female">Female (Wife / Mother)</option>
                         </select>
                     </div>
                     <div id="wifeBox">
                         <label class="block font-bold text-navyBlue text-sm mb-1">Surviving Wives</label>
-                        <input type="number" id="wives" value="0" min="0" max="4" class="w-full p-3 border border-gray-300 rounded-xl focus:border-azureBlue outline-none bg-white">
+                        <input type="number" id="wives" value="0" min="0" max="4" class="w-full p-3 border border-blue-200 rounded-xl focus:border-azureBlue outline-none bg-white font-semibold text-navyBlue">
                     </div>
                     <div id="husbandBox" class="hidden">
                         <label class="block font-bold text-navyBlue text-sm mb-1">Surviving Husband</label>
-                        <select id="husband" class="w-full p-3 border border-gray-300 rounded-xl focus:border-azureBlue outline-none bg-white">
+                        <select id="husband" class="w-full p-3 border border-blue-200 rounded-xl focus:border-azureBlue outline-none bg-white font-semibold text-navyBlue">
                             <option value="0">No</option>
                             <option value="1">Yes</option>
                         </select>
@@ -145,120 +151,142 @@
 
                 <!-- Heirs Grid (Dynamically updated according to legal system) -->
                 <div class="space-y-4 pt-2">
-                    <h3 id="heirsSectionTitle" class="font-bookAntiqua font-bold text-lg text-azureBlue border-b pb-1">Surviving Family Members & Legal Heirs</h3>
+                    <h3 id="heirsSectionTitle" class="font-bookAntiqua font-bold text-lg text-azureBlue border-b-2 border-red-100 pb-1 flex items-center gap-2">
+                        <i class="fa-solid fa-users"></i> Surviving Family Members & Legal Heirs
+                    </h3>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Sons</label>
-                            <input type="number" id="sons" value="0" min="0" class="w-full p-2.5 border border-gray-300 rounded-lg">
+                        <div class="bg-amber-50/60 p-3 rounded-xl border border-amber-200">
+                            <label class="block text-xs font-bold text-amber-900 uppercase mb-1">Sons</label>
+                            <input type="number" id="sons" value="0" min="0" class="w-full p-2.5 border border-amber-300 rounded-lg bg-white font-bold text-navyBlue">
                         </div>
                         
                         <!-- Daughters Field with Hindu-specific categorization -->
-                        <div id="daughterDefaultBox">
-                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Daughters</label>
-                            <input type="number" id="daughters" value="0" min="0" class="w-full p-2.5 border border-gray-300 rounded-lg">
+                        <div id="daughterDefaultBox" class="bg-amber-50/60 p-3 rounded-xl border border-amber-200">
+                            <label class="block text-xs font-bold text-amber-900 uppercase mb-1">Daughters</label>
+                            <input type="number" id="daughters" value="0" min="0" class="w-full p-2.5 border border-amber-300 rounded-lg bg-white font-bold text-navyBlue">
                         </div>
 
                         <!-- Hindu Specific Daughter Sub-Types -->
-                        <div id="hinduDaughterBox" class="hidden sm:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        <div id="hinduDaughterBox" class="hidden sm:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-2 bg-amber-50/60 p-3 rounded-xl border border-amber-200">
                             <div>
-                                <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Unmarried Daughters</label>
-                                <input type="number" id="unmarriedDaughters" value="0" min="0" class="w-full p-2.5 border border-gray-300 rounded-lg">
+                                <label class="block text-xs font-bold text-amber-900 uppercase mb-1">Unmarried Daughters</label>
+                                <input type="number" id="unmarriedDaughters" value="0" min="0" class="w-full p-2.5 border border-amber-300 rounded-lg bg-white font-bold text-navyBlue">
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Married Daughters w/ Sons</label>
-                                <input type="number" id="marriedWithSonsDaughters" value="0" min="0" class="w-full p-2.5 border border-gray-300 rounded-lg">
+                                <label class="block text-xs font-bold text-amber-900 uppercase mb-1">Married w/ Sons</label>
+                                <input type="number" id="marriedWithSonsDaughters" value="0" min="0" class="w-full p-2.5 border border-amber-300 rounded-lg bg-white font-bold text-navyBlue">
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Childless / Widowed Daughters</label>
-                                <input type="number" id="childlessDaughters" value="0" min="0" class="w-full p-2.5 border border-gray-300 rounded-lg">
+                                <label class="block text-xs font-bold text-amber-900 uppercase mb-1">Childless / Widowed</label>
+                                <input type="number" id="childlessDaughters" value="0" min="0" class="w-full p-2.5 border border-amber-300 rounded-lg bg-white font-bold text-navyBlue">
                             </div>
                         </div>
 
                         <!-- Muslim Specific Orphan Grandchildren (Sec 4 MFLO 1961) -->
-                        <div class="muslim-only">
-                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Pre-deceased Son's Sons</label>
-                            <input type="number" id="gsonSons" value="0" min="0" class="w-full p-2.5 border border-gray-300 rounded-lg">
+                        <div class="muslim-only bg-teal-50/60 p-3 rounded-xl border border-teal-200">
+                            <label class="block text-xs font-bold text-teal-900 uppercase mb-1">Pre-deceased Son's Sons</label>
+                            <input type="number" id="gsonSons" value="0" min="0" class="w-full p-2.5 border border-teal-300 rounded-lg bg-white font-bold text-navyBlue">
                         </div>
-                        <div class="muslim-only">
-                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Pre-deceased Son's Daughters</label>
-                            <input type="number" id="gsonDaughters" value="0" min="0" class="w-full p-2.5 border border-gray-300 rounded-lg">
+                        <div class="muslim-only bg-teal-50/60 p-3 rounded-xl border border-teal-200">
+                            <label class="block text-xs font-bold text-teal-900 uppercase mb-1">Pre-deceased Son's Daughters</label>
+                            <input type="number" id="gsonDaughters" value="0" min="0" class="w-full p-2.5 border border-teal-300 rounded-lg bg-white font-bold text-navyBlue">
                         </div>
 
-                        <div>
-                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Father</label>
-                            <select id="father" class="w-full p-2.5 border border-gray-300 rounded-lg"><option value="0">No</option><option value="1">Yes</option></select>
+                        <div class="bg-purple-50/60 p-3 rounded-xl border border-purple-200">
+                            <label class="block text-xs font-bold text-purple-900 uppercase mb-1">Father</label>
+                            <select id="father" class="w-full p-2.5 border border-purple-300 rounded-lg bg-white font-bold text-navyBlue"><option value="0">No</option><option value="1">Yes</option></select>
                         </div>
-                        <div>
-                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Mother</label>
-                            <select id="mother" class="w-full p-2.5 border border-gray-300 rounded-lg"><option value="0">No</option><option value="1">Yes</option></select>
+                        <div class="bg-purple-50/60 p-3 rounded-xl border border-purple-200">
+                            <label class="block text-xs font-bold text-purple-900 uppercase mb-1">Mother</label>
+                            <select id="mother" class="w-full p-2.5 border border-purple-300 rounded-lg bg-white font-bold text-navyBlue"><option value="0">No</option><option value="1">Yes</option></select>
                         </div>
 
                         <!-- Secondary Relatives -->
-                        <div class="muslim-only">
-                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Paternal Grandfather</label>
-                            <select id="pGrandfather" class="w-full p-2.5 border border-gray-300 rounded-lg"><option value="0">No</option><option value="1">Yes</option></select>
+                        <div class="muslim-only bg-slate-100 p-3 rounded-xl border border-slate-200">
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Paternal Grandfather</label>
+                            <select id="pGrandfather" class="w-full p-2.5 border border-slate-300 rounded-lg bg-white font-bold text-navyBlue"><option value="0">No</option><option value="1">Yes</option></select>
                         </div>
-                        <div class="muslim-only">
-                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Paternal Grandmother</label>
-                            <select id="pGrandmother" class="w-full p-2.5 border border-gray-300 rounded-lg"><option value="0">No</option><option value="1">Yes</option></select>
+                        <div class="muslim-only bg-slate-100 p-3 rounded-xl border border-slate-200">
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Paternal Grandmother</label>
+                            <select id="pGrandmother" class="w-full p-2.5 border border-slate-300 rounded-lg bg-white font-bold text-navyBlue"><option value="0">No</option><option value="1">Yes</option></select>
                         </div>
-                        <div class="muslim-only">
-                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Maternal Grandmother</label>
-                            <select id="mGrandmother" class="w-full p-2.5 border border-gray-300 rounded-lg"><option value="0">No</option><option value="1">Yes</option></select>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Full Brothers</label>
-                            <input type="number" id="fullBrothers" value="0" min="0" class="w-full p-2.5 border border-gray-300 rounded-lg">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Full Sisters</label>
-                            <input type="number" id="fullSisters" value="0" min="0" class="w-full p-2.5 border border-gray-300 rounded-lg">
+                        <div class="muslim-only bg-slate-100 p-3 rounded-xl border border-slate-200">
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Maternal Grandmother</label>
+                            <select id="mGrandmother" class="w-full p-2.5 border border-slate-300 rounded-lg bg-white font-bold text-navyBlue"><option value="0">No</option><option value="1">Yes</option></select>
                         </div>
 
-                        <div class="muslim-only">
-                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Consanguine Brothers</label>
-                            <input type="number" id="cBrothers" value="0" min="0" class="w-full p-2.5 border border-gray-300 rounded-lg">
+                        <div class="bg-rose-50/60 p-3 rounded-xl border border-rose-200">
+                            <label class="block text-xs font-bold text-rose-900 uppercase mb-1">Full Brothers</label>
+                            <input type="number" id="fullBrothers" value="0" min="0" class="w-full p-2.5 border border-rose-300 rounded-lg bg-white font-bold text-navyBlue">
                         </div>
-                        <div class="muslim-only">
-                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Consanguine Sisters</label>
-                            <input type="number" id="cSisters" value="0" min="0" class="w-full p-2.5 border border-gray-300 rounded-lg">
+                        <div class="bg-rose-50/60 p-3 rounded-xl border border-rose-200">
+                            <label class="block text-xs font-bold text-rose-900 uppercase mb-1">Full Sisters</label>
+                            <input type="number" id="fullSisters" value="0" min="0" class="w-full p-2.5 border border-rose-300 rounded-lg bg-white font-bold text-navyBlue">
                         </div>
-                        <div class="muslim-only">
-                            <label class="block text-xs font-bold text-subtleGray uppercase mb-1">Uterine Siblings</label>
-                            <input type="number" id="uSiblings" value="0" min="0" class="w-full p-2.5 border border-gray-300 rounded-lg">
+
+                        <div class="muslim-only bg-slate-100 p-3 rounded-xl border border-slate-200">
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Consanguine Brothers</label>
+                            <input type="number" id="cBrothers" value="0" min="0" class="w-full p-2.5 border border-slate-300 rounded-lg bg-white font-bold text-navyBlue">
+                        </div>
+                        <div class="muslim-only bg-slate-100 p-3 rounded-xl border border-slate-200">
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Consanguine Sisters</label>
+                            <input type="number" id="cSisters" value="0" min="0" class="w-full p-2.5 border border-slate-300 rounded-lg bg-white font-bold text-navyBlue">
+                        </div>
+                        <div class="muslim-only bg-slate-100 p-3 rounded-xl border border-slate-200">
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Uterine Siblings</label>
+                            <input type="number" id="uSiblings" value="0" min="0" class="w-full p-2.5 border border-slate-300 rounded-lg bg-white font-bold text-navyBlue">
                         </div>
                     </div>
                 </div>
 
-                <button type="submit" class="w-full bg-azureBlue hover:bg-deepGreen text-white font-calibri font-bold text-lg py-4 rounded-xl shadow-lg transition duration-300 flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-calculator"></i> Calculate Distribution
+                <button type="submit" class="w-full bg-gradient-to-r from-azureBlue to-deepGreen hover:from-deepGreen hover:to-azureBlue text-white font-calibri font-bold text-lg py-4 rounded-xl shadow-xl transition transform active:scale-98 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-calculator text-xl"></i> Calculate Succession & Individual Shares
                 </button>
             </form>
 
             <!-- Results Section -->
-            <div id="resultsWrapper" class="hidden mt-10 pt-6 border-t-2 border-azureBlue/30">
-                <h3 class="font-bookAntiqua text-2xl font-bold text-navyBlue mb-4 text-center">
-                    Legal Succession Distribution Breakdown
-                </h3>
+            <div id="resultsWrapper" class="hidden mt-10 pt-6 border-t-2 border-azureBlue/30 space-y-6">
+                <div class="text-center">
+                    <h3 class="font-bookAntiqua text-2xl font-bold text-navyBlue">
+                        Legal Succession Distribution Breakdown
+                    </h3>
+                    <p class="text-xs text-subtleGray font-semibold mt-1">Includes exact individual shares for every qualifying family member</p>
+                </div>
+
+                <!-- Horizontal Ratio Chart Section -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+                    <div class="flex justify-between items-center text-xs font-bold text-navyBlue">
+                        <span class="uppercase tracking-wider text-azureBlue"><i class="fa-solid fa-chart-pie"></i> Visual Share Distribution Ratio</span>
+                        <span id="chartTotalLabel" class="bg-red-100 text-azureBlue px-2 py-0.5 rounded-md font-bold">Total: 100%</span>
+                    </div>
+                    <!-- Horizontal Progress Bar Container -->
+                    <div id="ratioChartBar" class="h-6 w-full bg-slate-200 rounded-xl overflow-hidden flex shadow-inner border border-slate-300"></div>
+                    <!-- Legend -->
+                    <div id="ratioChartLegend" class="flex flex-wrap gap-3 pt-2 text-xs font-bold"></div>
+                </div>
                 
-                <div class="overflow-x-auto">
-                    <table class="w-full border-collapse border border-gray-200 text-sm sm:text-base">
+                <!-- Distribution Results Table -->
+                <div class="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm">
+                    <table class="w-full border-collapse text-sm sm:text-base">
                         <thead>
-                            <tr class="bg-navyBlue text-white font-bookAntiqua">
-                                <th class="p-3 text-left">Legal Heir / Class</th>
-                                <th class="p-3 text-center">Share Percentage</th>
-                                <th class="p-3 text-right">Calculated Share (<span id="unitLabel"></span>)</th>
+                            <tr class="bg-navyBlue text-white font-bookAntiqua text-xs sm:text-sm uppercase">
+                                <th class="p-3.5 text-left">Heir Category</th>
+                                <th class="p-3.5 text-center">Count</th>
+                                <th class="p-3.5 text-center">Total Group Share</th>
+                                <th class="p-3.5 text-right bg-red-900/40 text-amber-300">Share Per Individual (<span class="unitLabel"></span>)</th>
+                                <th class="p-3.5 text-right">Total Category Share (<span class="unitLabel"></span>)</th>
                             </tr>
                         </thead>
-                        <tbody id="resultsTableBody" class="divide-y divide-gray-200"></tbody>
+                        <tbody id="resultsTableBody" class="divide-y divide-slate-200 bg-white font-calibri"></tbody>
                     </table>
                 </div>
 
-                <div class="mt-6 p-4 bg-gray-100 rounded-xl border-l-4 border-azureBlue text-xs sm:text-sm text-subtleGray space-y-1">
-                    <p class="font-bold text-navyBlue" id="lawNoteHeader">Legal Statutory Basis:</p>
-                    <p id="lawNoteBody">• Succession calculated as per statutory personal laws enforced in Bangladesh.</p>
+                <div class="p-4 bg-gradient-to-r from-red-50 to-orange-50 rounded-2xl border-l-4 border-azureBlue text-xs sm:text-sm text-subtleGray space-y-1 shadow-sm">
+                    <p class="font-bold text-navyBlue text-sm flex items-center gap-1.5" id="lawNoteHeader">
+                        <i class="fa-solid fa-gavel text-azureBlue"></i> Legal Statutory Basis:
+                    </p>
+                    <p id="lawNoteBody" class="font-medium text-slate-700">• Succession calculated as per statutory personal laws enforced in Bangladesh.</p>
                 </div>
             </div>
         </div>
@@ -350,6 +378,12 @@
     <script>
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
+        // Standard palette for dynamic colors across table rows and horizontal bar chart
+        const chartColors = [
+            '#C8102E', '#1E73BE', '#00A86B', '#D97706', '#8B5CF6', 
+            '#EC4899', '#06B6D4', '#F59E0B', '#10B981', '#6366F1'
+        ];
+
         function handleReligionChange() {
             const system = document.getElementById('religionSystem').value;
             const muslimOnlyEls = document.querySelectorAll('.muslim-only');
@@ -397,6 +431,18 @@
             }
         }
 
+        // Helper to insert heir share into dynamic structure
+        function addShare(list, title, count, totalFraction) {
+            if (count > 0 && totalFraction > 0) {
+                list.push({
+                    title: title,
+                    count: count,
+                    totalFraction: totalFraction,
+                    individualFraction: totalFraction / count
+                });
+            }
+        }
+
         // 1. Muslim Inheritance (Hanafi Sharia + MFLO Sec 4)
         function calcMuslimInheritance() {
             const estate = parseFloat(document.getElementById('estateVal').value) || 0;
@@ -424,7 +470,7 @@
             const cSisters = parseInt(document.getElementById('cSisters').value) || 0;
             const uSiblings = parseInt(document.getElementById('uSiblings').value) || 0;
 
-            let shares = {};
+            let heirList = [];
             let totalFixed = 0;
 
             const directChildren = sons + daughters;
@@ -432,41 +478,44 @@
             const hasIssue = (directChildren + orphanedBranch) > 0;
 
             if (gender === 'female' && husband === 1) {
-                shares['Husband'] = hasIssue ? (1 / 4) : (1 / 2);
-                totalFixed += shares['Husband'];
+                let hShare = hasIssue ? (1 / 4) : (1 / 2);
+                addShare(heirList, 'Husband', 1, hShare);
+                totalFixed += hShare;
             }
             if (gender === 'male' && wives > 0) {
                 let wShare = hasIssue ? (1 / 8) : (1 / 4);
-                shares[`Wife (${wives})`] = wShare;
+                addShare(heirList, 'Wife / Wives', wives, wShare);
                 totalFixed += wShare;
             }
 
             if (father === 1) {
-                shares['Father'] = 1 / 6;
-                totalFixed += shares['Father'];
+                let fShare = 1 / 6;
+                addShare(heirList, 'Father', 1, fShare);
+                totalFixed += fShare;
             }
             if (mother === 1) {
                 const totalSiblings = fullBrothers + fullSisters + cBrothers + cSisters + uSiblings;
-                shares['Mother'] = (hasIssue || totalSiblings >= 2) ? (1 / 6) : (1 / 3);
-                totalFixed += shares['Mother'];
+                let mShare = (hasIssue || totalSiblings >= 2) ? (1 / 6) : (1 / 3);
+                addShare(heirList, 'Mother', 1, mShare);
+                totalFixed += mShare;
             }
 
             if (pGrandfather === 1 && father === 0) {
-                shares['Paternal Grandfather'] = 1 / 6;
-                totalFixed += shares['Paternal Grandfather'];
+                addShare(heirList, 'Paternal Grandfather', 1, 1 / 6);
+                totalFixed += 1 / 6;
             }
             if (pGrandmother === 1 && mother === 0 && father === 0) {
-                shares['Paternal Grandmother'] = 1 / 6;
-                totalFixed += shares['Paternal Grandmother'];
+                addShare(heirList, 'Paternal Grandmother', 1, 1 / 6);
+                totalFixed += 1 / 6;
             }
             if (mGrandmother === 1 && mother === 0) {
-                shares['Maternal Grandmother'] = 1 / 6;
-                totalFixed += shares['Maternal Grandmother'];
+                addShare(heirList, 'Maternal Grandmother', 1, 1 / 6);
+                totalFixed += 1 / 6;
             }
 
             if (sons === 0 && daughters > 0) {
                 let dShare = (daughters === 1) ? (1 / 2) : (2 / 3);
-                shares[`Daughter(s) (${daughters})`] = dShare;
+                addShare(heirList, 'Daughter(s)', daughters, dShare);
                 totalFixed += dShare;
             }
 
@@ -474,7 +523,7 @@
                 let simulatedUnits = (sons + 1) * 2 + daughters;
                 let remForSec4 = Math.max(0, 1 - totalFixed);
                 let Sec4Share = (remForSec4 / simulatedUnits) * 2;
-                shares[`Pre-deceased Son's Lineage (${orphanedBranch}) [Sec 4 MFLO]`] = Sec4Share;
+                addShare(heirList, "Orphaned Grandchildren Lineage [Sec 4 MFLO]", orphanedBranch, Sec4Share);
                 totalFixed += Sec4Share;
             }
 
@@ -483,22 +532,27 @@
             if (sons > 0) {
                 let units = (sons * 2) + daughters;
                 let perUnit = remainder / units;
-                shares[`Son(s) (${sons})`] = perUnit * 2 * sons;
+                addShare(heirList, 'Son(s)', sons, perUnit * 2 * sons);
                 if (daughters > 0) {
-                    shares[`Daughter(s) (${daughters})`] = perUnit * daughters;
+                    addShare(heirList, 'Daughter(s)', daughters, perUnit * daughters);
                 }
             } else if (father === 1 && directChildren === 0) {
-                shares['Father'] = (shares['Father'] || 0) + remainder;
+                // Father as residuary
+                let fatherItem = heirList.find(item => item.title === 'Father');
+                if (fatherItem) {
+                    fatherItem.totalFraction += remainder;
+                    fatherItem.individualFraction = fatherItem.totalFraction;
+                }
             } else if (fullBrothers > 0 && directChildren === 0 && father === 0) {
                 let units = (fullBrothers * 2) + fullSisters;
                 let perUnit = remainder / units;
-                shares[`Full Brother(s) (${fullBrothers})`] = perUnit * 2 * fullBrothers;
+                addShare(heirList, 'Full Brother(s)', fullBrothers, perUnit * 2 * fullBrothers);
                 if (fullSisters > 0) {
-                    shares[`Full Sister(s) (${fullSisters})`] = perUnit * fullSisters;
+                    addShare(heirList, 'Full Sister(s)', fullSisters, perUnit * fullSisters);
                 }
             }
 
-            renderResults(shares, estate, unit, "Hanafi Sunni Inheritance & Section 4 MFLO 1961", "Calculated under Hanafi Sharia law with statutory per-stirpes protection for orphaned grandchildren under MFLO 1961.");
+            renderResults(heirList, estate, unit, "Hanafi Sunni Inheritance & Section 4 MFLO 1961", "Calculated under Hanafi Sharia law with statutory per-stirpes protection for orphaned grandchildren under MFLO 1961.");
         }
 
         // 2. Hindu Inheritance (Dayabhaga School - Bangladesh)
@@ -517,50 +571,38 @@
             const mother = parseInt(document.getElementById('mother').value) || 0;
             const fullBrothers = parseInt(document.getElementById('fullBrothers').value) || 0;
 
-            let shares = {};
+            let heirList = [];
 
             if (gender === 'male') {
-                // Priority Order 1: Sons (Sons take per capita and exclude all others)
                 if (sons > 0) {
-                    shares[`Son(s) (${sons})`] = 1.0;
-                } 
-                // Priority Order 2: Widow (Takes limited life estate if no sons)
-                else if (wives > 0) {
-                    shares[`Widow (${wives}) [Limited Interest]`] = 1.0;
-                } 
-                // Priority Order 3: Daughters (Unmarried > Married w/ Sons)
-                else if (unmarriedD > 0) {
-                    shares[`Unmarried Daughter(s) (${unmarriedD})`] = 1.0;
+                    addShare(heirList, 'Son(s)', sons, 1.0);
+                } else if (wives > 0) {
+                    addShare(heirList, 'Widow [Limited Life Interest]', wives, 1.0);
+                } else if (unmarriedD > 0) {
+                    addShare(heirList, 'Unmarried Daughter(s)', unmarriedD, 1.0);
                 } else if (marriedWithSonsD > 0) {
-                    shares[`Married Daughter(s) with Sons (${marriedWithSonsD})`] = 1.0;
-                } 
-                // Priority Order 4: Father
-                else if (father === 1) {
-                    shares['Father'] = 1.0;
-                } 
-                // Priority Order 5: Mother
-                else if (mother === 1) {
-                    shares['Mother [Limited Interest]'] = 1.0;
-                } 
-                // Priority Order 6: Full Brother(s)
-                else if (fullBrothers > 0) {
-                    shares[`Full Brother(s) (${fullBrothers})`] = 1.0;
+                    addShare(heirList, 'Married Daughter(s) with Sons', marriedWithSonsD, 1.0);
+                } else if (father === 1) {
+                    addShare(heirList, 'Father', 1, 1.0);
+                } else if (mother === 1) {
+                    addShare(heirList, 'Mother [Limited Life Interest]', 1, 1.0);
+                } else if (fullBrothers > 0) {
+                    addShare(heirList, 'Full Brother(s)', fullBrothers, 1.0);
                 }
             } else {
-                // Female Hindu Property (Stridhana Law)
                 if (sons + unmarriedD + marriedWithSonsD > 0) {
                     let totalCh = sons + unmarriedD + marriedWithSonsD;
-                    shares[`Surviving Offspring (${totalCh}) [Equal Stridhana]`] = 1.0;
+                    addShare(heirList, 'Surviving Offspring [Stridhana Equal Share]', totalCh, 1.0);
                 } else if (husband === 1) {
-                    shares['Husband'] = 1.0;
+                    addShare(heirList, 'Husband', 1, 1.0);
                 } else if (father === 1) {
-                    shares['Father'] = 1.0;
+                    addShare(heirList, 'Father', 1, 1.0);
                 } else if (mother === 1) {
-                    shares['Mother'] = 1.0;
+                    addShare(heirList, 'Mother', 1, 1.0);
                 }
             }
 
-            renderResults(shares, estate, unit, "Dayabhaga School of Hindu Law (Bangladesh)", "Under Dayabhaga law, male line descendants (Sons) completely exclude secondary heirs. Female heirs inherit a limited life estate unless it constitutes Stridhana.");
+            renderResults(heirList, estate, unit, "Dayabhaga School of Hindu Law (Bangladesh)", "Under Dayabhaga law, male line descendants (Sons) completely exclude secondary heirs. Female heirs inherit a limited life estate unless it constitutes Stridhana.");
         }
 
         // 3. Christian Inheritance (Succession Act, 1925)
@@ -577,63 +619,101 @@
             const mother = parseInt(document.getElementById('mother').value) || 0;
             const brothers = parseInt(document.getElementById('fullBrothers').value) || 0;
 
-            let shares = {};
+            let heirList = [];
             let childrenCount = sons + daughters;
             let spousePresent = (gender === 'male' && wives > 0) || (gender === 'female' && husband === 1);
 
             let spouseShare = 0;
             if (spousePresent) {
                 spouseShare = (childrenCount > 0) ? (1 / 3) : (1 / 2);
-                shares[gender === 'male' ? `Widow (${wives})` : 'Husband'] = spouseShare;
+                addShare(heirList, gender === 'male' ? 'Widow' : 'Husband', gender === 'male' ? wives : 1, spouseShare);
             }
 
             let rem = 1 - spouseShare;
 
             if (childrenCount > 0) {
-                shares[`Lineal Descendants / Children (${childrenCount}) [Equal Shares]`] = rem;
+                if (sons > 0) addShare(heirList, 'Son(s)', sons, (rem / childrenCount) * sons);
+                if (daughters > 0) addShare(heirList, 'Daughter(s)', daughters, (rem / childrenCount) * daughters);
             } else if (father === 1) {
-                shares['Father'] = rem;
+                addShare(heirList, 'Father', 1, rem);
             } else if (mother === 1 || brothers > 0) {
                 let kindredCount = (mother === 1 ? 1 : 0) + brothers;
-                shares[`Kindred (Mother / Siblings) (${kindredCount})`] = rem;
+                if (mother === 1) addShare(heirList, 'Mother', 1, rem / kindredCount);
+                if (brothers > 0) addShare(heirList, 'Brother(s)', brothers, (rem / kindredCount) * brothers);
             }
 
-            renderResults(shares, estate, unit, "Succession Act, 1925 (Christian Succession)", "Under Section 33 & 33A of the Succession Act 1925, sons and daughters inherit equal shares without gender discrimination.");
+            renderResults(heirList, estate, unit, "Succession Act, 1925 (Christian Succession)", "Under Section 33 & 33A of the Succession Act 1925, sons and daughters inherit equal shares without gender discrimination.");
         }
 
         // 4. Buddhist Inheritance
         function calcBuddhistInheritance() {
-            // Governed by customary Dayabhaga / Succession Act 1925 principles in Bangladesh
             calcChristianInheritance();
         }
 
-        function renderResults(sharesMap, estate, unit, lawTitle, lawDetail) {
+        function renderResults(heirList, estate, unit, lawTitle, lawDetail) {
             const tbody = document.getElementById('resultsTableBody');
+            const ratioChartBar = document.getElementById('ratioChartBar');
+            const ratioChartLegend = document.getElementById('ratioChartLegend');
+
             tbody.innerHTML = '';
+            ratioChartBar.innerHTML = '';
+            ratioChartLegend.innerHTML = '';
 
-            let hasShare = false;
-            for (let heir in sharesMap) {
-                let sVal = sharesMap[heir];
-                if (sVal > 0) {
-                    hasShare = true;
-                    let amt = (sVal * estate).toFixed(4);
-                    let pct = (sVal * 100).toFixed(2) + '%';
+            // Set all dynamic unit labels
+            document.querySelectorAll('.unitLabel').forEach(el => el.textContent = unit);
 
-                    let row = `<tr class="hover:bg-red-50/50 transition">
-                        <td class="p-3 font-bold text-navyBlue">${heir}</td>
-                        <td class="p-3 text-center font-semibold text-azureBlue">${pct}</td>
-                        <td class="p-3 text-right font-bold text-navyBlue">${amt} ${unit}</td>
-                    </tr>`;
-                    tbody.innerHTML += row;
-                }
+            if (!heirList || heirList.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="p-6 text-center font-bold text-red-600 bg-red-50">No qualifying primary heirs selected for distribution under this legal system.</td></tr>`;
+                document.getElementById('resultsWrapper').classList.remove('hidden');
+                document.getElementById('resultsWrapper').scrollIntoView({ behavior: 'smooth' });
+                return;
             }
 
-            if (!hasShare) {
-                tbody.innerHTML = `<tr><td colspan="3" class="p-4 text-center font-bold text-red-600">No qualifying primary heirs selected for distribution under this legal system.</td></tr>`;
-            }
+            let totalPercentSum = 0;
 
-            document.getElementById('unitLabel').textContent = unit;
-            document.getElementById('lawNoteHeader').textContent = "Legal Basis: " + lawTitle;
+            heirList.forEach((item, index) => {
+                let color = chartColors[index % chartColors.length];
+                let totalAmt = (item.totalFraction * estate).toFixed(4);
+                let indivAmt = (item.individualFraction * estate).toFixed(4);
+                let totalPct = (item.totalFraction * 100).toFixed(2);
+                let indivPct = (item.individualFraction * 100).toFixed(2);
+
+                totalPercentSum += parseFloat(totalPct);
+
+                // Add row to table
+                let row = `<tr class="hover:bg-red-50/40 transition border-b border-slate-100">
+                    <td class="p-3.5 font-bold text-navyBlue flex items-center gap-2">
+                        <span class="w-3.5 h-3.5 rounded-full inline-block shadow-sm" style="background-color: ${color}"></span>
+                        ${item.title}
+                    </td>
+                    <td class="p-3.5 text-center font-bold text-slate-700 bg-slate-50/50">${item.count}</td>
+                    <td class="p-3.5 text-center font-bold text-azureBlue">${totalPct}%</td>
+                    <td class="p-3.5 text-right font-black text-emerald-700 bg-emerald-50/50">
+                        ${indivAmt} ${unit} <span class="text-xs text-slate-500 font-semibold block">(${indivPct}%)</span>
+                    </td>
+                    <td class="p-3.5 text-right font-bold text-navyBlue">
+                        ${totalAmt} ${unit}
+                    </td>
+                </tr>`;
+                tbody.innerHTML += row;
+
+                // Build colorful horizontal chart bar segments
+                let barSegment = `<div style="width: ${totalPct}%; background-color: ${color};" 
+                    title="${item.title}: ${totalPct}%" 
+                    class="h-full border-r border-white/20 hover:opacity-90 transition"></div>`;
+                ratioChartBar.innerHTML += barSegment;
+
+                // Build chart legend
+                let legendItem = `<div class="flex items-center gap-1.5 bg-white px-2.5 py-1 rounded-lg border border-slate-200 shadow-2xs">
+                    <span class="w-3 h-3 rounded-full" style="background-color: ${color}"></span>
+                    <span class="text-slate-700 font-bold">${item.title}:</span>
+                    <span class="text-azureBlue font-black">${totalPct}%</span>
+                </div>`;
+                ratioChartLegend.innerHTML += legendItem;
+            });
+
+            document.getElementById('chartTotalLabel').textContent = `Total Shared: ${Math.round(totalPercentSum)}%`;
+            document.getElementById('lawNoteHeader').innerHTML = `<i class="fa-solid fa-gavel text-azureBlue"></i> Statutory Legal Basis: ${lawTitle}`;
             document.getElementById('lawNoteBody').textContent = "• " + lawDetail;
             document.getElementById('resultsWrapper').classList.remove('hidden');
             document.getElementById('resultsWrapper').scrollIntoView({ behavior: 'smooth' });

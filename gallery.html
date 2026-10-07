@@ -3,31 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Career Photo Gallery | Capital Law Chamber</title>
-    <link rel="icon" type="image/jpeg" href="favicon_.jpg">
+    <link rel="icon" type="image/jpeg" href="favicon_.jpg?v=2">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
+        /* Reset & Base */
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Calibri', 'Segoe UI', sans-serif;
-            font-style: normal !important;
         }
 
-        html, body {
+        html {
+            width: 100%;
+            height: 100%;
+            background-color: #1C2026;
+        }
+
+        body {
             width: 100%;
             min-height: 100vh;
-            background: #1C2026;
-            background: linear-gradient(180deg, #1C2026 0%, #2B303A 25%, #20242B 50%, #3B0D11 75%, #4A0000 100%);
-            background-attachment: fixed;
+            background: linear-gradient(180deg, #1C2026 0%, #2B303A 25%, #20242B 50%, #3B0D11 75%, #4A0000 100%) no-repeat center center fixed;
+            background-size: cover;
             color: #ffffff;
+            font-family: 'Calibri', 'Segoe UI', sans-serif;
+            display: block !important;
+            overflow-x: hidden;
         }
 
-        /* Top Header */
+        /* Header */
         header {
             text-align: center;
             padding: 40px 15px 20px;
+            width: 100%;
         }
 
         .profile-link {
@@ -70,15 +81,16 @@
             font-weight: 600;
         }
 
-        /* Main Content Block */
+        /* Container & White Card */
         .wrapper {
             max-width: 1100px;
             width: 92%;
             margin: 0 auto 40px;
+            display: block !important;
         }
 
         .glass-card {
-            background: #ffffff;
+            background: #ffffff !important;
             border-radius: 20px;
             padding: 30px;
             color: #1E293B;
@@ -87,6 +99,7 @@
             display: block !important;
             visibility: visible !important;
             opacity: 1 !important;
+            min-height: 400px;
         }
 
         .section-header {
@@ -157,10 +170,12 @@
             inset: 0;
             opacity: 0;
             transition: opacity 0.6s ease-in-out;
+            display: block;
         }
 
         .slide-item.active {
             opacity: 1;
+            z-index: 2;
         }
 
         .slide-item img {
@@ -177,6 +192,7 @@
             padding: 20px;
             background: linear-gradient(transparent, rgba(30, 35, 42, 0.95));
             color: #ffffff;
+            z-index: 3;
         }
 
         .slide-caption h4 {
@@ -214,7 +230,7 @@
         .nav-btn.prev { left: 15px; }
         .nav-btn.next { right: 15px; }
 
-        /* Albums Grid */
+        /* Albums Section */
         .albums-section {
             margin-top: 40px;
         }
@@ -307,4 +323,351 @@
 
         /* Footer */
         footer {
-            background: rgba(0, 0, 0,
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 1px solid rgba(200, 16, 46, 0.3);
+            padding: 40px 20px 20px;
+            margin-top: 40px;
+            width: 100%;
+        }
+
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-col h4 {
+            font-family: 'Book Antiqua', serif;
+            font-size: 16px;
+            color: #ffffff;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #C8102E;
+            display: inline-block;
+            padding-bottom: 4px;
+        }
+
+        .footer-col p, .footer-col li {
+            font-size: 13px;
+            color: #cbd5e1;
+            line-height: 1.6;
+            list-style: none;
+        }
+
+        .footer-col a {
+            color: #cbd5e1;
+            text-decoration: none;
+        }
+
+        .footer-col a:hover {
+            color: #fca5a5;
+            text-decoration: underline;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .social-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .bg-fb { background: #1877F2; }
+        .bg-wa { background: #25D366; }
+        .bg-mail { background: #ffffff; color: #1E232A; }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 30px;
+            padding-top: 15px;
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        @media (max-width: 600px) {
+            .slider-container { height: 260px; }
+            .glass-card { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="profile-link">
+            <div class="avatar-ring">
+                <img src="profile.jpg.png?v=2" alt="A B M Rashedul Islam" class="avatar-img" onerror="this.src='https://via.placeholder.com/150/C8102E/FFFFFF?text=Rashedul+Islam'">
+            </div>
+            <h1 class="profile-title">A B M RASHEDUL ISLAM</h1>
+            <p class="profile-subtitle">Associate Lawyer • Capital Law Chamber</p>
+        </a>
+    </header>
+
+    <div class="wrapper">
+        <div class="glass-card">
+            
+            <div class="section-header">
+                <h2>CAREER PHOTO GALLERY</h2>
+                <p>Highlights, Chamber Engagements & Professional Milestones</p>
+                <div class="divider"></div>
+            </div>
+
+            <!-- Slider -->
+            <section>
+                <div class="slider-title-bar">
+                    <h3><i class="fa-solid fa-star" style="color:#f59e0b;"></i> Career Highlights (Top 10)</h3>
+                    <span id="slideCounter" class="slide-counter">Slide 1 / 10</span>
+                </div>
+
+                <div class="slider-container">
+                    <div class="slide-item active">
+                        <img src="slider_1.jpg?v=2" onerror="this.src='https://via.placeholder.com/1000x500/1E232A/FFFFFF?text=Highlight+1:+Chamber+Practice'">
+                        <div class="slide-caption">
+                            <h4>Chamber Vetting & Legal Drafting</h4>
+                            <p>Capital Law Chamber • Gulshan-1, Dhaka</p>
+                        </div>
+                    </div>
+
+                    <div class="slide-item">
+                        <img src="slider_2.jpg?v=2" onerror="this.src='https://via.placeholder.com/1000x500/8B0000/FFFFFF?text=Highlight+2:+Court+Preparation'">
+                        <div class="slide-caption">
+                            <h4>Court Litigation & Document Preparation</h4>
+                            <p>Preparing legal briefs and arguments for court hearings</p>
+                        </div>
+                    </div>
+
+                    <div class="slide-item">
+                        <img src="slider_3.jpg?v=2" onerror="this.src='https://via.placeholder.com/1000x500/C8102E/FFFFFF?text=Highlight+3:+Client+Consultation'">
+                        <div class="slide-caption">
+                            <h4>Client Advisory & Legal Consultation</h4>
+                            <p>Strategic consultation for corporate & individual clients</p>
+                        </div>
+                    </div>
+
+                    <div class="slide-item">
+                        <img src="slider_4.jpg?v=2" onerror="this.src='https://via.placeholder.com/1000x500/2B303A/FFFFFF?text=Highlight+4:+Property+Vetting'">
+                        <div class="slide-caption">
+                            <h4>Property Vetting & Title Verification</h4>
+                            <p>Land documentation review & succession share analysis</p>
+                        </div>
+                    </div>
+
+                    <div class="slide-item">
+                        <img src="slider_5.jpg?v=2" onerror="this.src='https://via.placeholder.com/1000x500/1E232A/FFFFFF?text=Highlight+5:+Seminars'">
+                        <div class="slide-caption">
+                            <h4>Conferences & Academic Seminars</h4>
+                            <p>Participating in law seminars and workshops</p>
+                        </div>
+                    </div>
+
+                    <div class="slide-item">
+                        <img src="slider_6.jpg?v=2" onerror="this.src='https://via.placeholder.com/1000x500/8B0000/FFFFFF?text=Highlight+6:+Contract+Drafting'">
+                        <div class="slide-caption">
+                            <h4>Commercial Contract Drafting</h4>
+                            <p>Reviewing corporate agreements, deeds & MOUs</p>
+                        </div>
+                    </div>
+
+                    <div class="slide-item">
+                        <img src="slider_7.jpg?v=2" onerror="this.src='https://via.placeholder.com/1000x500/C8102E/FFFFFF?text=Highlight+7:+Court+Filing'">
+                        <div class="slide-caption">
+                            <h4>Court Registry & Filings</h4>
+                            <p>Managing procedural filings and registry operations</p>
+                        </div>
+                    </div>
+
+                    <div class="slide-item">
+                        <img src="slider_8.jpg?v=2" onerror="this.src='https://via.placeholder.com/1000x500/2B303A/FFFFFF?text=Highlight+8:+Legal+Research'">
+                        <div class="slide-caption">
+                            <h4>Legal Precedent Research</h4>
+                            <p>In-depth statutory research and case law analysis</p>
+                        </div>
+                    </div>
+
+                    <div class="slide-item">
+                        <img src="slider_9.jpg?v=2" onerror="this.src='https://via.placeholder.com/1000x500/1E232A/FFFFFF?text=Highlight+9:+Professional+Meetings'">
+                        <div class="slide-caption">
+                            <h4>Bar & Chamber Delegate Sessions</h4>
+                            <p>Engaging with legal professionals and associate colleagues</p>
+                        </div>
+                    </div>
+
+                    <div class="slide-item">
+                        <img src="slider_10.jpg?v=2" onerror="this.src='https://via.placeholder.com/1000x500/8B0000/FFFFFF?text=Highlight+10:+Pro+Bono+Service'">
+                        <div class="slide-caption">
+                            <h4>Community Legal Support & Pro Bono</h4>
+                            <p>Extending pro-bono guidance and legal awareness</p>
+                        </div>
+                    </div>
+
+                    <button class="nav-btn prev" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="nav-btn next" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </section>
+
+            <!-- Albums Grid -->
+            <section class="albums-section">
+                <div class="slider-title-bar">
+                    <h3><i class="fa-solid fa-images" style="color:#C8102E;"></i> Career Albums</h3>
+                </div>
+
+                <div class="albums-grid">
+                    <div class="album-card border-1">
+                        <div class="album-thumb">
+                            <img src="album_chamber.jpg?v=2" onerror="this.src='https://via.placeholder.com/600x400/1E232A/FFFFFF?text=Chamber+Practice'">
+                            <span class="album-badge">Album 01</span>
+                        </div>
+                        <div class="album-body">
+                            <span class="album-category"><i class="fa-solid fa-building-columns"></i> Chamber Practice</span>
+                            <div class="album-title">Legal Vetting & Consultation</div>
+                            <div class="album-desc">Chamber advisory, property title searching & legal drafting activities.</div>
+                        </div>
+                    </div>
+
+                    <div class="album-card border-2">
+                        <div class="album-thumb">
+                            <img src="album_litigation.jpg?v=2" onerror="this.src='https://via.placeholder.com/600x400/8B0000/FFFFFF?text=Litigation+Album'">
+                            <span class="album-badge">Album 02</span>
+                        </div>
+                        <div class="album-body">
+                            <span class="album-category"><i class="fa-solid fa-gavel"></i> Litigation & Court</span>
+                            <div class="album-title">Courtroom Proceedings</div>
+                            <div class="album-desc">Case file preparation, court appearances and trial research.</div>
+                        </div>
+                    </div>
+
+                    <div class="album-card border-3">
+                        <div class="album-thumb">
+                            <img src="album_events.jpg?v=2" onerror="this.src='https://via.placeholder.com/600x400/D97706/FFFFFF?text=Seminars+Album'">
+                            <span class="album-badge">Album 03</span>
+                        </div>
+                        <div class="album-body">
+                            <span class="album-category"><i class="fa-solid fa-graduation-cap"></i> Seminars & Events</span>
+                            <div class="album-title">Law Workshops & Forums</div>
+                            <div class="album-desc">Participating in law seminars, workshops, and legal education forums.</div>
+                        </div>
+                    </div>
+
+                    <div class="album-card border-4">
+                        <div class="album-thumb">
+                            <img src="album_meetings.jpg?v=2" onerror="this.src='https://via.placeholder.com/600x400/2563EB/FFFFFF?text=Meetings+Album'">
+                            <span class="album-badge">Album 04</span>
+                        </div>
+                        <div class="album-body">
+                            <span class="album-category"><i class="fa-solid fa-handshake"></i> Corporate Meetings</span>
+                            <div class="album-title">Executive Legal Advisory</div>
+                            <div class="album-desc">Corporate agreements, business negotiations and client meetings.</div>
+                        </div>
+                    </div>
+
+                    <div class="album-card border-5">
+                        <div class="album-thumb">
+                            <img src="album_verdicts.jpg?v=2" onerror="this.src='https://via.placeholder.com/600x400/059669/FFFFFF?text=Verdicts+Album'">
+                            <span class="album-badge">Album 05</span>
+                        </div>
+                        <div class="album-body">
+                            <span class="album-category"><i class="fa-solid fa-scale-balanced"></i> Case Decrees</span>
+                            <div class="album-title">Judicial Relief & Successes</div>
+                            <div class="album-desc">Important case judgments, decrees, and legal settlements.</div>
+                        </div>
+                    </div>
+
+                    <div class="album-card border-6">
+                        <div class="album-thumb">
+                            <img src="album_community.jpg?v=2" onerror="this.src='https://via.placeholder.com/600x400/7C3AED/FFFFFF?text=Community+Album'">
+                            <span class="album-badge">Album 06</span>
+                        </div>
+                        <div class="album-body">
+                            <span class="album-category"><i class="fa-solid fa-users"></i> Pro Bono & Community</span>
+                            <div class="album-title">Legal Awareness & Aid</div>
+                            <div class="album-desc">Community engagements, pro-bono advice, and legal assistance.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4 style="font-family:'Algerian', serif; letter-spacing:1px;">CAPITAL LAW CHAMBER</h4>
+                <p style="font-weight:bold; color:white;">A B M RASHEDUL ISLAM</p>
+                <p>Associate Lawyer</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/rd.L.islam" target="_blank" class="social-icon bg-fb"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://wa.me/8801755712215" target="_blank" class="social-icon bg-wa"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="mailto:rashed.legalhq@gmail.com" class="social-icon bg-mail"><i class="fa-regular fa-envelope"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Chamber Location</h4>
+                <p><strong>Capital Law Chamber</strong></p>
+                <p><i class="fa-solid fa-location-dot" style="color:#f87171;"></i> House No.15, Road No.128,<br>Gulshan-1, Dhaka-1212,<br>Bangladesh</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Direct Contact</h4>
+                <ul>
+                    <li><i class="fa-solid fa-phone" style="color:#4ade80;"></i> <a href="tel:01755712215">01755712215</a></li>
+                    <li><i class="fa-brands fa-whatsapp" style="color:#4ade80;"></i> <a href="https://wa.me/8801755712215" target="_blank">01755712215 (WhatsApp)</a></li>
+                    <li><i class="fa-regular fa-envelope"></i> <a href="mailto:rashed.legalhq@gmail.com">rashed.legalhq@gmail.com</a></li>
+                    <li><i class="fa-brands fa-facebook" style="color:#1877F2;"></i> <a href="https://www.facebook.com/rd.L.islam" target="_blank">facebook.com/rd.L.islam</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Chamber Hours</h4>
+                <p><strong>Sat - Thu:</strong> 10:00 AM - 08:00 PM</p>
+                <p><strong>Friday:</strong> Closed / By Appt.</p>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; <span id="currentYear"></span> A B M Rashedul Islam. Associate Lawyer, Capital Law Chamber. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide-item');
+        const counterElement = document.getElementById('slideCounter');
+
+        function updateSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            if (counterElement) {
+                counterElement.textContent = `Slide ${index + 1} / ${slides.length}`;
+            }
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateSlide(currentSlide);
+        }
+
+        setInterval(nextSlide, 4000);
+    </script>
+</body>
+</html>

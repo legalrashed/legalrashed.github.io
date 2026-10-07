@@ -13,19 +13,15 @@
             theme: {
                 extend: {
                     colors: {
-                        azureBlue: '#007FFF',
-                        navyBlue: '#0A2540',
-                        deepGreen: '#0F5257',
-                        virginBlue: '#E6F2FF',
-                        softBlue: '#F0F8FF',
-                        turquoiseGreen: '#30D5C8',
-                        mintGreen: '#A2E8DD',
-                        darkText: '#1E293B',
-                        subtleGray: '#475569',
-                        softWhite: '#FAFAFA',
+                        azureBlue: '#C8102E',    /* Signature Capital Law Chamber Red */
+                        navyBlue: '#1E232A',     /* Dark Charcoal Accent */
+                        deepGreen: '#8B0000',    /* Dark Crimson Red */
+                        darkText: '#1E293B',     /* Slate Dark Text */
+                        subtleGray: '#475569',   /* Muted Text Gray */
+                        fbBlue: '#1877F2',       /* Official Facebook Blue */
                     },
                     fontFamily: {
-                        algerian: ['Algerian', 'Impact', 'Georgia', 'serif'],
+                        algerian: ['Algerian', 'Impact', 'Copperplate Gothic Bold', 'Georgia', 'serif'],
                         bookAntiqua: ['"Book Antiqua"', 'Palatino', 'Georgia', 'serif'],
                         garamond: ['Garamond', 'Georgia', 'serif'],
                         calibri: ['Calibri', 'Candara', 'Segoe UI', 'sans-serif']
@@ -35,30 +31,66 @@
         }
     </script>
     <style>
+        .font-algerian { font-family: Algerian, Impact, 'Copperplate Gothic Bold', Georgia, serif; font-style: normal !important; }
+        .font-bookAntiqua { font-family: 'Book Antiqua', Palatino, 'Palatino Linotype', Georgia, serif; font-style: normal !important; }
+        .font-garamond { font-family: Garamond, Georgia, serif; font-style: normal !important; }
+        .font-calibri { font-family: Calibri, Candara, 'Segoe UI', sans-serif; font-style: normal !important; }
+
         * { font-style: normal !important; }
-        .dark-blue-green-border {
-            border: 3px solid transparent;
-            background-image: linear-gradient(white, white), linear-gradient(135deg, #0A2540 0%, #007FFF 50%, #0F5257 100%);
-            background-origin: border-box;
-            background-clip: padding-box, border-box;
+
+        /* Main Webpage Continuous Gradient Background matching calculator.html */
+        body {
+            background: linear-gradient(180deg, #1C2026 0%, #2B303A 20%, #20242B 45%, #3B0D11 75%, #4A0000 90%, #2B0000 100%) !important;
+            background-attachment: fixed;
         }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1C2026; }
+        ::-webkit-scrollbar-thumb { background: #C8102E; border-radius: 4px; }
+
+        .glass-card-light {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(200, 16, 46, 0.2);
+        }
+
+        .photo-glow { box-shadow: 0 0 25px rgba(200, 16, 46, 0.4); }
     </style>
 </head>
-<body class="bg-softWhite font-calibri text-darkText antialiased flex flex-col min-h-screen">
+<body class="font-calibri text-white antialiased selection:bg-azureBlue selection:text-white flex flex-col min-h-screen">
 
-    <!-- Top Header Banner -->
-    <header class="w-full bg-azureBlue py-3 sm:py-4 px-4 text-center shadow-md">
-        <h1 class="font-algerian text-2xl sm:text-4xl md:text-5xl font-bold text-white tracking-widest drop-shadow-sm">
-            CAPITAL LAW CHAMBER
-        </h1>
+    <!-- Top Profile Header linking back to index.html -->
+    <header class="py-8 px-4 text-center">
+        <a href="index.html" class="inline-flex flex-col items-center group transition transform hover:scale-105">
+            <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1.5 bg-gradient-to-tr from-navyBlue via-azureBlue to-deepGreen photo-glow mb-3">
+                <img 
+                    src="profile.jpg.png" 
+                    alt="A B M Rashedul Islam" 
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x400/C8102E/FFFFFF?text=A+B+M+Rashedul+Islam';"
+                    class="w-full h-full object-cover rounded-full border-2 border-white shadow-md"
+                />
+            </div>
+            <h1 class="font-bookAntiqua text-2xl sm:text-3xl font-bold text-white tracking-wide group-hover:text-red-300 transition">
+                A B M RASHEDUL ISLAM
+            </h1>
+            <p class="font-garamond text-lg text-red-400 font-semibold">Associate Lawyer • Capital Law Chamber</p>
+        </a>
     </header>
 
-    <!-- Navigation Menu (Aligned with main site layout) -->
-    <div class="sticky top-0 z-50 pt-2 pb-2 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-        <nav class="w-full dark-blue-green-border rounded-2xl shadow-xl p-3 sm:p-4 bg-white flex items-center justify-between gap-3">
+    <main class="flex-grow max-w-5xl w-full mx-auto px-4 pb-16">
+        <div class="glass-card-light rounded-3xl p-6 sm:p-10 shadow-2xl text-darkText border-2 border-azureBlue/30 space-y-10">
             
-            <div class="flex items-center gap-2 pl-2">
-                <div class="w-8 h-8 rounded-full bg-navyBlue text-white flex items-center justify-center font-bookAntiqua font-bold text-sm">
-                    ABM
-                </div>
-                <span class="font-bookAntiqua font-bold text-navy
+            <div class="text-center border-b border-red-100 pb-6">
+                <h2 class="font-bookAntiqua text-2xl sm:text-3xl font-bold text-navyBlue mb-1">
+                    CAREER PHOTO GALLERY
+                </h2>
+                <p class="font-garamond text-base sm:text-lg text-subtleGray font-semibold">
+                    Highlights, Chamber Activities & Professional Engagements
+                </p>
+                <div class="w-24 h-1 bg-azureBlue mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <!-- Top Section: Interactive Image Slideshow -->
+            <div class="relative w-full max-w-4xl mx-auto h-64 sm:h-96 rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-navyBlue">
+                
+                <div id="slide1" class="slide-item absolute

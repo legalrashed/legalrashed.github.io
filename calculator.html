@@ -188,7 +188,7 @@
                     <div class="bg-gray-100 text-darkText p-4 rounded-2xl shadow-sm flex flex-col justify-between border border-gray-300 text-sm">
                         <div>
                             <span class="text-xs font-bold text-subtleGray uppercase tracking-wider">FRACTIONAL SHARE (হিস্যা)</span>
-                            <div id="fractionDisplay" class="text-xl font-bold mt-1 font-mono text-navyBase">0.000000</div>
+                            <div id="fractionDisplay" class="text-xl font-bold mt-1 font-mono text-navyBlue">0.000000</div>
                             <div id="fractionTextDisplay" class="text-xs text-subtleGray mt-1">0 / 76800 Teel</div>
                         </div>
                     </div>
@@ -471,7 +471,101 @@
         // Helper function to populate numeric-only dropdowns (Gonda, Teel)
         function populateDropdown(id, max) {
             const select = document.getElementById(id);
+            if (!select) return;
             select.innerHTML = '';
             for (let i = 0; i <= max; i++) {
                 const opt = document.createElement('option');
-                opt
+                opt.value = i;
+                opt.textContent = i;
+                select.appendChild(opt);
+            }
+        }
+
+        // Helper function to populate dropdowns with custom sign labels
+        function populateWithOptions(id, optionArray) {
+            const select = document.getElementById(id);
+            if (!select) return;
+            select.innerHTML = '';
+            optionArray.forEach((text, val) => {
+                const opt = document.createElement('option');
+                opt.value = val;
+                opt.textContent = text;
+                select.appendChild(opt);
+            });
+        }
+
+        // Populate all dropdowns immediately
+        populateWithOptions('anaSelect', anaOptions);
+        populateDropdown('gondaSelect', 19);
+        populateWithOptions('koraSelect', koraOptions);
+        populateWithOptions('krantiSelect', krantiOptions);
+        populateDropdown('teelSelect', 19);
+
+        // Switcher between Hissa and Converter
+        function switchCalculator(target) {
+            const hissaSec = document.getElementById('hissaSection');
+            const converterSec = document.getElementById('converterSection');
+            const hissaBtn = document.getElementById('tabHissaBtn');
+            const converterBtn = document.getElementById('tabConverterBtn');
+
+            if (target === 'hissa') {
+                hissaSec.classList.remove('hidden');
+                converterSec.classList.add('hidden');
+
+                hissaBtn.className = "p-4 rounded-2xl font-bold text-base sm:text-lg transition flex items-center justify-center gap-3 bg-azureBlue text-white shadow-lg";
+                converterBtn.className = "p-4 rounded-2xl font-bold text-base sm:text-lg transition flex items-center justify-center gap-3 bg-gray-100 text-navyBlue hover:bg-gray-200";
+            } else {
+                hissaSec.classList.add('hidden');
+                converterSec.classList.remove('hidden');
+
+                converterBtn.className = "p-4 rounded-2xl font-bold text-base sm:text-lg transition flex items-center justify-center gap-3 bg-azureBlue text-white shadow-lg";
+                hissaBtn.className = "p-4 rounded-2xl font-bold text-base sm:text-lg transition flex items-center justify-center gap-3 bg-gray-100 text-navyBlue hover:bg-gray-200";
+            }
+        }
+
+        // PART 1: LAND HISSA CALCULATION
+        function calculateHissaShare() {
+            const ana = parseInt(document.getElementById('anaSelect').value) || 0;
+            const gonda = parseInt(document.getElementById('gondaSelect').value) || 0;
+            const kora = parseInt(document.getElementById('koraSelect').value) || 0;
+            const kranti = parseInt(document.getElementById('krantiSelect').value) || 0;
+            const teel = parseInt(document.getElementById('teelSelect').value) || 0;
+
+            const totalAreaInput = parseFloat(document.getElementById('hissaTotalArea').value) || 0;
+            const selectedUnit = document.getElementById('hissaUnitSelect').value;
+
+            // 16 Ana = 76,800 Teel
+            const totalTeelInput = (ana * 4800) + (gonda * 240) + (kora * 60) + (kranti * 20) + teel;
+            const TOTAL_TEEL = 76800;
+
+            const fractionalShare = totalTeelInput / TOTAL_TEEL;
+            
+            // Display decimal fraction and fractional ratio
+            document.getElementById('fractionDisplay').textContent = fractionalShare.toFixed(6);
+            document.getElementById('fractionTextDisplay').textContent = `${totalTeelInput} / ${TOTAL_TEEL} Teel`;
+
+            let areaInShatangsho = 0;
+            if (selectedUnit === 'Shatangsho') {
+                areaInShatangsho = totalAreaInput;
+            } else if (selectedUnit === 'Katha') {
+                areaInShatangsho = totalAreaInput * 1.65;
+            } else if (selectedUnit === 'Bigha') {
+                areaInShatangsho = totalAreaInput * 33;
+            } else if (selectedUnit === 'SqFt') {
+                areaInShatangsho = totalAreaInput / 435.6;
+            }
+
+            const calculatedShatangsho = areaInShatangsho * fractionalShare;
+
+            document.getElementById('resShatangsho').textContent = calculatedShatangsho.toFixed(4);
+            document.getElementById('resKatha').textContent = (calculatedShatangsho / 1.65).toFixed(4);
+            document.getElementById('resBigha').textContent = (calculatedShatangsho / 33).toFixed(4);
+            document.getElementById('resSqFt').textContent = (calculatedShatangsho * 435.6).toFixed(2);
+
+            document.getElementById('hissaResultsWrapper').classList.remove('hidden');
+            document.getElementById('hissaResultsWrapper').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // PART 2: UNIT CONVERSION
+        function convertLandUnits() {
+            const qty = parseFloat(document.getElementById('convert

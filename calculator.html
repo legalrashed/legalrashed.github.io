@@ -65,4 +65,140 @@
 
     <!-- Top Profile Section linking back to index.html -->
     <header class="py-8 px-4 text-center">
-        <a href="index.
+        <a href="index.html" class="inline-flex flex-col items-center group transition transform hover:scale-105">
+            <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1.5 bg-gradient-to-tr from-navyBlue via-azureBlue to-deepGreen photo-glow mb-3">
+                <img 
+                    src="profile.jpg.png" 
+                    alt="A B M Rashedul Islam" 
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x400/C8102E/FFFFFF?text=A+B+M+Rashedul+Islam';"
+                    class="w-full h-full object-cover rounded-full border-2 border-white shadow-md"
+                />
+            </div>
+            <h1 class="font-bookAntiqua text-2xl sm:text-3xl font-bold text-white tracking-wide group-hover:text-red-300 transition">
+                A B M RASHEDUL ISLAM
+            </h1>
+            <p class="font-garamond text-lg text-red-400 font-semibold">Associate Lawyer • Capital Law Chamber</p>
+        </a>
+    </header>
+
+    <main class="flex-grow max-w-5xl w-full mx-auto px-4 pb-16 space-y-8">
+        
+        <!-- Two-Option Selection Switcher -->
+        <div class="glass-card-light rounded-3xl p-6 shadow-2xl text-darkText border-2 border-azureBlue/30">
+            <h2 class="font-bookAntiqua text-center text-xl sm:text-2xl font-bold text-navyBlue mb-4">
+                Select Land Calculation Utility
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <button type="button" id="tabHissaBtn" onclick="switchCalculator('hissa')" class="p-4 rounded-2xl font-bold text-base sm:text-lg transition flex items-center justify-center gap-3 bg-azureBlue text-white shadow-lg">
+                    <i class="fa-solid fa-scale-balanced text-xl"></i>
+                    <span>1. Land Hissa Calculator<br><span class="text-xs font-normal opacity-90">(আনা-গণ্ডা হিসাব)</span></span>
+                </button>
+
+                <button type="button" id="tabConverterBtn" onclick="switchCalculator('converter')" class="p-4 rounded-2xl font-bold text-base sm:text-lg transition flex items-center justify-center gap-3 bg-gray-100 text-navyBlue hover:bg-gray-200">
+                    <i class="fa-solid fa-vector-square text-xl"></i>
+                    <span>2. Land Unit Converter<br><span class="text-xs font-normal opacity-75">(ভূমি রূপান্তরক)</span></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= PART 1: LAND HISSA CALCULATOR ================= -->
+        <div id="hissaSection" class="glass-card-light rounded-3xl p-6 sm:p-10 shadow-2xl text-darkText border-2 border-azureBlue/30 space-y-8">
+            
+            <!-- Section Title -->
+            <div class="text-center border-b border-gray-200 pb-6">
+                <h2 class="font-bookAntiqua text-2xl sm:text-3xl font-bold text-navyBlue flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-scale-balanced text-azureBlue"></i>
+                    Land Hissa Calculator (আনা-গণ্ডা হিসাব)
+                </h2>
+                <p class="font-garamond text-base sm:text-lg text-subtleGray mt-1">
+                    Calculate 16-Ana Record Fractional Shares and Land Partition Areas
+                </p>
+            </div>
+
+            <!-- Input Form -->
+            <div class="space-y-6">
+                <!-- Dropdown Menus for Ana, Gonda, Kora, Kranti, Teel -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+                    <div>
+                        <label class="block font-bold text-navyBlue text-sm mb-1.5">Ana (আনা)</label>
+                        <select id="anaSelect" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <!-- Populated via JavaScript -->
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block font-bold text-navyBlue text-sm mb-1.5">Gonda (গণ্ডা)</label>
+                        <select id="gondaSelect" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <!-- Populated via JavaScript -->
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block font-bold text-navyBlue text-sm mb-1.5">Kora (কড়া)</label>
+                        <select id="koraSelect" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <!-- Populated via JavaScript -->
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block font-bold text-navyBlue text-sm mb-1.5">Kranti (ক্রান্তি)</label>
+                        <select id="krantiSelect" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <!-- Populated via JavaScript -->
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block font-bold text-navyBlue text-sm mb-1.5">Teel (তিল)</label>
+                        <select id="teelSelect" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <!-- Populated via JavaScript -->
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Total Land Area Input & Unit Selector -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end pt-4 border-t border-gray-200">
+                    <div class="md:col-span-1">
+                        <label class="block font-bold text-navyBlue text-sm mb-1.5">Total Record Land Area</label>
+                        <input type="number" id="hissaTotalArea" value="100" min="0" step="any" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                    </div>
+
+                    <div class="md:col-span-1">
+                        <label class="block font-bold text-navyBlue text-sm mb-1.5">Input Unit</label>
+                        <select id="hissaUnitSelect" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <option value="Shatangsho">Shatangsho / Decimal (শতাংশ)</option>
+                            <option value="Katha">Katha (কাঠা)</option>
+                            <option value="Bigha">Bigha (বিঘা)</option>
+                            <option value="SqFt">Square Feet (বর্গফুট)</option>
+                        </select>
+                    </div>
+
+                    <!-- Button Trigger -->
+                    <div class="md:col-span-1">
+                        <button type="button" onclick="calculateHissaShare()" class="w-full bg-azureBlue hover:bg-deepGreen text-white font-bold py-3 px-4 rounded-xl shadow-lg transition duration-300 flex items-center justify-center gap-2 text-base">
+                            <i class="fa-solid fa-calculator"></i> Calculate Hissa Share
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hissa Results (Revealed ONLY on button click) -->
+            <div id="hissaResultsWrapper" class="hidden pt-6 border-t border-gray-200">
+                <div class="bg-gray-50 p-6 rounded-2xl shadow-md border border-gray-200 space-y-5">
+                    
+                    <!-- Header with Hissa Fraction placed in a clean corner badge (small font, unhighlighted) -->
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-gray-200 pb-4">
+                        <h3 class="font-bookAntiqua text-lg font-bold text-navyBlue flex items-center gap-2">
+                            <i class="fa-solid fa-chart-pie text-azureBlue"></i> Calculated Share Area
+                        </h3>
+                        <!-- Small Corner Hissa Fraction Box -->
+                        <div class="bg-white px-3 py-1.5 rounded-lg border border-gray-300 shadow-xs text-left sm:text-right">
+                            <span class="text-[10px] font-bold text-subtleGray uppercase block">Hissa Fraction (হিস্যা)</span>
+                            <span id="fractionDisplay" class="text-xs font-mono font-bold text-navyBlue">0 / 76800</span>
+                        </div>
+                    </div>
+
+                    <!-- Multi-Color Highlighted Bold Results -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                        <!-- Black Accent -->
+                        <div class="bg-white p-3.5 rounded-xl border-l-4 border-black shadow-sm">
+                            <span class="block text-xs font-bold

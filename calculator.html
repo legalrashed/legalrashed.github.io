@@ -184,40 +184,44 @@
             <!-- Hissa Results (Revealed ONLY on button click) -->
             <div id="hissaResultsWrapper" class="hidden pt-6 border-t border-gray-200">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Fractional Share Display -->
-                    <div class="bg-navyBlue text-white p-6 rounded-2xl shadow-xl flex flex-col justify-between border-l-4 border-azureBlue">
+                    <!-- Compact Unhighlighted Hissa Corner Box -->
+                    <div class="bg-gray-100 text-darkText p-4 rounded-2xl shadow-sm flex flex-col justify-between border border-gray-300 text-sm">
                         <div>
-                            <span class="text-xs font-bold text-red-400 uppercase tracking-wider">FRACTIONAL SHARE (হিস্যা)</span>
-                            <div id="fractionDisplay" class="text-3xl font-bold mt-2 font-mono text-white">0.000000</div>
-                            <p class="text-xs text-gray-300 mt-1">Out of 1.000000 (Full 16 Ana)</p>
+                            <span class="text-xs font-bold text-subtleGray uppercase tracking-wider">FRACTIONAL SHARE (হিস্যা)</span>
+                            <div id="fractionDisplay" class="text-xl font-bold mt-1 font-mono text-navyBase">0.000000</div>
+                            <div id="fractionTextDisplay" class="text-xs text-subtleGray mt-1">0 / 76800 Teel</div>
                         </div>
                     </div>
 
-                    <!-- Area Distribution Cards -->
+                    <!-- Area Distribution Cards with Multicolored Highlights & Bold Results -->
                     <div class="md:col-span-2 bg-gray-50 p-6 rounded-2xl shadow-md border border-gray-200">
                         <h3 class="font-bookAntiqua text-lg font-bold text-navyBlue mb-4 flex items-center gap-2">
                             <i class="fa-solid fa-chart-pie text-azureBlue"></i> Calculated Share Area
                         </h3>
 
                         <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                            <div class="bg-white p-3.5 rounded-xl border border-gray-200 shadow-sm">
+                            <!-- Black Accent -->
+                            <div class="bg-white p-3.5 rounded-xl border-l-4 border-black shadow-sm">
                                 <span class="block text-xs font-bold text-subtleGray">Shatangsho (Decimal)</span>
-                                <span id="resShatangsho" class="text-xl font-bold text-navyBlue">0.00</span>
+                                <span id="resShatangsho" class="text-xl font-extrabold text-black">0.00</span>
                             </div>
 
-                            <div class="bg-white p-3.5 rounded-xl border border-gray-200 shadow-sm">
+                            <!-- Blue Accent -->
+                            <div class="bg-white p-3.5 rounded-xl border-l-4 border-blue-600 shadow-sm">
                                 <span class="block text-xs font-bold text-subtleGray">Katha (কাঠা)</span>
-                                <span id="resKatha" class="text-xl font-bold text-navyBlue">0.00</span>
+                                <span id="resKatha" class="text-xl font-extrabold text-blue-600">0.00</span>
                             </div>
 
-                            <div class="bg-white p-3.5 rounded-xl border border-gray-200 shadow-sm">
+                            <!-- Red Accent -->
+                            <div class="bg-white p-3.5 rounded-xl border-l-4 border-red-600 shadow-sm">
                                 <span class="block text-xs font-bold text-subtleGray">Bigha (বিঘা)</span>
-                                <span id="resBigha" class="text-xl font-bold text-navyBlue">0.00</span>
+                                <span id="resBigha" class="text-xl font-extrabold text-red-600">0.00</span>
                             </div>
 
-                            <div class="bg-white p-3.5 rounded-xl border border-gray-200 shadow-sm">
+                            <!-- Pink Accent -->
+                            <div class="bg-white p-3.5 rounded-xl border-l-4 border-pink-500 shadow-sm">
                                 <span class="block text-xs font-bold text-subtleGray">Square Feet</span>
-                                <span id="resSqFt" class="text-xl font-bold text-navyBlue">0.00</span>
+                                <span id="resSqFt" class="text-xl font-extrabold text-pink-600">0.00</span>
                             </div>
                         </div>
                     </div>
@@ -269,56 +273,65 @@
                 </div>
             </div>
 
-            <!-- Unit Conversion Results Matrix (Revealed ONLY on button click) -->
+            <!-- Unit Conversion Results Matrix with Black, Blue, Red, Pink, Yellow Highlights & Bold Text -->
             <div id="convertResultsWrapper" class="hidden pt-4 border-t border-gray-200">
                 <h3 class="font-bookAntiqua text-xl font-bold text-navyBlue mb-4 text-center">
                     Equivalent Area Across All Standard Units
                 </h3>
 
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-4">
-                    <div class="bg-white p-4 rounded-xl border-l-4 border-azureBlue shadow-md">
+                    <!-- Black Highlight -->
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-black shadow-md">
                         <span class="block text-xs font-bold text-subtleGray uppercase">Decimal / Shatangsho</span>
-                        <span id="cDecimal" class="text-xl font-bold text-navyBlue">0.00</span>
+                        <span id="cDecimal" class="text-xl font-extrabold text-black">0.00</span>
                     </div>
 
-                    <div class="bg-white p-4 rounded-xl border-l-4 border-azureBlue shadow-md">
+                    <!-- Blue Highlight -->
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-blue-600 shadow-md">
                         <span class="block text-xs font-bold text-subtleGray uppercase">Katha (কাঠা)</span>
-                        <span id="cKatha" class="text-xl font-bold text-navyBlue">0.00</span>
+                        <span id="cKatha" class="text-xl font-extrabold text-blue-600">0.00</span>
                     </div>
 
-                    <div class="bg-white p-4 rounded-xl border-l-4 border-azureBlue shadow-md">
+                    <!-- Red Highlight -->
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-red-600 shadow-md">
                         <span class="block text-xs font-bold text-subtleGray uppercase">Bigha (বিঘা)</span>
-                        <span id="cBigha" class="text-xl font-bold text-navyBlue">0.00</span>
+                        <span id="cBigha" class="text-xl font-extrabold text-red-600">0.00</span>
                     </div>
 
-                    <div class="bg-white p-4 rounded-xl border-l-4 border-navyBlue shadow-md">
+                    <!-- Pink Highlight -->
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-pink-500 shadow-md">
                         <span class="block text-xs font-bold text-subtleGray uppercase">Chattak (ছটাক)</span>
-                        <span id="cChattak" class="text-xl font-bold text-navyBlue">0.00</span>
+                        <span id="cChattak" class="text-xl font-extrabold text-pink-600">0.00</span>
                     </div>
 
-                    <div class="bg-white p-4 rounded-xl border-l-4 border-navyBlue shadow-md">
+                    <!-- Yellow Highlight -->
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-yellow-500 shadow-md">
                         <span class="block text-xs font-bold text-subtleGray uppercase">Square Feet (বর্গফুট)</span>
-                        <span id="cSqFt" class="text-xl font-bold text-navyBlue">0.00</span>
+                        <span id="cSqFt" class="text-xl font-extrabold text-yellow-600">0.00</span>
                     </div>
 
-                    <div class="bg-white p-4 rounded-xl border-l-4 border-navyBlue shadow-md">
+                    <!-- Black Highlight -->
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-black shadow-md">
                         <span class="block text-xs font-bold text-subtleGray uppercase">Square Yards / Gaz (বর্গগজ)</span>
-                        <span id="cSqYards" class="text-xl font-bold text-navyBlue">0.00</span>
+                        <span id="cSqYards" class="text-xl font-extrabold text-black">0.00</span>
                     </div>
 
-                    <div class="bg-white p-4 rounded-xl border-l-4 border-deepGreen shadow-md">
+                    <!-- Blue Highlight -->
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-blue-600 shadow-md">
                         <span class="block text-xs font-bold text-subtleGray uppercase">Square Meters (বর্গমিটার)</span>
-                        <span id="cSqMeters" class="text-xl font-bold text-navyBlue">0.00</span>
+                        <span id="cSqMeters" class="text-xl font-extrabold text-blue-600">0.00</span>
                     </div>
 
-                    <div class="bg-white p-4 rounded-xl border-l-4 border-deepGreen shadow-md">
+                    <!-- Red Highlight -->
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-red-600 shadow-md">
                         <span class="block text-xs font-bold text-subtleGray uppercase">Acre (একর)</span>
-                        <span id="cAcre" class="text-xl font-bold text-navyBlue">0.00</span>
+                        <span id="cAcre" class="text-xl font-extrabold text-red-600">0.00</span>
                     </div>
 
-                    <div class="bg-white p-4 rounded-xl border-l-4 border-deepGreen shadow-md">
+                    <!-- Pink Highlight -->
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-pink-500 shadow-md">
                         <span class="block text-xs font-bold text-subtleGray uppercase">Square Links (লিংক)</span>
-                        <span id="cSqLinks" class="text-xl font-bold text-navyBlue">0.00</span>
+                        <span id="cSqLinks" class="text-xl font-extrabold text-pink-600">0.00</span>
                     </div>
                 </div>
 
@@ -461,133 +474,4 @@
             select.innerHTML = '';
             for (let i = 0; i <= max; i++) {
                 const opt = document.createElement('option');
-                opt.value = i;
-                opt.textContent = i;
-                select.appendChild(opt);
-            }
-        }
-
-        // Helper function to populate dropdowns with custom sign labels
-        function populateWithOptions(id, optionArray) {
-            const select = document.getElementById(id);
-            select.innerHTML = '';
-            optionArray.forEach((text, val) => {
-                const opt = document.createElement('option');
-                opt.value = val;
-                opt.textContent = text;
-                select.appendChild(opt);
-            });
-        }
-
-        // Populate all dropdowns
-        populateWithOptions('anaSelect', anaOptions);
-        populateDropdown('gondaSelect', 19);
-        populateWithOptions('koraSelect', koraOptions);
-        populateWithOptions('krantiSelect', krantiOptions);
-        populateDropdown('teelSelect', 19);
-
-        // Switcher between Hissa and Converter
-        function switchCalculator(target) {
-            const hissaSec = document.getElementById('hissaSection');
-            const converterSec = document.getElementById('converterSection');
-            const hissaBtn = document.getElementById('tabHissaBtn');
-            const converterBtn = document.getElementById('tabConverterBtn');
-
-            if (target === 'hissa') {
-                hissaSec.classList.remove('hidden');
-                converterSec.classList.add('hidden');
-
-                hissaBtn.className = "p-4 rounded-2xl font-bold text-base sm:text-lg transition flex items-center justify-center gap-3 bg-azureBlue text-white shadow-lg";
-                converterBtn.className = "p-4 rounded-2xl font-bold text-base sm:text-lg transition flex items-center justify-center gap-3 bg-gray-100 text-navyBlue hover:bg-gray-200";
-            } else {
-                hissaSec.classList.add('hidden');
-                converterSec.classList.remove('hidden');
-
-                converterBtn.className = "p-4 rounded-2xl font-bold text-base sm:text-lg transition flex items-center justify-center gap-3 bg-azureBlue text-white shadow-lg";
-                hissaBtn.className = "p-4 rounded-2xl font-bold text-base sm:text-lg transition flex items-center justify-center gap-3 bg-gray-100 text-navyBlue hover:bg-gray-200";
-            }
-        }
-
-        // PART 1: LAND HISSA CALCULATION
-        function calculateHissaShare() {
-            const ana = parseInt(document.getElementById('anaSelect').value) || 0;
-            const gonda = parseInt(document.getElementById('gondaSelect').value) || 0;
-            const kora = parseInt(document.getElementById('koraSelect').value) || 0;
-            const kranti = parseInt(document.getElementById('krantiSelect').value) || 0;
-            const teel = parseInt(document.getElementById('teelSelect').value) || 0;
-
-            const totalAreaInput = parseFloat(document.getElementById('hissaTotalArea').value) || 0;
-            const selectedUnit = document.getElementById('hissaUnitSelect').value;
-
-            // 16 Ana = 76,800 Teel
-            const totalTeelInput = (ana * 4800) + (gonda * 240) + (kora * 60) + (kranti * 20) + teel;
-            const TOTAL_TEEL = 76800;
-
-            const fractionalShare = totalTeelInput / TOTAL_TEEL;
-            document.getElementById('fractionDisplay').textContent = fractionalShare.toFixed(6);
-
-            let areaInShatangsho = 0;
-            if (selectedUnit === 'Shatangsho') {
-                areaInShatangsho = totalAreaInput;
-            } else if (selectedUnit === 'Katha') {
-                areaInShatangsho = totalAreaInput * 1.65;
-            } else if (selectedUnit === 'Bigha') {
-                areaInShatangsho = totalAreaInput * 33;
-            } else if (selectedUnit === 'SqFt') {
-                areaInShatangsho = totalAreaInput / 435.6;
-            }
-
-            const calculatedShatangsho = areaInShatangsho * fractionalShare;
-
-            document.getElementById('resShatangsho').textContent = calculatedShatangsho.toFixed(4);
-            document.getElementById('resKatha').textContent = (calculatedShatangsho / 1.65).toFixed(4);
-            document.getElementById('resBigha').textContent = (calculatedShatangsho / 33).toFixed(4);
-            document.getElementById('resSqFt').textContent = (calculatedShatangsho * 435.6).toFixed(2);
-
-            document.getElementById('hissaResultsWrapper').classList.remove('hidden');
-            document.getElementById('hissaResultsWrapper').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // PART 2: UNIT CONVERSION
-        function convertLandUnits() {
-            const qty = parseFloat(document.getElementById('convertQty').value) || 0;
-            const unit = document.getElementById('fromUnit').value;
-
-            let baseShatangsho = 0;
-
-            if (unit === 'Shatangsho') {
-                baseShatangsho = qty;
-            } else if (unit === 'Katha') {
-                baseShatangsho = qty * 1.65;
-            } else if (unit === 'Bigha') {
-                baseShatangsho = qty * 33;
-            } else if (unit === 'Chattak') {
-                baseShatangsho = (qty / 16) * 1.65;
-            } else if (unit === 'SqFt') {
-                baseShatangsho = qty / 435.6;
-            } else if (unit === 'SqYards') {
-                baseShatangsho = qty / 48.4;
-            } else if (unit === 'SqMeters') {
-                baseShatangsho = qty / 40.4686;
-            } else if (unit === 'Acre') {
-                baseShatangsho = qty * 100;
-            } else if (unit === 'SqLinks') {
-                baseShatangsho = qty / 1000;
-            }
-
-            document.getElementById('cDecimal').textContent = baseShatangsho.toFixed(4);
-            document.getElementById('cKatha').textContent = (baseShatangsho / 1.65).toFixed(4);
-            document.getElementById('cBigha').textContent = (baseShatangsho / 33).toFixed(4);
-            document.getElementById('cChattak').textContent = ((baseShatangsho / 1.65) * 16).toFixed(4);
-            document.getElementById('cSqFt').textContent = (baseShatangsho * 435.6).toFixed(2);
-            document.getElementById('cSqYards').textContent = (baseShatangsho * 48.4).toFixed(2);
-            document.getElementById('cSqMeters').textContent = (baseShatangsho * 40.4686).toFixed(2);
-            document.getElementById('cAcre').textContent = (baseShatangsho / 100).toFixed(4);
-            document.getElementById('cSqLinks').textContent = (baseShatangsho * 1000).toFixed(2);
-
-            document.getElementById('convertResultsWrapper').classList.remove('hidden');
-            document.getElementById('convertResultsWrapper').scrollIntoView({ behavior: 'smooth' });
-        }
-    </script>
-</body>
-</html>
+                opt

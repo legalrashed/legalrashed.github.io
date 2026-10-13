@@ -122,27 +122,479 @@
                     <div>
                         <label class="block font-bold text-navyBlue text-sm mb-1.5">Ana (আনা)</label>
                         <select id="anaSelect" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <!-- Populated via JavaScript -->
                         </select>
                     </div>
 
                     <div>
                         <label class="block font-bold text-navyBlue text-sm mb-1.5">Gonda (গণ্ডা)</label>
                         <select id="gondaSelect" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <!-- Populated via JavaScript -->
                         </select>
                     </div>
 
                     <div>
                         <label class="block font-bold text-navyBlue text-sm mb-1.5">Kora (কড়া)</label>
                         <select id="koraSelect" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <!-- Populated via JavaScript -->
                         </select>
                     </div>
 
                     <div>
                         <label class="block font-bold text-navyBlue text-sm mb-1.5">Kranti (ক্রান্তি)</label>
                         <select id="krantiSelect" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <!-- Populated via JavaScript -->
                         </select>
                     </div>
 
                     <div>
                         <label class="block font-bold text-navyBlue text-sm mb-1.5">Teel (তিল)</label>
-                        <select id="teelSelect" class="w-full
+                        <select id="teelSelect" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <!-- Populated via JavaScript -->
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Total Land Area Input & Unit Selector -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end pt-4 border-t border-gray-200">
+                    <div class="md:col-span-1">
+                        <label class="block font-bold text-navyBlue text-sm mb-1.5">Total Record Land Area</label>
+                        <input type="number" id="hissaTotalArea" value="100" min="0" step="any" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                    </div>
+
+                    <div class="md:col-span-1">
+                        <label class="block font-bold text-navyBlue text-sm mb-1.5">Input Unit</label>
+                        <select id="hissaUnitSelect" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                            <option value="Shatangsho">Shatangsho / Decimal (শতাংশ)</option>
+                            <option value="Katha">Katha (কাঠা)</option>
+                            <option value="Bigha">Bigha (বিঘা)</option>
+                            <option value="SqFt">Square Feet (বর্গফুট)</option>
+                        </select>
+                    </div>
+
+                    <!-- Button Trigger -->
+                    <div class="md:col-span-1">
+                        <button type="button" onclick="calculateHissaShare()" class="w-full bg-azureBlue hover:bg-deepGreen text-white font-bold py-3 px-4 rounded-xl shadow-lg transition duration-300 flex items-center justify-center gap-2 text-base">
+                            <i class="fa-solid fa-calculator"></i> Calculate Hissa Share
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hissa Results (Revealed ONLY on button click) -->
+            <div id="hissaResultsWrapper" class="hidden pt-6 border-t border-gray-200">
+                <div class="bg-gray-50 p-6 rounded-2xl shadow-md border border-gray-200 space-y-5">
+                    
+                    <!-- Header with Hissa Fraction placed in a clean corner badge (small font, unhighlighted) -->
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-gray-200 pb-4">
+                        <h3 class="font-bookAntiqua text-lg font-bold text-navyBlue flex items-center gap-2">
+                            <i class="fa-solid fa-chart-pie text-azureBlue"></i> Calculated Share Area
+                        </h3>
+                        <!-- Small Corner Hissa Fraction Box -->
+                        <div class="bg-white px-3 py-1.5 rounded-lg border border-gray-300 shadow-xs text-left sm:text-right">
+                            <span class="text-[10px] font-bold text-subtleGray uppercase block">Hissa Fraction (হিস্যা)</span>
+                            <span id="fractionDisplay" class="text-xs font-mono font-bold text-navyBlue">0 / 76800</span>
+                        </div>
+                    </div>
+
+                    <!-- Full Box Color Highlighted Bold Results -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                        <!-- Full Black Box -->
+                        <div class="bg-gray-900 text-white p-4 rounded-xl shadow-md">
+                            <span class="block text-xs font-bold text-gray-300">Decimal ((শতাংশ))</span>
+                            <span id="resShatangsho" class="text-xl sm:text-2xl font-extrabold text-white mt-1 block">0.00</span>
+                        </div>
+
+                        <!-- Full Blue Box -->
+                        <div class="bg-blue-600 text-white p-4 rounded-xl shadow-md">
+                            <span class="block text-xs font-bold text-blue-100">Katha (কাঠা)</span>
+                            <span id="resKatha" class="text-xl sm:text-2xl font-extrabold text-white mt-1 block">0.00</span>
+                        </div>
+
+                        <!-- Full Red Box -->
+                        <div class="bg-red-600 text-white p-4 rounded-xl shadow-md">
+                            <span class="block text-xs font-bold text-red-100">Bigha (বিঘা)</span>
+                            <span id="resBigha" class="text-xl sm:text-2xl font-extrabold text-white mt-1 block">0.00</span>
+                        </div>
+
+                        <!-- Full Yellow/Amber Box -->
+                        <div class="bg-amber-500 text-white p-4 rounded-xl shadow-md">
+                            <span class="block text-xs font-bold text-amber-100">Square Feet</span>
+                            <span id="resSqFt" class="text-xl sm:text-2xl font-extrabold text-white mt-1 block">0.00</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ================= PART 2: BANGLADESHI LAND UNIT CONVERTER ================= -->
+        <div id="converterSection" class="hidden glass-card-light rounded-3xl p-6 sm:p-10 shadow-2xl text-darkText border-2 border-azureBlue/30 space-y-8">
+            
+            <!-- Section Title -->
+            <div class="text-center border-b border-gray-200 pb-6">
+                <h2 class="font-bookAntiqua text-2xl sm:text-3xl font-bold text-navyBlue flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-vector-square text-azureBlue"></i>
+                    Bangladeshi Land Measurement Converter (ভূমি রূপান্তরক)
+                </h2>
+                <p class="font-garamond text-base sm:text-lg text-subtleGray mt-1">
+                    Convert any land quantity across standard legal & survey units in Bangladesh
+                </p>
+            </div>
+
+            <!-- Conversion Inputs -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end bg-gray-50 p-6 rounded-2xl border border-gray-200">
+                <div>
+                    <label class="block font-bold text-navyBlue text-sm mb-1.5">Quantity to Convert</label>
+                    <input type="number" id="convertQty" value="1" min="0" step="any" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                </div>
+
+                <div>
+                    <label class="block font-bold text-navyBlue text-sm mb-1.5">Source Unit (থেকে)</label>
+                    <select id="fromUnit" class="w-full p-3 bg-white border border-gray-300 rounded-xl focus:border-azureBlue outline-none font-bold text-navyBlue">
+                        <option value="(শতাংশ)">Decimal / Decimal (শতাংশ / ডেসিমেল)</option>
+                        <option value="Katha">Katha (কাঠা)</option>
+                        <option value="Bigha">Bigha (বিঘা)</option>
+                        <option value="Chattak">Chattak (ছটাক)</option>
+                        <option value="SqFt">Square Feet (বর্গফুট)</option>
+                        <option value="SqYards">Square Yards / Gaz (বর্গগজ / স্কয়ার ইয়ার্ড)</option>
+                        <option value="SqMeters">Square Meters (বর্গমিটার)</option>
+                        <option value="Acre">Acre (একর)</option>
+                        <option value="SqLinks">Square Links (কড়ি / লিংক)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <button type="button" onclick="convertLandUnits()" class="w-full bg-azureBlue hover:bg-deepGreen text-white font-bold py-3 px-4 rounded-xl shadow-lg transition duration-300 flex items-center justify-center gap-2 text-base">
+                        <i class="fa-solid fa-right-left"></i> Convert Land Unit
+                    </button>
+                </div>
+            </div>
+
+            <!-- Unit Conversion Results Matrix (Revealed ONLY on button click) -->
+            <div id="convertResultsWrapper" class="hidden pt-4 border-t border-gray-200">
+                <h3 class="font-bookAntiqua text-xl font-bold text-navyBlue mb-4 text-center">
+                    Equivalent Area Across All Standard Units
+                </h3>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-4">
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-azureBlue shadow-md">
+                        <span class="block text-xs font-bold text-subtleGray uppercase">Decimal / শতাংশ</span>
+                        <span id="cDecimal" class="text-xl font-bold text-navyBlue">0.00</span>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-azureBlue shadow-md">
+                        <span class="block text-xs font-bold text-subtleGray uppercase">Katha (কাঠা)</span>
+                        <span id="cKatha" class="text-xl font-bold text-navyBlue">0.00</span>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-azureBlue shadow-md">
+                        <span class="block text-xs font-bold text-subtleGray uppercase">Bigha (বিঘা)</span>
+                        <span id="cBigha" class="text-xl font-bold text-navyBlue">0.00</span>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-navyBlue shadow-md">
+                        <span class="block text-xs font-bold text-subtleGray uppercase">Chattak (ছটাক)</span>
+                        <span id="cChattak" class="text-xl font-bold text-navyBlue">0.00</span>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-navyBlue shadow-md">
+                        <span class="block text-xs font-bold text-subtleGray uppercase">Square Feet (বর্গফুট)</span>
+                        <span id="cSqFt" class="text-xl font-bold text-navyBlue">0.00</span>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-navyBlue shadow-md">
+                        <span class="block text-xs font-bold text-subtleGray uppercase">Square Yards / Gaz (বর্গগজ)</span>
+                        <span id="cSqYards" class="text-xl font-bold text-navyBlue">0.00</span>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-deepGreen shadow-md">
+                        <span class="block text-xs font-bold text-subtleGray uppercase">Square Meters (বর্গমিটার)</span>
+                        <span id="cSqMeters" class="text-xl font-bold text-navyBlue">0.00</span>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-deepGreen shadow-md">
+                        <span class="block text-xs font-bold text-subtleGray uppercase">Acre (একর)</span>
+                        <span id="cAcre" class="text-xl font-bold text-navyBlue">0.00</span>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border-l-4 border-deepGreen shadow-md">
+                        <span class="block text-xs font-bold text-subtleGray uppercase">Square Links (লিংক)</span>
+                        <span id="cSqLinks" class="text-xl font-bold text-navyBlue">0.00</span>
+                    </div>
+                </div>
+
+                <div class="mt-6 p-4 bg-gray-100 rounded-xl border-l-4 border-azureBlue text-xs text-subtleGray space-y-1">
+                    <p class="font-bold text-navyBlue">Bangladeshi Standard Survey Conversion Ratios Applied:</p>
+                    <p>• 1 Decimal (শতাংশ) = 435.6 Sq. Ft. = 48.4 Sq. Yards = 40.4686 Sq. Meters = 1,000 Sq. Links = 0.01 Acre.</p>
+                    <p>• 1 Katha = 1.65 Shatangsho = 720 Sq. Ft. = 16 Chattak | 1 Bigha = 20 Katha = 33 Shatangsho = 14,400 Sq. Ft.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Main Webpage Footer -->
+    <footer id="contact" class="bg-transparent text-white pt-16 pb-12 border-t border-red-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                
+                <!-- Footer Col 1 -->
+                <div>
+                    <h3 class="font-algerian text-xl text-white mb-2">CAPITAL LAW CHAMBER</h3>
+                    <p class="font-bookAntiqua text-lg font-bold text-white mb-1">A B M RASHEDUL ISLAM</p>
+                    <p class="font-garamond text-base text-gray-200 mb-4">Associate Lawyer</p>
+                    <div class="flex space-x-3">
+                        <a href="https://www.facebook.com/rd.L.islam" target="_blank" aria-label="Facebook Profile" class="w-10 h-10 rounded-full bg-fbBlue text-white flex items-center justify-center hover:opacity-90 transition shadow-sm">
+                            <i class="fa-brands fa-facebook-f text-lg"></i>
+                        </a>
+                        <a href="https://wa.me/8801755712215" target="_blank" aria-label="WhatsApp" class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center hover:bg-emerald-500 transition shadow-sm">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                        </a>
+                        <a href="mailto:rashed.legalhq@gmail.com" aria-label="Email" class="w-10 h-10 rounded-full bg-white text-navyBlue flex items-center justify-center hover:bg-azureBlue hover:text-white transition shadow-sm">
+                            <i class="fa-regular fa-envelope text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Footer Col 2 -->
+                <div>
+                    <h4 class="font-bookAntiqua text-lg font-bold text-white mb-4">Chamber Location</h4>
+                    <div class="font-calibri text-sm text-gray-200 space-y-2 leading-relaxed">
+                        <p class="font-bold text-white">Capital Law Chamber</p>
+                        <p class="flex items-start gap-2">
+                            <i class="fa-solid fa-location-dot text-white mt-1"></i>
+                            <span>House No.15, Road No.128,<br>Gulshan-1, Dhaka-1212,<br>Bangladesh</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Footer Col 3 -->
+                <div>
+                    <h4 class="font-bookAntiqua text-lg font-bold text-white mb-4">Direct Contact</h4>
+                    <ul class="font-calibri text-sm text-gray-200 space-y-3">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-phone text-emerald-300"></i>
+                            <a href="tel:01755712215" class="hover:underline transition font-bold">01755712215</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-300"></i>
+                            <a href="https://wa.me/8801755712215" target="_blank" class="hover:underline transition font-bold">01755712215 (WhatsApp)</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-regular fa-envelope text-white"></i>
+                            <a href="mailto:rashed.legalhq@gmail.com" class="hover:underline transition">rashed.legalhq@gmail.com</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-brands fa-facebook text-fbBlue text-base"></i>
+                            <a href="https://www.facebook.com/rd.L.islam" target="_blank" class="hover:text-fbBlue transition truncate font-bold text-white">facebook.com/rd.L.islam</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Footer Col 4 -->
+                <div>
+                    <h4 class="font-bookAntiqua text-lg font-bold text-white mb-4">Chamber Hours</h4>
+                    <ul class="font-calibri text-sm text-gray-200 space-y-2">
+                        <li class="flex justify-between border-b border-red-900/60 pb-1">
+                            <span>Sat - Thu:</span>
+                            <span class="font-bold text-white">10:00 AM - 08:00 PM</span>
+                        </li>
+                        <li class="flex justify-between text-gray-300">
+                            <span>Friday:</span>
+                            <span>Closed / By Appt.</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Copyright Bar -->
+            <div class="border-t border-red-900/60 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-300 font-calibri">
+                <p>&copy; <span id="currentYear"></span> A B M Rashedul Islam. Associate Lawyer, Capital Law Chamber. All Rights Reserved.</p>
+                <p class="mt-2 md:mt-0 text-gray-300">Gulshan-1, Dhaka-1212, Bangladesh</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Standardized traditional land record symbols for Ana (0 to 16)
+        const anaOptions = [
+            "0",
+            "1 ( ⁄ )",
+            "2 ( ৵ )",
+            "3 ( ৶ )",
+            "4 ( ৷ )",
+            "5 ( ৷⁄ )",
+            "6 ( ৷৵ )",
+            "7 ( ৷৶ )",
+            "8 ( ৷৷ )",
+            "9 ( ৷৷⁄ )",
+            "10 ( ৷৷৵ )",
+            "11 ( ৷৷৶ )",
+            "12 ( ৸ )",
+            "13 ( ৸⁄ )",
+            "14 ( ৸৵ )",
+            "15 ( ৸৶ )",
+            "16 ( ১ )"
+        ];
+
+        // Standardized traditional land record symbols for Kora (0 to 3)
+        const koraOptions = [
+            "0",
+            "1 ( ৷ )",
+            "2 ( ৷৷ )",
+            "3 ( ৸ )"
+        ];
+
+        // Standardized traditional land record symbols for Kranti (0 to 2)
+        const krantiOptions = [
+            "0",
+            "1 ( ৴ )",
+            "2 ( ৴৴ )"
+        ];
+
+        // Helper function to populate numeric-only dropdowns (Gonda, Teel)
+        function populateDropdown(id, max) {
+            const select = document.getElementById(id);
+            if (!select) return;
+            select.innerHTML = '';
+            for (let i = 0; i <= max; i++) {
+                const opt = document.createElement('option');
+                opt.value = i;
+                opt.textContent = i;
+                select.appendChild(opt);
+            }
+        }
+
+        // Helper function to populate dropdowns with custom sign labels
+        function populateWithOptions(id, optionArray) {
+            const select = document.getElementById(id);
+            if (!select) return;
+            select.innerHTML = '';
+            optionArray.forEach((text, val) => {
+                const opt = document.createElement('option');
+                opt.value = val;
+                opt.textContent = text;
+                select.appendChild(opt);
+            });
+        }
+
+        // Populate all dropdowns immediately on script load
+        populateWithOptions('anaSelect', anaOptions);
+        populateDropdown('gondaSelect', 19);
+        populateWithOptions('koraSelect', koraOptions);
+        populateWithOptions('krantiSelect', krantiOptions);
+        populateDropdown('teelSelect', 19);
+
+        // Switcher between Hissa and Converter
+        function switchCalculator(target) {
+            const hissaSec = document.getElementById('hissaSection');
+            const converterSec = document.getElementById('converterSection');
+            const hissaBtn = document.getElementById('tabHissaBtn');
+            const converterBtn = document.getElementById('tabConverterBtn');
+
+            if (target === 'hissa') {
+                hissaSec.classList.remove('hidden');
+                converterSec.classList.add('hidden');
+
+                hissaBtn.className = "p-4 rounded-2xl font-bold text-base sm:text-lg transition flex items-center justify-center gap-3 bg-azureBlue text-white shadow-lg";
+                converterBtn.className = "p-4 rounded-2xl font-bold text-base sm:text-lg transition flex items-center justify-center gap-3 bg-gray-100 text-navyBlue hover:bg-gray-200";
+            } else {
+                hissaSec.classList.add('hidden');
+                converterSec.classList.remove('hidden');
+
+                converterBtn.className = "p-4 rounded-2xl font-bold text-base sm:text-lg transition flex items-center justify-center gap-3 bg-azureBlue text-white shadow-lg";
+                hissaBtn.className = "p-4 rounded-2xl font-bold text-base sm:text-lg transition flex items-center justify-center gap-3 bg-gray-100 text-navyBlue hover:bg-gray-200";
+            }
+        }
+
+        // PART 1: LAND HISSA CALCULATION
+        function calculateHissaShare() {
+            const ana = parseInt(document.getElementById('anaSelect').value) || 0;
+            const gonda = parseInt(document.getElementById('gondaSelect').value) || 0;
+            const kora = parseInt(document.getElementById('koraSelect').value) || 0;
+            const kranti = parseInt(document.getElementById('krantiSelect').value) || 0;
+            const teel = parseInt(document.getElementById('teelSelect').value) || 0;
+
+            const totalAreaInput = parseFloat(document.getElementById('hissaTotalArea').value) || 0;
+            const selectedUnit = document.getElementById('hissaUnitSelect').value;
+
+            // 16 Ana = 76,800 Teel
+            const totalTeelInput = (ana * 4800) + (gonda * 240) + (kora * 60) + (kranti * 20) + teel;
+            const TOTAL_TEEL = 76800;
+
+            const fractionalShare = totalTeelInput / TOTAL_TEEL;
+            
+            // Display fraction ratio in small corner box
+            document.getElementById('fractionDisplay').textContent = `${totalTeelInput} / ${TOTAL_TEEL} Teel`;
+
+            let areaInShatangsho = 0;
+            if (selectedUnit === 'Shatangsho') {
+                areaInShatangsho = totalAreaInput;
+            } else if (selectedUnit === 'Katha') {
+                areaInShatangsho = totalAreaInput * 1.65;
+            } else if (selectedUnit === 'Bigha') {
+                areaInShatangsho = totalAreaInput * 33;
+            } else if (selectedUnit === 'SqFt') {
+                areaInShatangsho = totalAreaInput / 435.6;
+            }
+
+            const calculatedShatangsho = areaInShatangsho * fractionalShare;
+
+            document.getElementById('resShatangsho').textContent = calculatedShatangsho.toFixed(4);
+            document.getElementById('resKatha').textContent = (calculatedShatangsho / 1.65).toFixed(4);
+            document.getElementById('resBigha').textContent = (calculatedShatangsho / 33).toFixed(4);
+            document.getElementById('resSqFt').textContent = (calculatedShatangsho * 435.6).toFixed(2);
+
+            document.getElementById('hissaResultsWrapper').classList.remove('hidden');
+            document.getElementById('hissaResultsWrapper').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // PART 2: UNIT CONVERSION
+        function convertLandUnits() {
+            const qty = parseFloat(document.getElementById('convertQty').value) || 0;
+            const unit = document.getElementById('fromUnit').value;
+
+            let baseShatangsho = 0;
+
+            if (unit === 'Shatangsho') {
+                baseShatangsho = qty;
+            } else if (unit === 'Katha') {
+                baseShatangsho = qty * 1.65;
+            } else if (unit === 'Bigha') {
+                baseShatangsho = qty * 33;
+            } else if (unit === 'Chattak') {
+                baseShatangsho = (qty / 16) * 1.65;
+            } else if (unit === 'SqFt') {
+                baseShatangsho = qty / 435.6;
+            } else if (unit === 'SqYards') {
+                baseShatangsho = qty / 48.4;
+            } else if (unit === 'SqMeters') {
+                baseShatangsho = qty / 40.4686;
+            } else if (unit === 'Acre') {
+                baseShatangsho = qty * 100;
+            } else if (unit === 'SqLinks') {
+                baseShatangsho = qty / 1000;
+            }
+
+            document.getElementById('cDecimal').textContent = baseShatangsho.toFixed(4);
+            document.getElementById('cKatha').textContent = (baseShatangsho / 1.65).toFixed(4);
+            document.getElementById('cBigha').textContent = (baseShatangsho / 33).toFixed(4);
+            document.getElementById('cChattak').textContent = ((baseShatangsho / 1.65) * 16).toFixed(4);
+            document.getElementById('cSqFt').textContent = (baseShatangsho * 435.6).toFixed(2);
+            document.getElementById('cSqYards').textContent = (baseShatangsho * 48.4).toFixed(2);
+            document.getElementById('cSqMeters').textContent = (baseShatangsho * 40.4686).toFixed(2);
+            document.getElementById('cAcre').textContent = (baseShatangsho / 100).toFixed(4);
+            document.getElementById('cSqLinks').textContent = (baseShatangsho * 1000).toFixed(2);
+
+            document.getElementById('convertResultsWrapper').classList.remove('hidden');
+            document.getElementById('convertResultsWrapper').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

@@ -103,10 +103,10 @@
                         <i class="fa-solid fa-scale-balanced text-azureBlue"></i> Select Applicable Succession Law System
                     </label>
                     <select id="religionSystem" onchange="handleReligionChange()" class="w-full p-3.5 border-2 border-red-200 rounded-xl focus:border-azureBlue outline-none bg-white font-bold text-navyBlue text-base shadow-inner">
-                        <option value="muslim">Muslim Personal Law (Hanafi Sharia & MFLO 1961)</option>
-                        <option value="hindu">Hindu Law (Dayabhaga School - Bangladesh)</option>
-                        <option value="christian">Christian Law (Succession Act, 1925)</option>
-                        <option value="buddhist">Buddhist Law (Dayabhaga / Succession Act, 1925)</option>
+                        <option value="muslim" id="opt-rel-muslim">Muslim Personal Law (Hanafi Sharia & MFLO 1961)</option>
+                        <option value="hindu" id="opt-rel-hindu">Hindu Law (Dayabhaga School - Bangladesh)</option>
+                        <option value="christian" id="opt-rel-christian">Christian Law (Succession Act, 1925)</option>
+                        <option value="buddhist" id="opt-rel-buddhist">Buddhist Law (Dayabhaga / Succession Act, 1925)</option>
                     </select>
                 </div>
 
@@ -150,8 +150,8 @@
                     <div id="husbandBox" class="hidden">
                         <label id="txt-husband" class="block font-bold text-navyBlue text-sm mb-1">Surviving Husband</label>
                         <select id="husband" class="w-full p-3 border border-blue-200 rounded-xl focus:border-azureBlue outline-none bg-white font-semibold text-navyBlue">
-                            <option value="0" id="opt-no">No</option>
-                            <option value="1" id="opt-yes">Yes</option>
+                            <option value="0" class="opt-no-t">No</option>
+                            <option value="1" class="opt-yes-t">Yes</option>
                         </select>
                     </div>
                 </div>
@@ -432,7 +432,6 @@
                 thGroupShare: "Total Group Share",
                 thIndivShare: "Share Per Individual",
                 thTotalCatShare: "Total Category Share",
-                // Religion options
                 relMuslim: "Muslim Personal Law (Hanafi Sharia & MFLO 1961)",
                 relHindu: "Hindu Law (Dayabhaga School - Bangladesh)",
                 relChristian: "Christian Law (Succession Act, 1925)",
@@ -479,7 +478,6 @@
                 thGroupShare: "গ্রুপের মোট হিস্যা",
                 thIndivShare: "জনপ্রতি হিস্যা",
                 thTotalCatShare: "শ্রেণীর মোট হিস্যা",
-                // Religion options
                 relMuslim: "মুসলিম পারিবারিক আইন (হানাফী শরিআ ও ১৯৬১ সালের পারিবারিক আইন অধ্যাদেশ)",
                 relHindu: "হিন্দু আইন (দায়ভাগ স্কুল - বাংলাদেশ)",
                 relChristian: "খ্রিস্টান আইন (উত্তরাধিকার আইন, ১৯২৫)",
@@ -521,4 +519,398 @@
             document.getElementById('txt-m-grandmother').textContent = t.mGrandmother;
             document.getElementById('txt-full-brothers').textContent = t.fullBrothers;
             document.getElementById('txt-full-sisters').textContent = t.fullSisters;
-            document.getElementById('txt-c-brothers').
+            document.getElementById('txt-c-brothers').textContent = t.cBrothers;
+            document.getElementById('txt-c-sisters').textContent = t.cSisters;
+            document.getElementById('txt-u-siblings').textContent = t.uSiblings;
+
+            document.getElementById('txt-calc-btn').innerHTML = `<i class="fa-solid fa-calculator text-xl"></i> ${t.calcBtn}`;
+            document.getElementById('txt-res-title').textContent = t.resTitle;
+            document.getElementById('txt-res-subtitle').textContent = t.resSubtitle;
+            document.getElementById('txt-chart-label').innerHTML = `<i class="fa-solid fa-chart-pie"></i> ${t.chartLabel}`;
+            
+            document.getElementById('th-heir').textContent = t.thHeir;
+            document.getElementById('th-count').textContent = t.thCount;
+            document.getElementById('th-group-share').textContent = t.thGroupShare;
+            document.getElementById('th-indiv-share').textContent = t.thIndivShare;
+            document.getElementById('th-total-cat-share').textContent = t.thTotalCatShare;
+
+            // Update dropdown options for religions safely by IDs
+            document.getElementById('opt-rel-muslim').textContent = t.relMuslim;
+            document.getElementById('opt-rel-hindu').textContent = t.relHindu;
+            document.getElementById('opt-rel-christian').textContent = t.relChristian;
+            document.getElementById('opt-rel-buddhist').textContent = t.relBuddhist;
+        }
+
+        const chartColors = [
+            '#C8102E', '#1E73BE', '#00A86B', '#D97706', '#8B5CF6', 
+            '#EC4899', '#06B6D4', '#F59E0B', '#10B981', '#6366F1'
+        ];
+
+        function handleReligionChange() {
+            const system = document.getElementById('religionSystem').value;
+            const muslimOnlyEls = document.querySelectorAll('.muslim-only');
+
+            if (system === 'muslim') {
+                muslimOnlyEls.forEach(el => el.classList.remove('hidden'));
+                document.getElementById('daughterDefaultBox').classList.remove('hidden');
+                document.getElementById('hinduDaughterBox').classList.add('hidden');
+            } else if (system === 'hindu') {
+                muslimOnlyEls.forEach(el => el.classList.add('hidden'));
+                document.getElementById('daughterDefaultBox').classList.add('hidden');
+                document.getElementById('hinduDaughterBox').classList.remove('hidden');
+            } else {
+                muslimOnlyEls.forEach(el => el.classList.add('hidden'));
+                document.getElementById('daughterDefaultBox').classList.remove('hidden');
+                document.getElementById('hinduDaughterBox').classList.add('hidden');
+            }
+        }
+
+        function toggleSpouseUI() {
+            const gender = document.getElementById('deceasedGender').value;
+            if (gender === 'male') {
+                document.getElementById('wifeBox').classList.remove('hidden');
+                document.getElementById('husbandBox').classList.add('hidden');
+                document.getElementById('husband').value = '0';
+            } else {
+                document.getElementById('wifeBox').classList.add('hidden');
+                document.getElementById('husbandBox').classList.remove('hidden');
+                document.getElementById('wives').value = '0';
+            }
+        }
+
+        function processCalculation() {
+            const system = document.getElementById('religionSystem').value;
+            
+            if (system === 'muslim') {
+                calcMuslimInheritance();
+            } else if (system === 'hindu') {
+                calcHinduInheritance();
+            } else if (system === 'christian') {
+                calcChristianInheritance();
+            } else if (system === 'buddhist') {
+                calcBuddhistInheritance();
+            }
+        }
+
+        function addShare(list, title, count, totalFraction) {
+            if (count > 0 && totalFraction > 0) {
+                list.push({
+                    title: title,
+                    count: count,
+                    totalFraction: totalFraction,
+                    individualFraction: totalFraction / count
+                });
+            }
+        }
+
+        function calcMuslimInheritance() {
+            const estate = parseFloat(document.getElementById('estateVal').value) || 0;
+            const unit = document.getElementById('estateUnit').value;
+            const gender = document.getElementById('deceasedGender').value;
+
+            const husband = parseInt(document.getElementById('husband').value) || 0;
+            const wives = parseInt(document.getElementById('wives').value) || 0;
+            const sons = parseInt(document.getElementById('sons').value) || 0;
+            const daughters = parseInt(document.getElementById('daughters').value) || 0;
+
+            const gsonSons = parseInt(document.getElementById('gsonSons').value) || 0;
+            const gsonDaughters = parseInt(document.getElementById('gsonDaughters').value) || 0;
+
+            const father = parseInt(document.getElementById('father').value) || 0;
+            const mother = parseInt(document.getElementById('mother').value) || 0;
+
+            const pGrandfather = parseInt(document.getElementById('pGrandfather').value) || 0;
+            const pGrandmother = parseInt(document.getElementById('pGrandmother').value) || 0;
+            const mGrandmother = parseInt(document.getElementById('mGrandmother').value) || 0;
+
+            const fullBrothers = parseInt(document.getElementById('fullBrothers').value) || 0;
+            const fullSisters = parseInt(document.getElementById('fullSisters').value) || 0;
+            const cBrothers = parseInt(document.getElementById('cBrothers').value) || 0;
+            const cSisters = parseInt(document.getElementById('cSisters').value) || 0;
+            const uSiblings = parseInt(document.getElementById('uSiblings').value) || 0;
+
+            let heirList = [];
+            let totalFixed = 0;
+
+            const directChildren = sons + daughters;
+            const orphanedBranch = gsonSons + gsonDaughters;
+            const hasIssue = (directChildren + orphanedBranch) > 0;
+
+            let husbandTitle = currentLang === 'bn' ? 'স্বামী' : 'Husband';
+            let wifeTitle = currentLang === 'bn' ? 'স্ত্রী / স্ত্রীগণ' : 'Wife / Wives';
+            let fatherTitle = currentLang === 'bn' ? 'পিতা' : 'Father';
+            let motherTitle = currentLang === 'bn' ? 'মাতা' : 'Mother';
+            let pGfTitle = currentLang === 'bn' ? 'পিতামহ (দাদা)' : 'Paternal Grandfather';
+            let pGmTitle = currentLang === 'bn' ? 'পিতামহী (দাদী)' : 'Paternal Grandmother';
+            let mGmTitle = currentLang === 'bn' ? 'নানী' : 'Maternal Grandmother';
+            let daughterTitle = currentLang === 'bn' ? 'কন্যা(গণ)' : 'Daughter(s)';
+            let sec4Title = currentLang === 'bn' ? 'এতিম নাতি-নাতনি [ধারা ৪ এমএফএলও ১৯৬১]' : 'Orphaned Grandchildren Lineage [Sec 4 MFLO]';
+            let sonTitle = currentLang === 'bn' ? 'পুত্র(গণ)' : 'Son(s)';
+            let fBrotherTitle = currentLang === 'bn' ? 'সহোদর ভাই(গণ)' : 'Full Brother(s)';
+            let fSisterTitle = currentLang === 'bn' ? 'সহোদর বোন(গণ)' : 'Full Sister(s)';
+
+            if (gender === 'female' && husband === 1) {
+                let hShare = hasIssue ? (1 / 4) : (1 / 2);
+                addShare(heirList, husbandTitle, 1, hShare);
+                totalFixed += hShare;
+            }
+            if (gender === 'male' && wives > 0) {
+                let wShare = hasIssue ? (1 / 8) : (1 / 4);
+                addShare(heirList, wifeTitle, wives, wShare);
+                totalFixed += wShare;
+            }
+
+            if (father === 1) {
+                let fShare = 1 / 6;
+                addShare(heirList, fatherTitle, 1, fShare);
+                totalFixed += fShare;
+            }
+            if (mother === 1) {
+                const totalSiblings = fullBrothers + fullSisters + cBrothers + cSisters + uSiblings;
+                let mShare = (hasIssue || totalSiblings >= 2) ? (1 / 6) : (1 / 3);
+                addShare(heirList, motherTitle, 1, mShare);
+                totalFixed += mShare;
+            }
+
+            if (pGrandfather === 1 && father === 0) {
+                addShare(heirList, pGfTitle, 1, 1 / 6);
+                totalFixed += 1 / 6;
+            }
+            if (pGrandmother === 1 && mother === 0 && father === 0) {
+                addShare(heirList, pGmTitle, 1, 1 / 6);
+                totalFixed += 1 / 6;
+            }
+            if (mGrandmother === 1 && mother === 0) {
+                addShare(heirList, mGmTitle, 1, 1 / 6);
+                totalFixed += 1 / 6;
+            }
+
+            if (sons === 0 && daughters > 0) {
+                let dShare = (daughters === 1) ? (1 / 2) : (2 / 3);
+                addShare(heirList, daughterTitle, daughters, dShare);
+                totalFixed += dShare;
+            }
+
+            if (orphanedBranch > 0) {
+                let simulatedUnits = (sons + 1) * 2 + daughters;
+                let remForSec4 = Math.max(0, 1 - totalFixed);
+                let Sec4Share = (remForSec4 / simulatedUnits) * 2;
+                addShare(heirList, sec4Title, orphanedBranch, Sec4Share);
+                totalFixed += Sec4Share;
+            }
+
+            let remainder = Math.max(0, 1 - totalFixed);
+
+            if (sons > 0) {
+                let units = (sons * 2) + daughters;
+                let perUnit = remainder / units;
+                addShare(heirList, sonTitle, sons, perUnit * 2 * sons);
+                if (daughters > 0) {
+                    addShare(heirList, daughterTitle, daughters, perUnit * daughters);
+                }
+            } else if (father === 1 && directChildren === 0) {
+                let fatherItem = heirList.find(item => item.title === fatherTitle);
+                if (fatherItem) {
+                    fatherItem.totalFraction += remainder;
+                    fatherItem.individualFraction = fatherItem.totalFraction;
+                }
+            } else if (fullBrothers > 0 && directChildren === 0 && father === 0) {
+                let units = (fullBrothers * 2) + fullSisters;
+                let perUnit = remainder / units;
+                addShare(heirList, fBrotherTitle, fullBrothers, perUnit * 2 * fullBrothers);
+                if (fullSisters > 0) {
+                    addShare(heirList, fSisterTitle, fullSisters, perUnit * fullSisters);
+                }
+            }
+
+            let lawBasis = currentLang === 'bn' ? "হানাফী সুন্নি উত্তরাধিকার ও ১৯৬১ সালের পারিবারিক আইন অধ্যাদেশের ধারা ৪" : "Hanafi Sunni Inheritance & Section 4 MFLO 1961";
+            let lawDesc = currentLang === 'bn' ? "হানাফী শরিআ আইন এবং ১৯৬১ সালের মুসলিম পারিবারিক আইন অধ্যাদেশের ধারা ৪ অনুযায়ী এতিম নাতি-নাতনিদের হিস্যা সুরক্ষা নিশ্চিত করে হিসাব করা হয়েছে।" : "Calculated under Hanafi Sharia law with statutory per-stirpes protection for orphaned grandchildren under MFLO 1961.";
+
+            renderResults(heirList, estate, unit, lawBasis, lawDesc);
+        }
+
+        function calcHinduInheritance() {
+            const estate = parseFloat(document.getElementById('estateVal').value) || 0;
+            const unit = document.getElementById('estateUnit').value;
+            const gender = document.getElementById('deceasedGender').value;
+
+            const wives = parseInt(document.getElementById('wives').value) || 0;
+            const husband = parseInt(document.getElementById('husband').value) || 0;
+            const sons = parseInt(document.getElementById('sons').value) || 0;
+
+            const unmarriedD = parseInt(document.getElementById('unmarriedDaughters').value) || 0;
+            const marriedWithSonsD = parseInt(document.getElementById('marriedWithSonsDaughters').value) || 0;
+            const father = parseInt(document.getElementById('father').value) || 0;
+            const mother = parseInt(document.getElementById('mother').value) || 0;
+            const fullBrothers = parseInt(document.getElementById('fullBrothers').value) || 0;
+
+            let heirList = [];
+
+            let tSon = currentLang === 'bn' ? 'পুত্র(গণ)' : 'Son(s)';
+            let tWidow = currentLang === 'bn' ? 'বিধবা স্ত্রী [সীমিত জীবনস্বত্ব]' : 'Widow [Limited Life Interest]';
+            let tUnmD = currentLang === 'bn' ? 'অবিবাহিত কন্যা(গণ)' : 'Unmarried Daughter(s)';
+            let tMarD = currentLang === 'bn' ? 'পুত্রসন্তানসহ বিবাহিত কন্যা(গণ)' : 'Married Daughter(s) with Sons';
+            let tFather = currentLang === 'bn' ? 'পিতা' : 'Father';
+            let tMother = currentLang === 'bn' ? 'মাতা [সীমিত জীবনস্বত্ব]' : 'Mother [Limited Life Interest]';
+            let tBro = currentLang === 'bn' ? 'সহোদর ভাই(গণ)' : 'Full Brother(s)';
+            let tOffspring = currentLang === 'bn' ? 'সন্তানগণ [স্ত্রীধন সমান অংশ]' : 'Surviving Offspring [Stridhana Equal Share]';
+            let tHusband = currentLang === 'bn' ? 'স্বামী' : 'Husband';
+
+            if (gender === 'male') {
+                if (sons > 0) {
+                    addShare(heirList, tSon, sons, 1.0);
+                } else if (wives > 0) {
+                    addShare(heirList, tWidow, wives, 1.0);
+                } else if (unmarriedD > 0) {
+                    addShare(heirList, tUnmD, unmarriedD, 1.0);
+                } else if (marriedWithSonsD > 0) {
+                    addShare(heirList, tMarD, marriedWithSonsD, 1.0);
+                } else if (father === 1) {
+                    addShare(heirList, tFather, 1, 1.0);
+                } else if (mother === 1) {
+                    addShare(heirList, tMother, 1, 1.0);
+                } else if (fullBrothers > 0) {
+                    addShare(heirList, tBro, fullBrothers, 1.0);
+                }
+            } else {
+                if (sons + unmarriedD + marriedWithSonsD > 0) {
+                    let totalCh = sons + unmarriedD + marriedWithSonsD;
+                    addShare(heirList, tOffspring, totalCh, 1.0);
+                } else if (husband === 1) {
+                    addShare(heirList, tHusband, 1, 1.0);
+                } else if (father === 1) {
+                    addShare(heirList, tFather, 1, 1.0);
+                } else if (mother === 1) {
+                    addShare(heirList, tMother, 1, 1.0);
+                }
+            }
+
+            let lawBasis = currentLang === 'bn' ? "হিন্দু আইনের দায়ভাগ স্কুল (বাংলাদেশ)" : "Dayabhaga School of Hindu Law (Bangladesh)";
+            let lawDesc = currentLang === 'bn' ? "দায়ভাগ আইন অনুযায়ী পুরুষের বংশধরগণ (পুত্র) অন্যান্য গৌণ উত্তরাধিকারীদের সম্পূর্ণexclude করে। নারী উত্তরাধিকারীদের সম্পত্তি সীমিত জীবনস্বত্ব হিসেবে অর্জিত হয়।" : "Under Dayabhaga law, male line descendants (Sons) completely exclude secondary heirs. Female heirs inherit a limited life estate unless it constitutes Stridhana.";
+
+            renderResults(heirList, estate, unit, lawBasis, lawDesc);
+        }
+
+        function calcChristianInheritance() {
+            const estate = parseFloat(document.getElementById('estateVal').value) || 0;
+            const unit = document.getElementById('estateUnit').value;
+            const gender = document.getElementById('deceasedGender').value;
+
+            const husband = parseInt(document.getElementById('husband').value) || 0;
+            const wives = parseInt(document.getElementById('wives').value) || 0;
+            const sons = parseInt(document.getElementById('sons').value) || 0;
+            const daughters = parseInt(document.getElementById('daughters').value) || 0;
+            const father = parseInt(document.getElementById('father').value) || 0;
+            const mother = parseInt(document.getElementById('mother').value) || 0;
+            const brothers = parseInt(document.getElementById('fullBrothers').value) || 0;
+
+            let heirList = [];
+            let childrenCount = sons + daughters;
+            let spousePresent = (gender === 'male' && wives > 0) || (gender === 'female' && husband === 1);
+
+            let spouseShare = 0;
+            let tWidow = currentLang === 'bn' ? 'বিধবা স্ত্রী' : 'Widow';
+            let tHusband = currentLang === 'bn' ? 'স্বামী' : 'Husband';
+            let tSon = currentLang === 'bn' ? 'পুত্র(গণ)' : 'Son(s)';
+            let tDaughter = currentLang === 'bn' ? 'কন্যা(গণ)' : 'Daughter(s)';
+            let tFather = currentLang === 'bn' ? 'পিতা' : 'Father';
+            let tMother = currentLang === 'bn' ? 'মাতা' : 'Mother';
+            let tBrother = currentLang === 'bn' ? 'ভাই(গণ)' : 'Brother(s)';
+
+            if (spousePresent) {
+                spouseShare = (childrenCount > 0) ? (1 / 3) : (1 / 2);
+                addShare(heirList, gender === 'male' ? tWidow : tHusband, gender === 'male' ? wives : 1, spouseShare);
+            }
+
+            let rem = 1 - spouseShare;
+
+            if (childrenCount > 0) {
+                if (sons > 0) addShare(heirList, tSon, sons, (rem / childrenCount) * sons);
+                if (daughters > 0) addShare(heirList, tDaughter, daughters, (rem / childrenCount) * daughters);
+            } else if (father === 1) {
+                addShare(heirList, tFather, 1, rem);
+            } else if (mother === 1 || brothers > 0) {
+                let kindredCount = (mother === 1 ? 1 : 0) + brothers;
+                if (mother === 1) addShare(heirList, tMother, 1, rem / kindredCount);
+                if (brothers > 0) addShare(heirList, tBrother, brothers, (rem / kindredCount) * brothers);
+            }
+
+            let lawBasis = currentLang === 'bn' ? "উত্তরাধিকার আইন, ১৯২৫ (খ্রিস্টান উত্তরাধিকার)" : "Succession Act, 1925 (Christian Succession)";
+            let lawDesc = currentLang === 'bn' ? "১৯২৫ সালের উত্তরাধিকার আইনের ধারা ৩৩ ও ৩৩ক অনুযায়ী পুত্র ও কন্যাগণ সমান হিস্যা লাভ করেন।" : "Under Section 33 & 33A of the Succession Act 1925, sons and daughters inherit equal shares without gender discrimination.";
+
+            renderResults(heirList, estate, unit, lawBasis, lawDesc);
+        }
+
+        function calcBuddhistInheritance() {
+            calcChristianInheritance();
+        }
+
+        function renderResults(heirList, estate, unit, lawTitle, lawDetail) {
+            const tbody = document.getElementById('resultsTableBody');
+            const ratioChartBar = document.getElementById('ratioChartBar');
+            const ratioChartLegend = document.getElementById('ratioChartLegend');
+
+            tbody.innerHTML = '';
+            ratioChartBar.innerHTML = '';
+            ratioChartLegend.innerHTML = '';
+
+            document.querySelectorAll('.unitLabel').forEach(el => el.textContent = unit);
+
+            if (!heirList || heirList.length === 0) {
+                let noHeirMsg = currentLang === 'bn' ? 'এই আইনি ব্যবস্থার অধীনে কোনো যোগ্য প্রাথমিক উত্তরাধিকারী নির্বাচন করা হয়নি।' : 'No qualifying primary heirs selected for distribution under this legal system.';
+                tbody.innerHTML = `<tr><td colspan="5" class="p-6 text-center font-bold text-red-600 bg-red-50">${noHeirMsg}</td></tr>`;
+                document.getElementById('resultsWrapper').classList.remove('hidden');
+                document.getElementById('resultsWrapper').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+
+            let totalPercentSum = 0;
+
+            heirList.forEach((item, index) => {
+                let color = chartColors[index % chartColors.length];
+                let totalAmt = (item.totalFraction * estate).toFixed(4);
+                let indivAmt = (item.individualFraction * estate).toFixed(4);
+                let totalPct = (item.totalFraction * 100).toFixed(2);
+                let indivPct = (item.individualFraction * 100).toFixed(2);
+
+                totalPercentSum += parseFloat(totalPct);
+
+                let row = `<tr class="hover:bg-red-50/40 transition border-b border-slate-100">
+                    <td class="p-3.5 font-bold text-navyBlue flex items-center gap-2">
+                        <span class="w-3.5 h-3.5 rounded-full inline-block shadow-sm" style="background-color: ${color}"></span>
+                        ${item.title}
+                    </td>
+                    <td class="p-3.5 text-center font-bold text-slate-700 bg-slate-50/50">${item.count}</td>
+                    <td class="p-3.5 text-center font-bold text-azureBlue">${totalPct}%</td>
+                    <td class="p-3.5 text-right font-black text-emerald-700 bg-emerald-50/50">
+                        ${indivAmt} ${unit} <span class="text-xs text-slate-500 font-semibold block">(${indivPct}%)</span>
+                    </td>
+                    <td class="p-3.5 text-right font-bold text-navyBlue">
+                        ${totalAmt} ${unit}
+                    </td>
+                </tr>`;
+                tbody.innerHTML += row;
+
+                let barSegment = `<div style="width: ${totalPct}%; background-color: ${color};" 
+                    title="${item.title}: ${totalPct}%" 
+                    class="h-full border-r border-white/20 hover:opacity-90 transition"></div>`;
+                ratioChartBar.innerHTML += barSegment;
+
+                let legendItem = `<div class="flex items-center gap-1.5 bg-white px-2.5 py-1 rounded-lg border border-slate-200 shadow-2xs">
+                    <span class="w-3 h-3 rounded-full" style="background-color: ${color}"></span>
+                    <span class="text-slate-700 font-bold">${item.title}:</span>
+                    <span class="text-azureBlue font-black">${totalPct}%</span>
+                </div>`;
+                ratioChartLegend.innerHTML += legendItem;
+            });
+
+            let totalSharedText = currentLang === 'bn' ? 'মোট বণ্টিত' : 'Total Shared';
+            document.getElementById('chartTotalLabel').textContent = `${totalSharedText}: ${Math.round(totalPercentSum)}%`;
+            document.getElementById('lawNoteHeader').innerHTML = `<i class="fa-solid fa-gavel text-azureBlue"></i> ${currentLang === 'bn' ? 'আইনগত ভিত্তি:' : 'Statutory Legal Basis:'} ${lawTitle}`;
+            document.getElementById('lawNoteBody').textContent = "• " + lawDetail;
+            document.getElementById('resultsWrapper').classList.remove('hidden');
+            document.getElementById('resultsWrapper').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

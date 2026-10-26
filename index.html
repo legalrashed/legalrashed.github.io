@@ -25,7 +25,6 @@
             getFirestore, 
             doc, 
             setDoc, 
-            getDoc,
             runTransaction, 
             collection, 
             getDocs 
@@ -41,13 +40,11 @@
             measurementId: "G-WKWJGKd743"
         };
 
-        // Initialize Firebase, Analytics, Auth, and Firestore
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // Expose Firebase Auth Functions to Global Window
         window.handleRegister = async function(event) {
             event.preventDefault();
             const username = document.getElementById('regUsername').value.trim();
@@ -57,11 +54,9 @@
             errorEl.classList.add('hidden');
 
             try {
-                // Create User in Firebase Auth
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                 const user = userCredential.user;
 
-                // Save extra info (username) in Firestore database
                 await setDoc(doc(db, "users", user.uid), {
                     username: username,
                     email: email,
@@ -93,9 +88,6 @@
             }
         };
 
-        /**
-         * Prevents duplicate bookings using Firestore Transactions.
-         */
         window.bookAppointment = async function(date, timeSlot, userDetails) {
             const formattedTime = timeSlot.replace(':', '-');
             const bookingId = `${date}_${formattedTime}`;
@@ -155,20 +147,16 @@
             theme: {
                 extend: {
                     colors: {
-                        azureBlue: '#C8102E',    /* Signature Capital Law Chamber Red */
-                        navyBlue: '#101B33',     /* Deep Royal Navy Blue */
-                        deepGreen: '#8B0000',    /* Dark Crimson Red */
-                        lightBlue: '#E5E7EB',    /* Medium Light Gray */
-                        skyBlue: '#87CEEB',      /* Sky Blue Accent */
-                        virginBlue: '#FEE2E2',   /* Soft Red Tint */
-                        softBlue: '#F9FAFB',     /* Pure Light Neutral */
-                        turquoiseGreen: '#D00000',/* Vibrant Red Accent */
-                        mintGreen: '#F3F4F6',    /* Card Background Light Gray */
-                        softGreen: '#FEF2F2',    /* Very Soft Red Highlight */
-                        darkText: '#1E293B',     /* Slate Dark Text */
-                        subtleGray: '#475569',   /* Muted Text Gray */
-                        softWhite: '#F3F4F6',    /* Matched Full Gray Background */
-                        fbBlue: '#1877F2',       /* Official Facebook Blue */
+                        azureBlue: '#C8102E',
+                        navyBlue: '#101B33',
+                        deepGreen: '#8B0000',
+                        lightBlue: '#E5E7EB',
+                        skyBlue: '#87CEEB',
+                        virginBlue: '#FEE2E2',
+                        softBlue: '#F9FAFB',
+                        darkText: '#1E293B',
+                        subtleGray: '#475569',
+                        fbBlue: '#1877F2',
                     },
                     fontFamily: {
                         algerian: ['Algerian', 'Impact', 'Copperplate Gothic Bold', 'Georgia', 'serif'],
@@ -201,6 +189,12 @@
             background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .glass-card-blue {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(200, 16, 46, 0.3);
         }
 
         .dark-blue-green-border {
@@ -249,6 +243,7 @@
                     <i class="fa-solid fa-bars"></i>
                 </button>
 
+                <!-- Navigation Bar with Admin Login Added -->
                 <div class="hidden md:flex items-center space-x-1 lg:space-x-2 font-calibri text-sm lg:text-base font-bold">
                     <a href="#home" class="px-2.5 py-1.5 rounded-lg bg-azureBlue text-white hover:bg-navyBlue transition shadow-sm">Home</a>
                     <a href="gallery.html" class="px-2.5 py-1.5 rounded-lg bg-azureBlue text-white hover:bg-navyBlue transition shadow-sm">Gallery</a>
@@ -259,9 +254,11 @@
                     <a href="#contact" class="px-2.5 py-1.5 rounded-lg bg-azureBlue text-white hover:bg-navyBlue transition shadow-sm">Contact</a>
                     <a href="calculator.html" class="px-2.5 py-1.5 rounded-lg bg-azureBlue text-white hover:bg-navyBlue transition shadow-sm">Land Calculator</a>
                     <a href="succession_calculator.html" class="px-2.5 py-1.5 rounded-lg bg-azureBlue text-white hover:bg-navyBlue transition shadow-sm">Succession Calculator</a>
+                    <a href="#admin-login" class="px-2.5 py-1.5 rounded-lg bg-navyBlue text-white hover:bg-azureBlue transition shadow-sm flex items-center gap-1"><i class="fa-solid fa-lock text-xs"></i> Admin Login</a>
                 </div>
             </nav>
 
+            <!-- Mobile Menu -->
             <div id="mobileMenu" class="hidden md:hidden bg-white text-navyBlue rounded-xl p-4 shadow-xl border border-navyBlue/20 mt-2 space-y-2 font-calibri font-bold">
                 <a href="#home" class="block py-2 px-3 bg-azureBlue text-white hover:bg-navyBlue rounded-lg transition">Home</a>
                 <a href="gallery.html" class="block py-2 px-3 bg-azureBlue text-white hover:bg-navyBlue rounded-lg transition">Gallery</a>
@@ -272,109 +269,310 @@
                 <a href="#contact" class="block py-2 px-3 bg-azureBlue text-white hover:bg-navyBlue rounded-lg transition">Contact</a>
                 <a href="calculator.html" class="block py-2 px-3 bg-azureBlue text-white hover:bg-navyBlue rounded-lg transition">Land Calculator</a>
                 <a href="succession_calculator.html" class="block py-2 px-3 bg-azureBlue text-white hover:bg-navyBlue rounded-lg transition">Succession Calculator</a>
+                <a href="#admin-login" class="block py-2 px-3 bg-navyBlue text-white hover:bg-azureBlue rounded-lg transition flex items-center gap-1.5"><i class="fa-solid fa-lock text-xs"></i> Admin Login</a>
             </div>
         </div>
     </header>
 
-    <main class="flex-grow py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
-        <div class="w-full max-w-md flex flex-col items-center">
-            
-            <!-- User Image & Badge -->
-            <div class="relative mb-6">
-                <div class="w-36 h-36 sm:w-40 sm:h-40 rounded-full p-2 bg-gradient-to-tr from-[#0F1B2B] via-[#101B33] to-[#87CEEB] photo-glow transition duration-300">
-                    <img 
-                        src="profile.jpg.png" 
-                        alt="A B M Rashedul Islam" 
-                        id="profileImg"
-                        onerror="this.onerror=null; this.src='https://placehold.co/400x400/C8102E/FFFFFF?text=A+B+M+Rashedul+Islam';"
-                        class="w-full h-full object-cover rounded-full border-4 border-[#1E2A38] shadow-[0_0_12px_rgba(135,206,235,0.4)]"
-                    />
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section id="home" class="py-12 sm:py-16 px-4">
+            <div class="max-w-4xl mx-auto text-center flex flex-col items-center">
+                <div class="relative mb-6">
+                    <div class="w-48 h-48 sm:w-56 sm:h-56 md:w-60 md:h-60 rounded-full p-2 bg-gradient-to-tr from-[#0F1B2B] via-[#101B33] to-[#87CEEB] photo-glow transition duration-300">
+                        <img 
+                            src="profile.jpg.png" 
+                            alt="A B M Rashedul Islam - Associate Lawyer" 
+                            id="profileImg"
+                            onerror="this.onerror=null; this.src='https://placehold.co/400x400/C8102E/FFFFFF?text=A+B+M+Rashedul+Islam';"
+                            class="w-full h-full object-cover rounded-full border-4 border-[#1E2A38] shadow-[0_0_12px_rgba(135,206,235,0.4)]"
+                        />
+                    </div>
+                </div>
+
+                <h1 class="font-bookAntiqua text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2 tracking-wide drop-shadow">
+                    A B M RASHEDUL ISLAM
+                </h1>
+
+                <h2 class="font-garamond text-xl sm:text-2xl md:text-3xl font-bold text-red-400 mb-4">
+                    Associate Lawyer
+                </h2>
+
+                <div class="glass-card-light rounded-2xl p-4 sm:p-6 max-w-2xl mb-8 shadow-md text-darkText">
+                    <p class="font-garamond text-lg sm:text-xl leading-relaxed font-semibold">
+                        Providing dedicated legal research, document vetting, corporate advisory, and case preparation at Capital Law Chamber, Gulshan-1, Dhaka.
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap gap-4 justify-center font-calibri">
+                    <a href="https://wa.me/8801755712215" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-7 py-3 rounded-xl shadow-md hover:shadow-lg transition flex items-center gap-2 text-base">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Contact WhatsApp
+                    </a>
+                    <a href="booking.html" class="bg-azureBlue hover:bg-deepGreen text-white font-bold px-7 py-3 rounded-xl shadow-md hover:shadow-lg transition flex items-center gap-2 text-base">
+                        <i class="fa-regular fa-calendar-check"></i> Book Consultation
+                    </a>
+                    <a href="mailto:rashed.legalhq@gmail.com" class="bg-white hover:bg-virginBlue text-navyBlue font-bold border-2 border-azureBlue/30 px-7 py-3 rounded-xl shadow-sm transition flex items-center gap-2 text-base">
+                        <i class="fa-regular fa-envelope"></i> Email Directly
+                    </a>
                 </div>
             </div>
+        </section>
 
-            <!-- Auth Container Card -->
-            <div class="w-full glass-card-light rounded-2xl p-6 sm:p-8 shadow-2xl border-t-4 border-azureBlue text-darkText">
+        <!-- About Section -->
+        <section id="about" class="py-14 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-10">
+                    <h2 class="font-bookAntiqua text-3xl sm:text-4xl font-bold text-white mb-2">
+                        ABOUT MYSELF & PROFESSIONAL PRACTICE
+                    </h2>
+                    <p class="font-garamond text-xl text-red-300 font-semibold">
+                        Capital Law Chamber • Gulshan-1, Dhaka-1212
+                    </p>
+                    <div class="w-24 h-1 bg-azureBlue mx-auto mt-3 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-darkText">
+                    <div class="glass-card-light rounded-2xl p-6 shadow-md hover:shadow-lg transition border-t-4 border-azureBlue">
+                        <div class="w-12 h-12 rounded-xl bg-azureBlue text-white flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                        </div>
+                        <h3 class="font-bookAntiqua text-xl font-bold text-navyBlue mb-2">Chamber Practice</h3>
+                        <p class="font-calibri text-darkText text-base leading-relaxed">
+                            Serving as Associate Lawyer at Capital Law Chamber, handling rigorous legal analysis, client consultations, and litigation support.
+                        </p>
+                    </div>
+
+                    <div class="glass-card-light rounded-2xl p-6 shadow-md hover:shadow-lg transition border-t-4 border-navyBlue">
+                        <div class="w-12 h-12 rounded-xl bg-navyBlue text-white flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-file-contract"></i>
+                        </div>
+                        <h3 class="font-bookAntiqua text-xl font-bold text-navyBlue mb-2">Document Vetting</h3>
+                        <p class="font-calibri text-darkText text-base leading-relaxed">
+                            Specialized in examining property deeds, land agreements, corporate contracts, and regulatory filings with precision.
+                        </p>
+                    </div>
+
+                    <div class="glass-card-light rounded-2xl p-6 shadow-md hover:shadow-lg transition border-t-4 border-deepGreen">
+                        <div class="w-12 h-12 rounded-xl bg-deepGreen text-white flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-handshake"></i>
+                        </div>
+                        <h3 class="font-bookAntiqua text-xl font-bold text-navyBlue mb-2">Client Advisory</h3>
+                        <p class="font-calibri text-darkText text-base leading-relaxed">
+                            Providing accessible, honest, and confidential legal advice for individuals, business owners, and corporate clients.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-16 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="font-bookAntiqua text-3xl sm:text-4xl font-bold text-white mb-2">
+                        LEGAL SERVICES & PRACTICE AREAS
+                    </h2>
+                    <p class="font-garamond text-xl text-red-300 font-semibold">
+                        Core advisory services provided at Capital Law Chamber
+                    </p>
+                    <div class="w-24 h-1 bg-azureBlue mx-auto mt-3 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-darkText">
+                    <div class="glass-card-light rounded-2xl p-6 shadow-md hover:shadow-xl transition flex flex-col justify-between group">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-azureBlue text-white flex items-center justify-center text-xl mb-4 group-hover:bg-deepGreen transition">
+                                <i class="fa-solid fa-file-signature"></i>
+                            </div>
+                            <h3 class="font-bookAntiqua text-xl font-bold text-navyBlue mb-2">Legal Drafting</h3>
+                            <p class="font-calibri text-darkText text-sm mb-4 leading-relaxed">
+                                Drafting partnership deeds, commercial contracts, legal notices, NDAs, and corporate resolutions.
+                            </p>
+                        </div>
+                        <a href="booking.html?service=Drafting" class="font-calibri text-sm font-bold text-azureBlue hover:text-navyBlue inline-flex items-center gap-1.5 pt-3 border-t border-gray-200">
+                            Book Slot <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </a>
+                    </div>
+
+                    <div class="glass-card-light rounded-2xl p-6 shadow-md hover:shadow-xl transition flex flex-col justify-between group">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-navyBlue text-white flex items-center justify-center text-xl mb-4 group-hover:bg-azureBlue transition">
+                                <i class="fa-solid fa-stamp"></i>
+                            </div>
+                            <h3 class="font-bookAntiqua text-xl font-bold text-navyBlue mb-2">Document Vetting</h3>
+                            <p class="font-calibri text-darkText text-sm mb-4 leading-relaxed">
+                                Thorough legal audit and review of agreements to eliminate risks and ensure legal enforceability.
+                            </p>
+                        </div>
+                        <a href="booking.html?service=Vetting" class="font-calibri text-sm font-bold text-azureBlue hover:text-navyBlue inline-flex items-center gap-1.5 pt-3 border-t border-gray-200">
+                            Book Slot <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </a>
+                    </div>
+
+                    <div class="glass-card-light rounded-2xl p-6 shadow-md hover:shadow-xl transition flex flex-col justify-between group">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-deepGreen text-white flex items-center justify-center text-xl mb-4 group-hover:bg-azureBlue transition">
+                                <i class="fa-solid fa-building-user"></i>
+                            </div>
+                            <h3 class="font-bookAntiqua text-xl font-bold text-navyBlue mb-2">Land & Property Law</h3>
+                            <p class="font-calibri text-darkText text-sm mb-4 leading-relaxed">
+                                Land title verification, mutation document review, deed registration, and real estate litigation support.
+                            </p>
+                        </div>
+                        <a href="booking.html?service=Land" class="font-calibri text-sm font-bold text-azureBlue hover:text-navyBlue inline-flex items-center gap-1.5 pt-3 border-t border-gray-200">
+                            Book Slot <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </a>
+                    </div>
+
+                    <div class="glass-card-light rounded-2xl p-6 shadow-md hover:shadow-xl transition flex flex-col justify-between group">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-azureBlue text-white flex items-center justify-center text-xl mb-4 group-hover:bg-navyBlue transition">
+                                <i class="fa-solid fa-briefcase"></i>
+                            </div>
+                            <h3 class="font-bookAntiqua text-xl font-bold text-navyBlue mb-2">Corporate Advisory</h3>
+                            <p class="font-calibri text-darkText text-sm mb-4 leading-relaxed">
+                                Business formation, statutory compliance, trade license processing, and general corporate legal advice.
+                            </p>
+                        </div>
+                        <a href="booking.html?service=Corporate" class="font-calibri text-sm font-bold text-azureBlue hover:text-navyBlue inline-flex items-center gap-1.5 pt-3 border-t border-gray-200">
+                            Book Slot <i class="fa-solid fa-chevron-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-16 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-10">
+                    <h2 class="font-bookAntiqua text-3xl sm:text-4xl font-bold text-white mb-2">
+                        CHAMBER EXPERIENCE & HIGHLIGHTS
+                    </h2>
+                    <p class="font-garamond text-xl text-red-200">
+                        Key associate responsibilities at Capital Law Chamber
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="glass-card-blue p-6 rounded-2xl shadow-sm border-l-8 border-azureBlue flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-darkText">
+                        <div>
+                            <span class="font-calibri text-xs font-bold text-azureBlue uppercase tracking-wider">Property & Real Estate</span>
+                            <h4 class="font-bookAntiqua text-lg font-bold text-navyBlue mt-1">Land Search & Title Vetting Reports</h4>
+                            <p class="font-calibri text-darkText text-sm">Conducting comprehensive title searches, ownership chain audits, and vetting land deeds for private and corporate buyers.</p>
+                        </div>
+                        <span class="font-calibri text-xs bg-azureBlue text-white font-bold px-3 py-1.5 rounded-full whitespace-nowrap">Capital Law Chamber</span>
+                    </div>
+
+                    <div class="glass-card-blue p-6 rounded-2xl shadow-sm border-l-8 border-navyBlue flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-darkText">
+                        <div>
+                            <span class="font-calibri text-xs font-bold text-navyBlue uppercase tracking-wider">Corporate Drafting</span>
+                            <h4 class="font-bookAntiqua text-lg font-bold text-navyBlue mt-1">Commercial Contracts & MOUs</h4>
+                            <p class="font-calibri text-darkText text-sm">Drafting employment contracts, non-disclosure agreements, joint venture MOUs, and vendor terms for corporate clients.</p>
+                        </div>
+                        <span class="font-calibri text-xs bg-navyBlue text-white font-bold px-3 py-1.5 rounded-full whitespace-nowrap">Gulshan-1 Chamber</span>
+                    </div>
+
+                    <div class="glass-card-blue p-6 rounded-2xl shadow-sm border-l-8 border-deepGreen flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-darkText">
+                        <div>
+                            <span class="font-calibri text-xs font-bold text-deepGreen uppercase tracking-wider">Litigation Support</span>
+                            <h4 class="font-bookAntiqua text-lg font-bold text-navyBlue mt-1">Case Briefs & Legal Opinions</h4>
+                            <p class="font-calibri text-darkText text-sm">Preparing strategic case dossiers, legal opinions, and court submission drafts across civil and corporate disputes.</p>
+                        </div>
+                        <span class="font-calibri text-xs bg-deepGreen text-white font-bold px-3 py-1.5 rounded-full whitespace-nowrap">Dhaka Practice</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Login / Sign Up Panel Section -->
+        <section id="admin-login" class="py-16 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-md mx-auto flex flex-col items-center">
                 
-                <!-- Tab Switching Buttons -->
-                <div class="flex rounded-xl bg-gray-200 p-1 mb-6 font-calibri font-bold">
-                    <button id="loginTabBtn" onclick="switchTab('login')" class="flex-1 py-2 text-sm rounded-lg bg-azureBlue text-white shadow transition">Log In</button>
-                    <button id="registerTabBtn" onclick="switchTab('register')" class="flex-1 py-2 text-sm rounded-lg text-subtleGray hover:text-navyBlue transition">Register</button>
+                <div class="text-center mb-6">
+                    <h2 class="font-bookAntiqua text-3xl font-bold text-white mb-1">
+                        ADMIN PORTAL ACCESS
+                    </h2>
+                    <p class="font-garamond text-lg text-red-200">
+                        Log in or register to access the automated vetting machine
+                    </p>
                 </div>
 
-                <!-- Error Message Alert Box -->
-                <div id="authError" class="hidden mb-4 p-3 bg-red-100 border border-red-400 text-red-700 text-xs rounded-xl font-calibri"></div>
-
-                <!-- LOGIN FORM -->
-                <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4 font-calibri">
-                    <div class="text-center mb-4">
-                        <h2 class="font-bookAntiqua text-2xl font-bold text-navyBlue">PORTAL LOGIN</h2>
-                        <p class="text-xs text-subtleGray font-semibold mt-1">Access the Automated Vetting Machine</p>
+                <!-- Auth Container Card -->
+                <div class="w-full glass-card-light rounded-2xl p-6 sm:p-8 shadow-2xl border-t-4 border-azureBlue text-darkText">
+                    
+                    <!-- Tab Switching Buttons -->
+                    <div class="flex rounded-xl bg-gray-200 p-1 mb-6 font-calibri font-bold">
+                        <button id="loginTabBtn" onclick="switchTab('login')" class="flex-1 py-2 text-sm rounded-lg bg-azureBlue text-white shadow transition">Log In</button>
+                        <button id="registerTabBtn" onclick="switchTab('register')" class="flex-1 py-2 text-sm rounded-lg text-subtleGray hover:text-navyBlue transition">Register</button>
                     </div>
 
-                    <div>
-                        <label class="block text-xs font-bold text-navyBlue mb-1">Email Address</label>
-                        <div class="relative">
-                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fa-solid fa-envelope text-xs"></i></span>
-                            <input type="email" id="loginEmail" required placeholder="Enter your email" class="w-full pl-9 pr-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
+                    <!-- Error Message Alert Box -->
+                    <div id="authError" class="hidden mb-4 p-3 bg-red-100 border border-red-400 text-red-700 text-xs rounded-xl font-calibri"></div>
+
+                    <!-- LOGIN FORM -->
+                    <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4 font-calibri">
+                        <div>
+                            <label class="block text-xs font-bold text-navyBlue mb-1">Email Address</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fa-solid fa-envelope text-xs"></i></span>
+                                <input type="email" id="loginEmail" required placeholder="Enter your email" class="w-full pl-9 pr-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
+                            </div>
                         </div>
-                    </div>
 
-                    <div>
-                        <label class="block text-xs font-bold text-navyBlue mb-1">Password</label>
-                        <div class="relative">
-                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fa-solid fa-lock text-xs"></i></span>
-                            <input type="password" id="loginPassword" required placeholder="Enter your password" class="w-full pl-9 pr-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
+                        <div>
+                            <label class="block text-xs font-bold text-navyBlue mb-1">Password</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fa-solid fa-lock text-xs"></i></span>
+                                <input type="password" id="loginPassword" required placeholder="Enter your password" class="w-full pl-9 pr-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
+                            </div>
                         </div>
-                    </div>
 
-                    <button type="submit" class="w-full bg-azureBlue hover:bg-navyBlue text-white font-bold py-2.5 px-4 rounded-xl shadow-md transition duration-200 flex items-center justify-center gap-2 text-sm mt-2">
-                        <i class="fa-solid fa-right-to-bracket"></i> Log In to Vetting Machine
-                    </button>
-                </form>
+                        <button type="submit" class="w-full bg-azureBlue hover:bg-navyBlue text-white font-bold py-2.5 px-4 rounded-xl shadow-md transition duration-200 flex items-center justify-center gap-2 text-sm mt-2">
+                            <i class="fa-solid fa-right-to-bracket"></i> Log In to Vetting Machine
+                        </button>
+                    </form>
 
-                <!-- REGISTRATION FORM -->
-                <form id="registerForm" onsubmit="handleRegister(event)" class="space-y-4 font-calibri hidden">
-                    <div class="text-center mb-4">
-                        <h2 class="font-bookAntiqua text-2xl font-bold text-navyBlue">CREATE ACCOUNT</h2>
-                        <p class="text-xs text-subtleGray font-semibold mt-1">Register for Vetting Portal Access</p>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-bold text-navyBlue mb-1">Username</label>
-                        <div class="relative">
-                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fa-solid fa-user text-xs"></i></span>
-                            <input type="text" id="regUsername" required placeholder="Choose a username" class="w-full pl-9 pr-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
+                    <!-- REGISTRATION FORM -->
+                    <form id="registerForm" onsubmit="handleRegister(event)" class="space-y-4 font-calibri hidden">
+                        <div>
+                            <label class="block text-xs font-bold text-navyBlue mb-1">Username</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fa-solid fa-user text-xs"></i></span>
+                                <input type="text" id="regUsername" required placeholder="Choose a username" class="w-full pl-9 pr-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
+                            </div>
                         </div>
-                    </div>
 
-                    <div>
-                        <label class="block text-xs font-bold text-navyBlue mb-1">Email Address</label>
-                        <div class="relative">
-                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fa-solid fa-envelope text-xs"></i></span>
-                            <input type="email" id="regEmail" required placeholder="Enter your email" class="w-full pl-9 pr-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
+                        <div>
+                            <label class="block text-xs font-bold text-navyBlue mb-1">Email Address</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fa-solid fa-envelope text-xs"></i></span>
+                                <input type="email" id="regEmail" required placeholder="Enter your email" class="w-full pl-9 pr-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
+                            </div>
                         </div>
-                    </div>
 
-                    <div>
-                        <label class="block text-xs font-bold text-navyBlue mb-1">Password</label>
-                        <div class="relative">
-                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fa-solid fa-lock text-xs"></i></span>
-                            <input type="password" id="regPassword" required placeholder="Create a password (min 6 chars)" class="w-full pl-9 pr-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
+                        <div>
+                            <label class="block text-xs font-bold text-navyBlue mb-1">Password</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fa-solid fa-lock text-xs"></i></span>
+                                <input type="password" id="regPassword" required placeholder="Create a password (min 6 chars)" class="w-full pl-9 pr-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
+                            </div>
                         </div>
-                    </div>
 
-                    <button type="submit" class="w-full bg-navyBlue hover:bg-azureBlue text-white font-bold py-2.5 px-4 rounded-xl shadow-md transition duration-200 flex items-center justify-center gap-2 text-sm mt-2">
-                        <i class="fa-solid fa-user-plus"></i> Register & Access
-                    </button>
-                </form>
+                        <button type="submit" class="w-full bg-navyBlue hover:bg-azureBlue text-white font-bold py-2.5 px-4 rounded-xl shadow-md transition duration-200 flex items-center justify-center gap-2 text-sm mt-2">
+                            <i class="fa-solid fa-user-plus"></i> Register & Access
+                        </button>
+                    </form>
 
+                </div>
             </div>
-        </div>
+        </section>
+
     </main>
 
-    <footer id="contact" class="bg-transparent text-white pt-12 pb-8 border-t border-red-900/50">
+    <footer id="contact" class="bg-transparent text-white pt-16 pb-12 border-t border-red-900/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
                 <div>
                     <h3 class="font-algerian text-xl text-white mb-2">CAPITAL LAW CHAMBER</h3>
                     <p class="font-bookAntiqua text-lg font-bold text-white mb-1">A B M RASHEDUL ISLAM</p>
@@ -440,7 +638,7 @@
                 </div>
             </div>
 
-            <div class="border-t border-red-900/60 pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-gray-300 font-calibri">
+            <div class="border-t border-red-900/60 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-300 font-calibri">
                 <p>&copy; <span id="currentYear"></span> A B M Rashedul Islam. Associate Lawyer, Capital Law Chamber. All Rights Reserved.</p>
                 <p class="mt-2 md:mt-0 text-gray-300">Gulshan-1, Dhaka-1212, Bangladesh</p>
             </div>
@@ -453,7 +651,6 @@
         const mobileMenu = document.getElementById('mobileMenu');
         mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
 
-        // Tab Switching Logic for Login / Register
         function switchTab(tab) {
             const loginForm = document.getElementById('loginForm');
             const registerForm = document.getElementById('registerForm');

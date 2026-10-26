@@ -12,19 +12,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Firebase JS SDK Integration with Auth & Firestore -->
+    <!-- Firebase JS SDK Integration with Firestore Transactions -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
         import { 
-            getAuth, 
-            createUserWithEmailAndPassword, 
-            signInWithEmailAndPassword 
-        } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-        import { 
             getFirestore, 
             doc, 
-            setDoc, 
             runTransaction, 
             collection, 
             getDocs 
@@ -40,54 +34,15 @@
             measurementId: "G-WKWJGKd743"
         };
 
+        // Initialize Firebase, Analytics, and Firestore
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
-        const auth = getAuth(app);
         const db = getFirestore(app);
 
-        window.handleRegister = async function(event) {
-            event.preventDefault();
-            const username = document.getElementById('regUsername').value.trim();
-            const email = document.getElementById('regEmail').value.trim();
-            const password = document.getElementById('regPassword').value;
-            const errorEl = document.getElementById('authError');
-            errorEl.classList.add('hidden');
-
-            try {
-                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                const user = userCredential.user;
-
-                await setDoc(doc(db, "users", user.uid), {
-                    username: username,
-                    email: email,
-                    createdAt: new Date().toISOString()
-                });
-
-                alert('Registration successful! Redirecting to Vetting Machine...');
-                window.location.href = 'vetting.html';
-            } catch (error) {
-                errorEl.textContent = error.message;
-                errorEl.classList.remove('hidden');
-            }
-        };
-
-        window.handleLogin = async function(event) {
-            event.preventDefault();
-            const email = document.getElementById('loginEmail').value.trim();
-            const password = document.getElementById('loginPassword').value;
-            const errorEl = document.getElementById('authError');
-            errorEl.classList.add('hidden');
-
-            try {
-                await signInWithEmailAndPassword(auth, email, password);
-                alert('Login successful! Redirecting to Vetting Machine...');
-                window.location.href = 'vetting.html';
-            } catch (error) {
-                errorEl.textContent = "Invalid email or password. Please try again.";
-                errorEl.classList.remove('hidden');
-            }
-        };
-
+        /**
+         * Prevents duplicate bookings using Firestore Transactions.
+         * Creates a unique document ID based on date and time slot.
+         */
         window.bookAppointment = async function(date, timeSlot, userDetails) {
             const formattedTime = timeSlot.replace(':', '-');
             const bookingId = `${date}_${formattedTime}`;
@@ -96,9 +51,11 @@
             try {
                 await runTransaction(db, async (transaction) => {
                     const bookingDoc = await transaction.get(bookingRef);
+
                     if (bookingDoc.exists()) {
                         throw new Error("SLOT_TAKEN");
                     }
+
                     transaction.set(bookingRef, {
                         name: userDetails.name,
                         email: userDetails.email,
@@ -109,6 +66,7 @@
                         createdAt: new Date().toISOString()
                     });
                 });
+
                 return { success: true };
             } catch (error) {
                 if (error.message === "SLOT_TAKEN" || error.code === "permission-denied") {
@@ -124,6 +82,9 @@
             }
         };
 
+        /**
+         * Retrieves existing booked slots for a given date to disable them in UI dropdowns/options.
+         */
         window.getBookedSlotsForDate = async function(selectedDate) {
             try {
                 const querySnapshot = await getDocs(collection(db, "bookings"));
@@ -147,16 +108,20 @@
             theme: {
                 extend: {
                     colors: {
-                        azureBlue: '#C8102E',
-                        navyBlue: '#101B33',
-                        deepGreen: '#8B0000',
-                        lightBlue: '#E5E7EB',
-                        skyBlue: '#87CEEB',
-                        virginBlue: '#FEE2E2',
-                        softBlue: '#F9FAFB',
-                        darkText: '#1E293B',
-                        subtleGray: '#475569',
-                        fbBlue: '#1877F2',
+                        azureBlue: '#C8102E',    /* Signature Capital Law Chamber Red */
+                        navyBlue: '#101B33',     /* Deep Royal Navy Blue */
+                        deepGreen: '#8B0000',    /* Dark Crimson Red */
+                        lightBlue: '#E5E7EB',    /* Medium Light Gray */
+                        skyBlue: '#87CEEB',      /* Sky Blue Accent */
+                        virginBlue: '#FEE2E2',   /* Soft Red Tint */
+                        softBlue: '#F9FAFB',     /* Pure Light Neutral */
+                        turquoiseGreen: '#D00000',/* Vibrant Red Accent */
+                        mintGreen: '#F3F4F6',    /* Card Background Light Gray */
+                        softGreen: '#FEF2F2',    /* Very Soft Red Highlight */
+                        darkText: '#1E293B',     /* Slate Dark Text */
+                        subtleGray: '#475569',   /* Muted Text Gray */
+                        softWhite: '#F3F4F6',    /* Matched Full Gray Background */
+                        fbBlue: '#1877F2',       /* Official Facebook Blue */
                     },
                     fontFamily: {
                         algerian: ['Algerian', 'Impact', 'Copperplate Gothic Bold', 'Georgia', 'serif'],
@@ -174,8 +139,10 @@
         .font-garamond { font-family: Garamond, Georgia, serif; font-style: normal !important; }
         .font-calibri { font-family: Calibri, Candara, 'Segoe UI', sans-serif; font-style: normal !important; }
 
+        /* Universal strict non-italic policy */
         * { font-style: normal !important; }
 
+        /* Continuous Full Page Gradient (Reversed Order) */
         body {
             background: linear-gradient(180deg, #2B0000 0%, #4A0000 10%, #3B0D11 25%, #20242B 55%, #2B303A 80%, #1C2026 100%) !important;
             background-attachment: fixed;
@@ -206,6 +173,7 @@
 
         .photo-glow { box-shadow: 0 0 35px rgba(200, 16, 46, 0.4); }
 
+        /* Very Thin Black Text Outline for Crisp, Elegant Lettering */
         .thin-black-stroke {
             -webkit-text-stroke: 0.5px black;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
@@ -215,11 +183,29 @@
                 -webkit-text-stroke: 0.8px black;
             }
         }
+
+        /* Uniform Navigation Box Styling */
+        .nav-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 150px;
+            height: 48px;
+            padding: 0 16px;
+            border-radius: 12px;
+            text-align: center;
+            white-space: nowrap;
+            font-size: 0.95rem;
+            font-weight: 700;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.2s ease-in-out;
+        }
     </style>
 </head>
 <body class="font-calibri text-white antialiased selection:bg-azureBlue selection:text-white flex flex-col min-h-screen">
 
     <header class="relative w-full z-40">
+        <!-- Top Header with Dark Bloody Red Background and Linked Title with Thin Black Text Outline & Golden White Hover -->
         <div class="bg-[#420404] py-4 sm:py-6 px-4 text-center shadow-lg">
             <a href="#home" class="inline-block group focus:outline-none">
                 <h1 class="font-algerian text-2xl sm:text-4xl md:text-5xl font-bold text-white tracking-widest thin-black-stroke transition-colors duration-300 group-hover:text-[#FFF4CC]">
@@ -229,47 +215,49 @@
         </div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-2 mb-2 relative z-10">
-            <nav class="w-full max-w-7xl mx-auto dark-blue-green-border rounded-2xl shadow-xl p-3 sm:p-4 bg-white flex items-center justify-between gap-3 text-darkText">
-                <div class="flex items-center gap-2 pl-2">
-                    <div class="w-8 h-8 rounded-full bg-azureBlue text-white flex items-center justify-center font-bookAntiqua font-bold text-sm">
-                        ABM
+            <nav class="w-full max-w-7xl mx-auto dark-blue-green-border rounded-2xl shadow-xl p-3 sm:p-4 bg-white flex flex-col md:flex-row items-center justify-between gap-3 text-darkText">
+                <div class="flex items-center justify-between w-full md:w-auto pl-2">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-full bg-azureBlue text-white flex items-center justify-center font-bookAntiqua font-bold text-sm">
+                            ABM
+                        </div>
+                        <span class="font-bookAntiqua font-bold text-navyBlue text-base hidden sm:inline-block">
+                            RASHEDUL ISLAM
+                        </span>
                     </div>
-                    <span class="font-bookAntiqua font-bold text-navyBlue text-base hidden sm:inline-block">
-                        RASHEDUL ISLAM
-                    </span>
+
+                    <button id="mobileMenuBtn" aria-label="Toggle navigation" class="md:hidden text-navyBlue text-2xl focus:outline-none p-1">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
                 </div>
 
-                <button id="mobileMenuBtn" aria-label="Toggle navigation" class="md:hidden text-navyBlue text-2xl focus:outline-none p-1">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-
-                <!-- Navigation Bar with Admin Login Added -->
-                <div class="hidden md:flex items-center space-x-1 lg:space-x-2 font-calibri text-sm lg:text-base font-bold">
-                    <a href="#home" class="px-2.5 py-1.5 rounded-lg bg-azureBlue text-white hover:bg-navyBlue transition shadow-sm">Home</a>
-                    <a href="gallery.html" class="px-2.5 py-1.5 rounded-lg bg-azureBlue text-white hover:bg-navyBlue transition shadow-sm">Gallery</a>
-                    <a href="#about" class="px-2.5 py-1.5 rounded-lg bg-azureBlue text-white hover:bg-navyBlue transition shadow-sm">About</a>
-                    <a href="#services" class="px-2.5 py-1.5 rounded-lg bg-azureBlue text-white hover:bg-navyBlue transition shadow-sm">Practice Areas</a>
-                    <a href="#experience" class="px-2.5 py-1.5 rounded-lg bg-azureBlue text-white hover:bg-navyBlue transition shadow-sm">Experience</a>
-                    <a href="booking.html" class="px-2.5 py-1.5 rounded-lg bg-azureBlue text-white hover:bg-navyBlue transition shadow-sm">Appointment</a>
-                    <a href="#contact" class="px-2.5 py-1.5 rounded-lg bg-azureBlue text-white hover:bg-navyBlue transition shadow-sm">Contact</a>
-                    <a href="calculator.html" class="px-2.5 py-1.5 rounded-lg bg-azureBlue text-white hover:bg-navyBlue transition shadow-sm">Land Calculator</a>
-                    <a href="succession_calculator.html" class="px-2.5 py-1.5 rounded-lg bg-azureBlue text-white hover:bg-navyBlue transition shadow-sm">Succession Calculator</a>
-                    <a href="#admin-login" class="px-2.5 py-1.5 rounded-lg bg-navyBlue text-white hover:bg-azureBlue transition shadow-sm flex items-center gap-1"><i class="fa-solid fa-lock text-xs"></i> Admin Login</a>
+                <!-- Desktop Navigation Bar with Larger, Identical Size Boxes -->
+                <div class="hidden md:flex flex-wrap items-center justify-center gap-2.5 font-calibri font-bold">
+                    <a href="#home" class="nav-box bg-azureBlue text-white hover:bg-navyBlue">Home</a>
+                    <a href="gallery.html" class="nav-box bg-azureBlue text-white hover:bg-navyBlue">Gallery</a>
+                    <a href="#about" class="nav-box bg-azureBlue text-white hover:bg-navyBlue">About</a>
+                    <a href="#services" class="nav-box bg-azureBlue text-white hover:bg-navyBlue">Practice Areas</a>
+                    <a href="#experience" class="nav-box bg-azureBlue text-white hover:bg-navyBlue">Experience</a>
+                    <a href="booking.html" class="nav-box bg-azureBlue text-white hover:bg-navyBlue">Appointment</a>
+                    <a href="#contact" class="nav-box bg-azureBlue text-white hover:bg-navyBlue">Contact</a>
+                    <a href="calculator.html" class="nav-box bg-azureBlue text-white hover:bg-navyBlue">Land Calculator</a>
+                    <a href="succession_calculator.html" class="nav-box bg-azureBlue text-white hover:bg-navyBlue">Succession Calculator</a>
+                    <a href="login.html" class="nav-box bg-navyBlue text-white hover:bg-azureBlue gap-1.5"><i class="fa-solid fa-lock text-xs"></i> Admin Log in</a>
                 </div>
             </nav>
 
             <!-- Mobile Menu -->
             <div id="mobileMenu" class="hidden md:hidden bg-white text-navyBlue rounded-xl p-4 shadow-xl border border-navyBlue/20 mt-2 space-y-2 font-calibri font-bold">
-                <a href="#home" class="block py-2 px-3 bg-azureBlue text-white hover:bg-navyBlue rounded-lg transition">Home</a>
-                <a href="gallery.html" class="block py-2 px-3 bg-azureBlue text-white hover:bg-navyBlue rounded-lg transition">Gallery</a>
-                <a href="#about" class="block py-2 px-3 bg-azureBlue text-white hover:bg-navyBlue rounded-lg transition">About</a>
-                <a href="#services" class="block py-2 px-3 bg-azureBlue text-white hover:bg-navyBlue rounded-lg transition">Practice Areas</a>
-                <a href="#experience" class="block py-2 px-3 bg-azureBlue text-white hover:bg-navyBlue rounded-lg transition">Experience</a>
-                <a href="booking.html" class="block py-2 px-3 bg-azureBlue text-white hover:bg-navyBlue rounded-lg transition">Appointment</a>
-                <a href="#contact" class="block py-2 px-3 bg-azureBlue text-white hover:bg-navyBlue rounded-lg transition">Contact</a>
-                <a href="calculator.html" class="block py-2 px-3 bg-azureBlue text-white hover:bg-navyBlue rounded-lg transition">Land Calculator</a>
-                <a href="succession_calculator.html" class="block py-2 px-3 bg-azureBlue text-white hover:bg-navyBlue rounded-lg transition">Succession Calculator</a>
-                <a href="#admin-login" class="block py-2 px-3 bg-navyBlue text-white hover:bg-azureBlue rounded-lg transition flex items-center gap-1.5"><i class="fa-solid fa-lock text-xs"></i> Admin Login</a>
+                <a href="#home" class="block py-2.5 px-4 bg-azureBlue text-white hover:bg-navyBlue rounded-xl transition text-center">Home</a>
+                <a href="gallery.html" class="block py-2.5 px-4 bg-azureBlue text-white hover:bg-navyBlue rounded-xl transition text-center">Gallery</a>
+                <a href="#about" class="block py-2.5 px-4 bg-azureBlue text-white hover:bg-navyBlue rounded-xl transition text-center">About</a>
+                <a href="#services" class="block py-2.5 px-4 bg-azureBlue text-white hover:bg-navyBlue rounded-xl transition text-center">Practice Areas</a>
+                <a href="#experience" class="block py-2.5 px-4 bg-azureBlue text-white hover:bg-navyBlue rounded-xl transition text-center">Experience</a>
+                <a href="booking.html" class="block py-2.5 px-4 bg-azureBlue text-white hover:bg-navyBlue rounded-xl transition text-center">Appointment</a>
+                <a href="#contact" class="block py-2.5 px-4 bg-azureBlue text-white hover:bg-navyBlue rounded-xl transition text-center">Contact</a>
+                <a href="calculator.html" class="block py-2.5 px-4 bg-azureBlue text-white hover:bg-navyBlue rounded-xl transition text-center">Land Calculator</a>
+                <a href="succession_calculator.html" class="block py-2.5 px-4 bg-azureBlue text-white hover:bg-navyBlue rounded-xl transition text-center">Succession Calculator</a>
+                <a href="login.html" class="block py-2.5 px-4 bg-navyBlue text-white hover:bg-azureBlue rounded-xl transition text-center flex items-center justify-center gap-1.5"><i class="fa-solid fa-lock text-xs"></i> Admin Log in</a>
             </div>
         </div>
     </header>
@@ -279,6 +267,7 @@
         <section id="home" class="py-12 sm:py-16 px-4">
             <div class="max-w-4xl mx-auto text-center flex flex-col items-center">
                 <div class="relative mb-6">
+                    <!-- Royal Navy Blue Border with Sky Blue Tint Accent -->
                     <div class="w-48 h-48 sm:w-56 sm:h-56 md:w-60 md:h-60 rounded-full p-2 bg-gradient-to-tr from-[#0F1B2B] via-[#101B33] to-[#87CEEB] photo-glow transition duration-300">
                         <img 
                             src="profile.jpg.png" 
@@ -485,89 +474,6 @@
             </div>
         </section>
 
-        <!-- Admin Login / Sign Up Panel Section -->
-        <section id="admin-login" class="py-16 px-4 sm:px-6 lg:px-8">
-            <div class="max-w-md mx-auto flex flex-col items-center">
-                
-                <div class="text-center mb-6">
-                    <h2 class="font-bookAntiqua text-3xl font-bold text-white mb-1">
-                        ADMIN PORTAL ACCESS
-                    </h2>
-                    <p class="font-garamond text-lg text-red-200">
-                        Log in or register to access the automated vetting machine
-                    </p>
-                </div>
-
-                <!-- Auth Container Card -->
-                <div class="w-full glass-card-light rounded-2xl p-6 sm:p-8 shadow-2xl border-t-4 border-azureBlue text-darkText">
-                    
-                    <!-- Tab Switching Buttons -->
-                    <div class="flex rounded-xl bg-gray-200 p-1 mb-6 font-calibri font-bold">
-                        <button id="loginTabBtn" onclick="switchTab('login')" class="flex-1 py-2 text-sm rounded-lg bg-azureBlue text-white shadow transition">Log In</button>
-                        <button id="registerTabBtn" onclick="switchTab('register')" class="flex-1 py-2 text-sm rounded-lg text-subtleGray hover:text-navyBlue transition">Register</button>
-                    </div>
-
-                    <!-- Error Message Alert Box -->
-                    <div id="authError" class="hidden mb-4 p-3 bg-red-100 border border-red-400 text-red-700 text-xs rounded-xl font-calibri"></div>
-
-                    <!-- LOGIN FORM -->
-                    <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4 font-calibri">
-                        <div>
-                            <label class="block text-xs font-bold text-navyBlue mb-1">Email Address</label>
-                            <div class="relative">
-                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fa-solid fa-envelope text-xs"></i></span>
-                                <input type="email" id="loginEmail" required placeholder="Enter your email" class="w-full pl-9 pr-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-navyBlue mb-1">Password</label>
-                            <div class="relative">
-                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fa-solid fa-lock text-xs"></i></span>
-                                <input type="password" id="loginPassword" required placeholder="Enter your password" class="w-full pl-9 pr-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
-                            </div>
-                        </div>
-
-                        <button type="submit" class="w-full bg-azureBlue hover:bg-navyBlue text-white font-bold py-2.5 px-4 rounded-xl shadow-md transition duration-200 flex items-center justify-center gap-2 text-sm mt-2">
-                            <i class="fa-solid fa-right-to-bracket"></i> Log In to Vetting Machine
-                        </button>
-                    </form>
-
-                    <!-- REGISTRATION FORM -->
-                    <form id="registerForm" onsubmit="handleRegister(event)" class="space-y-4 font-calibri hidden">
-                        <div>
-                            <label class="block text-xs font-bold text-navyBlue mb-1">Username</label>
-                            <div class="relative">
-                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fa-solid fa-user text-xs"></i></span>
-                                <input type="text" id="regUsername" required placeholder="Choose a username" class="w-full pl-9 pr-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-navyBlue mb-1">Email Address</label>
-                            <div class="relative">
-                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fa-solid fa-envelope text-xs"></i></span>
-                                <input type="email" id="regEmail" required placeholder="Enter your email" class="w-full pl-9 pr-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-navyBlue mb-1">Password</label>
-                            <div class="relative">
-                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fa-solid fa-lock text-xs"></i></span>
-                                <input type="password" id="regPassword" required placeholder="Create a password (min 6 chars)" class="w-full pl-9 pr-3 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
-                            </div>
-                        </div>
-
-                        <button type="submit" class="w-full bg-navyBlue hover:bg-azureBlue text-white font-bold py-2.5 px-4 rounded-xl shadow-md transition duration-200 flex items-center justify-center gap-2 text-sm mt-2">
-                            <i class="fa-solid fa-user-plus"></i> Register & Access
-                        </button>
-                    </form>
-
-                </div>
-            </div>
-        </section>
-
     </main>
 
     <footer id="contact" class="bg-transparent text-white pt-16 pb-12 border-t border-red-900/50">
@@ -650,27 +556,6 @@
         const mobileBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-
-        function switchTab(tab) {
-            const loginForm = document.getElementById('loginForm');
-            const registerForm = document.getElementById('registerForm');
-            const loginBtn = document.getElementById('loginTabBtn');
-            const regBtn = document.getElementById('registerTabBtn');
-            const errorEl = document.getElementById('authError');
-            errorEl.classList.add('hidden');
-
-            if (tab === 'login') {
-                loginForm.classList.remove('hidden');
-                registerForm.classList.add('hidden');
-                loginBtn.className = "flex-1 py-2 text-sm rounded-lg bg-azureBlue text-white shadow transition";
-                regBtn.className = "flex-1 py-2 text-sm rounded-lg text-subtleGray hover:text-navyBlue transition";
-            } else {
-                loginForm.classList.add('hidden');
-                registerForm.classList.remove('hidden');
-                regBtn.className = "flex-1 py-2 text-sm rounded-lg bg-navyBlue text-white shadow transition";
-                loginBtn.className = "flex-1 py-2 text-sm rounded-lg text-subtleGray hover:text-navyBlue transition";
-            }
-        }
     </script>
 </body>
 </html>

@@ -47,8 +47,26 @@
             const username = document.getElementById('regUsername').value.trim();
             const email = document.getElementById('regEmail').value.trim();
             const password = document.getElementById('regPassword').value;
+            const confirmPassword = document.getElementById('regConfirmPassword').value;
             const errorEl = document.getElementById('authError');
             errorEl.classList.add('hidden');
+
+            // Check if passwords match
+            if (password !== confirmPassword) {
+                errorEl.textContent = "Passwords do not match! Please verify your confirmation password.";
+                errorEl.classList.remove('hidden');
+                return;
+            }
+
+            // Check for at least one capital letter and one number
+            const hasCapital = /[A-Z]/.test(password);
+            const hasNumber = /[0-9]/.test(password);
+
+            if (!hasCapital || !hasNumber) {
+                errorEl.textContent = "Password must contain at least one capital letter (A-Z) and one number (0-9).";
+                errorEl.classList.remove('hidden');
+                return;
+            }
 
             try {
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -60,220 +78,4 @@
                     createdAt: new Date().toISOString()
                 });
 
-                alert('Registration successful! Redirecting to Vetting Machine...');
-                window.location.href = 'vetting.html';
-            } catch (error) {
-                errorEl.textContent = error.message;
-                errorEl.classList.remove('hidden');
-            }
-        };
-
-        window.handleLogin = async function(event) {
-            event.preventDefault();
-            const email = document.getElementById('loginEmail').value.trim();
-            const password = document.getElementById('loginPassword').value;
-            const errorEl = document.getElementById('authError');
-            errorEl.classList.add('hidden');
-
-            try {
-                await signInWithEmailAndPassword(auth, email, password);
-                alert('Login successful! Redirecting to Vetting Machine...');
-                window.location.href = 'vetting.html';
-            } catch (error) {
-                errorEl.textContent = "Invalid email or password. Please try again.";
-                errorEl.classList.remove('hidden');
-            }
-        };
-    </script>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        azureBlue: '#C8102E',    /* Signature Capital Law Chamber Red */
-                        navyBlue: '#101B33',     /* Deep Royal Navy Blue */
-                        darkText: '#1E293B',     /* Slate Dark Text */
-                        subtleGray: '#475569',   /* Muted Text Gray */
-                    },
-                    fontFamily: {
-                        algerian: ['Algerian', 'Impact', 'Copperplate Gothic Bold', 'Georgia', 'serif'],
-                        bookAntiqua: ['"Book Antiqua"', 'Palatino', 'Georgia', 'serif'],
-                        garamond: ['Garamond', 'Georgia', 'serif'],
-                        calibri: ['Calibri', 'Candara', 'Segoe UI', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        .font-algerian { font-family: Algerian, Impact, 'Copperplate Gothic Bold', Georgia, serif; font-style: normal !important; }
-        .font-bookAntiqua { font-family: 'Book Antiqua', Palatino, 'Palatino Linotype', Georgia, serif; font-style: normal !important; }
-        .font-garamond { font-family: Garamond, Georgia, serif; font-style: normal !important; }
-        .font-calibri { font-family: Calibri, Candara, 'Segoe UI', sans-serif; font-style: normal !important; }
-
-        * { font-style: normal !important; }
-
-        body {
-            background: linear-gradient(180deg, #2B0000 0%, #4A0000 10%, #3B0D11 25%, #20242B 55%, #2B303A 80%, #1C2026 100%) !important;
-            background-attachment: fixed;
-        }
-
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #1C2026; }
-        ::-webkit-scrollbar-thumb { background: #C8102E; border-radius: 4px; }
-
-        .glass-card-light {
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .photo-glow { box-shadow: 0 0 35px rgba(200, 16, 46, 0.4); }
-
-        .thin-black-stroke {
-            -webkit-text-stroke: 0.5px black;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-        }
-    </style>
-</head>
-<body class="font-calibri text-white antialiased selection:bg-azureBlue selection:text-white flex flex-col min-h-screen">
-
-    <header class="relative w-full z-40">
-        <div class="bg-[#420404] py-4 sm:py-6 px-4 text-center shadow-lg">
-            <a href="index.html" class="inline-block group focus:outline-none">
-                <h1 class="font-algerian text-2xl sm:text-4xl md:text-5xl font-bold text-white tracking-widest thin-black-stroke transition-colors duration-300 group-hover:text-[#FFF4CC]">
-                    CAPITAL LAW CHAMBER
-                </h1>
-            </a>
-        </div>
-    </header>
-
-    <main class="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div class="w-full max-w-md flex flex-col items-center">
-            
-            <!-- User Image & Badge -->
-            <div class="relative mb-6">
-                <div class="w-36 h-36 sm:w-40 sm:h-40 rounded-full p-2 bg-gradient-to-tr from-[#0F1B2B] via-[#101B33] to-[#87CEEB] photo-glow transition duration-300">
-                    <img 
-                        src="profile.jpg.png" 
-                        alt="A B M Rashedul Islam" 
-                        id="profileImg"
-                        onerror="this.onerror=null; this.src='https://placehold.co/400x400/C8102E/FFFFFF?text=A+B+M+Rashedul+Islam';"
-                        class="w-full h-full object-cover rounded-full border-4 border-[#1E2A38] shadow-[0_0_12px_rgba(135,206,235,0.4)]"
-                    />
-                </div>
-            </div>
-
-            <!-- Auth Container Card -->
-            <div class="w-full glass-card-light rounded-2xl p-6 sm:p-8 shadow-2xl border-t-4 border-azureBlue text-darkText">
-                
-                <!-- Tab Switching Buttons -->
-                <div class="flex rounded-xl bg-gray-200 p-1 mb-6 font-calibri font-bold">
-                    <button id="loginTabBtn" onclick="switchTab('login')" class="flex-1 py-2 text-sm rounded-lg bg-azureBlue text-white shadow transition">Log In</button>
-                    <button id="registerTabBtn" onclick="switchTab('register')" class="flex-1 py-2 text-sm rounded-lg text-subtleGray hover:text-navyBlue transition">Register</button>
-                </div>
-
-                <!-- Error Message Alert Box -->
-                <div id="authError" class="hidden mb-4 p-3 bg-red-100 border border-red-400 text-red-700 text-xs rounded-xl font-calibri"></div>
-
-                <!-- LOGIN FORM -->
-                <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4 font-calibri">
-                    <div class="text-center mb-4">
-                        <h2 class="font-bookAntiqua text-2xl font-bold text-navyBlue">ADMIN PORTAL LOGIN</h2>
-                        <p class="text-xs text-subtleGray font-semibold mt-1">Access the Automated Vetting Machine</p>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-bold text-navyBlue mb-1">Email Address</label>
-                        <div class="relative">
-                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fa-solid fa-envelope text-xs"></i></span>
-                            <input type="email" id="loginEmail" required placeholder="Enter your email" class="w-full pl-9 pr-3 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-bold text-navyBlue mb-1">Password</label>
-                        <div class="relative">
-                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fa-solid fa-lock text-xs"></i></span>
-                            <input type="password" id="loginPassword" required placeholder="Enter your password" class="w-full pl-9 pr-3 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
-                        </div>
-                    </div>
-
-                    <button type="submit" class="w-full bg-azureBlue hover:bg-navyBlue text-white font-bold py-3 px-4 rounded-xl shadow-md transition duration-200 flex items-center justify-center gap-2 text-sm mt-2">
-                        <i class="fa-solid fa-right-to-bracket"></i> Log In to Vetting Machine
-                    </button>
-                </form>
-
-                <!-- REGISTRATION FORM -->
-                <form id="registerForm" onsubmit="handleRegister(event)" class="space-y-4 font-calibri hidden">
-                    <div class="text-center mb-4">
-                        <h2 class="font-bookAntiqua text-2xl font-bold text-navyBlue">CREATE ACCOUNT</h2>
-                        <p class="text-xs text-subtleGray font-semibold mt-1">Register for Vetting Portal Access</p>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-bold text-navyBlue mb-1">Username</label>
-                        <div class="relative">
-                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fa-solid fa-user text-xs"></i></span>
-                            <input type="text" id="regUsername" required placeholder="Choose a username" class="w-full pl-9 pr-3 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-bold text-navyBlue mb-1">Email Address</label>
-                        <div class="relative">
-                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fa-solid fa-envelope text-xs"></i></span>
-                            <input type="email" id="regEmail" required placeholder="Enter your email" class="w-full pl-9 pr-3 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-bold text-navyBlue mb-1">Password</label>
-                        <div class="relative">
-                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fa-solid fa-lock text-xs"></i></span>
-                            <input type="password" id="regPassword" required placeholder="Min 6 characters" class="w-full pl-9 pr-3 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
-                        </div>
-                    </div>
-
-                    <button type="submit" class="w-full bg-navyBlue hover:bg-azureBlue text-white font-bold py-3 px-4 rounded-xl shadow-md transition duration-200 flex items-center justify-center gap-2 text-sm mt-2">
-                        <i class="fa-solid fa-user-plus"></i> Register & Access
-                    </button>
-                </form>
-
-            </div>
-
-            <!-- Back to Home Link -->
-            <div class="mt-6">
-                <a href="index.html" class="text-sm text-gray-200 hover:text-white transition flex items-center gap-1.5 font-bold">
-                    <i class="fa-solid fa-arrow-left"></i> Back to Main Portfolio
-                </a>
-            </div>
-
-        </div>
-    </main>
-
-    <script>
-        function switchTab(tab) {
-            const loginForm = document.getElementById('loginForm');
-            const registerForm = document.getElementById('registerForm');
-            const loginBtn = document.getElementById('loginTabBtn');
-            const regBtn = document.getElementById('registerTabBtn');
-            const errorEl = document.getElementById('authError');
-            errorEl.classList.add('hidden');
-
-            if (tab === 'login') {
-                loginForm.classList.remove('hidden');
-                registerForm.classList.add('hidden');
-                loginBtn.className = "flex-1 py-2 text-sm rounded-lg bg-azureBlue text-white shadow transition";
-                regBtn.className = "flex-1 py-2 text-sm rounded-lg text-subtleGray hover:text-navyBlue transition";
-            } else {
-                loginForm.classList.add('hidden');
-                registerForm.classList.remove('hidden');
-                regBtn.className = "flex-1 py-2 text-sm rounded-lg bg-navyBlue text-white shadow transition";
-                loginBtn.className = "flex-1 py-2 text-sm rounded-lg text-subtleGray hover:text-navyBlue transition";
-            }
-        }
-    </script>
-</body>
-</html>
+                alert

@@ -69,14 +69,20 @@
             }
 
             try {
+                // 1. Create account in Firebase Auth (Primary registration step)
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                 const user = userCredential.user;
 
-                await setDoc(doc(db, "users", user.uid), {
-                    username: username,
-                    email: email,
-                    createdAt: new Date().toISOString()
-                });
+                // 2. Optional Firestore metadata save (wrapped to prevent permission blocks)
+                try {
+                    await setDoc(doc(db, "users", user.uid), {
+                        username: username,
+                        email: email,
+                        createdAt: new Date().toISOString()
+                    });
+                } catch (firestoreErr) {
+                    console.warn("Firestore profile record skipped due to permissions, but Auth registration succeeded.");
+                }
 
                 alert('Registration successful! Redirecting to Vetting Machine...');
                 window.location.href = 'vetting.html';

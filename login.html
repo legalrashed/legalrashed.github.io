@@ -12,7 +12,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Firebase JS SDK Integration with Auth & Firestore -->
+    <!-- Firebase JS SDK Integration with Auth -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
@@ -21,11 +21,6 @@
             createUserWithEmailAndPassword, 
             signInWithEmailAndPassword 
         } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-        import { 
-            getFirestore, 
-            doc, 
-            setDoc 
-        } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyDdMJAQBOu0l5juW5ZV8q6qgY3uZ1mRQ38",
@@ -40,11 +35,9 @@
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         const auth = getAuth(app);
-        const db = getFirestore(app);
 
         window.handleRegister = async function(event) {
             event.preventDefault();
-            const username = document.getElementById('regUsername').value.trim();
             const email = document.getElementById('regEmail').value.trim();
             const password = document.getElementById('regPassword').value;
             const confirmPassword = document.getElementById('regConfirmPassword').value;
@@ -69,20 +62,8 @@
             }
 
             try {
-                // 1. Create account in Firebase Auth (Primary registration step)
-                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                const user = userCredential.user;
-
-                // 2. Optional Firestore metadata save (wrapped to prevent permission blocks)
-                try {
-                    await setDoc(doc(db, "users", user.uid), {
-                        username: username,
-                        email: email,
-                        createdAt: new Date().toISOString()
-                    });
-                } catch (firestoreErr) {
-                    console.warn("Firestore profile record skipped due to permissions, but Auth registration succeeded.");
-                }
+                // Register using Firebase Auth only (Firestore writes completely removed to prevent permission errors)
+                await createUserWithEmailAndPassword(auth, email, password);
 
                 alert('Registration successful! Redirecting to Vetting Machine...');
                 window.location.href = 'vetting.html';
@@ -243,7 +224,7 @@
                         <label class="block text-xs font-bold text-navyBlue mb-1">Username</label>
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fa-solid fa-user text-xs"></i></span>
-                            <input type="text" id="regUsername" required placeholder="Choose a username" class="w-full pl-9 pr-3 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
+                            <input type="text" id="regUsername" placeholder="Choose a username" class="w-full pl-9 pr-3 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
                         </div>
                     </div>
 

@@ -12,14 +12,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Firebase JS SDK Integration with Auth -->
+    <!-- Firebase JS SDK Integration with Auth & Session Persistence -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
         import { 
             getAuth, 
             createUserWithEmailAndPassword, 
-            signInWithEmailAndPassword 
+            signInWithEmailAndPassword,
+            setPersistence,
+            browserSessionPersistence 
         } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
         const firebaseConfig = {
@@ -94,6 +96,9 @@
             errorEl.classList.add('hidden');
 
             try {
+                // Force session persistence so login expires when the browser/tab is closed
+                await setPersistence(auth, browserSessionPersistence);
+                
                 await signInWithEmailAndPassword(auth, email, password);
                 window.location.href = 'vetting.html';
             } catch (error) {

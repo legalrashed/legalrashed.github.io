@@ -62,11 +62,23 @@
             }
 
             try {
-                // Register using Firebase Auth only (Firestore writes completely removed to prevent permission errors)
+                // Register using Firebase Auth only
                 await createUserWithEmailAndPassword(auth, email, password);
 
-                alert('Registration successful! Redirecting to Vetting Machine...');
-                window.location.href = 'vetting.html';
+                // Show success message and switch to login tab
+                const successEl = document.getElementById('authSuccess');
+                successEl.textContent = "Registration Successful! Please Log in to proceed.";
+                successEl.classList.remove('hidden');
+
+                // Pre-fill the login email field
+                document.getElementById('loginEmail').value = email;
+
+                // Switch to login tab after 1.5 seconds
+                setTimeout(() => {
+                    switchTab('login');
+                    successEl.classList.add('hidden');
+                }, 2000);
+
             } catch (error) {
                 errorEl.textContent = error.message;
                 errorEl.classList.remove('hidden');
@@ -82,7 +94,6 @@
 
             try {
                 await signInWithEmailAndPassword(auth, email, password);
-                alert('Login successful! Redirecting to Vetting Machine...');
                 window.location.href = 'vetting.html';
             } catch (error) {
                 errorEl.textContent = "Invalid email or password. Please try again.";
@@ -181,6 +192,9 @@
 
                 <!-- Error Message Alert Box -->
                 <div id="authError" class="hidden mb-4 p-3 bg-red-100 border border-red-400 text-red-700 text-xs rounded-xl font-calibri"></div>
+                
+                <!-- Success Message Alert Box -->
+                <div id="authSuccess" class="hidden mb-4 p-3 bg-emerald-100 border border-emerald-400 text-emerald-800 text-xs rounded-xl font-calibri font-bold text-center"></div>
 
                 <!-- LOGIN FORM -->
                 <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4 font-calibri">
@@ -282,7 +296,9 @@
             const loginBtn = document.getElementById('loginTabBtn');
             const regBtn = document.getElementById('registerTabBtn');
             const errorEl = document.getElementById('authError');
+            const successEl = document.getElementById('authSuccess');
             errorEl.classList.add('hidden');
+            successEl.classList.add('hidden');
 
             if (tab === 'login') {
                 loginForm.classList.remove('hidden');
@@ -293,25 +309,4 @@
                 loginForm.classList.add('hidden');
                 registerForm.classList.remove('hidden');
                 regBtn.className = "flex-1 py-2 text-sm rounded-lg bg-navyBlue text-white shadow transition";
-                loginBtn.className = "flex-1 py-2 text-sm rounded-lg text-subtleGray hover:text-navyBlue transition";
-            }
-        }
-
-        // Toggle Password Visibility
-        function togglePasswordVisibility(inputId, iconId) {
-            const passwordInput = document.getElementById(inputId);
-            const icon = document.getElementById(iconId);
-            
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-                icon.classList.remove("fa-eye");
-                icon.classList.add("fa-eye-slash");
-            } else {
-                passwordInput.type = "password";
-                icon.classList.remove("fa-eye-slash");
-                icon.classList.add("fa-eye");
-            }
-        }
-    </script>
-</body>
-</html>
+                loginBtn.className = "flex-1 py-2 text-sm rounded-lg text-subtleGray hover:

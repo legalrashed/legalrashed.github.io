@@ -214,7 +214,10 @@
                         <label class="block text-xs font-bold text-navyBlue mb-1">Password</label>
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fa-solid fa-lock text-xs"></i></span>
-                            <input type="password" id="loginPassword" required placeholder="Enter your password" class="w-full pl-9 pr-3 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
+                            <input type="password" id="loginPassword" required placeholder="Enter your password" class="w-full pl-9 pr-10 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
+                            <button type="button" onclick="togglePasswordVisibility('loginPassword', 'loginPasswordIcon')" class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-navyBlue focus:outline-none">
+                                <i id="loginPasswordIcon" class="fa-solid fa-eye text-xs"></i>
+                            </button>
                         </div>
                     </div>
 
@@ -250,7 +253,10 @@
                         <label class="block text-xs font-bold text-navyBlue mb-1">Password</label>
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fa-solid fa-lock text-xs"></i></span>
-                            <input type="password" id="regPassword" required placeholder="Min 6 chars (1 Capital, 1 Number)" class="w-full pl-9 pr-3 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
+                            <input type="password" id="regPassword" required placeholder="Min 6 chars (1 Capital, 1 Number)" class="w-full pl-9 pr-10 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
+                            <button type="button" onclick="togglePasswordVisibility('regPassword', 'regPasswordIcon')" class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-navyBlue focus:outline-none">
+                                <i id="regPasswordIcon" class="fa-solid fa-eye text-xs"></i>
+                            </button>
                         </div>
                     </div>
 
@@ -258,7 +264,10 @@
                         <label class="block text-xs font-bold text-navyBlue mb-1">Confirm Password</label>
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400"><i class="fa-solid fa-lock text-xs"></i></span>
-                            <input type="password" id="regConfirmPassword" required placeholder="Re-enter your password" class="w-full pl-9 pr-3 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
+                            <input type="password" id="regConfirmPassword" required placeholder="Re-enter your password" class="w-full pl-9 pr-10 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-azureBlue text-sm bg-white">
+                            <button type="button" onclick="togglePasswordVisibility('regConfirmPassword', 'regConfirmPasswordIcon')" class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-navyBlue focus:outline-none">
+                                <i id="regConfirmPasswordIcon" class="fa-solid fa-eye text-xs"></i>
+                            </button>
                         </div>
                     </div>
 
@@ -298,6 +307,22 @@
                 registerForm.classList.remove('hidden');
                 regBtn.className = "flex-1 py-2 text-sm rounded-lg bg-navyBlue text-white shadow transition";
                 loginBtn.className = "flex-1 py-2 text-sm rounded-lg text-subtleGray hover:text-navyBlue transition";
+            }
+        }
+
+        // Toggle Password Visibility
+        function togglePasswordVisibility(inputId, iconId) {
+            const passwordInput = document.getElementById(inputId);
+            const icon = document.getElementById(iconId);
+            
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            } else {
+                passwordInput.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
             }
         }
     </script>

@@ -42,7 +42,9 @@
             const password = document.getElementById('regPassword').value;
             const confirmPassword = document.getElementById('regConfirmPassword').value;
             const errorEl = document.getElementById('authError');
+            const successEl = document.getElementById('authSuccess');
             errorEl.classList.add('hidden');
+            successEl.classList.add('hidden');
 
             // Check if passwords match
             if (password !== confirmPassword) {
@@ -66,14 +68,13 @@
                 await createUserWithEmailAndPassword(auth, email, password);
 
                 // Show success message and switch to login tab
-                const successEl = document.getElementById('authSuccess');
                 successEl.textContent = "Registration Successful! Please Log in to proceed.";
                 successEl.classList.remove('hidden');
 
                 // Pre-fill the login email field
                 document.getElementById('loginEmail').value = email;
 
-                // Switch to login tab after 1.5 seconds
+                // Switch to login tab after 2 seconds
                 setTimeout(() => {
                     switchTab('login');
                     successEl.classList.add('hidden');
@@ -309,4 +310,25 @@
                 loginForm.classList.add('hidden');
                 registerForm.classList.remove('hidden');
                 regBtn.className = "flex-1 py-2 text-sm rounded-lg bg-navyBlue text-white shadow transition";
-                loginBtn.className = "flex-1 py-2 text-sm rounded-lg text-subtleGray hover:
+                loginBtn.className = "flex-1 py-2 text-sm rounded-lg text-subtleGray hover:text-navyBlue transition";
+            }
+        }
+
+        // Toggle Password Visibility
+        function togglePasswordVisibility(inputId, iconId) {
+            const passwordInput = document.getElementById(inputId);
+            const icon = document.getElementById(iconId);
+            
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            } else {
+                passwordInput.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            }
+        }
+    </script>
+</body>
+</html>

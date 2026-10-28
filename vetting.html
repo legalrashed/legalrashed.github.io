@@ -75,7 +75,7 @@
         </div>
         <div>
           <h1 class="text-base font-extrabold text-white tracking-tight">Capital Law Chamber</h1>
-          <p class="text-xs text-emerald-400 font-medium">Document Vetting & Legal Analysis Workstation</p>
+          <p class="text-xs text-emerald-400 font-medium">Legal Document Vetting Workstation</p>
         </div>
       </div>
       <div class="flex items-center gap-4">
@@ -133,7 +133,7 @@
           <div class="flex items-center justify-between">
             <span class="font-bold text-slate-200">1. Present Owner</span>
             <select id="ownerApplicable" onchange="toggleApplicable('owner')" class="bg-navy-900 border border-slate-700 rounded px-2 py-1 text-gold-400 font-bold outline-none">
-              <option value="applicable">Applicable</option>
+              <option value="applicable" selected>Applicable</option>
               <option value="non_applicable">Non Applicable</option>
             </select>
           </div>
@@ -147,7 +147,7 @@
           <div class="flex items-center justify-between">
             <span class="font-bold text-slate-200">2. Borrower</span>
             <select id="borrowerApplicable" onchange="toggleApplicable('borrower')" class="bg-navy-900 border border-slate-700 rounded px-2 py-1 text-gold-400 font-bold outline-none">
-              <option value="applicable">Applicable</option>
+              <option value="applicable" selected>Applicable</option>
               <option value="non_applicable">Non Applicable</option>
             </select>
           </div>
@@ -208,7 +208,7 @@
           <i class="fa-solid fa-file-invoice"></i> Mutation Khatians
         </h2>
         <button onclick="addMutationBlock()" class="px-3 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold transition-all flex items-center gap-1">
-          <i class="fa-solid fa-plus"></i> Add Mutation
+          <i class="fa-solid fa-plus"></i> Add Mutation Khatian
         </button>
       </div>
 
@@ -439,22 +439,11 @@
             <div class="flex gap-1">
               <input type="number" step="any" placeholder="0.00" class="sch-area w-2/3 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100 font-bold">
               <select class="sch-unit w-1/3 bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-200">
-                <option value="NONE">NONE</option>
+                <option value="NONE" selected>NONE</option>
                 <option value="Decimal">Decimal</option>
                 <option value="Katha">Katha</option>
                 <option value="Bigha">Bigha</option>
                 <option value="Acre">Acre</option>
-                <option value="Sq. Ft.">Sq. Ft.</option>
-              </select>
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-slate-400 mb-1">Flat Measurement / Quantum</label>
-            <div class="flex gap-1">
-              <input type="text" placeholder="e.g. 1500 Sft Flat A-1" class="sch-flat w-2/3 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
-              <select class="sch-flat-unit w-1/3 bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-200">
-                <option value="NONE">NONE</option>
                 <option value="Sq. Ft.">Sq. Ft.</option>
                 <option value="Sq. Meter">Sq. Meter</option>
               </select>
@@ -462,39 +451,51 @@
           </div>
 
           <div>
-            <label class="block text-slate-400 mb-1">Car Parking & Undivided Share</label>
+            <label class="block text-slate-400 mb-1 font-semibold">Flat Measurement / Quantum</label>
+            <div class="flex gap-1">
+              <input type="text" placeholder="e.g. 1500 Sft Flat A-1" class="sch-flat w-2/3 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
+              <select class="sch-flat-unit w-1/3 bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-200">
+                <option value="NONE" selected>NONE</option>
+                <option value="Sq. Ft.">Sq. Ft.</option>
+                <option value="Sq. Meter">Sq. Meter</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-slate-400 mb-1 font-semibold">Car Parking & Undivided Share</label>
             <div class="flex gap-1">
               <select class="sch-car w-1/2 bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-200">
-                <option value="NONE">NONE</option>
+                <option value="NONE" selected>NONE</option>
                 <option value="Including Car Parking">Including Car Parking</option>
                 <option value="Excluding Car Parking">Excluding Car Parking</option>
               </select>
               <select class="sch-undivided w-1/2 bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-200">
-                <option value="NONE">NONE</option>
+                <option value="NONE" selected>NONE</option>
                 <option value="Undivided and Undemarcated share of land">Undivided & Undemarcated</option>
               </select>
             </div>
           </div>
 
           <div>
-            <label class="block text-slate-400 mb-1">Structure Type & Building Name</label>
+            <label class="block text-slate-400 mb-1 font-semibold">Structure Type & Building Name</label>
             <div class="flex gap-1">
               <select class="sch-building-type w-1/2 bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-200">
-                <option value="NONE">NONE</option>
+                <option value="NONE" selected>NONE</option>
                 <option value="Residential Building">Residential Building</option>
                 <option value="Residential cum Commercial Building">Residential cum Commercial</option>
                 <option value="Commercial Building">Commercial Building</option>
-                <option value="Building">Building</option>
+                <option value="Industrial / Factory Building">Industrial / Factory Building</option>
               </select>
               <input type="text" placeholder="Building Name (if any)" class="sch-building-name w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
             </div>
           </div>
 
           <div>
-            <label class="block text-slate-400 mb-1">District, Police Station & Sub-Registry</label>
+            <label class="block text-slate-400 mb-1 font-semibold">District, Police Station & Sub-Registry</label>
             <div class="grid grid-cols-3 gap-1">
               <select class="sch-district bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-200">
-                <option value="NONE">NONE</option>
+                <option value="NONE" selected>NONE</option>
                 <option value="Dhaka">Dhaka</option>
                 <option value="Gazipur">Gazipur</option>
                 <option value="Chittagong">Chittagong</option>
@@ -503,7 +504,7 @@
               </select>
               <input type="text" placeholder="P.S." class="sch-ps bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
               <select class="sch-registry bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-200">
-                <option value="NONE">NONE</option>
+                <option value="NONE" selected>NONE</option>
                 <option value="Sadar Sub-Registry Office">Sadar Sub-Registry</option>
                 <option value="Dhaka Sub-Registry Office">Dhaka Sub-Registry</option>
                 <option value="Charavanga Sub-Registry Office">Charavanga Sub-Registry</option>
@@ -512,7 +513,7 @@
           </div>
 
           <div>
-            <label class="block text-slate-400 mb-1">J.L. No. & Mouza Name</label>
+            <label class="block text-slate-400 mb-1 font-semibold">J.L. No. & Mouza Name</label>
             <input type="text" placeholder="J.L. No. & Mouza" class="sch-mouza w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
           </div>
 
@@ -531,9 +532,9 @@
           <!-- Plot / Layout Dropdowns -->
           <div class="md:col-span-3 grid grid-cols-1 md:grid-cols-4 gap-2">
             <div>
-              <label class="block text-slate-400 mb-0.5">RAJUK / Housing Plot</label>
+              <label class="block text-slate-400 mb-0.5 font-semibold">RAJUK / Housing Plot</label>
               <select class="sch-rajuk w-full bg-navy-900 border border-slate-700 rounded px-2 py-1">
-                <option value="NONE">NONE</option>
+                <option value="NONE" selected>NONE</option>
                 <option value="RAJUK Uttara Model Town Plot">RAJUK Uttara Model Town Plot</option>
                 <option value="RAJUK Purbachal New Town Plot">RAJUK Purbachal New Town Plot</option>
                 <option value="National Housing Authority Plot">National Housing Authority Plot</option>
@@ -542,23 +543,23 @@
             </div>
 
             <div>
-              <label class="block text-slate-400 mb-0.5">Road, Block & Sector No.</label>
+              <label class="block text-slate-400 mb-0.5 font-semibold">Road, Block & Sector No.</label>
               <input type="text" placeholder="e.g. Road #12, Block #C, Sector #11" class="sch-address-block w-full bg-navy-900 border border-slate-700 rounded px-2 py-1">
             </div>
 
             <div>
-              <label class="block text-slate-400 mb-0.5">Layout Plan & City Projects</label>
+              <label class="block text-slate-400 mb-0.5 font-semibold">Layout Plan & City Projects</label>
               <select class="sch-layout w-full bg-navy-900 border border-slate-700 rounded px-2 py-1">
-                <option value="NONE">NONE</option>
+                <option value="NONE" selected>NONE</option>
                 <option value="Dhaka City Master Plan">Dhaka City Master Plan</option>
                 <option value="Chittagong CDA Housing Project">Chittagong CDA Housing</option>
               </select>
             </div>
 
             <div>
-              <label class="block text-slate-400 mb-0.5">Major Builders & Projects</label>
+              <label class="block text-slate-400 mb-0.5 font-semibold">Major Builders & Projects</label>
               <select class="sch-builder w-full bg-navy-900 border border-slate-700 rounded px-2 py-1">
-                <option value="NONE">NONE</option>
+                <option value="NONE" selected>NONE</option>
                 <option value="Bashundhara Residential Area">Bashundhara Residential Area</option>
                 <option value="Building Technology & Ideas (BTI)">BTI Project</option>
                 <option value="Sheltech Pvt Ltd">Sheltech Project</option>
@@ -587,9 +588,9 @@
           <span class="text-gold-400">Title Deed #${deedCount}</span>
           <div class="flex items-center gap-3">
             <label class="flex items-center gap-1 text-slate-300">
-              <span class="text-slate-400">Status:</span>
+              <span class="text-slate-400 font-semibold">Status:</span>
               <select class="deed-submitted bg-navy-900 border border-slate-700 rounded px-2 py-0.5 text-emerald-400 font-bold" onchange="toggleDeedFields(this)">
-                <option value="submitted">Submitted</option>
+                <option value="submitted" selected>Submitted</option>
                 <option value="not_submitted">Not Submitted</option>
               </select>
             </label>
@@ -599,15 +600,15 @@
 
         <div class="deed-fields-group grid grid-cols-1 md:grid-cols-4 gap-3">
           <div>
-            <label class="block text-slate-400 mb-1">Nature of Copy & Deed Type</label>
+            <label class="block text-slate-400 mb-1 font-semibold">Nature of Copy & Deed Type</label>
             <div class="flex gap-1">
               <select class="deed-copy-nature w-1/2 bg-navy-900 border border-slate-700 rounded px-1 py-1">
-                <option value="NONE">NONE</option>
+                <option value="NONE" selected>NONE</option>
                 <option value="Certified Copy">Certified Copy</option>
                 <option value="Original">Original Copy</option>
               </select>
               <select class="deed-type w-1/2 bg-navy-900 border border-slate-700 rounded px-1 py-1" onchange="checkMultiParties(this)">
-                <option value="NONE">NONE</option>
+                <option value="NONE" selected>NONE</option>
                 <option value="Deed of Sale">Deed of Sale</option>
                 <option value="Deed of Exchange">Deed of Exchange</option>
                 <option value="Deed of Declaration of Heba">Deed of Declaration of Heba</option>
@@ -617,12 +618,14 @@
                 <option value="Agreement Deed">Agreement Deed</option>
                 <option value="Amicable Partition Deed">Amicable Partition Deed</option>
                 <option value="Partition Deed">Partition Deed</option>
+                <option value="Deed of Mortgage">Deed of Mortgage</option>
+                <option value="Deed of Trust">Deed of Trust</option>
               </select>
             </div>
           </div>
 
           <div>
-            <label class="block text-slate-400 mb-1">Deed Number & Date</label>
+            <label class="block text-slate-400 mb-1 font-semibold">Deed Number & Date</label>
             <div class="flex gap-1">
               <input type="text" placeholder="Deed No." class="deed-no w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1 font-bold text-slate-100">
               <input type="date" class="deed-date w-1/2 bg-navy-900 border border-slate-700 rounded px-1 py-1">
@@ -630,9 +633,9 @@
           </div>
 
           <div>
-            <label class="block text-slate-400 mb-1">Sub-Registry Office Name</label>
+            <label class="block text-slate-400 mb-1 font-semibold">Sub-Registry Office Name</label>
             <select class="deed-registry w-full bg-navy-900 border border-slate-700 rounded px-2 py-1">
-              <option value="NONE">NONE</option>
+              <option value="NONE" selected>NONE</option>
               <option value="Sadar Sub-Registry Office">Sadar Sub-Registry Office</option>
               <option value="Dhaka Sub-Registry Office">Dhaka Sub-Registry Office</option>
               <option value="Charavanga Sub-Registry Office">Charavanga Sub-Registry Office</option>
@@ -640,11 +643,11 @@
           </div>
 
           <div>
-            <label class="block text-slate-400 mb-1">Deed Land Measurement / Quantum</label>
+            <label class="block text-slate-400 mb-1 font-semibold">Deed Land Measurement / Quantum</label>
             <div class="flex gap-1">
               <input type="number" step="any" placeholder="0.00" class="deed-quantum w-2/3 bg-navy-900 border border-slate-700 rounded px-2 py-1 font-bold text-emerald-400">
               <select class="deed-unit w-1/3 bg-navy-900 border border-slate-700 rounded px-1 py-1">
-                <option value="NONE">NONE</option>
+                <option value="NONE" selected>NONE</option>
                 <option value="Decimal">Decimal</option>
                 <option value="Katha">Katha</option>
                 <option value="Sq. Ft.">Sq. Ft.</option>
@@ -653,12 +656,12 @@
           </div>
 
           <div class="md:col-span-2">
-            <label class="block text-slate-400 mb-1">Executants / Sellers / Vendors Name</label>
+            <label class="block text-slate-400 mb-1 font-semibold">Executants / Sellers / Vendors Name</label>
             <input type="text" placeholder="Vendor / Seller names" class="deed-vendors w-full bg-navy-900 border border-slate-700 rounded px-2 py-1">
           </div>
 
           <div class="md:col-span-2">
-            <label class="block text-slate-400 mb-1">Purchasers / Buyers / Vendees Name</label>
+            <label class="block text-slate-400 mb-1 font-semibold">Purchasers / Buyers / Vendees Name</label>
             <input type="text" placeholder="Purchaser / Vendee names" class="deed-vendees w-full bg-navy-900 border border-slate-700 rounded px-2 py-1">
           </div>
 
@@ -710,43 +713,43 @@
         <div class="flex justify-between items-center font-bold">
           <span class="text-gold-400">Mutation Khatian Record #${mutCount}</span>
           <select class="mut-submitted bg-navy-900 border border-slate-700 rounded px-2 py-0.5 text-emerald-400 font-bold" onchange="toggleMutFields(this)">
-            <option value="submitted">Submitted</option>
+            <option value="submitted" selected>Submitted</option>
             <option value="not_submitted">Not Submitted</option>
           </select>
         </div>
         <div class="mut-fields-group grid grid-cols-1 md:grid-cols-4 gap-3">
           <div>
-            <label class="block text-slate-400 mb-1">Nature of Mutation Copy</label>
+            <label class="block text-slate-400 mb-1 font-semibold">Nature of Mutation Copy</label>
             <select class="mut-nature w-full bg-navy-900 border border-slate-700 rounded px-2 py-1">
-              <option value="NONE">NONE</option>
+              <option value="NONE" selected>NONE</option>
               <option value="Certified Copy">Certified Copy</option>
               <option value="Online / Digital Copy">Online / Digital Copy</option>
             </select>
           </div>
           <div>
-            <label class="block text-slate-400 mb-1">Mutation Khatian No. & DCR No.</label>
+            <label class="block text-slate-400 mb-1 font-semibold">Mutation Khatian No. & DCR No.</label>
             <div class="flex gap-1">
               <input type="text" placeholder="Khatian No." class="mut-khatian-no w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1 font-bold">
               <input type="text" placeholder="DCR No." class="mut-dcr-no w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1">
             </div>
           </div>
           <div>
-            <label class="block text-slate-400 mb-1">Mutated Land Area & Unit</label>
+            <label class="block text-slate-400 mb-1 font-semibold">Mutated Land Area & Unit</label>
             <div class="flex gap-1">
               <input type="number" step="any" placeholder="0.00" class="mut-area w-2/3 bg-navy-900 border border-slate-700 rounded px-2 py-1 font-bold text-emerald-400">
               <select class="mut-unit w-1/3 bg-navy-900 border border-slate-700 rounded px-1 py-1">
-                <option value="NONE">NONE</option>
+                <option value="NONE" selected>NONE</option>
                 <option value="Decimal">Decimal</option>
                 <option value="Katha">Katha</option>
               </select>
             </div>
           </div>
           <div>
-            <label class="block text-slate-400 mb-1">Dag No. & Operation Name</label>
+            <label class="block text-slate-400 mb-1 font-semibold">Dag No. & Operation Name</label>
             <div class="flex gap-1">
               <input type="text" placeholder="Dag No." class="mut-dag w-2/3 bg-navy-900 border border-slate-700 rounded px-2 py-1">
               <select class="mut-operation w-1/3 bg-navy-900 border border-slate-700 rounded px-1 py-1">
-                ${surveyTypes.map(s => `<option value="${s}">${s}</option>`).join('')}
+                ${surveyTypes.map(s => `<option value="${s}" ${s === 'NONE' ? 'selected' : ''}>${s}</option>`).join('')}
               </select>
             </div>
           </div>
@@ -769,30 +772,30 @@
         <div class="flex justify-between items-center font-bold">
           <span class="text-gold-400">Ground Rent Record #${rentCount}</span>
           <select class="rent-submitted bg-navy-900 border border-slate-700 rounded px-2 py-0.5 text-emerald-400 font-bold" onchange="toggleRentFields(this)">
-            <option value="submitted">Submitted</option>
+            <option value="submitted" selected>Submitted</option>
             <option value="not_submitted">Not Submitted</option>
           </select>
         </div>
         <div class="rent-fields-group grid grid-cols-1 md:grid-cols-4 gap-3">
           <div>
-            <label class="block text-slate-400 mb-1">Nature of Rent Receipt</label>
+            <label class="block text-slate-400 mb-1 font-semibold">Nature of Rent Receipt</label>
             <select class="rent-nature w-full bg-navy-900 border border-slate-700 rounded px-2 py-1">
-              <option value="NONE">NONE</option>
+              <option value="NONE" selected>NONE</option>
               <option value="Certified Receipt">Certified Receipt</option>
               <option value="Online / Digital Receipt">Online / Digital Receipt</option>
             </select>
           </div>
           <div>
-            <label class="block text-slate-400 mb-1">Receipt No. & Mutation Khatian</label>
+            <label class="block text-slate-400 mb-1 font-semibold">Receipt No. & Mutation Khatian</label>
             <div class="flex gap-1">
               <input type="text" placeholder="Receipt No." class="rent-no w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1">
               <input type="text" placeholder="Khatian No." class="rent-khatian w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1">
             </div>
           </div>
           <div>
-            <label class="block text-slate-400 mb-1">Paid Fiscal Year</label>
+            <label class="block text-slate-400 mb-1 font-semibold">Paid Fiscal Year</label>
             <select class="rent-fiscal w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 font-bold text-emerald-400">
-              <option value="NONE">NONE</option>
+              <option value="NONE" selected>NONE</option>
               <option value="2026-2027">2026-2027 Fiscal Year</option>
               <option value="2025-2026">2025-2026 Fiscal Year</option>
               <option value="2024-2025">2024-2025 Fiscal Year</option>
@@ -800,7 +803,7 @@
             </select>
           </div>
           <div>
-            <label class="block text-slate-400 mb-1">Land Area & Dag No.</label>
+            <label class="block text-slate-400 mb-1 font-semibold">Land Area & Dag No.</label>
             <div class="flex gap-1">
               <input type="number" step="any" placeholder="Area" class="rent-area w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1">
               <input type="text" placeholder="Dag No." class="rent-dag w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1">
@@ -825,17 +828,17 @@
         <div class="flex justify-between items-center font-bold">
           <span class="text-gold-400">Bia Deed #${biaCount}</span>
           <select class="bia-submitted bg-navy-900 border border-slate-700 rounded px-2 py-0.5 text-emerald-400 font-bold">
-            <option value="submitted">Submitted</option>
+            <option value="submitted" selected>Submitted</option>
             <option value="not_submitted">Not Submitted</option>
           </select>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
           <div>
-            <label class="block text-slate-400 mb-1">Deed No. & Nature</label>
+            <label class="block text-slate-400 mb-1 font-semibold">Deed No. & Nature</label>
             <div class="flex gap-1">
               <input type="text" placeholder="Deed No." class="bia-no w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1">
               <select class="bia-nature w-1/2 bg-navy-900 border border-slate-700 rounded px-1 py-1">
-                <option value="NONE">NONE</option>
+                <option value="NONE" selected>NONE</option>
                 <option value="Deed of Sale">Deed of Sale</option>
                 <option value="Deed of Gift">Deed of Gift</option>
                 <option value="Partition Deed">Partition Deed</option>
@@ -843,14 +846,14 @@
             </div>
           </div>
           <div>
-            <label class="block text-slate-400 mb-1">Deed Date & Area</label>
+            <label class="block text-slate-400 mb-1 font-semibold">Deed Date & Area</label>
             <div class="flex gap-1">
               <input type="date" class="bia-date w-1/2 bg-navy-900 border border-slate-700 rounded px-1 py-1">
               <input type="number" step="any" placeholder="Area" class="bia-area w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1">
             </div>
           </div>
           <div class="md:col-span-2">
-            <label class="block text-slate-400 mb-1">Vendors & Vendees</label>
+            <label class="block text-slate-400 mb-1 font-semibold">Vendors & Vendees</label>
             <input type="text" placeholder="Vendor & Vendee Name Details" class="bia-details w-full bg-navy-900 border border-slate-700 rounded px-2 py-1">
           </div>
         </div>
@@ -866,25 +869,25 @@
         <div class="flex justify-between items-center font-bold">
           <span class="text-gold-400">Khatian Record #${khatianCount}</span>
           <select class="khatian-submitted bg-navy-900 border border-slate-700 rounded px-2 py-0.5 text-emerald-400 font-bold">
-            <option value="submitted">Submitted</option>
+            <option value="submitted" selected>Submitted</option>
             <option value="not_submitted">Not Submitted</option>
           </select>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
           <div>
-            <label class="block text-slate-400 mb-1">Survey Type & Khatian No.</label>
+            <label class="block text-slate-400 mb-1 font-semibold">Survey Type & Khatian No.</label>
             <div class="flex gap-1">
               <select class="khatian-survey w-1/2 bg-navy-900 border border-slate-700 rounded px-1 py-1">
-                ${surveyTypes.map(s => `<option value="${s}">${s}</option>`).join('')}
+                ${surveyTypes.map(s => `<option value="${s}" ${s === 'NONE' ? 'selected' : ''}>${s}</option>`).join('')}
               </select>
               <input type="text" placeholder="Khatian No." class="khatian-no w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1">
             </div>
           </div>
           <div>
-            <label class="block text-slate-400 mb-1">Nature of Copy & Dag No.</label>
+            <label class="block text-slate-400 mb-1 font-semibold">Nature of Copy & Dag No.</label>
             <div class="flex gap-1">
               <select class="khatian-copy w-1/2 bg-navy-900 border border-slate-700 rounded px-1 py-1">
-                <option value="NONE">NONE</option>
+                <option value="NONE" selected>NONE</option>
                 <option value="Certified Copy">Certified Copy</option>
                 <option value="Khasra Copy">Khasra Copy</option>
                 <option value="Printed Copy">Printed Copy</option>
@@ -894,11 +897,11 @@
             </div>
           </div>
           <div>
-            <label class="block text-slate-400 mb-1">Recorded Owners & Shares</label>
+            <label class="block text-slate-400 mb-1 font-semibold">Recorded Owners & Shares</label>
             <input type="text" placeholder="Owner names and Ana-Gonda ratios" class="khatian-owners w-full bg-navy-900 border border-slate-700 rounded px-2 py-1">
           </div>
           <div>
-            <label class="block text-slate-400 mb-1">Dag Land Area & Total Land</label>
+            <label class="block text-slate-400 mb-1 font-semibold">Dag Land Area & Total Land</label>
             <div class="flex gap-1">
               <input type="number" step="any" placeholder="Dag Area" class="khatian-dag-area w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1">
               <input type="number" step="any" placeholder="Total Land" class="khatian-total-area w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1">

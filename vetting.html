@@ -228,42 +228,206 @@
           <i class="fa-solid fa-plus"></i> Add Schedule
         </button>
       </div>
-      <div id="scheduleContainer" class="space-y-4">
-        <div class="schedule-block bg-navy-950 p-4 rounded-xl border border-slate-800 space-y-3 text-xs">
-          <div class="flex justify-between items-center font-bold text-gold-400">
+      <div id="scheduleContainer" class="space-y-6">
+        <!-- Schedule Block #1 -->
+        <div class="schedule-block bg-navy-950 p-5 rounded-2xl border border-slate-800 space-y-4 text-xs">
+          <div class="flex justify-between items-center font-bold text-gold-400 border-b border-slate-800 pb-2">
             <span>Schedule #1</span>
             <button onclick="this.closest('.schedule-block').remove()" class="text-red-400 hover:text-red-300"><i class="fa-solid fa-trash"></i> Remove</button>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+
+          <!-- Area & Quantum Specs -->
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
             <div>
-              <label class="block text-slate-400 mb-1">Land Area Measurement / Quantum</label>
+              <label class="block text-slate-400 mb-1">Land Area Measurement</label>
               <div class="flex gap-1">
-                <input type="number" step="any" placeholder="0.00" class="sch-area w-2/3 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100 font-bold">
-                <select class="sch-unit w-1/3 bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-200">
+                <input type="number" step="any" placeholder="0.00" class="sch-land-area w-2/3 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100 font-bold">
+                <select class="sch-land-unit w-1/3 bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-200">
                   <option value="NONE" selected>NONE</option>
-                  <option value="decimal">Decimal</option>
-                  <option value="katha">Katha</option>
+                  <option value="Decimal">Decimal</option>
+                  <option value="Katha">Katha</option>
+                  <option value="Bigha">Bigha</option>
+                  <option value="Shotok">Shotok</option>
                 </select>
               </div>
             </div>
             <div>
-              <label class="block text-slate-400 mb-1">Building Type & Name</label>
+              <label class="block text-slate-400 mb-1">Quantum of Property / Flat</label>
               <div class="flex gap-1">
-                <select class="sch-building-type w-1/2 bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-200">
+                <input type="number" step="any" placeholder="0.00" class="sch-flat-area w-2/3 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100 font-bold">
+                <select class="sch-flat-unit w-1/3 bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-200">
                   <option value="NONE" selected>NONE</option>
-                  <option value="Residential Building">Residential Building</option>
+                  <option value="Sq. Ft.">Sq. Ft.</option>
+                  <option value="Sq. Mtr.">Sq. Mtr.</option>
                 </select>
-                <input type="text" placeholder="Building Name" class="sch-building-name w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
               </div>
             </div>
             <div>
-              <label class="block text-slate-400 mb-1">District & Mouza</label>
+              <label class="block text-slate-400 mb-1">Car Parking Space</label>
               <div class="flex gap-1">
-                <input type="text" placeholder="District" class="sch-district w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
-                <input type="text" placeholder="Mouza & J.L." class="sch-mouza w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
+                <input type="text" placeholder="e.g. Slot No 05" class="sch-parking-desc w-2/3 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
+                <select class="sch-parking-unit w-1/3 bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-200">
+                  <option value="NONE" selected>NONE</option>
+                  <option value="Included">Included</option>
+                  <option value="Excluded">Excluded</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1">Undivided & Undemarcated Share</label>
+              <div class="flex gap-1">
+                <input type="text" placeholder="Share Value" class="sch-share-val w-2/3 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
+                <select class="sch-share-unit w-1/3 bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-200">
+                  <option value="NONE" selected>NONE</option>
+                  <option value="Share">Share</option>
+                  <option value="Decimal">Decimal</option>
+                </select>
               </div>
             </div>
           </div>
+
+          <!-- Building & Location Jurisdictions -->
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+            <div>
+              <label class="block text-slate-400 mb-1">Building Category</label>
+              <select class="sch-bldg-cat w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-200">
+                <option value="NONE" selected>NONE</option>
+                <option value="Residential Building">Residential Building</option>
+                <option value="Commercial Building">Commercial Building</option>
+                <option value="Residential cum Commercial Building">Residential cum Commercial Building</option>
+                <option value="Land Only">Land Only</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1">Building Name (if any)</label>
+              <input type="text" placeholder="e.g. Rashed Tower" class="sch-bldg-name w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1">District</label>
+              <input type="text" placeholder="e.g. Dhaka" class="sch-district w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100" value="Dhaka">
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1">Police Station (P.S.)</label>
+              <input type="text" placeholder="e.g. Gulshan" class="sch-ps w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
+            </div>
+          </div>
+
+          <!-- Sub-Registry Office & Urban Allocation -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div>
+              <label class="block text-slate-400 mb-1">Sub-Registry Office</label>
+              <select class="sch-subreg w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-200">
+                <option value="NONE" selected>NONE</option>
+                <option value="Gulshan Sub-Registry Office, Dhaka">Gulshan Sub-Registry Office, Dhaka</option>
+                <option value="Tejgaon Sub-Registry Office, Dhaka">Tejgaon Sub-Registry Office, Dhaka</option>
+                <option value="Ramna Sub-Registry Office, Dhaka">Ramna Sub-Registry Office, Dhaka</option>
+                <option value="Savar Sub-Registry Office, Dhaka">Savar Sub-Registry Office, Dhaka</option>
+                <option value="Mirpur Sub-Registry Office, Dhaka">Mirpur Sub-Registry Office, Dhaka</option>
+                <option value="Motijheel Sub-Registry Office, Dhaka">Motijheel Sub-Registry Office, Dhaka</option>
+                <option value="Dhanmondi Sub-Registry Office, Dhaka">Dhanmondi Sub-Registry Office, Dhaka</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1">Authority / Project / Builder</label>
+              <select class="sch-authority w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-200">
+                <option value="NONE" selected>NONE</option>
+                <option value="RAJUK">RAJUK</option>
+                <option value="National Housing Authority">National Housing Authority</option>
+                <option value="Public Works Department">Public Works Department</option>
+                <option value="Bashundhara R/A">Bashundhara R/A</option>
+                <option value="Uttara Model Town">Uttara Model Town (RAJUK)</option>
+                <option value="Gulshan Model Town">Gulshan Model Town</option>
+                <option value="Banani R/A">Banani R/A</option>
+                <option value="Dhanmondi R/A">Dhanmondi R/A</option>
+                <option value="Mirpur DOHS">Mirpur DOHS</option>
+                <option value="Baridhara DOHS">Baridhara DOHS</option>
+              </select>
+            </div>
+            <div class="grid grid-cols-3 gap-1">
+              <div>
+                <label class="block text-slate-400 mb-1 text-[10px]">Plot No.</label>
+                <input type="text" placeholder="Plot" class="sch-plot w-full bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-100 text-[11px]">
+              </div>
+              <div>
+                <label class="block text-slate-400 mb-1 text-[10px]">Road No.</label>
+                <input type="text" placeholder="Road" class="sch-road w-full bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-100 text-[11px]">
+              </div>
+              <div>
+                <label class="block text-slate-400 mb-1 text-[10px]">Block / Sec</label>
+                <input type="text" placeholder="Block" class="sch-block-sec w-full bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-100 text-[11px]">
+              </div>
+            </div>
+          </div>
+
+          <!-- Survey Matrix (Khatians & Dags) -->
+          <div class="bg-navy-900 p-3 rounded-xl border border-slate-800 space-y-2">
+            <span class="font-bold text-emerald-400 block text-[11px] uppercase tracking-wide">Survey Record Matrix (C.S., S.A., R.S., B.R.S., City Jarip, etc.)</span>
+            <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-2">
+              <div>
+                <label class="block text-slate-400 text-[10px]">C.S. Khatian / Dag</label>
+                <input type="text" placeholder="C.S." class="sch-cs w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]">
+              </div>
+              <div>
+                <label class="block text-slate-400 text-[10px]">S.A. Khatian / Dag</label>
+                <input type="text" placeholder="S.A." class="sch-sa w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]">
+              </div>
+              <div>
+                <label class="block text-slate-400 text-[10px]">P.S. Khatian / Dag</label>
+                <input type="text" placeholder="P.S." class="sch-ps-sur w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]">
+              </div>
+              <div>
+                <label class="block text-slate-400 text-[10px]">M.R.R. Khatian / Dag</label>
+                <input type="text" placeholder="M.R.R." class="sch-mrr w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]">
+              </div>
+              <div>
+                <label class="block text-slate-400 text-[10px]">R.S. Khatian / Dag</label>
+                <input type="text" placeholder="R.S." class="sch-rs w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]">
+              </div>
+              <div>
+                <label class="block text-slate-400 text-[10px]">B.R.S. Khatian / Dag</label>
+                <input type="text" placeholder="B.R.S." class="sch-brs w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]">
+              </div>
+              <div>
+                <label class="block text-slate-400 text-[10px]">B.S. Khatian / Dag</label>
+                <input type="text" placeholder="B.S." class="sch-bs w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]">
+              </div>
+              <div>
+                <label class="block text-slate-400 text-[10px]">City Jarip Khatian</label>
+                <input type="text" placeholder="City Jarip" class="sch-city w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]">
+              </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 pt-1">
+              <div>
+                <label class="block text-slate-400 text-[10px]">Mutation Khatian Number</label>
+                <input type="text" placeholder="Mutation Khatian No." class="sch-mut-khatian w-full bg-navy-950 border border-slate-700 rounded px-2 py-1 text-[11px]">
+              </div>
+              <div>
+                <label class="block text-slate-400 text-[10px]">Mutation Jote Number</label>
+                <input type="text" placeholder="Mutation Jote No." class="sch-mut-jote w-full bg-navy-950 border border-slate-700 rounded px-2 py-1 text-[11px]">
+              </div>
+            </div>
+          </div>
+
+          <!-- Boundaries (Chouhaddi) -->
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-2">
+            <div>
+              <label class="block text-slate-400 mb-1 text-[11px]">On the North</label>
+              <input type="text" placeholder="North boundary..." class="sch-north w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1 text-[11px]">On the South</label>
+              <input type="text" placeholder="South boundary..." class="sch-south w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1 text-[11px]">On the East</label>
+              <input type="text" placeholder="East boundary..." class="sch-east w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1 text-[11px]">On the West</label>
+              <input type="text" placeholder="West boundary..." class="sch-west w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -447,7 +611,6 @@
   <script>
     // Complete Scheduled Banks & Accurate Head Office / Dhaka Branches Database
     const bangladeshBanks = {
-      // State-Owned & Specialized Banks
       "Sonali Bank PLC": [
         "Head Office: 44 Motijheel Commercial Area, Dhaka-1000",
         "Local Office Branch: Motijheel, Dhaka-1000",
@@ -455,313 +618,64 @@
         "Ramna Corporate Branch: Kakrail, Dhaka-1000",
         "Gulshan Corporate Branch: Gulshan-2, Dhaka-1212",
         "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
-        "Uttara Model Town Branch: Uttara, Dhaka-1230",
-        "Mirpur Branch: Mirpur-10, Dhaka-1216",
-        "Kawran Bazar Branch: Kawran Bazar, Dhaka-1215",
-        "Agrabad Corporate Branch: Agrabad, Chattogram"
+        "Uttara Model Town Branch: Uttara, Dhaka-1230"
       ],
       "Janata Bank PLC": [
         "Head Office: Janata Bhaban, 110 Motijheel C/A, Dhaka-1000",
         "Local Office: Motijheel, Dhaka-1000",
-        "SDC Branch: Motijheel, Dhaka-1000",
         "Gulshan Corporate Branch: Gulshan-1, Dhaka-1212",
-        "Dhanmondi Corporate Branch: Dhanmondi, Dhaka-1205",
-        "Uttara Branch: Uttara, Dhaka-1230",
-        "Kawran Bazar Branch: Kawran Bazar, Dhaka-1215"
+        "Dhanmondi Corporate Branch: Dhanmondi, Dhaka-1205"
       ],
       "Agrani Bank PLC": [
         "Head Office: 9/D Dilkusha C/A, Dhaka-1000",
         "Principal Branch: Motijheel, Dhaka-1000",
-        "Dilkusha Corporate Branch: Dilkusha, Dhaka-1000",
-        "Gulshan Branch: Gulshan-1, Dhaka-1212",
-        "Kawran Bazar Branch: Kawran Bazar, Dhaka-1215",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
-        "Uttara Corporate Branch: Uttara, Dhaka-1230"
+        "Gulshan Branch: Gulshan-1, Dhaka-1212"
       ],
-      "Rupali Bank PLC": [
-        "Head Office: 34 Dilkusha C/A, Dhaka-1000",
-        "Local Office: Dilkusha, Dhaka-1000",
-        "Principal Branch: Motijheel, Dhaka-1000",
-        "Motijheel Corporate Branch: Motijheel, Dhaka-1000",
-        "Gulshan Branch: Gulshan-2, Dhaka-1212",
-        "Purana Paltan Branch: Purana Paltan, Dhaka-1000"
-      ],
-      "BASIC Bank Limited": [
-        "Head Office: 73 Gulshan Avenue, Gulshan-1, Dhaka-1212",
-        "Shantinagar Branch: Shantinagar, Dhaka-1217",
-        "Dilkusha Branch: Dilkusha, Dhaka-1000",
-        "Gulshan Branch: Gulshan-1, Dhaka-1212",
-        "Kawran Bazar Branch: Kawran Bazar, Dhaka-1215",
-        "Uttara Branch: Uttara, Dhaka-1230"
-      ],
-      "Bangladesh Development Bank PLC (BDBL)": [
-        "Head Office: 8 Rajuk Avenue, Motijheel, Dhaka-1000",
-        "Motijheel Branch: Motijheel, Dhaka-1000",
-        "Kawran Bazar Branch: Kawran Bazar, Dhaka-1215"
-      ],
-      "Sammilito Islami Bank PLC": [
-        "Head Office: Motijheel C/A, Dhaka-1000",
-        "Motijheel Corporate Branch: Motijheel, Dhaka-1000",
-        "Gulshan Branch: Gulshan-1, Dhaka-1212",
-        "Banani Branch: Banani, Dhaka-1213",
-        "Uttara Branch: Uttara, Dhaka-1230"
-      ],
-      "Bangladesh Krishi Bank": [
-        "Head Office: 83-85 Motijheel C/A, Dhaka-1000",
-        "Local Office: Motijheel, Dhaka-1000",
-        "Mirpur Branch: Mirpur-1, Dhaka-1216"
-      ],
-      "Probashi Kallyan Bank": [
-        "Head Office: 71-72 Old Elephant Road, Eskaton Garden, Dhaka-1000",
-        "Dhaka Main Branch: Eskaton, Dhaka-1000"
-      ],
-
-      // Private Commercial Banks (Conventional)
       "BRAC Bank PLC": [
         "Head Office: Anik Tower, 220/B Tejgaon Gulshan Link Road, Dhaka-1208",
         "Gulshan 1 Branch: Gulshan-1, Dhaka-1212",
         "Gulshan 2 Branch: Gulshan-2, Dhaka-1212",
         "Banani Branch: Banani, Dhaka-1213",
-        "Motijheel Branch: Motijheel, Dhaka-1000",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
-        "Uttara Branch: Uttara, Dhaka-1230",
-        "Mirpur Branch: Mirpur-10, Dhaka-1216",
-        "Moghbazar Branch: Moghbazar, Dhaka-1217"
+        "Motijheel Branch: Motijheel, Dhaka-1000"
       ],
       "Eastern Bank PLC (EBL)": [
         "Head Office: 100 Gulshan Avenue, Gulshan-2, Dhaka-1212",
         "Gulshan Branch: Gulshan-2, Dhaka-1212",
-        "Banani Branch: Banani, Dhaka-1213",
-        "Motijheel Main Branch: Motijheel, Dhaka-1000",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
-        "Uttara Branch: Uttara, Dhaka-1230",
-        "Mirpur Branch: Mirpur-1, Dhaka-1216",
-        "Kawran Bazar Branch: Kawran Bazar, Dhaka-1215"
+        "Motijheel Main Branch: Motijheel, Dhaka-1000"
       ],
       "Dutch-Bangla Bank PLC (DBBL)": [
         "Head Office: Sena Kalyan Bhaban, 195 Motijheel C/A, Dhaka-1000",
         "Local Office Branch: Motijheel, Dhaka-1000",
-        "Gulshan Branch: Gulshan-2, Dhaka-1212",
-        "Banani Branch: Banani, Dhaka-1213",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
-        "Uttara Branch: Uttara, Dhaka-1230",
-        "Mirpur Branch: Mirpur-10, Dhaka-1216",
-        "Kawran Bazar Branch: Kawran Bazar, Dhaka-1215"
+        "Gulshan Branch: Gulshan-2, Dhaka-1212"
       ],
       "The City Bank PLC": [
         "Head Office: City Bank Center, 136 Gulshan Avenue, Gulshan-2, Dhaka-1212",
         "Gulshan Avenue Branch: Gulshan-2, Dhaka-1212",
-        "Motijheel Main Branch: Motijheel, Dhaka-1000",
-        "Kawran Bazar Branch: Kawran Bazar, Dhaka-1215",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
-        "Uttara Branch: Uttara, Dhaka-1230",
-        "Banani Branch: Banani, Dhaka-1213"
+        "Motijheel Main Branch: Motijheel, Dhaka-1000"
       ],
       "Prime Bank PLC": [
         "Head Office: Prime View, 165 Gulshan Avenue, Gulshan-2, Dhaka-1212",
         "Nikunja Branch: Nikunja-2, Dhaka-1229",
         "Motijheel Branch: Motijheel, Dhaka-1000",
-        "Gulshan Branch: Gulshan-1, Dhaka-1212",
-        "Banani Branch: Banani, Dhaka-1213",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
-        "Uttara Branch: Uttara, Dhaka-1230",
-        "Kawran Bazar Branch: Kawran Bazar, Dhaka-1215"
+        "Gulshan Branch: Gulshan-1, Dhaka-1212"
       ],
       "Mutual Trust Bank PLC (MTB)": [
         "Head Office: MTB Centre, 26 Gulshan Avenue, Dhaka-1212",
-        "Corporate Branch: Gulshan-1, Dhaka-1212",
-        "Dilkusha Branch: Dilkusha, Dhaka-1000",
-        "Banani Branch: Banani, Dhaka-1213",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
-        "Uttara Branch: Uttara, Dhaka-1230",
-        "Panthapath Branch: Panthapath, Dhaka-1215"
+        "Corporate Branch: Gulshan-1, Dhaka-1212"
       ],
-      "United Commercial Bank PLC (UCB)": [
-        "Head Office: Plot CWS-(N)-11, Block PL(A), Gulshan-1, Dhaka-1212",
-        "Principal Branch: Motijheel, Dhaka-1000",
-        "Gulshan Branch: Gulshan-1, Dhaka-1212",
-        "Banani Branch: Banani, Dhaka-1213",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
-        "Uttara Branch: Uttara, Dhaka-1230",
-        "Mirpur Branch: Mirpur-10, Dhaka-1216"
-      ],
-      "Pubali Bank PLC": [
-        "Head Office: 26 Dilkusha C/A, Dhaka-1000",
-        "Principal Branch: Motijheel, Dhaka-1000",
-        "Gulshan Branch: Gulshan-1, Dhaka-1212",
-        "Banani Branch: Banani, Dhaka-1213",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
-        "Uttara Branch: Uttara, Dhaka-1230",
-        "Kawran Bazar Branch: Kawran Bazar, Dhaka-1215"
-      ],
-      "Bank Asia PLC": [
-        "Head Office: Rangs Tower, 68 Purana Paltan, Dhaka-1000",
-        "Corporate Branch: Motijheel, Dhaka-1000",
-        "Gulshan Branch: Gulshan-1, Dhaka-1212",
-        "Banani Branch: Banani, Dhaka-1213",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
-        "Uttara Branch: Uttara, Dhaka-1230",
-        "Mitford Branch: Mitford, Dhaka-1100"
-      ],
-      "Dhaka Bank PLC": [
-        "Head Office: 71 Purana Paltan Lane, Dhaka-1000",
-        "Main Branch: Motijheel, Dhaka-1000",
-        "Gulshan Branch: Gulshan-1, Dhaka-1212",
-        "Banani Branch: Banani, Dhaka-1213",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
-        "Uttara Branch: Uttara, Dhaka-1230"
-      ],
-      "NCC Bank PLC": [
-        "Head Office: 13/1-13/2 Toyenbee Circular Road, Motijheel, Dhaka-1000",
-        "Motijheel Main Branch: Motijheel, Dhaka-1000",
-        "Gulshan Branch: Gulshan-1, Dhaka-1212",
-        "Banani Branch: Banani, Dhaka-1213",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
-        "Uttara Branch: Uttara, Dhaka-1230"
-      ],
-      "Mercantile Bank PLC": [
-        "Head Office: 61 Dilkusha C/A, Dhaka-1000",
-        "Main Branch: Motijheel, Dhaka-1000",
-        "Gulshan Branch: Gulshan-1, Dhaka-1212",
-        "Banani Branch: Banani, Dhaka-1213",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
-        "Uttara Branch: Uttara, Dhaka-1230"
-      ],
-      "National Bank PLC": [
-        "Head Office: 18 Dilkusha C/A, Dhaka-1000",
-        "Dilkusha Branch: Dilkusha, Dhaka-1000",
-        "Gulshan Branch: Gulshan-1, Dhaka-1212",
-        "Banani Branch: Banani, Dhaka-1213",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
-        "Uttara Branch: Uttara, Dhaka-1230"
-      ],
-      "Southeast Bank PLC": [
-        "Head Office: Eunoos Centre, 52-53 Dilkusha C/A, Dhaka-1000",
-        "Principal Branch: Motijheel, Dhaka-1000",
-        "Gulshan Branch: Gulshan-1, Dhaka-1212",
-        "Banani Branch: Banani, Dhaka-1213",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
-        "Uttara Branch: Uttara, Dhaka-1230"
-      ],
-      "Jamuna Bank PLC": [
-        "Head Office: Jamuna Bank Tower, Plot-14, Block-CSB, Gulshan-2, Dhaka-1212",
-        "Gulshan Branch: Gulshan-2, Dhaka-1212",
-        "Dilkusha Branch: Dilkusha, Dhaka-1000",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
-        "Uttara Branch: Uttara, Dhaka-1230",
-        "Banani Branch: Banani, Dhaka-1213"
-      ],
-      "IFIC Bank PLC": [
-        "Head Office: IFIC Tower, 61 Purana Paltan, Dhaka-1000",
-        "Principal Branch: Motijheel, Dhaka-1000",
-        "Gulshan Branch: Gulshan-1, Dhaka-1212",
-        "Banani Branch: Banani, Dhaka-1213",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
-        "Uttara Branch: Uttara, Dhaka-1230"
-      ],
-      "ONE Bank PLC": [
-        "Head Office: HRC Bhaban, 46 Kawran Bazar C/A, Dhaka-1215",
-        "Kawran Bazar Branch: Kawran Bazar, Dhaka-1215",
-        "Gulshan Branch: Gulshan-1, Dhaka-1212",
-        "Banani Branch: Banani, Dhaka-1213",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
-        "Motijheel Branch: Motijheel, Dhaka-1000"
-      ],
-      "Premier Bank PLC": [
-        "Head Office: Iqbal Centre, 42 Kemal Ataturk Avenue, Banani, Dhaka-1213",
-        "Banani Branch: Banani, Dhaka-1213",
-        "Gulshan Branch: Gulshan-1, Dhaka-1212",
-        "Motijheel Branch: Motijheel, Dhaka-1000",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
-        "Uttara Branch: Uttara, Dhaka-1230"
-      ],
-      "Uttara Bank PLC": [
-        "Head Office: 47 Shahid Rahamatullah Sarani, Motijheel, Dhaka-1000",
-        "Local Office: Motijheel, Dhaka-1000",
-        "Gulshan Branch: Gulshan-1, Dhaka-1212",
-        "Banani Branch: Banani, Dhaka-1213",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205"
-      ],
-      "Trust Bank PLC": [
-        "Head Office: Shadhinata Bhaban, 56 Shahid Tajuddin Ahmed Sarani, Dhaka-1208",
-        "Principal Branch: Dilkusha, Dhaka-1000",
-        "Gulshan Branch: Gulshan-1, Dhaka-1212",
-        "Cantonment Branch: Dhaka Cantonment, Dhaka-1206",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
-        "Uttara Branch: Uttara, Dhaka-1230"
-      ],
-
-      // Private Commercial Banks (Shariah-based Islamic Banks)
       "Islami Bank Bangladesh PLC": [
         "Head Office: Islami Bank Tower, 40 Dilkusha C/A, Dhaka-1000",
         "Local Office: Motijheel, Dhaka-1000",
-        "Gulshan Corporate Branch: Gulshan-1, Dhaka-1212",
-        "Banani Branch: Banani, Dhaka-1213",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
-        "Uttara Branch: Uttara, Dhaka-1230",
-        "Kawran Bazar Branch: Kawran Bazar, Dhaka-1215",
-        "Mirpur Branch: Mirpur-10, Dhaka-1216"
+        "Gulshan Corporate Branch: Gulshan-1, Dhaka-1212"
       ],
-      "Al-Arafah Islami Bank PLC": [
-        "Head Office: Al-Arafah Tower, 63 Purana Paltan, Dhaka-1000",
-        "Motijheel Branch: Motijheel, Dhaka-1000",
-        "Gulshan Branch: Gulshan-1, Dhaka-1212",
-        "Banani Branch: Banani, Dhaka-1213",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
-        "Uttara Branch: Uttara, Dhaka-1230",
-        "VIP Road Branch: Kakrail, Dhaka-1000"
-      ],
-      "Shahjalal Islami Bank PLC": [
-        "Head Office: Shahjalal Islami Bank Tower, Plot-4, Block-CWN(C), Gulshan-1, Dhaka-1212",
-        "Main Branch: Motijheel, Dhaka-1000",
-        "Gulshan Branch: Gulshan-1, Dhaka-1212",
-        "Banani Branch: Banani, Dhaka-1213",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
-        "Uttara Branch: Uttara, Dhaka-1230"
-      ],
-      "Standard Bank PLC": [
-        "Head Office: Metropolitan Shopping Plaza, 112 Gulshan Avenue, Dhaka-1212",
-        "Principal Branch: Motijheel, Dhaka-1000",
-        "Gulshan Branch: Gulshan-2, Dhaka-1212",
-        "Banani Branch: Banani, Dhaka-1213",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205"
-      ],
-      "ICB Islamic Bank PLC": [
-        "Head Office: Treim Bhaban, 63 Dilkusha C/A, Dhaka-1000",
-        "Main Branch: Motijheel, Dhaka-1000",
-        "Gulshan Branch: Gulshan-1, Dhaka-1212"
-      ],
-
-      // Foreign Commercial Banks
       "Standard Chartered Bank Bangladesh": [
         "Head Office: 67 Gulshan Avenue, Gulshan-2, Dhaka-1212",
         "Gulshan Branch: Gulshan-2, Dhaka-1212",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
-        "Uttara Branch: Uttara, Dhaka-1230",
-        "Motijheel Branch: Motijheel, Dhaka-1000",
-        "Agrabad Branch: Agrabad, Chattogram"
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205"
       ],
       "HSBC Bangladesh": [
         "Head Office: Anchor Tower, 1/1B Sonargaon Road, Dhaka-1215",
-        "Gulshan Branch: Gulshan-2, Dhaka-1212",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
-        "Uttara Branch: Uttara, Dhaka-1230",
-        "Motijheel Branch: Motijheel, Dhaka-1000"
-      ],
-      "Citibank N.A.": [
-        "Head Office: 8 Gulshan Avenue, Gulshan-1, Dhaka-1212"
-      ],
-      "Commercial Bank of Ceylon PLC": [
-        "Head Office: Hadi Tower, Plot-NW(J)-1, Road-51, Gulshan-2, Dhaka-1212",
-        "Gulshan Branch: Gulshan-2, Dhaka-1212",
-        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
-        "Uttara Branch: Uttara, Dhaka-1230"
-      ],
-      "State Bank of India (Dhaka)": [
-        "Head Office: Glass House, Plot 38, Gulshan Avenue, Dhaka-1212"
-      ],
-      "Woori Bank Bangladesh": [
-        "Head Office: Suvastu Suraiya Tower, 57 Gulshan Avenue, Dhaka-1212"
+        "Gulshan Branch: Gulshan-2, Dhaka-1212"
       ]
     };
 
@@ -826,7 +740,6 @@
       return branches;
     }
 
-    // Fetch Address from Google Search automatically
     function fetchBankAddress() {
       const bank = document.getElementById('bankName').value.trim();
       const branch = document.getElementById('branchName').value.trim();
@@ -837,9 +750,7 @@
       }
 
       const query = encodeURIComponent(`${bank} ${branch} address Bangladesh`);
-      const googleMapsUrl = `https://www.google.com/search?q=${query}`;
-      
-      window.open(googleMapsUrl, '_blank');
+      window.open(`https://www.google.com/search?q=${query}`, '_blank');
     }
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -915,42 +826,156 @@
       const container = document.getElementById('scheduleContainer');
       const count = container.querySelectorAll('.schedule-block').length + 1;
       const div = document.createElement('div');
-      div.className = 'schedule-block bg-navy-950 p-4 rounded-xl border border-slate-800 space-y-3 text-xs';
+      div.className = 'schedule-block bg-navy-950 p-5 rounded-2xl border border-slate-800 space-y-4 text-xs';
       div.innerHTML = `
-        <div class="flex justify-between items-center font-bold text-gold-400">
+        <div class="flex justify-between items-center font-bold text-gold-400 border-b border-slate-800 pb-2">
           <span>Schedule #${count}</span>
           <button onclick="this.closest('.schedule-block').remove()" class="text-red-400 hover:text-red-300"><i class="fa-solid fa-trash"></i> Remove</button>
         </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <div>
+            <label class="block text-slate-400 mb-1">Land Area Measurement</label>
+            <div class="flex gap-1">
+              <input type="number" step="any" placeholder="0.00" class="sch-land-area w-2/3 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100 font-bold">
+              <select class="sch-land-unit w-1/3 bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-200">
+                <option value="NONE" selected>NONE</option>
+                <option value="Decimal">Decimal</option>
+                <option value="Katha">Katha</option>
+                <option value="Bigha">Bigha</option>
+                <option value="Shotok">Shotok</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1">Quantum of Property / Flat</label>
+            <div class="flex gap-1">
+              <input type="number" step="any" placeholder="0.00" class="sch-flat-area w-2/3 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100 font-bold">
+              <select class="sch-flat-unit w-1/3 bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-200">
+                <option value="NONE" selected>NONE</option>
+                <option value="Sq. Ft.">Sq. Ft.</option>
+                <option value="Sq. Mtr.">Sq. Mtr.</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1">Car Parking Space</label>
+            <div class="flex gap-1">
+              <input type="text" placeholder="e.g. Slot No 05" class="sch-parking-desc w-2/3 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
+              <select class="sch-parking-unit w-1/3 bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-200">
+                <option value="NONE" selected>NONE</option>
+                <option value="Included">Included</option>
+                <option value="Excluded">Excluded</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1">Undivided & Undemarcated Share</label>
+            <div class="flex gap-1">
+              <input type="text" placeholder="Share Value" class="sch-share-val w-2/3 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
+              <select class="sch-share-unit w-1/3 bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-200">
+                <option value="NONE" selected>NONE</option>
+                <option value="Share">Share</option>
+                <option value="Decimal">Decimal</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <div>
+            <label class="block text-slate-400 mb-1">Building Category</label>
+            <select class="sch-bldg-cat w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-200">
+              <option value="NONE" selected>NONE</option>
+              <option value="Residential Building">Residential Building</option>
+              <option value="Commercial Building">Commercial Building</option>
+              <option value="Residential cum Commercial Building">Residential cum Commercial Building</option>
+              <option value="Land Only">Land Only</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1">Building Name (if any)</label>
+            <input type="text" placeholder="e.g. Rashed Tower" class="sch-bldg-name w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1">District</label>
+            <input type="text" placeholder="e.g. Dhaka" class="sch-district w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100" value="Dhaka">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1">Police Station (P.S.)</label>
+            <input type="text" placeholder="e.g. Gulshan" class="sch-ps w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
+          </div>
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
           <div>
-            <label class="block text-slate-400 mb-1">Land Area Measurement / Quantum</label>
-            <div class="flex gap-1">
-              <input type="number" step="any" placeholder="0.00" class="sch-area w-2/3 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100 font-bold">
-              <select class="sch-unit w-1/3 bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-200">
-                <option value="NONE" selected>NONE</option>
-                <option value="decimal">Decimal</option>
-                <option value="katha">Katha</option>
-              </select>
-            </div>
+            <label class="block text-slate-400 mb-1">Sub-Registry Office</label>
+            <select class="sch-subreg w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-200">
+              <option value="NONE" selected>NONE</option>
+              <option value="Gulshan Sub-Registry Office, Dhaka">Gulshan Sub-Registry Office, Dhaka</option>
+              <option value="Tejgaon Sub-Registry Office, Dhaka">Tejgaon Sub-Registry Office, Dhaka</option>
+              <option value="Ramna Sub-Registry Office, Dhaka">Ramna Sub-Registry Office, Dhaka</option>
+              <option value="Savar Sub-Registry Office, Dhaka">Savar Sub-Registry Office, Dhaka</option>
+              <option value="Mirpur Sub-Registry Office, Dhaka">Mirpur Sub-Registry Office, Dhaka</option>
+              <option value="Motijheel Sub-Registry Office, Dhaka">Motijheel Sub-Registry Office, Dhaka</option>
+              <option value="Dhanmondi Sub-Registry Office, Dhaka">Dhanmondi Sub-Registry Office, Dhaka</option>
+            </select>
           </div>
           <div>
-            <label class="block text-slate-400 mb-1">Building Type & Name</label>
-            <div class="flex gap-1">
-              <select class="sch-building-type w-1/2 bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-200">
-                <option value="NONE" selected>NONE</option>
-                <option value="Residential Building">Residential Building</option>
-              </select>
-              <input type="text" placeholder="Building Name" class="sch-building-name w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
+            <label class="block text-slate-400 mb-1">Authority / Project / Builder</label>
+            <select class="sch-authority w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-200">
+              <option value="NONE" selected>NONE</option>
+              <option value="RAJUK">RAJUK</option>
+              <option value="National Housing Authority">National Housing Authority</option>
+              <option value="Public Works Department">Public Works Department</option>
+              <option value="Bashundhara R/A">Bashundhara R/A</option>
+              <option value="Uttara Model Town">Uttara Model Town (RAJUK)</option>
+              <option value="Gulshan Model Town">Gulshan Model Town</option>
+              <option value="Banani R/A">Banani R/A</option>
+              <option value="Dhanmondi R/A">Dhanmondi R/A</option>
+            </select>
+          </div>
+          <div class="grid grid-cols-3 gap-1">
+            <div>
+              <label class="block text-slate-400 mb-1 text-[10px]">Plot No.</label>
+              <input type="text" placeholder="Plot" class="sch-plot w-full bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-100 text-[11px]">
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1 text-[10px]">Road No.</label>
+              <input type="text" placeholder="Road" class="sch-road w-full bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-100 text-[11px]">
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1 text-[10px]">Block / Sec</label>
+              <input type="text" placeholder="Block" class="sch-block-sec w-full bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-100 text-[11px]">
             </div>
           </div>
-          <div>
-            <label class="block text-slate-400 mb-1">District & Mouza</label>
-            <div class="flex gap-1">
-              <input type="text" placeholder="District" class="sch-district w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
-              <input type="text" placeholder="Mouza & J.L." class="sch-mouza w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
-            </div>
+        </div>
+
+        <div class="bg-navy-900 p-3 rounded-xl border border-slate-800 space-y-2">
+          <span class="font-bold text-emerald-400 block text-[11px] uppercase tracking-wide">Survey Record Matrix (C.S., S.A., R.S., B.R.S., City Jarip, etc.)</span>
+          <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-2">
+            <div><label class="block text-slate-400 text-[10px]">C.S.</label><input type="text" placeholder="C.S." class="sch-cs w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]"></div>
+            <div><label class="block text-slate-400 text-[10px]">S.A.</label><input type="text" placeholder="S.A." class="sch-sa w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]"></div>
+            <div><label class="block text-slate-400 text-[10px]">P.S.</label><input type="text" placeholder="P.S." class="sch-ps-sur w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]"></div>
+            <div><label class="block text-slate-400 text-[10px]">M.R.R.</label><input type="text" placeholder="M.R.R." class="sch-mrr w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]"></div>
+            <div><label class="block text-slate-400 text-[10px]">R.S.</label><input type="text" placeholder="R.S." class="sch-rs w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]"></div>
+            <div><label class="block text-slate-400 text-[10px]">B.R.S.</label><input type="text" placeholder="B.R.S." class="sch-brs w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]"></div>
+            <div><label class="block text-slate-400 text-[10px]">B.S.</label><input type="text" placeholder="B.S." class="sch-bs w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]"></div>
+            <div><label class="block text-slate-400 text-[10px]">City Jarip</label><input type="text" placeholder="City Jarip" class="sch-city w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]"></div>
           </div>
-        </div>`;
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2 pt-1">
+            <div><label class="block text-slate-400 text-[10px]">Mutation Khatian Number</label><input type="text" placeholder="Mutation Khatian No." class="sch-mut-khatian w-full bg-navy-950 border border-slate-700 rounded px-2 py-1 text-[11px]"></div>
+            <div><label class="block text-slate-400 text-[10px]">Mutation Jote Number</label><input type="text" placeholder="Mutation Jote No." class="sch-mut-jote w-full bg-navy-950 border border-slate-700 rounded px-2 py-1 text-[11px]"></div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-2">
+          <div><label class="block text-slate-400 mb-1 text-[11px]">On the North</label><input type="text" placeholder="North boundary..." class="sch-north w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100"></div>
+          <div><label class="block text-slate-400 mb-1 text-[11px]">On the South</label><input type="text" placeholder="South boundary..." class="sch-south w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100"></div>
+          <div><label class="block text-slate-400 mb-1 text-[11px]">On the East</label><input type="text" placeholder="East boundary..." class="sch-east w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100"></div>
+          <div><label class="block text-slate-400 mb-1 text-[11px]">On the West</label><input type="text" placeholder="West boundary..." class="sch-west w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100"></div>
+        </div>
+      `;
       container.appendChild(div);
     }
 

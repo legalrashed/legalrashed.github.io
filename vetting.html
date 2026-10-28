@@ -125,7 +125,7 @@
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
         
-        <!-- Bank Name with Fixed Toggle Button -->
+        <!-- Bank Name with Toggle Button -->
         <div class="relative">
           <label class="block text-slate-400 mb-1 font-semibold">Bank Name</label>
           <div class="flex">
@@ -137,7 +137,7 @@
           <div id="bankListContainer" class="autocomplete-dropdown rounded-b-xl hidden"></div>
         </div>
 
-        <!-- Branch Name with Fixed Toggle Button -->
+        <!-- Branch Name with Toggle Button -->
         <div class="relative">
           <label class="block text-slate-400 mb-1 font-semibold">Branch Name</label>
           <div class="flex">
@@ -445,330 +445,323 @@
   </div>
 
   <script>
-    // Complete 2026 Scheduled Banks & Major Dhaka Branches Database
+    // Complete Scheduled Banks & Accurate Head Office / Dhaka Branches Database
     const bangladeshBanks = {
       // State-Owned & Specialized Banks
       "Sonali Bank PLC": [
-        "Head Office, 44 Motijheel C/A, Dhaka",
-        "Local Office, Motijheel, Dhaka",
-        "Principal Branch, Motijheel, Dhaka",
-        "Ramna Corporate Branch, Dhaka",
-        "Gulshan Corporate Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka",
-        "Uttara Model Town Branch, Dhaka",
-        "Mirpur Branch, Dhaka",
-        "Kawran Bazar Branch, Dhaka",
-        "Agrabad Corporate Branch, Chattogram"
+        "Head Office: 44 Motijheel Commercial Area, Dhaka-1000",
+        "Local Office Branch: Motijheel, Dhaka-1000",
+        "Principal Branch: Motijheel, Dhaka-1000",
+        "Ramna Corporate Branch: Kakrail, Dhaka-1000",
+        "Gulshan Corporate Branch: Gulshan-2, Dhaka-1212",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
+        "Uttara Model Town Branch: Uttara, Dhaka-1230",
+        "Mirpur Branch: Mirpur-10, Dhaka-1216",
+        "Kawran Bazar Branch: Kawran Bazar, Dhaka-1215",
+        "Agrabad Corporate Branch: Agrabad, Chattogram"
       ],
       "Janata Bank PLC": [
-        "Head Office, 110 Motijheel C/A, Dhaka",
-        "Local Office, Motijheel, Dhaka",
-        "SDC Branch, Motijheel, Dhaka",
-        "Gulshan Corporate Branch, Dhaka",
-        "Dhanmondi Corporate Branch, Dhaka",
-        "Uttara Branch, Dhaka",
-        "Kawran Bazar Branch, Dhaka",
-        "Agrabad Corporate Branch, Chattogram"
+        "Head Office: Janata Bhaban, 110 Motijheel C/A, Dhaka-1000",
+        "Local Office: Motijheel, Dhaka-1000",
+        "SDC Branch: Motijheel, Dhaka-1000",
+        "Gulshan Corporate Branch: Gulshan-1, Dhaka-1212",
+        "Dhanmondi Corporate Branch: Dhanmondi, Dhaka-1205",
+        "Uttara Branch: Uttara, Dhaka-1230",
+        "Kawran Bazar Branch: Kawran Bazar, Dhaka-1215"
       ],
       "Agrani Bank PLC": [
-        "Head Office, 9/D Dilkusha C/A, Dhaka",
-        "Principal Branch, Motijheel, Dhaka",
-        "Dilkusha Corporate Branch, Dhaka",
-        "Gulshan Branch, Dhaka",
-        "Kawran Bazar Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka",
-        "Uttara Corporate Branch, Dhaka",
-        "Agrabad Corporate Branch, Chattogram"
+        "Head Office: 9/D Dilkusha C/A, Dhaka-1000",
+        "Principal Branch: Motijheel, Dhaka-1000",
+        "Dilkusha Corporate Branch: Dilkusha, Dhaka-1000",
+        "Gulshan Branch: Gulshan-1, Dhaka-1212",
+        "Kawran Bazar Branch: Kawran Bazar, Dhaka-1215",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
+        "Uttara Corporate Branch: Uttara, Dhaka-1230"
       ],
       "Rupali Bank PLC": [
-        "Head Office, 34 Dilkusha C/A, Dhaka",
-        "Local Office, Dilkusha, Dhaka",
-        "Principal Branch, Dhaka",
-        "Motijheel Corporate Branch, Dhaka",
-        "Gulshan Branch, Dhaka",
-        "Purana Paltan Branch, Dhaka",
-        "Agrabad Branch, Chattogram"
+        "Head Office: 34 Dilkusha C/A, Dhaka-1000",
+        "Local Office: Dilkusha, Dhaka-1000",
+        "Principal Branch: Motijheel, Dhaka-1000",
+        "Motijheel Corporate Branch: Motijheel, Dhaka-1000",
+        "Gulshan Branch: Gulshan-2, Dhaka-1212",
+        "Purana Paltan Branch: Purana Paltan, Dhaka-1000"
       ],
       "BASIC Bank Limited": [
-        "Head Office, 73 Gulshan Avenue, Dhaka",
-        "Shantinagar Branch, Dhaka",
-        "Dilkusha Branch, Dhaka",
-        "Gulshan Branch, Dhaka",
-        "Kawran Bazar Branch, Dhaka",
-        "Uttara Branch, Dhaka",
-        "Agrabad Branch, Chattogram"
+        "Head Office: 73 Gulshan Avenue, Gulshan-1, Dhaka-1212",
+        "Shantinagar Branch: Shantinagar, Dhaka-1217",
+        "Dilkusha Branch: Dilkusha, Dhaka-1000",
+        "Gulshan Branch: Gulshan-1, Dhaka-1212",
+        "Kawran Bazar Branch: Kawran Bazar, Dhaka-1215",
+        "Uttara Branch: Uttara, Dhaka-1230"
       ],
       "Bangladesh Development Bank PLC (BDBL)": [
-        "Head Office, 8 Rajuk Avenue, Motijheel, Dhaka",
-        "Motijheel Branch, Dhaka",
-        "Kawran Bazar Branch, Dhaka",
-        "Agrabad Branch, Chattogram"
+        "Head Office: 8 Rajuk Avenue, Motijheel, Dhaka-1000",
+        "Motijheel Branch: Motijheel, Dhaka-1000",
+        "Kawran Bazar Branch: Kawran Bazar, Dhaka-1215"
       ],
       "Sammilito Islami Bank PLC": [
-        "Head Office, Motijheel C/A, Dhaka",
-        "Motijheel Corporate Branch, Dhaka",
-        "Gulshan Branch, Dhaka",
-        "Banani Branch, Dhaka",
-        "Uttara Branch, Dhaka",
-        "Agrabad Branch, Chattogram"
+        "Head Office: Motijheel C/A, Dhaka-1000",
+        "Motijheel Corporate Branch: Motijheel, Dhaka-1000",
+        "Gulshan Branch: Gulshan-1, Dhaka-1212",
+        "Banani Branch: Banani, Dhaka-1213",
+        "Uttara Branch: Uttara, Dhaka-1230"
       ],
       "Bangladesh Krishi Bank": [
-        "Head Office, 83-85 Motijheel C/A, Dhaka",
-        "Local Office, Motijheel, Dhaka",
-        "Mirpur Branch, Dhaka",
-        "Dhaka Corporate Branch, Dhaka"
+        "Head Office: 83-85 Motijheel C/A, Dhaka-1000",
+        "Local Office: Motijheel, Dhaka-1000",
+        "Mirpur Branch: Mirpur-1, Dhaka-1216"
       ],
       "Probashi Kallyan Bank": [
-        "Head Office, 71-72 Old Elephant Road, Eskaton, Dhaka",
-        "Dhaka Main Branch, Eskaton, Dhaka"
+        "Head Office: 71-72 Old Elephant Road, Eskaton Garden, Dhaka-1000",
+        "Dhaka Main Branch: Eskaton, Dhaka-1000"
       ],
 
       // Private Commercial Banks (Conventional)
       "BRAC Bank PLC": [
-        "Head Office, Anik Tower, 220/B Tejgaon Gulshan Link Road, Dhaka",
-        "Gulshan 1 Branch, Dhaka",
-        "Gulshan 2 Branch, Dhaka",
-        "Banani Branch, Dhaka",
-        "Motijheel Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka",
-        "Uttara Branch, Dhaka",
-        "Mirpur Branch, Dhaka",
-        "Moghbazar Branch, Dhaka"
+        "Head Office: Anik Tower, 220/B Tejgaon Gulshan Link Road, Dhaka-1208",
+        "Gulshan 1 Branch: Gulshan-1, Dhaka-1212",
+        "Gulshan 2 Branch: Gulshan-2, Dhaka-1212",
+        "Banani Branch: Banani, Dhaka-1213",
+        "Motijheel Branch: Motijheel, Dhaka-1000",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
+        "Uttara Branch: Uttara, Dhaka-1230",
+        "Mirpur Branch: Mirpur-10, Dhaka-1216",
+        "Moghbazar Branch: Moghbazar, Dhaka-1217"
       ],
       "Eastern Bank PLC (EBL)": [
-        "Head Office, 100 Gulshan Avenue, Dhaka",
-        "Gulshan Branch, Dhaka",
-        "Banani Branch, Dhaka",
-        "Motijheel Main Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka",
-        "Uttara Branch, Dhaka",
-        "Mirpur Branch, Dhaka",
-        "Kawran Bazar Branch, Dhaka"
+        "Head Office: 100 Gulshan Avenue, Gulshan-2, Dhaka-1212",
+        "Gulshan Branch: Gulshan-2, Dhaka-1212",
+        "Banani Branch: Banani, Dhaka-1213",
+        "Motijheel Main Branch: Motijheel, Dhaka-1000",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
+        "Uttara Branch: Uttara, Dhaka-1230",
+        "Mirpur Branch: Mirpur-1, Dhaka-1216",
+        "Kawran Bazar Branch: Kawran Bazar, Dhaka-1215"
       ],
       "Dutch-Bangla Bank PLC (DBBL)": [
-        "Head Office, Sena Kalyan Bhaban, 195 Motijheel C/A, Dhaka",
-        "Local Office Branch, Motijheel, Dhaka",
-        "Gulshan Branch, Dhaka",
-        "Banani Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka",
-        "Uttara Branch, Dhaka",
-        "Mirpur Branch, Dhaka",
-        "Kawran Bazar Branch, Dhaka"
+        "Head Office: Sena Kalyan Bhaban, 195 Motijheel C/A, Dhaka-1000",
+        "Local Office Branch: Motijheel, Dhaka-1000",
+        "Gulshan Branch: Gulshan-2, Dhaka-1212",
+        "Banani Branch: Banani, Dhaka-1213",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
+        "Uttara Branch: Uttara, Dhaka-1230",
+        "Mirpur Branch: Mirpur-10, Dhaka-1216",
+        "Kawran Bazar Branch: Kawran Bazar, Dhaka-1215"
       ],
       "The City Bank PLC": [
-        "Head Office, City Bank Center, 136 Gulshan Avenue, Dhaka",
-        "Gulshan Avenue Branch, Dhaka",
-        "Motijheel Main Branch, Dhaka",
-        "Kawran Bazar Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka",
-        "Uttara Branch, Dhaka",
-        "Banani Branch, Dhaka"
+        "Head Office: City Bank Center, 136 Gulshan Avenue, Gulshan-2, Dhaka-1212",
+        "Gulshan Avenue Branch: Gulshan-2, Dhaka-1212",
+        "Motijheel Main Branch: Motijheel, Dhaka-1000",
+        "Kawran Bazar Branch: Kawran Bazar, Dhaka-1215",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
+        "Uttara Branch: Uttara, Dhaka-1230",
+        "Banani Branch: Banani, Dhaka-1213"
       ],
       "Prime Bank PLC": [
-        "Head Office, 29 Rajuk Avenue, Motijheel, Dhaka",
-        "Nikunja Branch, Dhaka",
-        "Motijheel Branch, Dhaka",
-        "Gulshan Branch, Dhaka",
-        "Banani Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka",
-        "Uttara Branch, Dhaka",
-        "Kawran Bazar Branch, Dhaka"
+        "Head Office: Prime View, 165 Gulshan Avenue, Gulshan-2, Dhaka-1212",
+        "Nikunja Branch: Nikunja-2, Dhaka-1229",
+        "Motijheel Branch: Motijheel, Dhaka-1000",
+        "Gulshan Branch: Gulshan-1, Dhaka-1212",
+        "Banani Branch: Banani, Dhaka-1213",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
+        "Uttara Branch: Uttara, Dhaka-1230",
+        "Kawran Bazar Branch: Kawran Bazar, Dhaka-1215"
       ],
       "Mutual Trust Bank PLC (MTB)": [
-        "Head Office, MTB Centre, 26 Gulshan Avenue, Dhaka",
-        "Corporate Branch, Gulshan, Dhaka",
-        "Dilkusha Branch, Dhaka",
-        "Banani Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka",
-        "Uttara Branch, Dhaka",
-        "Panthapath Branch, Dhaka"
+        "Head Office: MTB Centre, 26 Gulshan Avenue, Dhaka-1212",
+        "Corporate Branch: Gulshan-1, Dhaka-1212",
+        "Dilkusha Branch: Dilkusha, Dhaka-1000",
+        "Banani Branch: Banani, Dhaka-1213",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
+        "Uttara Branch: Uttara, Dhaka-1230",
+        "Panthapath Branch: Panthapath, Dhaka-1215"
       ],
       "United Commercial Bank PLC (UCB)": [
-        "Head Office, Plot CWS-(N)-11, Block PL(A), Gulshan-1, Dhaka",
-        "Principal Branch, Motijheel, Dhaka",
-        "Gulshan Branch, Dhaka",
-        "Banani Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka",
-        "Uttara Branch, Dhaka",
-        "Mirpur Branch, Dhaka"
+        "Head Office: Plot CWS-(N)-11, Block PL(A), Gulshan-1, Dhaka-1212",
+        "Principal Branch: Motijheel, Dhaka-1000",
+        "Gulshan Branch: Gulshan-1, Dhaka-1212",
+        "Banani Branch: Banani, Dhaka-1213",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
+        "Uttara Branch: Uttara, Dhaka-1230",
+        "Mirpur Branch: Mirpur-10, Dhaka-1216"
       ],
       "Pubali Bank PLC": [
-        "Head Office, 26 Dilkusha C/A, Dhaka",
-        "Principal Branch, Motijheel, Dhaka",
-        "Gulshan Branch, Dhaka",
-        "Banani Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka",
-        "Uttara Branch, Dhaka",
-        "Kawran Bazar Branch, Dhaka"
+        "Head Office: 26 Dilkusha C/A, Dhaka-1000",
+        "Principal Branch: Motijheel, Dhaka-1000",
+        "Gulshan Branch: Gulshan-1, Dhaka-1212",
+        "Banani Branch: Banani, Dhaka-1213",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
+        "Uttara Branch: Uttara, Dhaka-1230",
+        "Kawran Bazar Branch: Kawran Bazar, Dhaka-1215"
       ],
       "Bank Asia PLC": [
-        "Head Office, Rangs Tower, 68 Purana Paltan, Dhaka",
-        "Corporate Branch, Motijheel, Dhaka",
-        "Gulshan Branch, Dhaka",
-        "Banani Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka",
-        "Uttara Branch, Dhaka",
-        "Mitford Branch, Dhaka"
+        "Head Office: Rangs Tower, 68 Purana Paltan, Dhaka-1000",
+        "Corporate Branch: Motijheel, Dhaka-1000",
+        "Gulshan Branch: Gulshan-1, Dhaka-1212",
+        "Banani Branch: Banani, Dhaka-1213",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
+        "Uttara Branch: Uttara, Dhaka-1230",
+        "Mitford Branch: Mitford, Dhaka-1100"
       ],
       "Dhaka Bank PLC": [
-        "Head Office, 71 Purana Paltan Lane, Dhaka",
-        "Main Branch, Motijheel, Dhaka",
-        "Gulshan Branch, Dhaka",
-        "Banani Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka",
-        "Uttara Branch, Dhaka"
+        "Head Office: 71 Purana Paltan Lane, Dhaka-1000",
+        "Main Branch: Motijheel, Dhaka-1000",
+        "Gulshan Branch: Gulshan-1, Dhaka-1212",
+        "Banani Branch: Banani, Dhaka-1213",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
+        "Uttara Branch: Uttara, Dhaka-1230"
       ],
       "NCC Bank PLC": [
-        "Head Office, 13/1-13/2 Toyenbee Circular Road, Motijheel, Dhaka",
-        "Motijheel Main Branch, Dhaka",
-        "Gulshan Branch, Dhaka",
-        "Banani Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka",
-        "Uttara Branch, Dhaka"
+        "Head Office: 13/1-13/2 Toyenbee Circular Road, Motijheel, Dhaka-1000",
+        "Motijheel Main Branch: Motijheel, Dhaka-1000",
+        "Gulshan Branch: Gulshan-1, Dhaka-1212",
+        "Banani Branch: Banani, Dhaka-1213",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
+        "Uttara Branch: Uttara, Dhaka-1230"
       ],
       "Mercantile Bank PLC": [
-        "Head Office, 61 Dilkusha C/A, Dhaka",
-        "Main Branch, Motijheel, Dhaka",
-        "Gulshan Branch, Dhaka",
-        "Banani Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka",
-        "Uttara Branch, Dhaka"
+        "Head Office: 61 Dilkusha C/A, Dhaka-1000",
+        "Main Branch: Motijheel, Dhaka-1000",
+        "Gulshan Branch: Gulshan-1, Dhaka-1212",
+        "Banani Branch: Banani, Dhaka-1213",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
+        "Uttara Branch: Uttara, Dhaka-1230"
       ],
       "National Bank PLC": [
-        "Head Office, 18 Dilkusha C/A, Dhaka",
-        "Dilkusha Branch, Dhaka",
-        "Gulshan Branch, Dhaka",
-        "Banani Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka",
-        "Uttara Branch, Dhaka"
+        "Head Office: 18 Dilkusha C/A, Dhaka-1000",
+        "Dilkusha Branch: Dilkusha, Dhaka-1000",
+        "Gulshan Branch: Gulshan-1, Dhaka-1212",
+        "Banani Branch: Banani, Dhaka-1213",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
+        "Uttara Branch: Uttara, Dhaka-1230"
       ],
       "Southeast Bank PLC": [
-        "Head Office, Eunoos Centre, 52-53 Dilkusha C/A, Dhaka",
-        "Principal Branch, Motijheel, Dhaka",
-        "Gulshan Branch, Dhaka",
-        "Banani Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka",
-        "Uttara Branch, Dhaka"
+        "Head Office: Eunoos Centre, 52-53 Dilkusha C/A, Dhaka-1000",
+        "Principal Branch: Motijheel, Dhaka-1000",
+        "Gulshan Branch: Gulshan-1, Dhaka-1212",
+        "Banani Branch: Banani, Dhaka-1213",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
+        "Uttara Branch: Uttara, Dhaka-1230"
       ],
       "Jamuna Bank PLC": [
-        "Head Office, Jamuna Bank Tower, Plot-14, Block-CSB, Gulshan-2, Dhaka",
-        "Gulshan Branch, Dhaka",
-        "Dilkusha Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka",
-        "Uttara Branch, Dhaka",
-        "Banani Branch, Dhaka"
+        "Head Office: Jamuna Bank Tower, Plot-14, Block-CSB, Gulshan-2, Dhaka-1212",
+        "Gulshan Branch: Gulshan-2, Dhaka-1212",
+        "Dilkusha Branch: Dilkusha, Dhaka-1000",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
+        "Uttara Branch: Uttara, Dhaka-1230",
+        "Banani Branch: Banani, Dhaka-1213"
       ],
       "IFIC Bank PLC": [
-        "Head Office, IFIC Tower, 61 Purana Paltan, Dhaka",
-        "Principal Branch, Motijheel, Dhaka",
-        "Gulshan Branch, Dhaka",
-        "Banani Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka",
-        "Uttara Branch, Dhaka"
+        "Head Office: IFIC Tower, 61 Purana Paltan, Dhaka-1000",
+        "Principal Branch: Motijheel, Dhaka-1000",
+        "Gulshan Branch: Gulshan-1, Dhaka-1212",
+        "Banani Branch: Banani, Dhaka-1213",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
+        "Uttara Branch: Uttara, Dhaka-1230"
       ],
       "ONE Bank PLC": [
-        "Head Office, HRC Bhaban, 46 Kawran Bazar C/A, Dhaka",
-        "Kawran Bazar Branch, Dhaka",
-        "Gulshan Branch, Dhaka",
-        "Banani Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka",
-        "Motijheel Branch, Dhaka"
+        "Head Office: HRC Bhaban, 46 Kawran Bazar C/A, Dhaka-1215",
+        "Kawran Bazar Branch: Kawran Bazar, Dhaka-1215",
+        "Gulshan Branch: Gulshan-1, Dhaka-1212",
+        "Banani Branch: Banani, Dhaka-1213",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
+        "Motijheel Branch: Motijheel, Dhaka-1000"
       ],
       "Premier Bank PLC": [
-        "Head Office, Iqbal Centre, 42 Kemal Ataturk Avenue, Banani, Dhaka",
-        "Banani Branch, Dhaka",
-        "Gulshan Branch, Dhaka",
-        "Motijheel Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka",
-        "Uttara Branch, Dhaka"
+        "Head Office: Iqbal Centre, 42 Kemal Ataturk Avenue, Banani, Dhaka-1213",
+        "Banani Branch: Banani, Dhaka-1213",
+        "Gulshan Branch: Gulshan-1, Dhaka-1212",
+        "Motijheel Branch: Motijheel, Dhaka-1000",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
+        "Uttara Branch: Uttara, Dhaka-1230"
       ],
       "Uttara Bank PLC": [
-        "Head Office, 47 Shahid Rahamatullah Sarani, Motijheel, Dhaka",
-        "Local Office, Motijheel, Dhaka",
-        "Gulshan Branch, Dhaka",
-        "Banani Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka"
+        "Head Office: 47 Shahid Rahamatullah Sarani, Motijheel, Dhaka-1000",
+        "Local Office: Motijheel, Dhaka-1000",
+        "Gulshan Branch: Gulshan-1, Dhaka-1212",
+        "Banani Branch: Banani, Dhaka-1213",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205"
       ],
       "Trust Bank PLC": [
-        "Head Office, Shadhinata Bhaban, 56 Shahid Tajuddin Ahmed Sarani, Dhaka",
-        "Principal Branch, Dilkusha, Dhaka",
-        "Gulshan Branch, Dhaka",
-        "Cantonment Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka",
-        "Uttara Branch, Dhaka"
+        "Head Office: Shadhinata Bhaban, 56 Shahid Tajuddin Ahmed Sarani, Dhaka-1208",
+        "Principal Branch: Dilkusha, Dhaka-1000",
+        "Gulshan Branch: Gulshan-1, Dhaka-1212",
+        "Cantonment Branch: Dhaka Cantonment, Dhaka-1206",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
+        "Uttara Branch: Uttara, Dhaka-1230"
       ],
 
       // Private Commercial Banks (Shariah-based Islamic Banks)
       "Islami Bank Bangladesh PLC": [
-        "Head Office, Islami Bank Tower, 40 Dilkusha C/A, Dhaka",
-        "Local Office, Motijheel, Dhaka",
-        "Gulshan Corporate Branch, Dhaka",
-        "Banani Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka",
-        "Uttara Branch, Dhaka",
-        "Kawran Bazar Branch, Dhaka",
-        "Mirpur Branch, Dhaka"
+        "Head Office: Islami Bank Tower, 40 Dilkusha C/A, Dhaka-1000",
+        "Local Office: Motijheel, Dhaka-1000",
+        "Gulshan Corporate Branch: Gulshan-1, Dhaka-1212",
+        "Banani Branch: Banani, Dhaka-1213",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
+        "Uttara Branch: Uttara, Dhaka-1230",
+        "Kawran Bazar Branch: Kawran Bazar, Dhaka-1215",
+        "Mirpur Branch: Mirpur-10, Dhaka-1216"
       ],
       "Al-Arafah Islami Bank PLC": [
-        "Head Office, Al-Arafah Tower, 63 Purana Paltan, Dhaka",
-        "Motijheel Branch, Dhaka",
-        "Gulshan Branch, Dhaka",
-        "Banani Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka",
-        "Uttara Branch, Dhaka",
-        "VIP Road Branch, Dhaka"
+        "Head Office: Al-Arafah Tower, 63 Purana Paltan, Dhaka-1000",
+        "Motijheel Branch: Motijheel, Dhaka-1000",
+        "Gulshan Branch: Gulshan-1, Dhaka-1212",
+        "Banani Branch: Banani, Dhaka-1213",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
+        "Uttara Branch: Uttara, Dhaka-1230",
+        "VIP Road Branch: Kakrail, Dhaka-1000"
       ],
       "Shahjalal Islami Bank PLC": [
-        "Head Office, Shahjalal Islami Bank Tower, Plot-4, Block-CWN(C), Gulshan-1, Dhaka",
-        "Main Branch, Motijheel, Dhaka",
-        "Gulshan Branch, Dhaka",
-        "Banani Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka",
-        "Uttara Branch, Dhaka"
+        "Head Office: Shahjalal Islami Bank Tower, Plot-4, Block-CWN(C), Gulshan-1, Dhaka-1212",
+        "Main Branch: Motijheel, Dhaka-1000",
+        "Gulshan Branch: Gulshan-1, Dhaka-1212",
+        "Banani Branch: Banani, Dhaka-1213",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
+        "Uttara Branch: Uttara, Dhaka-1230"
       ],
       "Standard Bank PLC": [
-        "Head Office, Metropolitan Shopping Plaza, 112 Gulshan Avenue, Dhaka",
-        "Principal Branch, Motijheel, Dhaka",
-        "Gulshan Branch, Dhaka",
-        "Banani Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka"
+        "Head Office: Metropolitan Shopping Plaza, 112 Gulshan Avenue, Dhaka-1212",
+        "Principal Branch: Motijheel, Dhaka-1000",
+        "Gulshan Branch: Gulshan-2, Dhaka-1212",
+        "Banani Branch: Banani, Dhaka-1213",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205"
       ],
       "ICB Islamic Bank PLC": [
-        "Head Office, Treim Bhaban, 63 Dilkusha C/A, Dhaka",
-        "Main Branch, Motijheel, Dhaka",
-        "Gulshan Branch, Dhaka"
+        "Head Office: Treim Bhaban, 63 Dilkusha C/A, Dhaka-1000",
+        "Main Branch: Motijheel, Dhaka-1000",
+        "Gulshan Branch: Gulshan-1, Dhaka-1212"
       ],
 
       // Foreign Commercial Banks
       "Standard Chartered Bank Bangladesh": [
-        "Head Office, 67 Gulshan Avenue, Dhaka",
-        "Gulshan Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka",
-        "Uttara Branch, Dhaka",
-        "Motijheel Branch, Dhaka",
-        "Agrabad Branch, Chattogram"
+        "Head Office: 67 Gulshan Avenue, Gulshan-2, Dhaka-1212",
+        "Gulshan Branch: Gulshan-2, Dhaka-1212",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
+        "Uttara Branch: Uttara, Dhaka-1230",
+        "Motijheel Branch: Motijheel, Dhaka-1000",
+        "Agrabad Branch: Agrabad, Chattogram"
       ],
       "HSBC Bangladesh": [
-        "Head Office, Management Office, Anchor Tower, 1/1B Sonargaon Road, Dhaka",
-        "Gulshan Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka",
-        "Uttara Branch, Dhaka",
-        "Motijheel Branch, Dhaka"
+        "Head Office: Anchor Tower, 1/1B Sonargaon Road, Dhaka-1215",
+        "Gulshan Branch: Gulshan-2, Dhaka-1212",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
+        "Uttara Branch: Uttara, Dhaka-1230",
+        "Motijheel Branch: Motijheel, Dhaka-1000"
       ],
       "Citibank N.A.": [
-        "Head Office, 8 Gulshan Avenue, Gulshan-1, Dhaka"
+        "Head Office: 8 Gulshan Avenue, Gulshan-1, Dhaka-1212"
       ],
       "Commercial Bank of Ceylon PLC": [
-        "Head Office, Hadi Tower, Plot-NW(J)-1, Road-51, Gulshan-2, Dhaka",
-        "Gulshan Branch, Dhaka",
-        "Dhanmondi Branch, Dhaka",
-        "Uttara Branch, Dhaka"
+        "Head Office: Hadi Tower, Plot-NW(J)-1, Road-51, Gulshan-2, Dhaka-1212",
+        "Gulshan Branch: Gulshan-2, Dhaka-1212",
+        "Dhanmondi Branch: Dhanmondi, Dhaka-1205",
+        "Uttara Branch: Uttara, Dhaka-1230"
       ],
       "State Bank of India (Dhaka)": [
-        "Head Office, Glass House, Plot 38, Gulshan Avenue, Dhaka"
+        "Head Office: Glass House, Plot 38, Gulshan Avenue, Dhaka-1212"
       ],
       "Woori Bank Bangladesh": [
-        "Head Office, Suvastu Suraiya Tower, 57 Gulshan Avenue, Dhaka"
+        "Head Office: Suvastu Suraiya Tower, 57 Gulshan Avenue, Dhaka-1212"
       ]
     };
 

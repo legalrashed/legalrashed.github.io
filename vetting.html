@@ -64,6 +64,33 @@
       }
     }
   </script>
+  <style>
+    .autocomplete-items {
+      position: absolute;
+      border: 1px solid #334155;
+      border-bottom: none;
+      border-top: none;
+      z-index: 99;
+      top: 100%;
+      left: 0;
+      right: 0;
+      max-height: 200px;
+      overflow-y: auto;
+      background-color: #0f172a;
+    }
+    .autocomplete-items div {
+      padding: 10px;
+      cursor: pointer;
+      background-color: #0f172a;
+      border-bottom: 1px solid #1e293b;
+      font-size: 12px;
+      color: #e2e8f0;
+    }
+    .autocomplete-items div:hover {
+      background-color: #1e293b;
+      color: #34d399;
+    }
+  </style>
 </head>
 <body class="bg-navy-950 text-slate-100 min-h-screen flex flex-col antialiased hidden">
 
@@ -98,14 +125,21 @@
         <i class="fa-solid fa-building-columns"></i> Reference & Bank Particulars (CLC-166 Format)
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
-        <div>
+        
+        <!-- Autocomplete Bank Name Field -->
+        <div class="relative">
           <label class="block text-slate-400 mb-1 font-semibold">Bank Name</label>
-          <input type="text" id="bankName" value="" placeholder="e.g. Prime Bank PLC" oninput="updateRefCode()" class="w-full bg-navy-950 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 focus:border-emerald-500 outline-none">
+          <input type="text" id="bankName" value="" placeholder="Type to search Bank..." autocomplete="off" class="w-full bg-navy-950 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 focus:border-emerald-500 outline-none">
+          <div id="bankListContainer" class="autocomplete-items rounded-b-xl shadow-2xl"></div>
         </div>
-        <div>
+
+        <!-- Autocomplete Branch Name Field -->
+        <div class="relative">
           <label class="block text-slate-400 mb-1 font-semibold">Branch Name</label>
-          <input type="text" id="branchName" value="" placeholder="e.g. Nikunja Branch" class="w-full bg-navy-950 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 focus:border-emerald-500 outline-none">
+          <input type="text" id="branchName" value="" placeholder="Type to search Branch..." autocomplete="off" class="w-full bg-navy-950 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 focus:border-emerald-500 outline-none">
+          <div id="branchListContainer" class="autocomplete-items rounded-b-xl shadow-2xl"></div>
         </div>
+
         <div>
           <label class="block text-slate-400 mb-1 font-semibold">Reference Number / CAD ID</label>
           <input type="text" id="refSeq" value="" placeholder="e.g. 20658" oninput="updateRefCode()" class="w-full bg-navy-950 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 focus:border-emerald-500 outline-none">
@@ -179,7 +213,6 @@
         </button>
       </div>
       <div id="scheduleContainer" class="space-y-4">
-        <!-- Initially empty schedule block -->
         <div class="schedule-block bg-navy-950 p-4 rounded-xl border border-slate-800 space-y-3 text-xs">
           <div class="flex justify-between items-center font-bold text-gold-400">
             <span>Schedule #1</span>
@@ -194,34 +227,6 @@
                   <option value="NONE" selected>NONE</option>
                   <option value="decimal">Decimal</option>
                   <option value="katha">Katha</option>
-                  <option value="bigha">Bigha</option>
-                  <option value="acre">Acre</option>
-                  <option value="sqft">Sq. Ft.</option>
-                </select>
-              </div>
-            </div>
-            <div>
-              <label class="block text-slate-400 mb-1">Flat Measurement / Building Quantum</label>
-              <div class="flex gap-1">
-                <input type="text" placeholder="e.g. Flat No." class="sch-flat w-2/3 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
-                <select class="sch-flat-unit w-1/3 bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-200">
-                  <option value="NONE" selected>NONE</option>
-                  <option value="sqft">Sq. Ft.</option>
-                  <option value="sqm">Sq. Meter</option>
-                </select>
-              </div>
-            </div>
-            <div>
-              <label class="block text-slate-400 mb-1">Car Parking & Undivided Land Share</label>
-              <div class="flex gap-1">
-                <select class="sch-car w-1/2 bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-200">
-                  <option value="NONE" selected>NONE</option>
-                  <option value="included">Including Car Parking</option>
-                  <option value="excluded">Excluding Car Parking</option>
-                </select>
-                <select class="sch-undivided w-1/2 bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-200">
-                  <option value="NONE" selected>NONE</option>
-                  <option value="undivided">Undivided Share</option>
                 </select>
               </div>
             </div>
@@ -231,76 +236,16 @@
                 <select class="sch-building-type w-1/2 bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-200">
                   <option value="NONE" selected>NONE</option>
                   <option value="Residential Building">Residential Building</option>
-                  <option value="Residential cum Commercial Building">Residential cum Commercial Building</option>
-                  <option value="Commercial Building">Commercial Building</option>
                 </select>
                 <input type="text" placeholder="Building Name" class="sch-building-name w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
               </div>
             </div>
             <div>
-              <label class="block text-slate-400 mb-1">District, P.S. & Sub-Registry</label>
-              <div class="grid grid-cols-3 gap-1">
-                <select class="sch-district bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-200">
-                  <option value="NONE" selected>NONE</option>
-                  <option value="Dhaka">Dhaka</option>
-                  <option value="Chittagong">Chittagong</option>
-                  <option value="Gazipur">Gazipur</option>
-                  <option value="Habiganj">Habiganj</option>
-                </select>
-                <input type="text" placeholder="P.S." class="sch-ps bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
-                <select class="sch-registry bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-200">
-                  <option value="NONE" selected>NONE</option>
-                  <option value="Sadar Sub-Registry Office">Sadar Sub-Registry</option>
-                </select>
+              <label class="block text-slate-400 mb-1">District & Mouza</label>
+              <div class="flex gap-1">
+                <input type="text" placeholder="District" class="sch-district w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
+                <input type="text" placeholder="Mouza & J.L." class="sch-mouza w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
               </div>
-            </div>
-            <div>
-              <label class="block text-slate-400 mb-1">J.L. No. & Mouza Name</label>
-              <input type="text" placeholder="J.L. No. & Mouza" class="sch-mouza w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
-            </div>
-            <div class="md:col-span-3 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-2 bg-navy-900 p-3 rounded-lg border border-slate-800">
-              <div><span class="text-[10px] text-slate-400 font-bold block">C.S. Khatian/Dag</span><input type="text" placeholder="NONE" class="sch-cs w-full bg-navy-950 border border-slate-700 rounded px-1 py-0.5"></div>
-              <div><span class="text-[10px] text-slate-400 font-bold block">S.A. Khatian/Dag</span><input type="text" placeholder="NONE" class="sch-sa w-full bg-navy-950 border border-slate-700 rounded px-1 py-0.5"></div>
-              <div><span class="text-[10px] text-slate-400 font-bold block">P.S. Khatian/Dag</span><input type="text" placeholder="NONE" class="sch-ps-survey w-full bg-navy-950 border border-slate-700 rounded px-1 py-0.5"></div>
-              <div><span class="text-[10px] text-slate-400 font-bold block">M.R.R. Khatian/Dag</span><input type="text" placeholder="NONE" class="sch-mrr w-full bg-navy-950 border border-slate-700 rounded px-1 py-0.5"></div>
-              <div><span class="text-[10px] text-slate-400 font-bold block">R.S. Khatian/Dag</span><input type="text" placeholder="NONE" class="sch-rs w-full bg-navy-950 border border-slate-700 rounded px-1 py-0.5"></div>
-              <div><span class="text-[10px] text-slate-400 font-bold block">B.R.S. Khatian/Dag</span><input type="text" placeholder="NONE" class="sch-brs w-full bg-navy-950 border border-slate-700 rounded px-1 py-0.5"></div>
-              <div><span class="text-[10px] text-slate-400 font-bold block">B.S. Khatian/Dag</span><input type="text" placeholder="NONE" class="sch-bs w-full bg-navy-950 border border-slate-700 rounded px-1 py-0.5"></div>
-              <div><span class="text-[10px] text-slate-400 font-bold block">Dhaka City Jarip</span><input type="text" placeholder="NONE" class="sch-dcj w-full bg-navy-950 border border-slate-700 rounded px-1 py-0.5"></div>
-            </div>
-            <div class="md:col-span-3 grid grid-cols-1 md:grid-cols-4 gap-2">
-              <div>
-                <label class="block text-slate-400 mb-0.5">RAJUK / National Housing Plot</label>
-                <select class="sch-rajuk w-full bg-navy-900 border border-slate-700 rounded px-2 py-1">
-                  <option value="NONE" selected>NONE</option>
-                  <option value="RAJUK Uttara Model Town">RAJUK Uttara Model Town</option>
-                  <option value="RAJUK Purbachal New Town">RAJUK Purbachal New Town</option>
-                </select>
-              </div>
-              <div>
-                <label class="block text-slate-400 mb-0.5">Road, Block & Sector No.</label>
-                <input type="text" placeholder="Road, Block, Sector" class="sch-address-block w-full bg-navy-900 border border-slate-700 rounded px-2 py-1">
-              </div>
-              <div>
-                <label class="block text-slate-400 mb-0.5">Layout Plan & Projects</label>
-                <select class="sch-layout w-full bg-navy-900 border border-slate-700 rounded px-2 py-1">
-                  <option value="NONE" selected>NONE</option>
-                  <option value="Dhaka City Master Plan">Dhaka City Master Plan</option>
-                </select>
-              </div>
-              <div>
-                <label class="block text-slate-400 mb-0.5">Major Builders / Areas</label>
-                <select class="sch-builder w-full bg-navy-900 border border-slate-700 rounded px-2 py-1">
-                  <option value="NONE" selected>NONE</option>
-                  <option value="Bashundhara Residential Area">Bashundhara Residential Area</option>
-                </select>
-              </div>
-            </div>
-            <div class="md:col-span-3 grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 border-t border-slate-800">
-              <div><span class="text-slate-400 block font-bold">North Boundary</span><input type="text" placeholder="North" class="sch-north w-full bg-navy-900 border border-slate-700 rounded px-2 py-1"></div>
-              <div><span class="text-slate-400 block font-bold">South Boundary</span><input type="text" placeholder="South" class="sch-south w-full bg-navy-900 border border-slate-700 rounded px-2 py-1"></div>
-              <div><span class="text-slate-400 block font-bold">East Boundary</span><input type="text" placeholder="East" class="sch-east w-full bg-navy-900 border border-slate-700 rounded px-2 py-1"></div>
-              <div><span class="text-slate-400 block font-bold">West Boundary</span><input type="text" placeholder="West" class="sch-west w-full bg-navy-900 border border-slate-700 rounded px-2 py-1"></div>
             </div>
           </div>
         </div>
@@ -334,53 +279,29 @@
           </div>
           <div class="deed-fields-group grid grid-cols-1 md:grid-cols-4 gap-3">
             <div>
-              <label class="block text-slate-400 mb-1">Nature of Copy & Deed Type</label>
-              <div class="flex gap-1">
-                <select class="deed-copy-nature w-1/2 bg-navy-900 border border-slate-700 rounded px-1 py-1">
-                  <option value="NONE" selected>NONE</option>
-                  <option value="Certified Copy">Certified Copy</option>
-                  <option value="Original">Original</option>
-                </select>
-                <select class="deed-type w-1/2 bg-navy-900 border border-slate-700 rounded px-1 py-1">
-                  <option value="NONE" selected>NONE</option>
-                  <option value="Deed of Sale">Deed of Sale</option>
-                  <option value="Deed of Exchange">Deed of Exchange</option>
-                  <option value="Deed of Gift">Deed of Gift</option>
-                  <option value="Partition Deed">Partition Deed</option>
-                </select>
-              </div>
+              <label class="block text-slate-400 mb-1">Deed Type</label>
+              <select class="deed-type w-full bg-navy-900 border border-slate-700 rounded px-1 py-1">
+                <option value="NONE" selected>NONE</option>
+                <option value="Deed of Sale">Deed of Sale</option>
+                <option value="Deed of Exchange">Deed of Exchange</option>
+                <option value="Deed of Gift">Deed of Gift</option>
+                <option value="Partition Deed">Partition Deed</option>
+              </select>
             </div>
             <div>
-              <label class="block text-slate-400 mb-1">Deed Number & Date</label>
+              <label class="block text-slate-400 mb-1">Deed No & Date</label>
               <div class="flex gap-1">
-                <input type="text" placeholder="Deed No." class="deed-no w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
+                <input type="text" placeholder="No." class="deed-no w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
                 <input type="date" class="deed-date w-1/2 bg-navy-900 border border-slate-700 rounded px-1 py-1">
               </div>
             </div>
             <div>
-              <label class="block text-slate-400 mb-1">Sub-Registry Office Name</label>
-              <select class="deed-registry w-full bg-navy-900 border border-slate-700 rounded px-2 py-1">
-                <option value="NONE" selected>NONE</option>
-                <option value="Sadar Sub-Registry Office">Sadar Sub-Registry Office</option>
-              </select>
+              <label class="block text-slate-400 mb-1">Vendor</label>
+              <input type="text" placeholder="Vendor Name" class="deed-vendors w-full bg-navy-900 border border-slate-700 rounded px-2 py-1">
             </div>
             <div>
-              <label class="block text-slate-400 mb-1">Land Quantum & Unit</label>
-              <div class="flex gap-1">
-                <input type="number" step="any" placeholder="0.00" class="deed-quantum w-2/3 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-emerald-400">
-                <select class="deed-unit w-1/3 bg-navy-900 border border-slate-700 rounded px-1 py-1">
-                  <option value="NONE" selected>NONE</option>
-                  <option value="decimal">Decimal</option>
-                </select>
-              </div>
-            </div>
-            <div class="md:col-span-2">
-              <label class="block text-slate-400 mb-1">Executants / Sellers / Vendors Name</label>
-              <input type="text" placeholder="Vendor Name..." class="deed-vendors w-full bg-navy-900 border border-slate-700 rounded px-2 py-1">
-            </div>
-            <div class="md:col-span-2">
-              <label class="block text-slate-400 mb-1">Purchasers / Buyers / Vendees Name</label>
-              <input type="text" placeholder="Vendee Name..." class="deed-vendees w-full bg-navy-900 border border-slate-700 rounded px-2 py-1">
+              <label class="block text-slate-400 mb-1">Vendee</label>
+              <input type="text" placeholder="Vendee Name" class="deed-vendees w-full bg-navy-900 border border-slate-700 rounded px-2 py-1">
             </div>
           </div>
         </div>
@@ -406,43 +327,10 @@
               <option value="not_submitted">Not Submitted</option>
             </select>
           </div>
-          <div class="mut-fields-group grid grid-cols-1 md:grid-cols-4 gap-3">
-            <div>
-              <label class="block text-slate-400 mb-1">Nature of Mutation Copy</label>
-              <select class="mut-nature w-full bg-navy-900 border border-slate-700 rounded px-2 py-1">
-                <option value="NONE" selected>NONE</option>
-                <option value="Certified Copy">Certified Copy</option>
-                <option value="Online / Digital">Online / Digital Copy</option>
-              </select>
-            </div>
-            <div>
-              <label class="block text-slate-400 mb-1">Mutation Khatian No. & DCR No.</label>
-              <div class="flex gap-1">
-                <input type="text" placeholder="Khatian No." class="mut-khatian-no w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1">
-                <input type="text" placeholder="DCR No." class="mut-dcr-no w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1">
-              </div>
-            </div>
-            <div>
-              <label class="block text-slate-400 mb-1">Mutated Area & Unit</label>
-              <div class="flex gap-1">
-                <input type="number" step="any" placeholder="0.00" class="mut-area w-2/3 bg-navy-900 border border-slate-700 rounded px-2 py-1 text-emerald-400">
-                <select class="mut-unit w-1/3 bg-navy-900 border border-slate-700 rounded px-1 py-1">
-                  <option value="NONE" selected>NONE</option>
-                  <option value="decimal">Decimal</option>
-                </select>
-              </div>
-            </div>
-            <div>
-              <label class="block text-slate-400 mb-1">Dag No. & Survey Operation</label>
-              <div class="flex gap-1">
-                <input type="text" placeholder="Dag No." class="mut-dag w-2/3 bg-navy-900 border border-slate-700 rounded px-2 py-1">
-                <select class="mut-operation w-1/3 bg-navy-900 border border-slate-700 rounded px-1 py-1">
-                  <option value="NONE" selected>NONE</option>
-                  <option value="B.S.">B.S.</option>
-                  <option value="R.S.">R.S.</option>
-                </select>
-              </div>
-            </div>
+          <div class="mut-fields-group grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div><label class="block text-slate-400 mb-1">Khatian No.</label><input type="text" placeholder="Khatian No." class="mut-khatian-no w-full bg-navy-900 border border-slate-700 rounded px-2 py-1"></div>
+            <div><label class="block text-slate-400 mb-1">DCR No.</label><input type="text" placeholder="DCR No." class="mut-dcr-no w-full bg-navy-900 border border-slate-700 rounded px-2 py-1"></div>
+            <div><label class="block text-slate-400 mb-1">Area</label><input type="number" step="any" placeholder="0.00" class="mut-area w-full bg-navy-900 border border-slate-700 rounded px-2 py-1"></div>
           </div>
         </div>
       </div>
@@ -467,37 +355,10 @@
               <option value="not_submitted">Not Submitted</option>
             </select>
           </div>
-          <div class="rent-fields-group grid grid-cols-1 md:grid-cols-4 gap-3">
-            <div>
-              <label class="block text-slate-400 mb-1">Nature of Rent Receipt</label>
-              <select class="rent-nature w-full bg-navy-900 border border-slate-700 rounded px-2 py-1">
-                <option value="NONE" selected>NONE</option>
-                <option value="Online / Digital Receipt">Online / Digital Receipt</option>
-                <option value="Certified Copy">Certified Copy</option>
-              </select>
-            </div>
-            <div>
-              <label class="block text-slate-400 mb-1">Receipt No. & Mutation Khatian</label>
-              <div class="flex gap-1">
-                <input type="text" placeholder="Receipt No." class="rent-no w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1">
-                <input type="text" placeholder="Khatian No." class="rent-khatian w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1">
-              </div>
-            </div>
-            <div>
-              <label class="block text-slate-400 mb-1">Paid Fiscal Years Dropdown</label>
-              <select class="rent-fiscal w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-emerald-400">
-                <option value="NONE" selected>NONE</option>
-                <option value="2025-2026">2025-2026</option>
-                <option value="2024-2025">2024-2025</option>
-              </select>
-            </div>
-            <div>
-              <label class="block text-slate-400 mb-1">Land Area & Dag No.</label>
-              <div class="flex gap-1">
-                <input type="number" step="any" placeholder="Area" class="rent-area w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1">
-                <input type="text" placeholder="Dag No." class="rent-dag w-1/2 bg-navy-900 border border-slate-700 rounded px-2 py-1">
-              </div>
-            </div>
+          <div class="rent-fields-group grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div><label class="block text-slate-400 mb-1">Receipt No.</label><input type="text" placeholder="Receipt No." class="rent-no w-full bg-navy-900 border border-slate-700 rounded px-2 py-1"></div>
+            <div><label class="block text-slate-400 mb-1">Fiscal Year</label><input type="text" placeholder="e.g. 2025-2026" class="rent-fiscal w-full bg-navy-900 border border-slate-700 rounded px-2 py-1"></div>
+            <div><label class="block text-slate-400 mb-1">Khatian No.</label><input type="text" placeholder="Khatian No." class="rent-khatian w-full bg-navy-900 border border-slate-700 rounded px-2 py-1"></div>
           </div>
         </div>
       </div>
@@ -568,9 +429,130 @@
   </div>
 
   <script>
+    // Comprehensive Bangladesh Banks and Branches Database
+    const bangladeshBanks = {
+      "Sonali Bank PLC": ["Local Office, Motijheel, Dhaka", "Principal Branch, Motijheel, Dhaka", "Ramna Corporate Branch, Dhaka", "Gulshan Branch, Dhaka", "Agrabad Corporate Branch, Chattogram", "Khatunganj Branch, Chattogram", "Sylhet Principal Branch, Sylhet", "Rajshahi Court Branch, Rajshahi"],
+      "Agrani Bank PLC": ["Principal Branch, Motijheel, Dhaka", "Dilkusha Branch, Dhaka", "Gulshan Branch, Dhaka", "Kawran Bazar Branch, Dhaka", "Agrabad Branch, Chattogram", "Khulna Corporate Branch, Khulna"],
+      "Janata Bank PLC": ["Local Office, Motijheel, Dhaka", "SDC Branch, Motijheel, Dhaka", "Gulshan Corporate Branch, Dhaka", "Uttara Branch, Dhaka", "Agrabad Corporate Branch, Chattogram"],
+      "Rupali Bank PLC": ["Local Office, Dhaka", "Principal Branch, Dhaka", "Motijheel Corporate Branch, Dhaka", "Gulshan Branch, Dhaka", "Agrabad Branch, Chattogram"],
+      "Bangladesh Development Bank PLC (BDBL)": ["Head Office Branch, Dhaka", "Motijheel Branch, Dhaka", "Agrabad Branch, Chattogram"],
+      "BASIC Bank Limited": ["Shantinagar Branch, Dhaka", "Dilkusha Branch, Dhaka", "Gulshan Branch, Dhaka", "Agrabad Branch, Chattogram"],
+      "BRAC Bank PLC": ["Head Office, Gulshan, Dhaka", "Gulshan Branch, Dhaka", "Banani Branch, Dhaka", "Motijheel Branch, Dhaka", "Dhanmondi Branch, Dhaka", "Uttara Branch, Dhaka", "Agrabad Branch, Chattogram", "Zindabazar Branch, Sylhet"],
+      "Eastern Bank PLC (EBL)": ["Principal Branch, Jashore", "Gulshan Branch, Dhaka", "Motijheel Branch, Dhaka", "Uttara Branch, Dhaka", "Dhanmondi Branch, Dhaka", "Agrabad Branch, Chattogram", "Natore Branch, Natore"],
+      "Prime Bank PLC": ["Nikunja Branch, Dhaka", "Motijheel Branch, Dhaka", "Gulshan Branch, Dhaka", "Banani Branch, Dhaka", "Dhanmondi Branch, Dhaka", "Uttara Branch, Dhaka", "Agrabad Branch, Chattogram", "Khatunganj Branch, Chattogram"],
+      "City Bank PLC": ["Gulshan Avenue Branch, Dhaka", "Motijheel Branch, Dhaka", "Kawran Bazar Branch, Dhaka", "Dhanmondi Branch, Dhaka", "Agrabad Branch, Chattogram"],
+      "Mutual Trust Bank PLC (MTB)": ["Corporate Branch, Dhaka", "Gulshan Branch, Dhaka", "Motijheel Branch, Dhaka", "Uttara Branch, Dhaka", "Agrabad Branch, Chattogram"],
+      "Dutch-Bangla Bank PLC (DBBL)": ["Local Office Branch, Motijheel, Dhaka", "Gulshan Branch, Dhaka", "Banani Branch, Dhaka", "Dhanmondi Branch, Dhaka", "Uttara Branch, Dhaka", "Agrabad Branch, Chattogram", "Zindabazar Branch, Sylhet"],
+      "United Commercial Bank PLC (UCB)": ["Principal Branch, Dhaka", "Gulshan Branch, Dhaka", "Motijheel Branch, Dhaka", "Uttara Branch, Dhaka", "Agrabad Branch, Chattogram"],
+      "Pubali Bank PLC": ["Principal Branch, Dhaka", "Motijheel Branch, Dhaka", "Gulshan Branch, Dhaka", "Sadarghat Branch, Chattogram"],
+      "Uttara Bank PLC": ["Local Office, Dhaka", "Motijheel Branch, Dhaka", "Gulshan Branch, Dhaka", "Khatunganj Branch, Chattogram"],
+      "Southeast Bank PLC": ["Principal Branch, Dhaka", "Dilkusha Branch, Dhaka", "Gulshan Branch, Dhaka", "Agrabad Branch, Chattogram"],
+      "Shahjalal Islami Bank PLC": ["Main Branch, Dhaka", "Gulshan Branch, Dhaka", "Motijheel Branch, Dhaka", "Sylhet Branch, Sylhet"],
+      "Islami Bank Bangladesh PLC": ["Head Office Complex, Dhaka", "Motijheel Branch, Dhaka", "Local Office, Dhaka", "Gulshan Branch, Dhaka", "Agrabad Corporate Branch, Chattogram", "Khatunganj Branch, Chattogram", "Zindabazar Branch, Sylhet"],
+      "Exim Bank PLC": ["Motijheel Branch, Dhaka", "Gulshan Branch, Dhaka", "Banani Branch, Dhaka", "Agrabad Branch, Chattogram"],
+      "Social Islami Bank PLC (SIBL)": ["Head Office Branch, Dhaka", "Motijheel Branch, Dhaka", "Gulshan Branch, Dhaka"],
+      "Al-Arafah Islami Bank PLC": ["Motijheel Branch, Dhaka", "Gulshan Branch, Dhaka", "Topkhana Road Branch, Dhaka"],
+      "First Security Islami Bank PLC": ["Principal Branch, Dhaka", "Gulshan Branch, Dhaka", "Motijheel Branch, Dhaka"],
+      "Standard Chartered Bank Bangladesh": ["Head Office, Dhaka", "Gulshan Branch, Dhaka", "Dhanmondi Branch, Dhaka", "Uttara Branch, Dhaka", "Agrabad Branch, Chattogram"],
+      "HSBC Bangladesh": ["Main Office, Dhaka", "Gulshan Branch, Dhaka", "Dhanmondi Branch, Dhaka", "Agrabad Branch, Chattogram"]
+    };
+
+    // Autocomplete Engine
+    function setupAutocomplete(inputElem, listContainer, getItemsCallback) {
+      inputElem.addEventListener("input", function(e) {
+        const val = this.value;
+        closeAllLists();
+        if (!val) { return false; }
+        
+        const items = getItemsCallback(val);
+        if (items.length === 0) return false;
+
+        const listDiv = document.createElement("DIV");
+        listDiv.setAttribute("id", inputElem.id + "autocomplete-list");
+        listDiv.setAttribute("class", "autocomplete-items");
+        listContainer.appendChild(listDiv);
+
+        items.forEach(item => {
+          const itemDiv = document.createElement("DIV");
+          itemDiv.innerHTML = "<strong>" + item.substr(0, val.length) + "</strong>" + item.substr(val.length);
+          itemDiv.innerHTML += "<input type='hidden' value='" + item + "'>";
+          itemDiv.addEventListener("click", function(e) {
+            inputElem.value = this.getElementsByTagName("input")[0].value;
+            closeAllLists();
+            if(inputElem.id === 'bankName') {
+              updateRefCode();
+              document.getElementById('branchName').value = ''; // Reset branch when bank changes
+            }
+          });
+          listDiv.appendChild(itemDiv);
+        });
+      });
+
+      inputElem.addEventListener("focus", function() {
+        const val = this.value;
+        const items = getItemsCallback(val || "");
+        if (items.length === 0) return;
+        closeAllLists();
+        const listDiv = document.createElement("DIV");
+        listDiv.setAttribute("id", inputElem.id + "autocomplete-list");
+        listDiv.setAttribute("class", "autocomplete-items");
+        listContainer.appendChild(listDiv);
+
+        items.forEach(item => {
+          const itemDiv = document.createElement("DIV");
+          itemDiv.innerHTML = item;
+          itemDiv.addEventListener("click", function(e) {
+            inputElem.value = item;
+            closeAllLists();
+            if(inputElem.id === 'bankName') {
+              updateRefCode();
+              document.getElementById('branchName').value = '';
+            }
+          });
+          listDiv.appendChild(itemDiv);
+        });
+      });
+    }
+
+    function closeAllLists(elmnt) {
+      const x = document.getElementsByClassName("autocomplete-items");
+      for (let i = 0; i < x.length; i++) {
+        if (elmnt != x[i] && elmnt != document.getElementById('bankName') && elmnt != document.getElementById('branchName')) {
+          x[i].parentNode.removeChild(x[i]);
+        }
+      }
+    }
+
+    document.addEventListener("click", function (e) {
+      closeAllLists(e.target);
+    });
+
+    // Initialize Autocomplete on Load
+    window.addEventListener('DOMContentLoaded', () => {
+      const bankInput = document.getElementById('bankName');
+      const bankList = document.getElementById('bankListContainer');
+      setupAutocomplete(bankInput, bankList, (val) => {
+        const banks = Object.keys(bangladeshBanks);
+        return banks.filter(b => b.toLowerCase().includes(val.toLowerCase()));
+      });
+
+      const branchInput = document.getElementById('branchName');
+      const branchList = document.getElementById('branchListContainer');
+      setupAutocomplete(branchInput, branchList, (val) => {
+        const selectedBank = bankInput.value.trim();
+        let branches = [];
+        if (selectedBank && bangladeshBanks[selectedBank]) {
+          branches = bangladeshBanks[selectedBank];
+        } else {
+          Object.values(bangladeshBanks).forEach(bList => branches.push(...bList));
+        }
+        return branches.filter(br => br.toLowerCase().includes(val.toLowerCase()));
+      });
+    });
+
     function updateRefCode() {
       const bank = document.getElementById('bankName').value.trim() || 'PBL';
-      const bankAbbr = bank.split(' ').map(w => w[0]).join('').toUpperCase();
+      const bankAbbr = bank.split(' ').map(w => w[0]).join('').toUpperCase().replace(/[^A-Z]/g, '') || 'BNK';
       const seq = document.getElementById('refSeq').value.trim() || 'XXXX';
       const year = new Date().getFullYear();
       document.getElementById('generatedRefNo').value = `CLC-166/${bankAbbr}/CAD/${year}/${seq}`;

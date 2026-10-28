@@ -157,9 +157,16 @@
           <label class="block text-slate-400 mb-1 font-semibold">Generated Reference Code</label>
           <input type="text" id="generatedRefNo" readonly class="w-full bg-navy-950 border border-slate-800 rounded-xl px-3 py-2 text-gold-400 font-mono font-bold outline-none" value="CLC-166//CAD/2026/">
         </div>
+
+        <!-- Bank Address with Fetch Address Button -->
         <div class="md:col-span-4">
-          <label class="block text-slate-400 mb-1 font-semibold">Bank Address</label>
-          <input type="text" id="bankAddress" value="" placeholder="Enter complete bank address..." class="w-full bg-navy-950 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 focus:border-emerald-500 outline-none">
+          <div class="flex justify-between items-center mb-1">
+            <label class="block text-slate-400 font-semibold">Bank Address</label>
+            <button type="button" onclick="fetchBankAddress()" class="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-bold text-[11px] transition-all flex items-center gap-1.5 shadow-md">
+              <i class="fa-solid fa-location-dot"></i> Fetch Address from Google
+            </button>
+          </div>
+          <input type="text" id="bankAddress" value="" placeholder="Enter complete bank address or click Fetch Address..." class="w-full bg-navy-950 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 focus:border-emerald-500 outline-none">
         </div>
       </div>
     </div>
@@ -479,12 +486,12 @@
         const div = document.createElement('div');
         div.innerText = item;
         div.onmousedown = function(e) {
-          e.preventDefault(); // Prevent blur before click
+          e.preventDefault(); 
           document.getElementById(inputId).value = item;
           listContainer.classList.add('hidden');
           if (inputId === 'bankName') {
             updateRefCode();
-            document.getElementById('branchName').value = ''; // Reset branch when bank changes
+            document.getElementById('branchName').value = ''; 
           }
         };
         listContainer.appendChild(div);
@@ -506,6 +513,23 @@
         Object.values(bangladeshBanks).forEach(bList => branches.push(...bList));
       }
       return branches;
+    }
+
+    // Fetch Address from Google Search automatically
+    function fetchBankAddress() {
+      const bank = document.getElementById('bankName').value.trim();
+      const branch = document.getElementById('branchName').value.trim();
+      
+      if (!bank && !branch) {
+        alert("Please enter or select a Bank Name and Branch Name first.");
+        return;
+      }
+
+      const query = encodeURIComponent(`${bank} ${branch} address Bangladesh`);
+      const googleMapsUrl = `https://www.google.com/search?q=${query}`;
+      
+      // Open Google search lookup in a new tab for instant address extraction
+      window.open(googleMapsUrl, '_blank');
     }
 
     window.addEventListener('DOMContentLoaded', () => {

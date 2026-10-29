@@ -653,7 +653,7 @@
       ]
     };
 
-    // Geographic Hierarchy Dataset: Division -> Districts -> Police Stations -> Sub-Registry Offices
+    // Full 64 Districts Mapped Across all 8 Divisions of Bangladesh + Police Stations & Sub-Registry Offices
     const locationHierarchy = {
       "Dhaka": {
         "Dhaka": {
@@ -664,59 +664,87 @@
           "Dhanmondi": ["Dhanmondi Sub-Registry Office, Dhaka"],
           "Savar": ["Savar Sub-Registry Office, Dhaka"]
         },
-        "Gazipur": {
-          "Gazipur Sadar": ["Gazipur Sadar Sub-Registry Office"],
-          "Tongi": ["Tongi Sub-Registry Office"]
-        },
-        "Narayanganj": {
-          "Narayanganj Sadar": ["Narayanganj Sadar Sub-Registry Office"],
-          "Bandar": ["Bandar Sub-Registry Office"]
-        }
+        "Faridpur": { "Faridpur Sadar": ["Faridpur Sadar Sub-Registry Office"], "Bhanga": ["Bhanga Sub-Registry Office"] },
+        "Gazipur": { "Gazipur Sadar": ["Gazipur Sadar Sub-Registry Office"], "Tongi": ["Tongi Sub-Registry Office"] },
+        "Gopalganj": { "Gopalganj Sadar": ["Gopalganj Sadar Sub-Registry Office"] },
+        "Kishoreganj": { "Kishoreganj Sadar": ["Kishoreganj Sadar Sub-Registry Office"] },
+        "Madaripur": { "Madaripur Sadar": ["Madaripur Sadar Sub-Registry Office"] },
+        "Manikganj": { "Manikganj Sadar": ["Manikganj Sadar Sub-Registry Office"] },
+        "Munshiganj": { "Munshiganj Sadar": ["Munshiganj Sadar Sub-Registry Office"] },
+        "Narayanganj": { "Narayanganj Sadar": ["Narayanganj Sadar Sub-Registry Office"], "Bandar": ["Bandar Sub-Registry Office"] },
+        "Narsingdi": { "Narsingdi Sadar": ["Narsingdi Sadar Sub-Registry Office"] },
+        "Rajbari": { "Rajbari Sadar": ["Rajbari Sadar Sub-Registry Office"] },
+        "Shariatpur": { "Shariatpur Sadar": ["Shariatpur Sadar Sub-Registry Office"] },
+        "Tangail": { "Tangail Sadar": ["Tangail Sadar Sub-Registry Office"] }
       },
       "Chattogram": {
+        "Bandarban": { "Bandarban Sadar": ["Bandarban Sadar Sub-Registry Office"] },
+        "Brahmanbaria": { "Brahmanbaria Sadar": ["Brahmanbaria Sadar Sub-Registry Office"] },
+        "Chandpur": { "Chandpur Sadar": ["Chandpur Sadar Sub-Registry Office"] },
         "Chattogram": {
           "Kotwali": ["Kotwali Sub-Registry Office, Chattogram"],
           "Panchlaish": ["Panchlaish Sub-Registry Office, Chattogram"],
           "Agrabad": ["Double Mooring Sub-Registry Office, Chattogram"]
         },
-        "Cox's Bazar": {
-          "Cox's Bazar Sadar": ["Cox's Bazar Sadar Sub-Registry Office"]
-        }
-      },
-      "Rajshahi": {
-        "Rajshahi": {
-          "Boalia": ["Rajshahi Sadar Sub-Registry Office"],
-          "Rajpara": ["Rajpara Sub-Registry Office"]
-        },
-        "Bogura": {
-          "Bogura Sadar": ["Bogura Sadar Sub-Registry Office"]
-        }
-      },
-      "Khulna": {
-        "Khulna": {
-          "Sonadanga": ["Khulna Sadar Sub-Registry Office"],
-          "Khalishpur": ["Khalishpur Sub-Registry Office"]
-        }
-      },
-      "Barishal": {
-        "Barishal": {
-          "Kotwali": ["Barishal Sadar Sub-Registry Office"]
-        }
+        "Cox's Bazar": { "Cox's Bazar Sadar": ["Cox's Bazar Sadar Sub-Registry Office"] },
+        "Cumilla": { "Cumilla Sadar": ["Cumilla Sadar Sub-Registry Office"] },
+        "Feni": { "Feni Sadar": ["Feni Sadar Sub-Registry Office"] },
+        "Khagrachhari": { "Khagrachhari Sadar": ["Khagrachhari Sadar Sub-Registry Office"] },
+        "Lakshmipur": { "Lakshmipur Sadar": ["Lakshmipur Sadar Sub-Registry Office"] },
+        "Noakhali": { "Noakhali Sadar": ["Noakhali Sadar Sub-Registry Office"] },
+        "Rangamati": { "Rangamati Sadar": ["Rangamati Sadar Sub-Registry Office"] }
       },
       "Sylhet": {
-        "Sylhet": {
-          "Kotwali": ["Sylhet Sadar Sub-Registry Office"]
-        }
+        "Habiganj": { "Habiganj Sadar": ["Habiganj Sadar Sub-Registry Office"] },
+        "Moulvibazar": { "Moulvibazar Sadar": ["Moulvibazar Sadar Sub-Registry Office"] },
+        "Sunamganj": { "Sunamganj Sadar": ["Sunamganj Sadar Sub-Registry Office"] },
+        "Sylhet": { "Kotwali": ["Sylhet Sadar Sub-Registry Office"], "Zindabazar": ["Sylhet Sadar Sub-Registry Office"] }
+      },
+      "Khulna": {
+        "Bagerhat": { "Bagerhat Sadar": ["Bagerhat Sadar Sub-Registry Office"] },
+        "Chuadanga": { "Chuadanga Sadar": ["Chuadanga Sadar Sub-Registry Office"] },
+        "Jashore": { "Jashore Sadar": ["Jashore Sadar Sub-Registry Office"] },
+        "Jhenaidah": { "Jhenaidah Sadar": ["Jhenaidah Sadar Sub-Registry Office"] },
+        "Khulna": { "Sonadanga": ["Khulna Sadar Sub-Registry Office"], "Khalishpur": ["Khalishpur Sub-Registry Office"] },
+        "Kushtia": { "Kushtia Sadar": ["Kushtia Sadar Sub-Registry Office"] },
+        "Magura": { "Magura Sadar": ["Magura Sadar Sub-Registry Office"] },
+        "Meherpur": { "Meherpur Sadar": ["Meherpur Sadar Sub-Registry Office"] },
+        "Narail": { "Narail Sadar": ["Narail Sadar Sub-Registry Office"] },
+        "Satkhira": { "Satkhira Sadar": ["Satkhira Sadar Sub-Registry Office"] }
+      },
+      "Barishal": {
+        "Barguna": { "Barguna Sadar": ["Barguna Sadar Sub-Registry Office"] },
+        "Barishal": { "Kotwali": ["Barishal Sadar Sub-Registry Office"] },
+        "Bhola": { "Bhola Sadar": ["Bhola Sadar Sub-Registry Office"] },
+        "Jhalokati": { "Jhalokati Sadar": ["Jhalokati Sadar Sub-Registry Office"] },
+        "Patuakhali": { "Patuakhali Sadar": ["Patuakhali Sadar Sub-Registry Office"] },
+        "Pirojpur": { "Pirojpur Sadar": ["Pirojpur Sadar Sub-Registry Office"] }
+      },
+      "Rajshahi": {
+        "Bogura": { "Bogura Sadar": ["Bogura Sadar Sub-Registry Office"] },
+        "Joypurhat": { "Joypurhat Sadar": ["Joypurhat Sadar Sub-Registry Office"] },
+        "Naogaon": { "Naogaon Sadar": ["Naogaon Sadar Sub-Registry Office"] },
+        "Natore": { "Natore Sadar": ["Natore Sadar Sub-Registry Office"] },
+        "Chapai Nawabganj": { "Nawabganj Sadar": ["Chapai Nawabganj Sadar Sub-Registry Office"] },
+        "Pabna": { "Pabna Sadar": ["Pabna Sadar Sub-Registry Office"] },
+        "Rajshahi": { "Boalia": ["Rajshahi Sadar Sub-Registry Office"], "Rajpara": ["Rajpara Sub-Registry Office"] },
+        "Sirajganj": { "Sirajganj Sadar": ["Sirajganj Sadar Sub-Registry Office"] }
       },
       "Rangpur": {
-        "Rangpur": {
-          "Kotwali": ["Rangpur Sadar Sub-Registry Office"]
-        }
+        "Dinajpur": { "Dinajpur Sadar": ["Dinajpur Sadar Sub-Registry Office"] },
+        "Gaibandha": { "Gaibandha Sadar": ["Gaibandha Sadar Sub-Registry Office"] },
+        "Kurigram": { "Kurigram Sadar": ["Kurigram Sadar Sub-Registry Office"] },
+        "Lalmonirhat": { "Lalmonirhat Sadar": ["Lalmonirhat Sadar Sub-Registry Office"] },
+        "Nilphamari": { "Nilphamari Sadar": ["Nilphamari Sadar Sub-Registry Office"] },
+        "Panchagarh": { "Panchagarh Sadar": ["Panchagarh Sadar Sub-Registry Office"] },
+        "Rangpur": { "Kotwali": ["Rangpur Sadar Sub-Registry Office"] },
+        "Thakurgaon": { "Thakurgaon Sadar": ["Thakurgaon Sadar Sub-Registry Office"] }
       },
       "Mymensingh": {
-        "Mymensingh": {
-          "Kotwali": ["Mymensingh Sadar Sub-Registry Office"]
-        }
+        "Jamalpur": { "Jamalpur Sadar": ["Jamalpur Sadar Sub-Registry Office"] },
+        "Mymensingh": { "Kotwali": ["Mymensingh Sadar Sub-Registry Office"] },
+        "Netrokona": { "Netrokona Sadar": ["Netrokona Sadar Sub-Registry Office"] },
+        "Sherpur": { "Sherpur Sadar": ["Sherpur Sadar Sub-Registry Office"] }
       }
     };
 

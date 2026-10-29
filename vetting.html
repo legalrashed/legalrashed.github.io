@@ -286,8 +286,8 @@
             </div>
           </div>
 
-          <!-- Building & Location Jurisdictions -->
-          <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <!-- Building Category & Building Name -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
               <label class="block text-slate-400 mb-1">Building Category</label>
               <select class="sch-bldg-cat w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-200">
@@ -302,31 +302,49 @@
               <label class="block text-slate-400 mb-1">Building Name (if any)</label>
               <input type="text" placeholder="e.g. Rashed Tower" class="sch-bldg-name w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
             </div>
-            <div>
-              <label class="block text-slate-400 mb-1">District</label>
-              <input type="text" placeholder="e.g. Dhaka" class="sch-district w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100" value="Dhaka">
-            </div>
-            <div>
-              <label class="block text-slate-400 mb-1">Police Station (P.S.)</label>
-              <input type="text" placeholder="e.g. Gulshan" class="sch-ps w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
+          </div>
+
+          <!-- JURISDICTION HIERARCHY BLOCK: Division, District, Police Station, Sub-Registry Office -->
+          <div class="bg-navy-900 p-4 rounded-xl border border-slate-800 space-y-3">
+            <span class="font-bold text-emerald-400 block text-[11px] uppercase tracking-wide"><i class="fa-solid fa-map-pin"></i> Jurisdiction & Registry Location Hierarchy</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+              <div>
+                <label class="block text-slate-400 mb-1 text-[11px]">Division</label>
+                <select class="sch-division w-full bg-navy-950 border border-slate-700 rounded px-2 py-1 text-slate-200" onchange="onDivisionChange(this)">
+                  <option value="NONE" selected>NONE</option>
+                  <option value="Dhaka">Dhaka</option>
+                  <option value="Chattogram">Chattogram</option>
+                  <option value="Rajshahi">Rajshahi</option>
+                  <option value="Khulna">Khulna</option>
+                  <option value="Barishal">Barishal</option>
+                  <option value="Sylhet">Sylhet</option>
+                  <option value="Rangpur">Rangpur</option>
+                  <option value="Mymensingh">Mymensingh</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-slate-400 mb-1 text-[11px]">District</label>
+                <select class="sch-district-select w-full bg-navy-950 border border-slate-700 rounded px-2 py-1 text-slate-200" onchange="onDistrictChange(this)">
+                  <option value="NONE" selected>NONE</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-slate-400 mb-1 text-[11px]">Police Station (P.S.)</label>
+                <select class="sch-ps-select w-full bg-navy-950 border border-slate-700 rounded px-2 py-1 text-slate-200" onchange="onPSChange(this)">
+                  <option value="NONE" selected>NONE</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-slate-400 mb-1 text-[11px]">Sub-Registry Office</label>
+                <select class="sch-subreg-select w-full bg-navy-950 border border-slate-700 rounded px-2 py-1 text-slate-200">
+                  <option value="NONE" selected>NONE</option>
+                </select>
+              </div>
             </div>
           </div>
 
-          <!-- Sub-Registry Office & Urban Allocation -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div>
-              <label class="block text-slate-400 mb-1">Sub-Registry Office</label>
-              <select class="sch-subreg w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-200">
-                <option value="NONE" selected>NONE</option>
-                <option value="Gulshan Sub-Registry Office, Dhaka">Gulshan Sub-Registry Office, Dhaka</option>
-                <option value="Tejgaon Sub-Registry Office, Dhaka">Tejgaon Sub-Registry Office, Dhaka</option>
-                <option value="Ramna Sub-Registry Office, Dhaka">Ramna Sub-Registry Office, Dhaka</option>
-                <option value="Savar Sub-Registry Office, Dhaka">Savar Sub-Registry Office, Dhaka</option>
-                <option value="Mirpur Sub-Registry Office, Dhaka">Mirpur Sub-Registry Office, Dhaka</option>
-                <option value="Motijheel Sub-Registry Office, Dhaka">Motijheel Sub-Registry Office, Dhaka</option>
-                <option value="Dhanmondi Sub-Registry Office, Dhaka">Dhanmondi Sub-Registry Office, Dhaka</option>
-              </select>
-            </div>
+          <!-- Authority & Urban Allocation -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
               <label class="block text-slate-400 mb-1">Authority / Project / Builder</label>
               <select class="sch-authority w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-200">
@@ -339,8 +357,6 @@
                 <option value="Gulshan Model Town">Gulshan Model Town</option>
                 <option value="Banani R/A">Banani R/A</option>
                 <option value="Dhanmondi R/A">Dhanmondi R/A</option>
-                <option value="Mirpur DOHS">Mirpur DOHS</option>
-                <option value="Baridhara DOHS">Baridhara DOHS</option>
               </select>
             </div>
             <div class="grid grid-cols-3 gap-1">
@@ -363,69 +379,27 @@
           <div class="bg-navy-900 p-3 rounded-xl border border-slate-800 space-y-2">
             <span class="font-bold text-emerald-400 block text-[11px] uppercase tracking-wide">Survey Record Matrix (C.S., S.A., R.S., B.R.S., City Jarip, etc.)</span>
             <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-2">
-              <div>
-                <label class="block text-slate-400 text-[10px]">C.S. Khatian / Dag</label>
-                <input type="text" placeholder="C.S." class="sch-cs w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]">
-              </div>
-              <div>
-                <label class="block text-slate-400 text-[10px]">S.A. Khatian / Dag</label>
-                <input type="text" placeholder="S.A." class="sch-sa w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]">
-              </div>
-              <div>
-                <label class="block text-slate-400 text-[10px]">P.S. Khatian / Dag</label>
-                <input type="text" placeholder="P.S." class="sch-ps-sur w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]">
-              </div>
-              <div>
-                <label class="block text-slate-400 text-[10px]">M.R.R. Khatian / Dag</label>
-                <input type="text" placeholder="M.R.R." class="sch-mrr w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]">
-              </div>
-              <div>
-                <label class="block text-slate-400 text-[10px]">R.S. Khatian / Dag</label>
-                <input type="text" placeholder="R.S." class="sch-rs w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]">
-              </div>
-              <div>
-                <label class="block text-slate-400 text-[10px]">B.R.S. Khatian / Dag</label>
-                <input type="text" placeholder="B.R.S." class="sch-brs w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]">
-              </div>
-              <div>
-                <label class="block text-slate-400 text-[10px]">B.S. Khatian / Dag</label>
-                <input type="text" placeholder="B.S." class="sch-bs w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]">
-              </div>
-              <div>
-                <label class="block text-slate-400 text-[10px]">City Jarip Khatian</label>
-                <input type="text" placeholder="City Jarip" class="sch-city w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]">
-              </div>
+              <div><label class="block text-slate-400 text-[10px]">C.S.</label><input type="text" placeholder="C.S." class="sch-cs w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]"></div>
+              <div><label class="block text-slate-400 text-[10px]">S.A.</label><input type="text" placeholder="S.A." class="sch-sa w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]"></div>
+              <div><label class="block text-slate-400 text-[10px]">P.S.</label><input type="text" placeholder="P.S." class="sch-ps-sur w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]"></div>
+              <div><label class="block text-slate-400 text-[10px]">M.R.R.</label><input type="text" placeholder="M.R.R." class="sch-mrr w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]"></div>
+              <div><label class="block text-slate-400 text-[10px]">R.S.</label><input type="text" placeholder="R.S." class="sch-rs w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]"></div>
+              <div><label class="block text-slate-400 text-[10px]">B.R.S.</label><input type="text" placeholder="B.R.S." class="sch-brs w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]"></div>
+              <div><label class="block text-slate-400 text-[10px]">B.S.</label><input type="text" placeholder="B.S." class="sch-bs w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]"></div>
+              <div><label class="block text-slate-400 text-[10px]">City Jarip</label><input type="text" placeholder="City Jarip" class="sch-city w-full bg-navy-950 border border-slate-700 rounded px-1 py-1 text-[11px]"></div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-2 pt-1">
-              <div>
-                <label class="block text-slate-400 text-[10px]">Mutation Khatian Number</label>
-                <input type="text" placeholder="Mutation Khatian No." class="sch-mut-khatian w-full bg-navy-950 border border-slate-700 rounded px-2 py-1 text-[11px]">
-              </div>
-              <div>
-                <label class="block text-slate-400 text-[10px]">Mutation Jote Number</label>
-                <input type="text" placeholder="Mutation Jote No." class="sch-mut-jote w-full bg-navy-950 border border-slate-700 rounded px-2 py-1 text-[11px]">
-              </div>
+              <div><label class="block text-slate-400 text-[10px]">Mutation Khatian Number</label><input type="text" placeholder="Mutation Khatian No." class="sch-mut-khatian w-full bg-navy-950 border border-slate-700 rounded px-2 py-1 text-[11px]"></div>
+              <div><label class="block text-slate-400 text-[10px]">Mutation Jote Number</label><input type="text" placeholder="Mutation Jote No." class="sch-mut-jote w-full bg-navy-950 border border-slate-700 rounded px-2 py-1 text-[11px]"></div>
             </div>
           </div>
 
           <!-- Boundaries (Chouhaddi) -->
           <div class="grid grid-cols-1 md:grid-cols-4 gap-2">
-            <div>
-              <label class="block text-slate-400 mb-1 text-[11px]">On the North</label>
-              <input type="text" placeholder="North boundary..." class="sch-north w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
-            </div>
-            <div>
-              <label class="block text-slate-400 mb-1 text-[11px]">On the South</label>
-              <input type="text" placeholder="South boundary..." class="sch-south w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
-            </div>
-            <div>
-              <label class="block text-slate-400 mb-1 text-[11px]">On the East</label>
-              <input type="text" placeholder="East boundary..." class="sch-east w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
-            </div>
-            <div>
-              <label class="block text-slate-400 mb-1 text-[11px]">On the West</label>
-              <input type="text" placeholder="West boundary..." class="sch-west w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
-            </div>
+            <div><label class="block text-slate-400 mb-1 text-[11px]">On the North</label><input type="text" placeholder="North boundary..." class="sch-north w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100"></div>
+            <div><label class="block text-slate-400 mb-1 text-[11px]">On the South</label><input type="text" placeholder="South boundary..." class="sch-south w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100"></div>
+            <div><label class="block text-slate-400 mb-1 text-[11px]">On the East</label><input type="text" placeholder="East boundary..." class="sch-east w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100"></div>
+            <div><label class="block text-slate-400 mb-1 text-[11px]">On the West</label><input type="text" placeholder="West boundary..." class="sch-west w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100"></div>
           </div>
 
         </div>
@@ -679,6 +653,73 @@
       ]
     };
 
+    // Geographic Hierarchy Dataset: Division -> Districts -> Police Stations -> Sub-Registry Offices
+    const locationHierarchy = {
+      "Dhaka": {
+        "Dhaka": {
+          "Gulshan": ["Gulshan Sub-Registry Office, Dhaka", "Banani Sub-Registry Office, Dhaka"],
+          "Tejgaon": ["Tejgaon Sub-Registry Office, Dhaka"],
+          "Ramna": ["Ramna Sub-Registry Office, Dhaka", "Motijheel Sub-Registry Office, Dhaka"],
+          "Mirpur": ["Mirpur Sub-Registry Office, Dhaka"],
+          "Dhanmondi": ["Dhanmondi Sub-Registry Office, Dhaka"],
+          "Savar": ["Savar Sub-Registry Office, Dhaka"]
+        },
+        "Gazipur": {
+          "Gazipur Sadar": ["Gazipur Sadar Sub-Registry Office"],
+          "Tongi": ["Tongi Sub-Registry Office"]
+        },
+        "Narayanganj": {
+          "Narayanganj Sadar": ["Narayanganj Sadar Sub-Registry Office"],
+          "Bandar": ["Bandar Sub-Registry Office"]
+        }
+      },
+      "Chattogram": {
+        "Chattogram": {
+          "Kotwali": ["Kotwali Sub-Registry Office, Chattogram"],
+          "Panchlaish": ["Panchlaish Sub-Registry Office, Chattogram"],
+          "Agrabad": ["Double Mooring Sub-Registry Office, Chattogram"]
+        },
+        "Cox's Bazar": {
+          "Cox's Bazar Sadar": ["Cox's Bazar Sadar Sub-Registry Office"]
+        }
+      },
+      "Rajshahi": {
+        "Rajshahi": {
+          "Boalia": ["Rajshahi Sadar Sub-Registry Office"],
+          "Rajpara": ["Rajpara Sub-Registry Office"]
+        },
+        "Bogura": {
+          "Bogura Sadar": ["Bogura Sadar Sub-Registry Office"]
+        }
+      },
+      "Khulna": {
+        "Khulna": {
+          "Sonadanga": ["Khulna Sadar Sub-Registry Office"],
+          "Khalishpur": ["Khalishpur Sub-Registry Office"]
+        }
+      },
+      "Barishal": {
+        "Barishal": {
+          "Kotwali": ["Barishal Sadar Sub-Registry Office"]
+        }
+      },
+      "Sylhet": {
+        "Sylhet": {
+          "Kotwali": ["Sylhet Sadar Sub-Registry Office"]
+        }
+      },
+      "Rangpur": {
+        "Rangpur": {
+          "Kotwali": ["Rangpur Sadar Sub-Registry Office"]
+        }
+      },
+      "Mymensingh": {
+        "Mymensingh": {
+          "Kotwali": ["Mymensingh Sadar Sub-Registry Office"]
+        }
+      }
+    };
+
     let activeDropdown = null;
 
     function renderDropdown(inputId, items) {
@@ -738,6 +779,67 @@
         Object.values(bangladeshBanks).forEach(bList => branches.push(...bList));
       }
       return branches;
+    }
+
+    // Cascading Location Dropdowns Logic
+    function onDivisionChange(divSelect) {
+      const block = divSelect.closest('.schedule-block');
+      const distSelect = block.querySelector('.sch-district-select');
+      const psSelect = block.querySelector('.sch-ps-select');
+      const subregSelect = block.querySelector('.sch-subreg-select');
+
+      distSelect.innerHTML = '<option value="NONE" selected>NONE</option>';
+      psSelect.innerHTML = '<option value="NONE" selected>NONE</option>';
+      subregSelect.innerHTML = '<option value="NONE" selected>NONE</option>';
+
+      const divVal = divSelect.value;
+      if (divVal !== 'NONE' && locationHierarchy[divVal]) {
+        Object.keys(locationHierarchy[divVal]).forEach(dist => {
+          const opt = document.createElement('option');
+          opt.value = dist;
+          opt.innerText = dist;
+          distSelect.appendChild(opt);
+        });
+      }
+    }
+
+    function onDistrictChange(distSelect) {
+      const block = distSelect.closest('.schedule-block');
+      const divVal = block.querySelector('.sch-division').value;
+      const psSelect = block.querySelector('.sch-ps-select');
+      const subregSelect = block.querySelector('.sch-subreg-select');
+
+      psSelect.innerHTML = '<option value="NONE" selected>NONE</option>';
+      subregSelect.innerHTML = '<option value="NONE" selected>NONE</option>';
+
+      const distVal = distSelect.value;
+      if (divVal !== 'NONE' && distVal !== 'NONE' && locationHierarchy[divVal][distVal]) {
+        Object.keys(locationHierarchy[divVal][distVal]).forEach(ps => {
+          const opt = document.createElement('option');
+          opt.value = ps;
+          opt.innerText = ps;
+          psSelect.appendChild(opt);
+        });
+      }
+    }
+
+    function onPSChange(psSelect) {
+      const block = psSelect.closest('.schedule-block');
+      const divVal = block.querySelector('.sch-division').value;
+      const distVal = block.querySelector('.sch-district-select').value;
+      const subregSelect = block.querySelector('.sch-subreg-select');
+
+      subregSelect.innerHTML = '<option value="NONE" selected>NONE</option>';
+
+      const psVal = psSelect.value;
+      if (divVal !== 'NONE' && distVal !== 'NONE' && psVal !== 'NONE' && locationHierarchy[divVal][distVal][psVal]) {
+        locationHierarchy[divVal][distVal][psVal].forEach(subreg => {
+          const opt = document.createElement('option');
+          opt.value = subreg;
+          opt.innerText = subreg;
+          subregSelect.appendChild(opt);
+        });
+      }
     }
 
     function fetchBankAddress() {
@@ -882,7 +984,7 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div>
             <label class="block text-slate-400 mb-1">Building Category</label>
             <select class="sch-bldg-cat w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-200">
@@ -897,30 +999,48 @@
             <label class="block text-slate-400 mb-1">Building Name (if any)</label>
             <input type="text" placeholder="e.g. Rashed Tower" class="sch-bldg-name w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
           </div>
-          <div>
-            <label class="block text-slate-400 mb-1">District</label>
-            <input type="text" placeholder="e.g. Dhaka" class="sch-district w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100" value="Dhaka">
-          </div>
-          <div>
-            <label class="block text-slate-400 mb-1">Police Station (P.S.)</label>
-            <input type="text" placeholder="e.g. Gulshan" class="sch-ps w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-100">
+        </div>
+
+        <!-- JURISDICTION HIERARCHY BLOCK -->
+        <div class="bg-navy-900 p-4 rounded-xl border border-slate-800 space-y-3">
+          <span class="font-bold text-emerald-400 block text-[11px] uppercase tracking-wide"><i class="fa-solid fa-map-pin"></i> Jurisdiction & Registry Location Hierarchy</span>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+            <div>
+              <label class="block text-slate-400 mb-1 text-[11px]">Division</label>
+              <select class="sch-division w-full bg-navy-950 border border-slate-700 rounded px-2 py-1 text-slate-200" onchange="onDivisionChange(this)">
+                <option value="NONE" selected>NONE</option>
+                <option value="Dhaka">Dhaka</option>
+                <option value="Chattogram">Chattogram</option>
+                <option value="Rajshahi">Rajshahi</option>
+                <option value="Khulna">Khulna</option>
+                <option value="Barishal">Barishal</option>
+                <option value="Sylhet">Sylhet</option>
+                <option value="Rangpur">Rangpur</option>
+                <option value="Mymensingh">Mymensingh</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1 text-[11px]">District</label>
+              <select class="sch-district-select w-full bg-navy-950 border border-slate-700 rounded px-2 py-1 text-slate-200" onchange="onDistrictChange(this)">
+                <option value="NONE" selected>NONE</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1 text-[11px]">Police Station (P.S.)</label>
+              <select class="sch-ps-select w-full bg-navy-950 border border-slate-700 rounded px-2 py-1 text-slate-200" onchange="onPSChange(this)">
+                <option value="NONE" selected>NONE</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1 text-[11px]">Sub-Registry Office</label>
+              <select class="sch-subreg-select w-full bg-navy-950 border border-slate-700 rounded px-2 py-1 text-slate-200">
+                <option value="NONE" selected>NONE</option>
+              </select>
+            </div>
           </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-          <div>
-            <label class="block text-slate-400 mb-1">Sub-Registry Office</label>
-            <select class="sch-subreg w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-200">
-              <option value="NONE" selected>NONE</option>
-              <option value="Gulshan Sub-Registry Office, Dhaka">Gulshan Sub-Registry Office, Dhaka</option>
-              <option value="Tejgaon Sub-Registry Office, Dhaka">Tejgaon Sub-Registry Office, Dhaka</option>
-              <option value="Ramna Sub-Registry Office, Dhaka">Ramna Sub-Registry Office, Dhaka</option>
-              <option value="Savar Sub-Registry Office, Dhaka">Savar Sub-Registry Office, Dhaka</option>
-              <option value="Mirpur Sub-Registry Office, Dhaka">Mirpur Sub-Registry Office, Dhaka</option>
-              <option value="Motijheel Sub-Registry Office, Dhaka">Motijheel Sub-Registry Office, Dhaka</option>
-              <option value="Dhanmondi Sub-Registry Office, Dhaka">Dhanmondi Sub-Registry Office, Dhaka</option>
-            </select>
-          </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div>
             <label class="block text-slate-400 mb-1">Authority / Project / Builder</label>
             <select class="sch-authority w-full bg-navy-900 border border-slate-700 rounded px-2 py-1 text-slate-200">

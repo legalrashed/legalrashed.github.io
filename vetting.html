@@ -258,7 +258,7 @@
                 <select class="sch-flat-unit w-1/3 bg-navy-900 border border-slate-700 rounded px-1 py-1 text-slate-200">
                   <option value="NONE" selected>NONE</option>
                   <option value="Sq. Ft.">Sq. Ft.</option>
-                  <option value="Sq. Mtr.">Sq. Mtr.</option>
+                  <option value="Sq. Mtr.">Sq. Mtr me</option>
                 </select>
               </div>
             </div>
@@ -653,98 +653,238 @@
       ]
     };
 
-    // Full 64 Districts Mapped Across all 8 Divisions of Bangladesh + Police Stations & Sub-Registry Offices
+    // Full Mapping of Divisions -> Districts -> Police Stations (Cleaned Area Names)
     const locationHierarchy = {
-      "Dhaka": {
-        "Dhaka": {
-          "Gulshan": ["Gulshan Sub-Registry Office, Dhaka", "Banani Sub-Registry Office, Dhaka"],
-          "Tejgaon": ["Tejgaon Sub-Registry Office, Dhaka"],
-          "Ramna": ["Ramna Sub-Registry Office, Dhaka", "Motijheel Sub-Registry Office, Dhaka"],
-          "Mirpur": ["Mirpur Sub-Registry Office, Dhaka"],
-          "Dhanmondi": ["Dhanmondi Sub-Registry Office, Dhaka"],
-          "Savar": ["Savar Sub-Registry Office, Dhaka"]
+      "Barishal": {
+        "Barguna": {
+          "Amtali": ["Amtali Sub-Registry Office"],
+          "Bamna": ["Bamna Sub-Registry Office"],
+          "Barguna Sadar": ["Barguna Sadar Sub-Registry Office"],
+          "Betagi": ["Betagi Sub-Registry Office"],
+          "Patharghata": ["Patharghata Sub-Registry Office"],
+          "Taltali": ["Taltali Sub-Registry Office"]
         },
-        "Faridpur": { "Faridpur Sadar": ["Faridpur Sadar Sub-Registry Office"], "Bhanga": ["Bhanga Sub-Registry Office"] },
-        "Gazipur": { "Gazipur Sadar": ["Gazipur Sadar Sub-Registry Office"], "Tongi": ["Tongi Sub-Registry Office"] },
-        "Gopalganj": { "Gopalganj Sadar": ["Gopalganj Sadar Sub-Registry Office"] },
-        "Kishoreganj": { "Kishoreganj Sadar": ["Kishoreganj Sadar Sub-Registry Office"] },
-        "Madaripur": { "Madaripur Sadar": ["Madaripur Sadar Sub-Registry Office"] },
-        "Manikganj": { "Manikganj Sadar": ["Manikganj Sadar Sub-Registry Office"] },
-        "Munshiganj": { "Munshiganj Sadar": ["Munshiganj Sadar Sub-Registry Office"] },
-        "Narayanganj": { "Narayanganj Sadar": ["Narayanganj Sadar Sub-Registry Office"], "Bandar": ["Bandar Sub-Registry Office"] },
-        "Narsingdi": { "Narsingdi Sadar": ["Narsingdi Sadar Sub-Registry Office"] },
-        "Rajbari": { "Rajbari Sadar": ["Rajbari Sadar Sub-Registry Office"] },
-        "Shariatpur": { "Shariatpur Sadar": ["Shariatpur Sadar Sub-Registry Office"] },
-        "Tangail": { "Tangail Sadar": ["Tangail Sadar Sub-Registry Office"] }
+        "Barishal": {
+          "Agailjhara": ["Agailjhara Sub-Registry Office"],
+          "Babuganj": ["Babuganj Sub-Registry Office"],
+          "Bakerganj": ["Bakerganj Sub-Registry Office"],
+          "Banaripara": ["Banaripara Sub-Registry Office"],
+          "Barishal Sadar": ["Barishal Sadar Sub-Registry Office"],
+          "Gournadi": ["Gournadi Sub-Registry Office"],
+          "Hizla": ["Hizla Sub-Registry Office"],
+          "Mehendiganj": ["Mehendiganj Sub-Registry Office"],
+          "Muladi": ["Muladi Sub-Registry Office"],
+          "Wazirpur": ["Wazirpur Sub-Registry Office"]
+        },
+        "Bhola": {
+          "Bhola Sadar": ["Bhola Sadar Sub-Registry Office"],
+          "Burhanuddin": ["Burhanuddin Sub-Registry Office"],
+          "Char Fasson": ["Char Fasson Sub-Registry Office"],
+          "Daulatkhan": ["Daulatkhan Sub-Registry Office"],
+          "Lalmohan": ["Lalmohan Sub-Registry Office"],
+          "Manpura": ["Manpura Sub-Registry Office"],
+          "Tazumuddin": ["Tazumuddin Sub-Registry Office"]
+        },
+        "Jhalokati": {
+          "Jhalokati Sadar": ["Jhalokati Sadar Sub-Registry Office"],
+          "Kathalia": ["Kathalia Sub-Registry Office"],
+          "Nalchity": ["Nalchity Sub-Registry Office"],
+          "Rajapur": ["Rajapur Sub-Registry Office"]
+        },
+        "Patuakhali": {
+          "Baufal": ["Baufal Sub-Registry Office"],
+          "Dashmina": ["Dashmina Sub-Registry Office"],
+          "Galachipa": ["Galachipa Sub-Registry Office"],
+          "Kalapara": ["Kalapara Sub-Registry Office"],
+          "Mirzaganj": ["Mirzaganj Sub-Registry Office"],
+          "Patuakhali Sadar": ["Patuakhali Sadar Sub-Registry Office"],
+          "Rangabali": ["Rangabali Sub-Registry Office"],
+          "Dumki": ["Dumki Sub-Registry Office"]
+        },
+        "Pirojpur": {
+          "Bhandaria": ["Bhandaria Sub-Registry Office"],
+          "Kawkhali": ["Kawkhali Sub-Registry Office"],
+          "Mathbaria": ["Mathbaria Sub-Registry Office"],
+          "Nazirpur": ["Nazirpur Sub-Registry Office"],
+          "Nesarabad (Swarupkati)": ["Nesarabad Sub-Registry Office"],
+          "Pirojpur Sadar": ["Pirojpur Sadar Sub-Registry Office"],
+          "Indurkani": ["Indurkani Sub-Registry Office"]
+        }
       },
       "Chattogram": {
-        "Bandarban": { "Bandarban Sadar": ["Bandarban Sadar Sub-Registry Office"] },
-        "Brahmanbaria": { "Brahmanbaria Sadar": ["Brahmanbaria Sadar Sub-Registry Office"] },
-        "Chandpur": { "Chandpur Sadar": ["Chandpur Sadar Sub-Registry Office"] },
+        "Bandarban": {
+          "Bandarban Sadar": ["Bandarban Sadar Sub-Registry Office"],
+          "Thanchi": ["Thanchi Sub-Registry Office"],
+          "Lama": ["Lama Sub-Registry Office"],
+          "Naikhongchhari": ["Naikhongchhari Sub-Registry Office"],
+          "Ali Kadam": ["Ali Kadam Sub-Registry Office"],
+          "Ruma": ["Ruma Sub-Registry Office"],
+          "Rowangchhari": ["Rowangchhari Sub-Registry Office"]
+        },
+        "Brahmanbaria": {
+          "Akhaura": ["Akhaura Sub-Registry Office"],
+          "Bancharampur": ["Bancharampur Sub-Registry Office"],
+          "Brahmanbaria Sadar": ["Brahmanbaria Sadar Sub-Registry Office"],
+          "Kasba": ["Kasba Sub-Registry Office"],
+          "Nabinagar": ["Nabinagar Sub-Registry Office"],
+          "Nasirnagar": ["Nasirnagar Sub-Registry Office"],
+          "Sarail": ["Sarail Sub-Registry Office"],
+          "Ashuganj": ["Ashuganj Sub-Registry Office"],
+          "Bijoynagar": ["Bijoynagar Sub-Registry Office"]
+        },
+        "Chandpur": {
+          "Chandpur Sadar": ["Chandpur Sadar Sub-Registry Office"],
+          "Faridganj": ["Faridganj Sub-Registry Office"],
+          "Haimchar": ["Haimchar Sub-Registry Office"],
+          "Haziganj": ["Haziganj Sub-Registry Office"],
+          "Kachua": ["Kachua Sub-Registry Office"],
+          "Matlab Dakshin": ["Matlab Dakshin Sub-Registry Office"],
+          "Matlab Uttar": ["Matlab Uttar Sub-Registry Office"],
+          "Shahrasti": ["Shahrasti Sub-Registry Office"]
+        },
         "Chattogram": {
+          "Anwara": ["Anwara Sub-Registry Office"],
+          "Banshkhali": ["Banshkhali Sub-Registry Office"],
+          "Boalkhali": ["Boalkhali Sub-Registry Office"],
+          "Chandanaish": ["Chandanaish Sub-Registry Office"],
+          "Fatikchhari": ["Fatikchhari Sub-Registry Office"],
+          "Hathazari": ["Hathazari Sub-Registry Office"],
+          "Lohagara": ["Lohagara Sub-Registry Office"],
+          "Mirsarai": ["Mirsarai Sub-Registry Office"],
+          "Patiya": ["Patiya Sub-Registry Office"],
+          "Rangunia": ["Rangunia Sub-Registry Office"],
+          "Raozan": ["Raozan Sub-Registry Office"],
+          "Sandwip": ["Sandwip Sub-Registry Office"],
+          "Satkania": ["Satkania Sub-Registry Office"],
+          "Sitakunda": ["Sitakunda Sub-Registry Office"],
+          "Karnaphuli": ["Karnaphuli Sub-Registry Office"],
           "Kotwali": ["Kotwali Sub-Registry Office, Chattogram"],
           "Panchlaish": ["Panchlaish Sub-Registry Office, Chattogram"],
-          "Agrabad": ["Double Mooring Sub-Registry Office, Chattogram"]
+          "Double Mooring": ["Double Mooring Sub-Registry Office, Chattogram"],
+          "Pahartali": ["Pahartali Sub-Registry Office, Chattogram"]
         },
-        "Cox's Bazar": { "Cox's Bazar Sadar": ["Cox's Bazar Sadar Sub-Registry Office"] },
-        "Cumilla": { "Cumilla Sadar": ["Cumilla Sadar Sub-Registry Office"] },
-        "Feni": { "Feni Sadar": ["Feni Sadar Sub-Registry Office"] },
-        "Khagrachhari": { "Khagrachhari Sadar": ["Khagrachhari Sadar Sub-Registry Office"] },
-        "Lakshmipur": { "Lakshmipur Sadar": ["Lakshmipur Sadar Sub-Registry Office"] },
-        "Noakhali": { "Noakhali Sadar": ["Noakhali Sadar Sub-Registry Office"] },
-        "Rangamati": { "Rangamati Sadar": ["Rangamati Sadar Sub-Registry Office"] }
+        "Cox's Bazar": {
+          "Anwara": ["Anwara Sub-Registry Office"],
+          "Banshkhali": ["Banshkhali Sub-Registry Office"],
+          "Boalkhali": ["Boalkhali Sub-Registry Office"],
+          "Chandanaish": ["Chandanaish Sub-Registry Office"],
+          "Fatikchhari": ["Fatikchhari Sub-Registry Office"],
+          "Hathazari": ["Hathazari Sub-Registry Office"],
+          "Lohagara": ["Lohagara Sub-Registry Office"],
+          "Mirsarai": ["Mirsarai Sub-Registry Office"],
+          "Patiya": ["Patiya Sub-Registry Office"],
+          "Rangunia": ["Rangunia Sub-Registry Office"],
+          "Raozan": ["Raozan Sub-Registry Office"],
+          "Sandwip": ["Sandwip Sub-Registry Office"],
+          "Satkania": ["Satkania Sub-Registry Office"],
+          "Sitakunda": ["Sitakunda Sub-Registry Office"],
+          "Karnaphuli": ["Karnaphuli Sub-Registry Office"]
+        },
+        "Cumilla": {
+          "Barura": ["Barura Sub-Registry Office"],
+          "Brahmanpara": ["Brahmanpara Sub-Registry Office"],
+          "Burichang": ["Burichang Sub-Registry Office"],
+          "Chandina": ["Chandina Sub-Registry Office"],
+          "Chouddagram": ["Chouddagram Sub-Registry Office"],
+          "Daudkandi": ["Daudkandi Sub-Registry Office"],
+          "Debidwar": ["Debidwar Sub-Registry Office"],
+          "Homna": ["Homna Sub-Registry Office"],
+          "Laksam": ["Laksam Sub-Registry Office"],
+          "Muradnagar": ["Muradnagar Sub-Registry Office"],
+          "Nangalkot": ["Nangalkot Sub-Registry Office"],
+          "Cumilla Adarsha Sadar": ["Cumilla Sadar Sub-Registry Office"],
+          "Meghna": ["Meghna Sub-Registry Office"],
+          "Titas": ["Titas Sub-Registry Office"],
+          "Monohargonj": ["Monohargonj Sub-Registry Office"],
+          "Cumilla Sadar Dakshin": ["Cumilla Sadar Dakshin Sub-Registry Office"],
+          "Lalmai": ["Lalmai Sub-Registry Office"]
+        },
+        "Feni": {
+          "Chhagalnaiya": ["Chhagalnaiya Sub-Registry Office"],
+          "Daganbhuiyan": ["Daganbhuiyan Sub-Registry Office"],
+          "Feni Sadar": ["Feni Sadar Sub-Registry Office"],
+          "Parshuram": ["Parshuram Sub-Registry Office"],
+          "Sonavazi": ["Sonavazi Sub-Registry Office"],
+          "Fulgazi": ["Fulgazi Sub-Registry Office"]
+        },
+        "Khagrachhari": { "Khagrachhari Sadar": ["Khagrachhari Sadar Sub-Registry Office"], "Dighinala": ["Dighinala Sub-Registry Office"], "Panchhari": ["Panchhari Sub-Registry Office"], "Laxmichhari": ["Laxmichhari Sub-Registry Office"], "Mohalchhari": ["Mohalchhari Sub-Registry Office"], "Manikchhari": ["Manikchhari Sub-Registry Office"], "Ramgarh": ["Ramgarh Sub-Registry Office"], "Matiranga": ["Matiranga Sub-Registry Office"], "Guimara": ["Guimara Sub-Registry Office"] },
+        "Lakshmipur": { "Lakshmipur Sadar": ["Lakshmipur Sadar Sub-Registry Office"], "Raipur": ["Raipur Sub-Registry Office"], "Ramganj": ["Ramganj Sub-Registry Office"], "Ramgati": ["Ramgati Sub-Registry Office"], "Kamalnagar": ["Kamalnagar Sub-Registry Office"] },
+        "Noakhali": { "Begumganj": ["Begumganj Sub-Registry Office"], "Chatkhil": ["Chatkhil Sub-Registry Office"], "Companiganj": ["Companiganj Sub-Registry Office"], "Hatiya": ["Hatiya Sub-Registry Office"], "Senbagh": ["Senbagh Sub-Registry Office"], "Noakhali Sadar": ["Noakhali Sadar Sub-Registry Office"], "Subarnachar": ["Subarnachar Sub-Registry Office"], "Sonaimuri": ["Sonaimuri Sub-Registry Office"], "Kabirhat": ["Kabirhat Sub-Registry Office"] },
+        "Rangamati": { "Rangamati Sadar": ["Rangamati Sadar Sub-Registry Office"], "Belaichhari": ["Belaichhari Sub-Registry Office"], "Bhuapur": ["Bhuapur Sub-Registry Office"], "Jurachhari": ["Jurachhari Sub-Registry Office"], "Kawkhali": ["Kawkhali Sub-Registry Office"], "Kaptai": ["Kaptai Sub-Registry Office"], "Langadu": ["Langadu Sub-Registry Office"], "Nannerchar": ["Nannerchar Sub-Registry Office"], "Rajasthali": ["Rajasthali Sub-Registry Office"], "Barkal": ["Barkal Sub-Registry Office"] }
       },
-      "Sylhet": {
-        "Habiganj": { "Habiganj Sadar": ["Habiganj Sadar Sub-Registry Office"] },
-        "Moulvibazar": { "Moulvibazar Sadar": ["Moulvibazar Sadar Sub-Registry Office"] },
-        "Sunamganj": { "Sunamganj Sadar": ["Sunamganj Sadar Sub-Registry Office"] },
-        "Sylhet": { "Kotwali": ["Sylhet Sadar Sub-Registry Office"], "Zindabazar": ["Sylhet Sadar Sub-Registry Office"] }
+      "Dhaka": {
+        "Dhaka": {
+          "Dhamrai": ["Dhamrai Sub-Registry Office"],
+          "Dohar": ["Dohar Sub-Registry Office"],
+          "Keraniganj": ["Keraniganj Sub-Registry Office"],
+          "Nawabganj": ["Nawabganj Sub-Registry Office"],
+          "Savar": ["Savar Sub-Registry Office"],
+          "Gulshan": ["Gulshan Sub-Registry Office, Dhaka"],
+          "Tejgaon": ["Tejgaon Sub-Registry Office, Dhaka"],
+          "Ramna": ["Ramna Sub-Registry Office, Dhaka"],
+          "Mirpur": ["Mirpur Sub-Registry Office, Dhaka"],
+          "Dhanmondi": ["Dhanmondi Sub-Registry Office, Dhaka"],
+          "Motijheel": ["Motijheel Sub-Registry Office, Dhaka"],
+          "Uttara": ["Uttara Sub-Registry Office, Dhaka"],
+          "Badda": ["Badda Sub-Registry Office, Dhaka"],
+          "Khilkhet": ["Khilkhet Sub-Registry Office, Dhaka"]
+        },
+        "Faridpur": { "Alfadanga": ["Alfadanga Sub-Registry Office"], "Bhanga": ["Bhanga Sub-Registry Office"], "Boalmari": ["Boalmari Sub-Registry Office"], "Charbhadrasan": ["Charbhadrasan Sub-Registry Office"], "Faridpur Sadar": ["Faridpur Sadar Sub-Registry Office"], "Madhukhali": ["Madhukhali Sub-Registry Office"], "Nagarkanda": ["Nagarkanda Sub-Registry Office"], "Sadarpur": ["Sadarpur Sub-Registry Office"], "Saltha": ["Saltha Sub-Registry Office"] },
+        "Gazipur": { "Gazipur Sadar": ["Gazipur Sadar Sub-Registry Office"], "Kaliakair": ["Kaliakair Sub-Registry Office"], "Kaliganj": ["Kaliganj Sub-Registry Office"], "Kapasia": ["Kapasia Sub-Registry Office"], "Sreepur": ["Sreepur Sub-Registry Office"], "Tongi": ["Tongi Sub-Registry Office"] },
+        "Gopalganj": { "Gopalganj Sadar": ["Gopalganj Sadar Sub-Registry Office"], "Kashiani": ["Kashiani Sub-Registry Office"], "Kotalipara": ["Kotalipara Sub-Registry Office"], "Muktagacha": ["Muktagacha Sub-Registry Office"], "Tungipara": ["Tungipara Sub-Registry Office"] },
+        "Kishoreganj": { "Austagram": ["Austagram Sub-Registry Office"], "Bajitpur": ["Bajitpur Sub-Registry Office"], "Bhairab": ["Bhairab Sub-Registry Office"], "Hossainpur": ["Hossainpur Sub-Registry Office"], "Itna": ["Itna Sub-Registry Office"], "Karimganj": ["Karimganj Sub-Registry Office"], "Katiadi": ["Katiadi Sub-Registry Office"], "Kishoreganj Sadar": ["Kishoreganj Sadar Sub-Registry Office"], "Kulaura": ["Kulaura Sub-Registry Office"], "Mithamain": ["Mithamain Sub-Registry Office"], "Nikli": ["Nikli Sub-Registry Office"], "Pakundia": ["Pakundia Sub-Registry Office"], "Tarail": ["Tarail Sub-Registry Office"] },
+        "Madaripur": { "Rajoir": ["Rajoir Sub-Registry Office"], "Madaripur Sadar": ["Madaripur Sadar Sub-Registry Office"], "Kalkini": ["Kalkini Sub-Registry Office"], "Shibchar": ["Shibchar Sub-Registry Office"], "Dasar": ["Dasar Sub-Registry Office"] },
+        "Manikganj": { "Singair": ["Singair Sub-Registry Office"], "Dhaka": ["Dhaka Sub-Registry Office"], "Ghatail": ["Ghatail Sub-Registry Office"], "Harirampur": ["Harirampur Sub-Registry Office"], "Saturia": ["Saturia Sub-Registry Office"], "Sivalaya": ["Sivalaya Sub-Registry Office"], "Manikganj Sadar": ["Manikganj Sadar Sub-Registry Office"] },
+        "Munshiganj": { "Gazaria": ["Gazaria Sub-Registry Office"], "Lohajang": ["Lohajang Sub-Registry Office"], "Munshiganj Sadar": ["Munshiganj Sadar Sub-Registry Office"], "Sirajdikhan": ["Sirajdikhan Sub-Registry Office"], "Sreenagar": ["Sreenagar Sub-Registry Office"], "Tongibari": ["Tongibari Sub-Registry Office"] },
+        "Narayanganj": { "Araihazar": ["Araihazar Sub-Registry Office"], "Bandar": ["Bandar Sub-Registry Office"], "Narayanganj Sadar": ["Narayanganj Sadar Sub-Registry Office"], "Rupganj": ["Rupganj Sub-Registry Office"], "Sonargaon": ["Sonargaon Sub-Registry Office"] },
+        "Narsingdi": { "Belabo": ["Belabo Sub-Registry Office"], "Monohardi": ["Monohardi Sub-Registry Office"], "Narsingdi Sadar": ["Narsingdi Sadar Sub-Registry Office"], "Palash": ["Palash Sub-Registry Office"], "Raipura": ["Raipura Sub-Registry Office"], "Shibpur": ["Shibpur Sub-Registry Office"] },
+        "Rajbari": { "Baliakandi": ["Baliakandi Sub-Registry Office"], "Goalandaghat": ["Goalandaghat Sub-Registry Office"], "Pangsha": ["Pangsha Sub-Registry Office"], "Rajbari Sadar": ["Rajbari Sadar Sub-Registry Office"], "Kalukhali": ["Kalukhali Sub-Registry Office"] },
+        "Shariatpur": { "Bhedarganj": ["Bhedarganj Sub-Registry Office"], "Damudya": ["Damudya Sub-Registry Office"], "Jan Jira": ["Jan Jira Sub-Registry Office"], "Naria": ["Naria Sub-Registry Office"], "Shariatpur Sadar": ["Shariatpur Sadar Sub-Registry Office"], "Zajira": ["Zajira Sub-Registry Office"], "Shakhipur": ["Shakhipur Sub-Registry Office"] },
+        "Tangail": { "Gopalpur": ["Gopalpur Sub-Registry Office"], "Basail": ["Basail Sub-Registry Office"], "Bhuapur": ["Bhuapur Sub-Registry Office"], "Delduar": ["Delduar Sub-Registry Office"], "Ghatail": ["Ghatail Sub-Registry Office"], "Kalihati": ["Kalihati Sub-Registry Office"], "Madhupur": ["Madhupur Sub-Registry Office"], "Mirzapur": ["Mirzapur Sub-Registry Office"], "Nagarpur": ["Nagarpur Sub-Registry Office"], "Sakhipur": ["Sakhipur Sub-Registry Office"], "Tangail Sadar": ["Tangail Sadar Sub-Registry Office"], "Dhanbari": ["Dhanbari Sub-Registry Office"] }
       },
       "Khulna": {
-        "Bagerhat": { "Bagerhat Sadar": ["Bagerhat Sadar Sub-Registry Office"] },
-        "Chuadanga": { "Chuadanga Sadar": ["Chuadanga Sadar Sub-Registry Office"] },
-        "Jashore": { "Jashore Sadar": ["Jashore Sadar Sub-Registry Office"] },
-        "Jhenaidah": { "Jhenaidah Sadar": ["Jhenaidah Sadar Sub-Registry Office"] },
-        "Khulna": { "Sonadanga": ["Khulna Sadar Sub-Registry Office"], "Khalishpur": ["Khalishpur Sub-Registry Office"] },
-        "Kushtia": { "Kushtia Sadar": ["Kushtia Sadar Sub-Registry Office"] },
-        "Magura": { "Magura Sadar": ["Magura Sadar Sub-Registry Office"] },
-        "Meherpur": { "Meherpur Sadar": ["Meherpur Sadar Sub-Registry Office"] },
-        "Narail": { "Narail Sadar": ["Narail Sadar Sub-Registry Office"] },
-        "Satkhira": { "Satkhira Sadar": ["Satkhira Sadar Sub-Registry Office"] }
-      },
-      "Barishal": {
-        "Barguna": { "Barguna Sadar": ["Barguna Sadar Sub-Registry Office"] },
-        "Barishal": { "Kotwali": ["Barishal Sadar Sub-Registry Office"] },
-        "Bhola": { "Bhola Sadar": ["Bhola Sadar Sub-Registry Office"] },
-        "Jhalokati": { "Jhalokati Sadar": ["Jhalokati Sadar Sub-Registry Office"] },
-        "Patuakhali": { "Patuakhali Sadar": ["Patuakhali Sadar Sub-Registry Office"] },
-        "Pirojpur": { "Pirojpur Sadar": ["Pirojpur Sadar Sub-Registry Office"] }
-      },
-      "Rajshahi": {
-        "Bogura": { "Bogura Sadar": ["Bogura Sadar Sub-Registry Office"] },
-        "Joypurhat": { "Joypurhat Sadar": ["Joypurhat Sadar Sub-Registry Office"] },
-        "Naogaon": { "Naogaon Sadar": ["Naogaon Sadar Sub-Registry Office"] },
-        "Natore": { "Natore Sadar": ["Natore Sadar Sub-Registry Office"] },
-        "Chapai Nawabganj": { "Nawabganj Sadar": ["Chapai Nawabganj Sadar Sub-Registry Office"] },
-        "Pabna": { "Pabna Sadar": ["Pabna Sadar Sub-Registry Office"] },
-        "Rajshahi": { "Boalia": ["Rajshahi Sadar Sub-Registry Office"], "Rajpara": ["Rajpara Sub-Registry Office"] },
-        "Sirajganj": { "Sirajganj Sadar": ["Sirajganj Sadar Sub-Registry Office"] }
-      },
-      "Rangpur": {
-        "Dinajpur": { "Dinajpur Sadar": ["Dinajpur Sadar Sub-Registry Office"] },
-        "Gaibandha": { "Gaibandha Sadar": ["Gaibandha Sadar Sub-Registry Office"] },
-        "Kurigram": { "Kurigram Sadar": ["Kurigram Sadar Sub-Registry Office"] },
-        "Lalmonirhat": { "Lalmonirhat Sadar": ["Lalmonirhat Sadar Sub-Registry Office"] },
-        "Nilphamari": { "Nilphamari Sadar": ["Nilphamari Sadar Sub-Registry Office"] },
-        "Panchagarh": { "Panchagarh Sadar": ["Panchagarh Sadar Sub-Registry Office"] },
-        "Rangpur": { "Kotwali": ["Rangpur Sadar Sub-Registry Office"] },
-        "Thakurgaon": { "Thakurgaon Sadar": ["Thakurgaon Sadar Sub-Registry Office"] }
+        "Bagerhat": { "Bagerhat Sadar": ["Bagerhat Sadar Sub-Registry Office"], "Chitalmari": ["Chitalmari Sub-Registry Office"], "Fakirhat": ["Fakirhat Sub-Registry Office"], "Kachua": ["Kachua Sub-Registry Office"], "Mollahat": ["Mollahat Sub-Registry Office"], "Mongla": ["Mongla Sub-Registry Office"], "Morrelganj": ["Morrelganj Sub-Registry Office"], "Rampal": ["Rampal Sub-Registry Office"], "Sarankhola": ["Sarankhola Sub-Registry Office"] },
+        "Chuadanga": { "Alamdanga": ["Alamdanga Sub-Registry Office"], "Chuadanga Sadar": ["Chuadanga Sadar Sub-Registry Office"], "Damurhuda": ["Damurhuda Sub-Registry Office"], "Jibannagar": ["Jibannagar Sub-Registry Office"] },
+        "Jashore": { "Abhaynagar": ["Abhaynagar Sub-Registry Office"], "Bagherpara": ["Bagherpara Sub-Registry Office"], "Chaugachha": ["Chaugachha Sub-Registry Office"], "Jhikargachha": ["Jhikargachha Sub-Registry Office"], "Keshabpur": ["Keshabpur Sub-Registry Office"], "Jashore Sadar": ["Jashore Sadar Sub-Registry Office"], "Manirampur": ["Manirampur Sub-Registry Office"], "Sharsha": ["Sharsha Sub-Registry Office"] },
+        "Jhenaidah": { "Harakunda": ["Harakunda Sub-Registry Office"], "Jhenaidah Sadar": ["Jhenaidah Sadar Sub-Registry Office"], "Kaliganj": ["Kaliganj Sub-Registry Office"], "Kotchandpur": ["Kotchandpur Sub-Registry Office"], "Maheshpur": ["Maheshpur Sub-Registry Office"], "Shailkupa": ["Shailkupa Sub-Registry Office"] },
+        "Khulna": { "Batiaghata": ["Batiaghata Sub-Registry Office"], "Dacope": ["Dacope Sub-Registry Office"], "Dumuria": ["Dumuria Sub-Registry Office"], "Dighalia": ["Dighalia Sub-Registry Office"], "Koyra": ["Koyra Sub-Registry Office"], "Paikgachha": ["Paikgachha Sub-Registry Office"], "Phultala": ["Phultala Sub-Registry Office"], "Rupsha": ["Rupsha Sub-Registry Office"], "Terokhada": ["Terokhada Sub-Registry Office"], "Sonadanga": ["Khulna Sadar Sub-Registry Office"], "Khalishpur": ["Khalishpur Sub-Registry Office"] },
+        "Kushtia": { "Bheramara": ["Bheramara Sub-Registry Office"], "Daulatpur": ["Daulatpur Sub-Registry Office"], "Khoksa": ["Khoksa Sub-Registry Office"], "Kumarkhali": ["Kumarkhali Sub-Registry Office"], "Kushtia Sadar": ["Kushtia Sadar Sub-Registry Office"], "Mirpur": ["Mirpur Sub-Registry Office"] },
+        "Magura": { "Magura Sadar": ["Magura Sadar Sub-Registry Office"], "Mohammadpur": ["Mohammadpur Sub-Registry Office"], "Shalisha": ["Shalisha Sub-Registry Office"], "Sreepur": ["Sreepur Sub-Registry Office"] },
+        "Meherpur": { "Gangni": ["Gangni Sub-Registry Office"], "Meherpur Sadar": ["Meherpur Sadar Sub-Registry Office"], "Mujibnagar": ["Mujibnagar Sub-Registry Office"] },
+        "Narail": { "Kalia": ["Kalia Sub-Registry Office"], "Narail Sadar": ["Narail Sadar Sub-Registry Office"], "Lohagara": ["Lohagara Sub-Registry Office"] },
+        "Satkhira": { "Assasuni": ["Assasuni Sub-Registry Office"], "Debhata": ["Debhata Sub-Registry Office"], "Kalaroa": ["Kalaroa Sub-Registry Office"], "Kaliganj": ["Kaliganj Sub-Registry Office"], "Satkhira Sadar": ["Satkhira Sadar Sub-Registry Office"], "Shyamnagar": ["Shyamnagar Sub-Registry Office"], "Tala": ["Tala Sub-Registry Office"] }
       },
       "Mymensingh": {
-        "Jamalpur": { "Jamalpur Sadar": ["Jamalpur Sadar Sub-Registry Office"] },
-        "Mymensingh": { "Kotwali": ["Mymensingh Sadar Sub-Registry Office"] },
-        "Netrokona": { "Netrokona Sadar": ["Netrokona Sadar Sub-Registry Office"] },
-        "Sherpur": { "Sherpur Sadar": ["Sherpur Sadar Sub-Registry Office"] }
+        "Jamalpur": { "Baksiganj": ["Baksiganj Sub-Registry Office"], "Dewanganj": ["Dewanganj Sub-Registry Office"], "Isampur": ["Isampur Sub-Registry Office"], "Jamalpur Sadar": ["Jamalpur Sadar Sub-Registry Office"], "Madarganj": ["Madarganj Sub-Registry Office"], "Melandahn": ["Melandahn Sub-Registry Office"], "Sarishabari": ["Sarishabari Sub-Registry Office"] },
+        "Mymensingh": { "Trishal": ["Trishal Sub-Registry Office"], "Dhobaura": ["Dhobaura Sub-Registry Office"], "Fulbaria": ["Fulbaria Sub-Registry Office"], "Gaffargaon": ["Gaffargaon Sub-Registry Office"], "Gauripur": ["Gauripur Sub-Registry Office"], "Haluaghat": ["Haluaghat Sub-Registry Office"], "Ishwarganj": ["Ishwarganj Sub-Registry Office"], "Mymensingh Sadar": ["Mymensingh Sadar Sub-Registry Office"], "Muktagacha": ["Muktagacha Sub-Registry Office"], "Nandail": ["Nandail Sub-Registry Office"], "Phulpur": ["Phulpur Sub-Registry Office"], "Bhaluka": ["Bhaluka Sub-Registry Office"], "Tara Khanda": ["Tara Khanda Sub-Registry Office"] },
+        "Netrokona": { "Atpara": ["Atpara Sub-Registry Office"], "Barhatta": ["Barhatta Sub-Registry Office"], "Durgapur": ["Durgapur Sub-Registry Office"], "Khaliajuri": ["Khaliajuri Sub-Registry Office"], "Kalmakanda": ["Kalmakanda Sub-Registry Office"], "Kendua": ["Kendua Sub-Registry Office"], "Madan": ["Madan Sub-Registry Office"], "Netrokona Sadar": ["Netrokona Sadar Sub-Registry Office"], "Purbadhala": ["Purbadhala Sub-Registry Office"] },
+        "Sherpur": { "Jhenaigati": ["Jhenaigati Sub-Registry Office"], "Nakla": ["Nakla Sub-Registry Office"], "Nalitabari": ["Nalitabari Sub-Registry Office"], "Sherpur Sadar": ["Sherpur Sadar Sub-Registry Office"], "Sreebardi": ["Sreebardi Sub-Registry Office"] }
+      },
+      "Rajshahi": {
+        "Bogura": { "Adamdighi": ["Adamdighi Sub-Registry Office"], "Bogura Sadar": ["Bogura Sadar Sub-Registry Office"], "Dhunat": ["Dhunat Sub-Registry Office"], "Dhupchanchia": ["Dhupchanchia Sub-Registry Office"], "Gabtali": ["Gabtali Sub-Registry Office"], "Kahaloo": ["Kahaloo Sub-Registry Office"], "Nandigram": ["Nandigram Sub-Registry Office"], "Sariakandi": ["Sariakandi Sub-Registry Office"], "Sherpur": ["Sherpur Sub-Registry Office"], "Shibganj": ["Shibganj Sub-Registry Office"], "Sonatola": ["Sonatola Sub-Registry Office"], "Shajahanpur": ["Shajahanpur Sub-Registry Office"] },
+        "Chapai Nawabganj": { "Bholahat": ["Bholahat Sub-Registry Office"], "Shibganj": ["Shibganj Sub-Registry Office"], "Chapai Nawabganj Sadar": ["Chapai Nawabganj Sadar Sub-Registry Office"], "Nachole": ["Nachole Sub-Registry Office"], "Gomastapur": ["Gomastapur Sub-Registry Office"] },
+        "Joypurhat": { "Akkelpur": ["Akkelpur Sub-Registry Office"], "Joypurhat Sadar": ["Joypurhat Sadar Sub-Registry Office"], "Kalai": ["Kalai Sub-Registry Office"], "Khetlal": ["Khetlal Sub-Registry Office"], "Panchbibi": ["Panchbibi Sub-Registry Office"] },
+        "Naogaon": { "Atrai": ["Atrai Sub-Registry Office"], "Badalgachhi": ["Badalgachhi Sub-Registry Office"], "Dhamoirhat": ["Dhamoirhat Sub-Registry Office"], "Manda": ["Manda Sub-Registry Office"], "Naogaon Sadar": ["Naogaon Sadar Sub-Registry Office"], "Niamatpur": ["Niamatpur Sub-Registry Office"], "Patnitala": ["Patnitala Sub-Registry Office"], "Raninagar": ["Raninagar Sub-Registry Office"], "Sapahar": ["Sapahar Sub-Registry Office"], "Mohadevpur": ["Mohadevpur Sub-Registry Office"], "Porsha": ["Porsha Sub-Registry Office"] },
+        "Natore": { "Bagatipara": ["Bagatipara Sub-Registry Office"], "Baraigram": ["Baraigram Sub-Registry Office"], "Gurudaspur": ["Gurudaspur Sub-Registry Office"], "Lalpur": ["Lalpur Sub-Registry Office"], "Natore Sadar": ["Natore Sadar Sub-Registry Office"], "Singra": ["Singra Sub-Registry Office"], "Naldanga": ["Naldanga Sub-Registry Office"] },
+        "Pabna": { "Atgharia": ["Atgharia Sub-Registry Office"], "Bera": ["Bera Sub-Registry Office"], "Bhangura": ["Bhangura Sub-Registry Office"], "Chatmohar": ["Chatmohar Sub-Registry Office"], "Faridpur": ["Faridpur Sub-Registry Office"], "Ishwardi": ["Ishwardi Sub-Registry Office"], "Pabna Sadar": ["Pabna Sadar Sub-Registry Office"], "Santhia": ["Santhia Sub-Registry Office"], "Sujanagar": ["Sujanagar Sub-Registry Office"] },
+        "Rajshahi": { "Bagha": ["Bagha Sub-Registry Office"], "Bagmara": ["Bagmara Sub-Registry Office"], "Charghat": ["Charghat Sub-Registry Office"], "Durgapur": ["Durgapur Sub-Registry Office"], "Godagari": ["Godagari Sub-Registry Office"], "Mohanpur": ["Mohanpur Sub-Registry Office"], "Paba": ["Paba Sub-Registry Office"], "Puthia": ["Puthia Sub-Registry Office"], "Tanore": ["Tanore Sub-Registry Office"], "Boalia": ["Rajshahi Sadar Sub-Registry Office"], "Rajpara": ["Rajpara Sub-Registry Office"] },
+        "Sirajganj": { "Belkuchi": ["Belkuchi Sub-Registry Office"], "Chauhali": ["Chauhali Sub-Registry Office"], "Kamarkhanda": ["Kamarkhanda Sub-Registry Office"], "Kazipur": ["Kazipur Sub-Registry Office"], "Rayganj": ["Rayganj Sub-Registry Office"], "Shahjadpur": ["Shahjadpur Sub-Registry Office"], "Sirajganj Sadar": ["Sirajganj Sadar Sub-Registry Office"], "Tarash": ["Tarash Sub-Registry Office"], "Ullahpara": ["Ullahpara Sub-Registry Office"] }
+      },
+      "Rangpur": {
+        "Dinajpur": { "Birampur": ["Birampur Sub-Registry Office"], "Birganj": ["Birganj Sub-Registry Office"], "Biral": ["Biral Sub-Registry Office"], "Bochaganj": ["Bochaganj Sub-Registry Office"], "Chirirbandar": ["Chirirbandar Sub-Registry Office"], "Phulbari": ["Phulbari Sub-Registry Office"], "Ghoraghat": ["Ghoraghat Sub-Registry Office"], "Hakimpur": ["Hakimpur Sub-Registry Office"], "Kaharole": ["Kaharole Sub-Registry Office"], "Khansama": ["Khansama Sub-Registry Office"], "Dinajpur Sadar": ["Dinajpur Sadar Sub-Registry Office"], "Nawabganj": ["Nawabganj Sub-Registry Office"], "Parbatipur": ["Parbatipur Sub-Registry Office"] },
+        "Gaibandha": { "Fulchhari": ["Fulchhari Sub-Registry Office"], "Gaibandha Sadar": ["Gaibandha Sadar Sub-Registry Office"], "Gobindaganj": ["Gobindaganj Sub-Registry Office"], "Palashbari": ["Palashbari Sub-Registry Office"], "Sadullapur": ["Sadullapur Sub-Registry Office"], "Saghata": ["Saghata Sub-Registry Office"], "Sundarganj": ["Sundarganj Sub-Registry Office"] },
+        "Kurigram": { "Bhurungamari": ["Bhurungamari Sub-Registry Office"], "Char Rajibpur": ["Char Rajibpur Sub-Registry Office"], "Chilmari": ["Chilmari Sub-Registry Office"], "Phulbari": ["Phulbari Sub-Registry Office"], "Kurigram Sadar": ["Kurigram Sadar Sub-Registry Office"], "Nageshwari": ["Nageshwari Sub-Registry Office"], "Rajarhat": ["Rajarhat Sub-Registry Office"], "Ulipur": ["Ulipur Sub-Registry Office"], "Raomari": ["Raomari Sub-Registry Office"] },
+        "Lalmonirhat": { "Aditmari": ["Aditmari Sub-Registry Office"], "Hatibandha": ["Hatibandha Sub-Registry Office"], "Kaliganj": ["Kaliganj Sub-Registry Office"], "Lalmonirhat Sadar": ["Lalmonirhat Sadar Sub-Registry Office"], "Patgram": ["Patgram Sub-Registry Office"] },
+        "Nilphamari": { "Jaldhaka": ["Jaldhaka Sub-Registry Office"], "Kishoreganj": ["Kishoreganj Sub-Registry Office"], "Nilphamari Sadar": ["Nilphamari Sadar Sub-Registry Office"], "Saidpur": ["Saidpur Sub-Registry Office"], "Domar": ["Domar Sub-Registry Office"], "Dimla": ["Dimla Sub-Registry Office"] },
+        "Panchagarh": { "Atwari": ["Atwari Sub-Registry Office"], "Boda": ["Boda Sub-Registry Office"], "Debiganj": ["Debiganj Sub-Registry Office"], "Panchagarh Sadar": ["Panchagarh Sadar Sub-Registry Office"], "Tetulia": ["Tetulia Sub-Registry Office"] },
+        "Rangpur": { "Badarganj": ["Badarganj Sub-Registry Office"], "Gangachhara": ["Gangachhara Sub-Registry Office"], "Kaunia": ["Kaunia Sub-Registry Office"], "Rangpur Sadar": ["Rangpur Sadar Sub-Registry Office"], "Mithapukur": ["Mithapukur Sub-Registry Office"], "Pirgachha": ["Pirgachha Sub-Registry Office"], "Pirganj": ["Pirganj Sub-Registry Office"], "Taraganj": ["Taraganj Sub-Registry Office"], "Kotwali": ["Rangpur Sadar Sub-Registry Office"] },
+        "Thakurgaon": { "Baliadangi": ["Baliadangi Sub-Registry Office"], "Haripur": ["Haripur Sub-Registry Office"], "Pirganj": ["Pirganj Sub-Registry Office"], "Thakurgaon Sadar": ["Thakurgaon Sadar Sub-Registry Office"], "Ranisankail": ["Ranisankail Sub-Registry Office"] }
+      },
+      "Sylhet": {
+        "Habiganj": { "Ajmiriganj": ["Ajmiriganj Sub-Registry Office"], "Bahubal": ["Bahubal Sub-Registry Office"], "Baniachang": ["Baniachang Sub-Registry Office"], "Chunarughat": ["Chunarughat Sub-Registry Office"], "Habiganj Sadar": ["Habiganj Sadar Sub-Registry Office"], "Lakhai": ["Lakhai Sub-Registry Office"], "Madhabpur": ["Madhabpur Sub-Registry Office"], "Nabiganj": ["Nabiganj Sub-Registry Office"], "Sayestaganj": ["Sayestaganj Sub-Registry Office"] },
+        "Moulvibazar": { "Barlekha": ["Barlekha Sub-Registry Office"], "Kamalganj": ["Kamalganj Sub-Registry Office"], "Kulaura": ["Kulaura Sub-Registry Office"], "Moulvibazar Sadar": ["Moulvibazar Sadar Sub-Registry Office"], "Rajnagar": ["Rajnagar Sub-Registry Office"], "Sreemangal": ["Sreemangal Sub-Registry Office"], "Juri": ["Juri Sub-Registry Office"] },
+        "Sunamganj": { "Bishwamambharpur": ["Bishwamambharpur Sub-Registry Office"], "Chhatak": ["Chhatak Sub-Registry Office"], "Derai": ["Derai Sub-Registry Office"], "Dharamapasha": ["Dharamapasha Sub-Registry Office"], "Dowarabazar": ["Dowarabazar Sub-Registry Office"], "Jagannathpur": ["Jagannathpur Sub-Registry Office"], "Jamalganj": ["Jamalganj Sub-Registry Office"], "Sullah": ["Sullah Sub-Registry Office"], "Sunamganj Sadar": ["Sunamganj Sadar Sub-Registry Office"], "Tahirpur": ["Tahirpur Sub-Registry Office"], "Shantiganj": ["Shantiganj Sub-Registry Office"] },
+        "Sylhet": { "Balaganj": ["Balaganj Sub-Registry Office"], "Beanibazar": ["Beanibazar Sub-Registry Office"], "Bishwanath": ["Bishwanath Sub-Registry Office"], "Companiganj": ["Companiganj Sub-Registry Office"], "Fenchuganj": ["Fenchuganj Sub-Registry Office"], "Golapganj": ["Golapganj Sub-Registry Office"], "Gowainghat": ["Gowainghat Sub-Registry Office"], "Jaintiapur": ["Jaintiapur Sub-Registry Office"], "Kanaighat": ["Kanaighat Sub-Registry Office"], "Sylhet Sadar": ["Sylhet Sadar Sub-Registry Office"], "Zakiganj": ["Zakiganj Sub-Registry Office"], "South Surma": ["South Surma Sub-Registry Office"], "Osmani Nagar": ["Osmani Nagar Sub-Registry Office"] }
       }
     };
 
@@ -822,7 +962,7 @@
 
       const divVal = divSelect.value;
       if (divVal !== 'NONE' && locationHierarchy[divVal]) {
-        Object.keys(locationHierarchy[divVal]).forEach(dist => {
+        Object.keys(locationHierarchy[divVal]).sort().forEach(dist => {
           const opt = document.createElement('option');
           opt.value = dist;
           opt.innerText = dist;
@@ -842,7 +982,7 @@
 
       const distVal = distSelect.value;
       if (divVal !== 'NONE' && distVal !== 'NONE' && locationHierarchy[divVal][distVal]) {
-        Object.keys(locationHierarchy[divVal][distVal]).forEach(ps => {
+        Object.keys(locationHierarchy[divVal][distVal]).sort().forEach(ps => {
           const opt = document.createElement('option');
           opt.value = ps;
           opt.innerText = ps;
